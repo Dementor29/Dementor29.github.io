@@ -24,6 +24,11 @@
       font-size: 18px;
     }
 
+    header h1 {
+      color: white;
+      margin: 0;
+    }
+
     nav ul {
       list-style: none;
       padding: 0;
@@ -35,17 +40,19 @@
     }
 
     nav ul li a {
-      color: white;
+      font-family: Arial, sans-serif;
+      color: #8B0000;
       text-decoration: none;
       font-size: 18px;
-      background-color: #333;
+      background-color: #222;
       padding: 10px 20px;
       border-radius: 5px;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
     }
 
     nav ul li a:hover {
-      background-color: #555;
+      background-color: #8B0000;
+      color: white;
     }
 
     img {
@@ -86,23 +93,13 @@
         justify-content: center;
       }
     }
-
-    /* ENLACES DENTRO DE TÍTULOS EN ROJO VINO */
-    h1 a, h2 a, h3 a {
-      color: #8B0000;
-      text-decoration: none;
-    }
-
-    h1 a:hover, h2 a:hover, h3 a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 
 <body>
 
   <header>
-    <h1><a href="#">Despertar del ⛧ Averno</a></h1>
+    <h1>Despertar del ⛧ Averno</h1>
   </header>
 
   <nav>
@@ -125,7 +122,7 @@
   </a>
 
   <footer>
-    <a href="PAGINA.html" style="color: white;">↑ VOLVER ↑</a>
+    <a href="PAGINA.html" style="color: #8B0000; font-family: Arial, sans-serif;">↑ VOLVER ↑</a>
   </footer>
 
 </body>
