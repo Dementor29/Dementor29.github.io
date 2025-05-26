@@ -27,26 +27,37 @@
  <img src="https://i.ibb.co/KjTHTLL/326678976-867051874576461-6343466547733363736-n.jpg" alt="326678976-867051874576461-6343466547733363736-n"alt="despertardelaverno"style="width:60%">
 
 </div>
-
-<div class="video-container">
-  <iframe width="380" height="200" src="https://www.youtube.com/embed/tP7-X3ddpL8" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-  <iframe width="380" height="200" src="https://www.youtube.com/embed/OKgMXrFz_gM?controls=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-  <iframe width="380" height="200" src="https://www.youtube.com/embed/IHzSIniGQqU?controls=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
-<style>
+ <style>
   .video-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 20px;
   }
 
   .video-container iframe {
+    flex: 1 1 300px; /* crecer, encoger, base mínima */
+    max-width: 380px;
+    height: auto;
+    aspect-ratio: 16 / 9;
     border: none;
-    max-width: 100%;
+  }
+
+  /* Ajuste para pantallas pequeñas */
+  @media (max-width: 480px) {
+    .video-container iframe {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/tP7-X3ddpL8" title="YouTube video player" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/OKgMXrFz_gM?controls=0" title="YouTube video player" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/IHzSIniGQqU?controls=0" title="YouTube video player" allowfullscreen></iframe>
+</div>
+
   }
 </style>
 <p2><span style="color:white;">CREDITO :</p2>
