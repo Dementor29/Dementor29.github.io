@@ -268,11 +268,29 @@ Dejo plasmado en esta página distintos <span style="color:red;">medios</span> d
 
 <h2 align="center">VIDEOS</h2>
 
-<figure>
-<iframe width="380" height="300" src="https://www.youtube.com/embed/tP7-X3ddpL8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<iframe width="380" height="300" src="https://www.youtube.com/embed/OKgMXrFz_gM?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<iframe width="380" height="300" src="https://www.youtube.com/embed/IHzSIniGQqU?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</figure> 
+<div class="video-container">
+  <iframe width="380" height="300" src="https://www.youtube.com/embed/tP7-X3ddpL8" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+  <iframe width="380" height="300" src="https://www.youtube.com/embed/OKgMXrFz_gM?controls=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+  <iframe width="380" height="300" src="https://www.youtube.com/embed/IHzSIniGQqU?controls=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+<style>
+  .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .video-container iframe {
+    border: none;
+    max-width: 100%;
+  }
+</style>
+
 
 <p><span style="color:white;">CRÉDITO:</span></p>
 
