@@ -285,36 +285,14 @@ function addToCart(button, name, price) {
 }
 
 function moverWishlistACarrito() {
-  deseos.forEach((li, nombre) => {
-    const precio = parseInt(li.dataset.precio);
-    const cantidad = parseInt(li.dataset.cantidad);
-    if (!carrito.has(nombre)) {
-      const newLi = document.createElement("li");
-      newLi.textContent = `${nombre} x${cantidad} - $${(precio * cantidad).toLocaleString()}`;
-      const removeBtn = document.createElement("button");
-      removeBtn.textContent = "✖";
-      removeBtn.className = "remove-button";
-      removeBtn.onclick = () => {
-        newLi.remove();
-        carrito.delete(nombre);
-      };
-      newLi.appendChild(removeBtn);
-      document.getElementById("cart-items").appendChild(newLi);
-      carrito.set(nombre, newLi);
-    }
-  });
-
-  // Limpiar lista de deseos visualmente y en el mapa
-  document.querySelectorAll("#wishlist-items li").forEach(li => {
+  const wishlistItems = document.querySelectorAll("#wishlist-items li");
+  wishlistItems.forEach(li => {
     const nombre = li.dataset.nombre;
-    const heart = document.querySelector(`.heart-icon[onclick*="'${nombre}'"]`);
-    if (heart) heart.classList.remove("active");
-    li.remove();
+    const precio = parseInt(li.dataset.precio);
+    addToCart(null, nombre, precio);
   });
-
-  deseos.clear();
+  document.getElementById("wishlist-items").innerHTML = "";
 }
-
 
 function comprarPorWhatsapp() {
   const items = document.querySelectorAll("#cart-items li");
