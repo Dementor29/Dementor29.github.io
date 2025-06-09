@@ -81,48 +81,6 @@
     }
   }
 </style>
-
-<div class="carousel-wrapper">
-  <div class="carousel-container">
-    <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
-    <div class="carousel" id="carousel">
-      <a href="#"><img src="https://i.ibb.co/7dq7w8Gr/Whats-App-Image-2025-06-08-at-7-50-42-PM.jpg" alt="Imagen 1"></a>
-      <a href="#"><img src="https://i.ibb.co/gbP5NLZ1/Whats-App-Image-2025-06-08-at-7-50-45-PM.jpg" alt="Imagen 2"></a>
-      <a href="#"><img src="https://i.ibb.co/TBGMGBbR/Whats-App-Image-2025-06-08-at-7-47-37-PM.jpg" alt="Imagen 5"></a>
-      <a href="#"><img src="https://i.ibb.co/zhQ6M9zW/Whats-App-Image-2025-06-08-at-7-50-55-PM.jpg" alt="Imagen 4"></a>
-      
-    </div>
-    <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
-  </div>
-</div>
-
-<script>
-  let currentIndex = 0;
-  const carousel = document.getElementById("carousel");
-  const totalSlides = carousel.children.length;
-  const slidesToShow = window.innerWidth <= 768 ? 1 : 3;
-
-  function updateTransform() {
-    const slideWidthPercent = 100 / slidesToShow;
-    carousel.style.transform = `translateX(-${currentIndex * slideWidthPercent}%)`;
-  }
-
-  function moveSlide(direction) {
-    const maxIndex = Math.ceil(totalSlides / slidesToShow) - 1;
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = maxIndex;
-    if (currentIndex > maxIndex) currentIndex = 0;
-    updateTransform();
-  }
-
-  window.addEventListener("resize", () => {
-    currentIndex = 0;
-    updateTransform();
-  });
-
-  updateTransform();
-</script>
-
 	
 .float{
   position:fixed;
@@ -195,6 +153,47 @@ color:white;
 
 </style>
 <font color="#C10202"/>	
+
+<div class="carousel-wrapper">
+  <div class="carousel-container">
+    <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
+    <div class="carousel" id="carousel">
+      <a href="#"><img src="https://i.ibb.co/7dq7w8Gr/Whats-App-Image-2025-06-08-at-7-50-42-PM.jpg" alt="Imagen 1"></a>
+      <a href="#"><img src="https://i.ibb.co/gbP5NLZ1/Whats-App-Image-2025-06-08-at-7-50-45-PM.jpg" alt="Imagen 2"></a>
+      <a href="#"><img src="https://i.ibb.co/TBGMGBbR/Whats-App-Image-2025-06-08-at-7-47-37-PM.jpg" alt="Imagen 5"></a>
+      <a href="#"><img src="https://i.ibb.co/zhQ6M9zW/Whats-App-Image-2025-06-08-at-7-50-55-PM.jpg" alt="Imagen 4"></a>
+      
+    </div>
+    <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+</div>
+
+<script>
+  let currentIndex = 0;
+  const carousel = document.getElementById("carousel");
+  const totalSlides = carousel.children.length;
+  const slidesToShow = window.innerWidth <= 768 ? 1 : 3;
+
+  function updateTransform() {
+    const slideWidthPercent = 100 / slidesToShow;
+    carousel.style.transform = `translateX(-${currentIndex * slideWidthPercent}%)`;
+  }
+
+  function moveSlide(direction) {
+    const maxIndex = Math.ceil(totalSlides / slidesToShow) - 1;
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = maxIndex;
+    if (currentIndex > maxIndex) currentIndex = 0;
+    updateTransform();
+  }
+
+  window.addEventListener("resize", () => {
+    currentIndex = 0;
+    updateTransform();
+  });
+
+  updateTransform();
+</script>
 
 <p style="font-size:110%;"><span style="color:white;">
 Mi nombre es <span style="color:red;">Juan Camilo Heredia Gallego</span> naci el <time style="color:red;">29/05/1997 </time> Colombia, del departamento del <span style="color:red;">Valle del Cauca</span> en la ciudad de <span style="color:red;">Cali</span>. Vivo actualmente solo, mis padres son <span style="color:red;">Martha Cecilia Gallego Solarte</span> y <span style="color:red;">Gustavo Adolfo Heredia Hernández</span>. Mis padres siempre fueron muy humildes y gracias a ellos les debo mucho por brindarme una educación ejemplar, tanto en estudios como en crianza, valores y modales, gracias a ellos soy lo que soy hoy en día considerándome una persona que no le hace daño a nadie y que perfectamente distingue lo bueno de lo malo y tiene claro lo que quiere para su vida, mi padre murió a mis 12 años más exactamente el <time style="color:red;">11/11/2015</time> por cáncer de estómago (<span style="color:red;">sarcoma</span>), mi mama el año 2022 decide irse para España a buscar un mejor futuro.
