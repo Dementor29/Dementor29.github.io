@@ -192,6 +192,9 @@ h1 {
   <h3>Carrito de compras</h3>
   <ul id="cart-items"></ul>
   <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+  <!-- justo debajo de tu <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button> en la sección carrito -->
+<button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+
 </div>
 
 <div class="volver-container">
@@ -309,6 +312,196 @@ function comprarPorWhatsapp() {
 }
 
 renderCatalogo();
+  // ------------------- NUEVO -------------------------
+
+// Objeto para guardar las cantidades de productos en carrito/lista de deseos
+const cantidades = {};
+
+// Modificación de addToCart para evitar duplicados y usar contador
+function addToCart(button, name, price) {
+  const cartList = document.getElementById("cart-items");
+  // Si ya está en cantidades, solo actualizamos la cantidad
+  if (cantidades[name]) {
+    cantidades[name]++;
+    actualizarCantidad(name);
+    return;
+  }
+  // Si no, creamos el ítem en carrito con contador editable
+  cantidades[name] = 1;
+
+  const li = document.createElement("li");
+  li.dataset.nombre = name;
+  li.dataset.precio = price;
+
+  li.innerHTML = `
+    ${name} - $${price.toLocaleString()} 
+    <input type="number" min="1" value="1" style="width: 40px; margin-left:10px;" onchange="cambiarCantidad(event, '${name}')" />
+    <button class="remove-button" onclick="removerDelCarrito('${name}')">✖</button>
+  `;
+
+  cartList.appendChild(li);
+
+  // También marca el corazón activo en catálogo y agrega a lista deseos si no está
+  marcarFavoritoDesdeCarrito(name, price);
+}
+
+// Función para actualizar el input cantidad en carrito y en lista de deseos
+function actualizarCantidad(name) {
+  // Actualizar input en carrito
+  const cartList = document.getElementById("cart-items");
+  const liCarrito = cartList.querySelector(`li[data-nombre="${name}"]`);
+  if (liCarrito) {
+    const input = liCarrito.querySelector("input[type=number]");
+    if (input) input.value = cantidades[name];
+  }
+
+  // Actualizar cantidad en lista deseos (si quisieras mostrar, aquí deberías adaptar)
+  const wishlist = document.getElementById("wishlist-items");
+  const liWishlist = wishlist.querySelector(`li[data-nombre="${name}"]`);
+  if (liWishlist) {
+    // Aquí simplemente actualizamos el texto para reflejar cantidad
+    liWishlist.textContent = `${name} - $${(parseInt(liWishlist.dataset.precio)).toLocaleString()} x${cantidades[name]}`;
+    // Volver a agregar el botón eliminar porque sobrescribimos el texto
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "✖";
+    removeBtn.className = "remove-button";
+    removeBtn.onclick = () => removerDeWishlist(name);
+    liWishlist.appendChild(removeBtn);
+  }
+}
+
+// Manejo del cambio en input cantidad
+function cambiarCantidad(event, name) {
+  let valor = parseInt(event.target.value);
+  if (isNaN(valor) || valor < 1) {
+    valor = 1;
+    event.target.value = valor;
+  }
+  cantidades[name] = valor;
+  actualizarCantidad(name);
+}
+
+// Cuando se elimina del carrito
+function removerDelCarrito(name) {
+  const cartList = document.getElementById("cart-items");
+  const li = cartList.querySelector(`li[data-nombre="${name}"]`);
+  if (li) li.remove();
+
+  // Quitar cantidad
+  delete cantidades[name];
+
+  // Quitar de lista de deseos si está y desmarcar corazón
+  removerDeWishlist(name);
+
+  // Desmarcar icono corazón
+  desmarcarCorazon(name);
+}
+
+// Función para remover item de lista de deseos
+function removerDeWishlist(name) {
+  const wishlist = document.getElementById("wishlist-items");
+  const li = wishlist.querySelector(`li[data-nombre="${name}"]`);
+  if (li) li.remove();
+
+  // También quitar cantidad si existe
+  if (cantidades[name]) {
+    delete cantidades[name];
+  }
+
+  // Desmarcar corazón
+  desmarcarCorazon(name);
+}
+
+// Marcar corazón activo en catálogo y agregar a wishlist si no está
+function marcarFavoritoDesdeCarrito(name, price) {
+  // Buscar el icono corazón del producto y marcarlo
+  const catalogo = document.getElementById("catalogo-container");
+  const items = catalogo.querySelectorAll(".item");
+  items.forEach(item => {
+    const titulo = item.querySelector("h3");
+    if (titulo && titulo.textContent === name) {
+      const corazon = item.querySelector(".heart-icon");
+      if (corazon && !corazon.classList.contains("active")) {
+        corazon.classList.add("active");
+        // Agregar a wishlist si no está
+        const wishlist = document.getElementById("wishlist-items");
+        if (!wishlist.querySelector(`li[data-nombre="${name}"]`)) {
+          const li = document.createElement("li");
+          li.dataset.nombre = name;
+          li.dataset.precio = price;
+          li.textContent = `${name} - $${price.toLocaleString()} x${cantidades[name]}`;
+          const removeBtn = document.createElement("button");
+          removeBtn.textContent = "✖";
+          removeBtn.className = "remove-button";
+          removeBtn.onclick = () => removerDeWishlist(name);
+          li.appendChild(removeBtn);
+          wishlist.appendChild(li);
+        }
+      }
+    }
+  });
+}
+
+// Desmarcar corazón en catálogo
+function desmarcarCorazon(name) {
+  const catalogo = document.getElementById("catalogo-container");
+  const items = catalogo.querySelectorAll(".item");
+  items.forEach(item => {
+    const titulo = item.querySelector("h3");
+    if (titulo && titulo.textContent === name) {
+      const corazon = item.querySelector(".heart-icon");
+      if (corazon && corazon.classList.contains("active")) {
+        corazon.classList.remove("active");
+      }
+    }
+  });
+}
+
+// Vaciar carrito completamente
+function vaciarCarrito() {
+  const cartList = document.getElementById("cart-items");
+  cartList.innerHTML = "";
+  // Vaciar cantidades
+  for (const key in cantidades) delete cantidades[key];
+
+  // Vaciar wishlist y desmarcar todos los corazones
+  const wishlist = document.getElementById("wishlist-items");
+  wishlist.innerHTML = "";
+  // Desmarcar todos los corazones
+  const catalogo = document.getElementById("catalogo-container");
+  const corazones = catalogo.querySelectorAll(".heart-icon.active");
+  corazones.forEach(corazon => corazon.classList.remove("active"));
+}
+
+// Modificar función comprarPorWhatsapp para enviar cantidades
+function comprarPorWhatsapp() {
+  const items = document.querySelectorAll("#cart-items li");
+  if (items.length === 0) {
+    alert("El carrito está vacío.");
+    return;
+  }
+  let mensaje = "Hola, quiero comprar los siguientes ítems:%0A";
+  items.forEach(item => {
+    const nombre = item.dataset.nombre;
+    const cantidad = cantidades[nombre] || 1;
+    mensaje += `- ${nombre} x${cantidad}%0A`;
+  });
+  const url = `https://wa.me/573001112233?text=${mensaje}`;
+  window.open(url, '_blank');
+}
+
+// Modificar moverWishlistACarrito para respetar cantidades y evitar duplicados
+function moverWishlistACarrito() {
+  const wishlistItems = document.querySelectorAll("#wishlist-items li");
+  wishlistItems.forEach(li => {
+    const nombre = li.dataset.nombre;
+    const precio = parseInt(li.dataset.precio);
+    if (!cantidades[nombre]) cantidades[nombre] = 1;
+    addToCart(null, nombre, precio);
+  });
+  document.getElementById("wishlist-items").innerHTML = "";
+}
+
 </script>
 </body>
 </html>
