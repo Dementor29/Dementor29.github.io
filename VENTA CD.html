@@ -232,7 +232,7 @@ function crearItem(producto) {
   const item = document.createElement("div");
   item.className = "item";
   item.innerHTML = `
-    <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">🖤</span>
+    <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">⛧</span>
     <img src="${producto.imagen}" alt="${producto.nombre}">
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
