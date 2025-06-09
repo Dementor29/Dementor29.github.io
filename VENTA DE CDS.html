@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Música</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .item {
+      background: #1e1e1e;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .info {
+      padding: 15px;
+    }
+
+    .precio {
+      font-size: 1.2em;
+      color: #0f0;
+      margin: 10px 0;
+    }
+
+    .btn-whatsapp {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #1ebe57;
+    }
+
+    @media (max-width: 600px) {
+      .info {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Catálogo de CDs</h1>
+  <p>Explora y compra música directamente</p>
+</header>
+
+<div class="catalogo">
+  <!-- Ítem 1 -->
+  <div class="item">
+    <img src="https://via.placeholder.com/300x300?text=CD+1" alt="CD 1">
+    <div class="info">
+      <h2>Nombre del Álbum</h2>
+      <p class="precio">$25.000 COP</p>
+      <a class="btn-whatsapp" href="https://wa.me/573001112233?text=Hola,%20quiero%20comprar%20el%20CD%201">Comprar por WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- Ítem 2 -->
+  <div class="item">
+    <img src="https://via.placeholder.com/300x300?text=CD+2" alt="CD 2">
+    <div class="info">
+      <h2>Otro Álbum</h2>
+      <p class="precio">$30.000 COP</p>
+      <a class="btn-whatsapp" href="https://wa.me/573001112233?text=Hola,%20quiero%20comprar%20el%20CD%202">Comprar por WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- Puedes seguir duplicando más ítems aquí -->
+</div>
+
+</body>
+</html>
