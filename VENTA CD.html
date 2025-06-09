@@ -1,119 +1,124 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Catálogo Black Metal CDs</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CATALOGO</title>
+<style>
+ 
+@font-face {
+  font-family: 'BurzumGothic';
+  src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
+  /* Puedes agregar más formatos para compatibilidad */
+  font-weight: normal;
+  font-style: normal;
+}
+  body {
+    background-color: #121212;
+    font-family: 'BurzumGothic', serif;
+    color: white;
+    margin: 0;
+    padding: 20px;
+  }
 
-  <style>
-    
-    body {
-      
-      font-family: 'BurzumGothic', serif;
-      background: #000;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-    }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
-    header {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-    }
+  .catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
 
-    h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
+  .item {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 10px;
+    width: 220px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .catalogo {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
+  .item img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
 
+  .precio {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .btn-whatsapp {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+
+  .btn-whatsapp:hover {
+    background-color: #ff0000;
+    color: white;
+  }
+
+  @media (max-width: 600px) {
     .item {
-      background: #111;
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid #222;
-      text-align: center;
-      transition: transform 0.2s ease;
-    }
-
-    .item:hover {
-      transform: scale(1.02);
-    }
-
-    .item img {
       width: 100%;
-      height: auto;
-      display: block;
     }
-
-    .info {
-      padding: 10px;
-    }
-
-    .precio {
-      font-size: 1.1em;
-      color: #fff;
-      margin: 8px 0;
-    }
-
-    .btn-whatsapp {
-      display: inline-block;
-      background-color: #000;
-      color: white;
-      padding: 8px 12px;
-      margin-top: 10px;
-      border-radius: 3px;
-      text-decoration: none;
-      font-size: 0.9em;
-      transition: background 0.3s;
-      border: 1px solid #333;
-    }
-
-    .btn-whatsapp:hover {
-      background-color: red;
-      color: white;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.5em;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
+  <h1>CATALOGO</h1>
+  <div class="catalogo">
 
-<header>
-  <h1>CATALOGO DE CD</h1>
-  <p>OSCURIDAD, DISTORCION Y CAOS</p>
-</header>
-
-<div class="catalogo">
-  <!-- Ítem de ejemplo -->
-  <div class="item">
-    <img href="https://ibb.co/V0V2wrJ5"><img src="https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg"alt="CD 1">
-    <div class="info">
-      <h2>DARKTHRONE</h2>
-      <p class="precio">$40.000 COP</p>
-      <a class="btn-whatsapp" <a href="https://wa.me/1234567890" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
-
+    <div class="item">
+      <img src="https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg" alt="CD 1" />
+      <div class="precio">$25.000</div>
+      <a class="btn-whatsapp" href="https://wa.me/1234567890?text=Hola,%20quiero%20comprar%20el%20CD%20Black%20Metal%201" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
     </div>
-  </div>
 
-  <!-- Agrega más ítems copiando y pegando el bloque anterior -->
-</div>
-<footer>
-    <a href="PAGINA.html" style="color: #FFFFFF; font-family: Arial, sans-serif;">↑ VOLVER ↑</a>
-</footer>
-  
+    <!-- Puedes duplicar este bloque para agregar más ítems -->
+    <div class="item">
+      <img src="https://i.ibb.co/gbP5NLZ1/Whats-App-Image-2025-06-08-at-7-50-45-PM.jpg" alt="Black Metal CD 2" />
+      <div class="precio">$30.000</div>
+      <a class="btn-whatsapp" href="https://wa.me/1234567890?text=Hola,%20quiero%20comprar%20el%20CD%20Black%20Metal%202" target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
+    </div>
+
+    <div class="item">
+      <img src="https://i.ibb.co/zW0JGwtR/Whats-App-Image-2025-06-08-at-7-50-51-PM.jpg" alt="Black Metal CD 3" />
+      <div class="precio">$20.000</div>
+      <a class="btn-whatsapp" href="https://wa.me/1234567890?text=Hola,%20quiero%20comprar%20el%20CD%20Black%20Metal%203" target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
+    </div>
+
+    <div class="item">
+      <img src="https://i.ibb.co/zhQ6M9zW/Whats-App-Image-2025-06-08-at-7-50-55-PM.jpg" alt="Black Metal CD 4" />
+      <div class="precio">$28.000</div>
+      <a class="btn-whatsapp" href="https://wa.me/1234567890?text=Hola,%20quiero%20comprar%20el%20CD%20Black%20Metal%204" target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
+    </div>
+
+    <div class="item">
+      <img src="https://i.ibb.co/TBGMGBbR/Whats-App-Image-2025-06-08-at-7-47-37-PM.jpg" alt="Black Metal CD 5" />
+      <div class="precio">$22.000</div>
+      <a class="btn-whatsapp" href="https://wa.me/1234567890?text=Hola,%20quiero%20comprar%20el%20CD%20Black%20Metal%205" target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
+    </div>
+
+  </div>
 </body>
 </html>
