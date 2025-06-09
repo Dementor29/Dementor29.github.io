@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo de Música</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo Black Metal CDs</title>
+  <!-- Tipografía gótica -->
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #111;
+      font-family: 'UnifrakturCook', cursive;
+      background: #000;
       color: #fff;
       margin: 0;
       padding: 0;
@@ -16,17 +18,17 @@
     header {
       text-align: center;
       padding: 20px;
-      background: #222;
+      background: #111;
     }
 
     h1 {
       margin: 0;
-      font-size: 2em;
+      font-size: 2.5em;
     }
 
     .catalogo {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
       padding: 20px;
       max-width: 1200px;
@@ -34,11 +36,16 @@
     }
 
     .item {
-      background: #1e1e1e;
-      border-radius: 10px;
+      background: #111;
+      border-radius: 6px;
       overflow: hidden;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      border: 1px solid #222;
       text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .item:hover {
+      transform: scale(1.02);
     }
 
     .item img {
@@ -48,34 +55,36 @@
     }
 
     .info {
-      padding: 15px;
+      padding: 10px;
     }
 
     .precio {
-      font-size: 1.2em;
-      color: #0f0;
-      margin: 10px 0;
+      font-size: 1.1em;
+      color: #fff;
+      margin: 8px 0;
     }
 
     .btn-whatsapp {
       display: inline-block;
-      background-color: #25D366;
+      background-color: #000;
       color: white;
-      padding: 10px 15px;
+      padding: 8px 12px;
       margin-top: 10px;
-      border-radius: 5px;
+      border-radius: 3px;
       text-decoration: none;
-      font-weight: bold;
+      font-size: 0.9em;
       transition: background 0.3s;
+      border: 1px solid #333;
     }
 
     .btn-whatsapp:hover {
-      background-color: #1ebe57;
+      background-color: red;
+      color: white;
     }
 
     @media (max-width: 600px) {
-      .info {
-        padding: 10px;
+      h1 {
+        font-size: 1.5em;
       }
     }
   </style>
@@ -83,32 +92,22 @@
 <body>
 
 <header>
-  <h1>Catálogo de CDs</h1>
-  <p>Explora y compra música directamente</p>
+  <h1>Catálogo de CDs - Black Metal</h1>
+  <p>Oscuridad, distorsión y caos al alcance de un clic</p>
 </header>
 
 <div class="catalogo">
-  <!-- Ítem 1 -->
+  <!-- Ítem de ejemplo -->
   <div class="item">
     <img src="https://via.placeholder.com/300x300?text=CD+1" alt="CD 1">
     <div class="info">
-      <h2>Nombre del Álbum</h2>
-      <p class="precio">$25.000 COP</p>
-      <a class="btn-whatsapp" href="https://wa.me/573001112233?text=Hola,%20quiero%20comprar%20el%20CD%201">Comprar por WhatsApp</a>
+      <h2>Marduk - Panzer Division</h2>
+      <p class="precio">$40.000 COP</p>
+      <a class="btn-whatsapp" href="https://wa.me/573001112233?text=Quiero%20el%20CD%20Marduk">Comprar por WhatsApp</a>
     </div>
   </div>
 
-  <!-- Ítem 2 -->
-  <div class="item">
-    <img src="https://via.placeholder.com/300x300?text=CD+2" alt="CD 2">
-    <div class="info">
-      <h2>Otro Álbum</h2>
-      <p class="precio">$30.000 COP</p>
-      <a class="btn-whatsapp" href="https://wa.me/573001112233?text=Hola,%20quiero%20comprar%20el%20CD%202">Comprar por WhatsApp</a>
-    </div>
-  </div>
-
-  <!-- Puedes seguir duplicando más ítems aquí -->
+  <!-- Agrega más ítems copiando y pegando el bloque anterior -->
 </div>
 
 </body>
