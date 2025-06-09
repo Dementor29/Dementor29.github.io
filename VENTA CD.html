@@ -180,18 +180,18 @@ h1 {
   <p align="center">BLACK METAL</p>
 </header>
 
-<div class="catalogo" id="catalogo-container">
-  <!-- Los items se generarán dinámicamente -->
-</div>
+<div class="catalogo" id="catalogo-container"></div>
 
 <div id="wishlist">
   <h3>Lista de deseos</h3>
   <ul id="wishlist-items"></ul>
+  <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
 </div>
 
 <div id="cart">
   <h3>Carrito de compras</h3>
   <ul id="cart-items"></ul>
+  <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
 </div>
 
 <div class="volver-container">
@@ -202,7 +202,7 @@ h1 {
   <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 08/06/2025</p>
 </footer>
 
-<a href="Https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank" title="Pagar con Nequi">
+<a href="https://wa.me/573001112233?text=Hola,%20quiero%20hacer%20un%20pago%20por%20Nequi" class="nequi-btn" target="_blank" title="Pagar con Nequi">
   WHATSAPP
 </a>
 
@@ -231,16 +231,14 @@ const productos = [
 function crearItem(producto) {
   const item = document.createElement("div");
   item.className = "item";
-
   item.innerHTML = `
-    <span class="heart-icon" onclick="toggleFavorite(this)">⛧</span>
+    <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">🖤</span>
     <img src="${producto.imagen}" alt="${producto.nombre}">
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
     <a class="btn-whatsapp" href="${producto.whatsapp}" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
     <button class="cart-button" onclick="addToCart(this, '${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
   `;
-
   return item;
 }
 
@@ -252,13 +250,14 @@ function renderCatalogo() {
   });
 }
 
-function toggleFavorite(element) {
+function toggleFavorite(element, nombre, precio) {
   element.classList.toggle("active");
-  const title = element.parentElement.querySelector('h3').innerText;
   const wishlist = document.getElementById("wishlist-items");
   if (element.classList.contains("active")) {
     const li = document.createElement("li");
-    li.textContent = title;
+    li.dataset.nombre = nombre;
+    li.dataset.precio = precio;
+    li.textContent = nombre + " - $" + precio.toLocaleString();
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "✖";
     removeBtn.className = "remove-button";
@@ -268,7 +267,7 @@ function toggleFavorite(element) {
   } else {
     const items = wishlist.querySelectorAll("li");
     items.forEach((item) => {
-      if (item.textContent.startsWith(title)) item.remove();
+      if (item.dataset.nombre === nombre) item.remove();
     });
   }
 }
@@ -283,6 +282,30 @@ function addToCart(button, name, price) {
   removeBtn.onclick = () => li.remove();
   li.appendChild(removeBtn);
   cartList.appendChild(li);
+}
+
+function moverWishlistACarrito() {
+  const wishlistItems = document.querySelectorAll("#wishlist-items li");
+  wishlistItems.forEach(li => {
+    const nombre = li.dataset.nombre;
+    const precio = parseInt(li.dataset.precio);
+    addToCart(null, nombre, precio);
+  });
+  document.getElementById("wishlist-items").innerHTML = "";
+}
+
+function comprarPorWhatsapp() {
+  const items = document.querySelectorAll("#cart-items li");
+  if (items.length === 0) {
+    alert("El carrito está vacío.");
+    return;
+  }
+  let mensaje = "Hola, quiero comprar los siguientes ítems:%0A";
+  items.forEach(item => {
+    mensaje += "- " + item.firstChild.textContent.trim() + "%0A";
+  });
+  const url = `https://wa.me/573001112233?text=${mensaje}`;
+  window.open(url, '_blank');
 }
 
 renderCatalogo();
