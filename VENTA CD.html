@@ -3,87 +3,135 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CATALOGO</title>
+<title>CATÁLOGO</title>
 <style>
- 
 @font-face {
   font-family: 'BurzumGothic';
   src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
-  /* Puedes agregar más formatos para compatibilidad */
   font-weight: normal;
   font-style: normal;
 }
-  body {
-    background-color: #121212;
-    font-family: 'BurzumGothic', serif;
-    color: white;
-    margin: 0;
-    padding: 20px;
-  }
 
-  h1 {
-    text-align: center;
-    margin-bottom: 30px;
-  }
+body {
+  background-color: #121212;
+  font-family: 'BurzumGothic', serif;
+  color: white;
+  margin: 0;
+  padding: 20px;
+}
 
-  .catalogo {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
+.catalogo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.item {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 10px;
+  width: 220px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.item img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.precio {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.btn-whatsapp {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'BurzumGothic', serif;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.btn-whatsapp:hover {
+  background-color: #ff0000;
+  color: white;
+}
+
+.heart-icon {
+  font-size: 24px;
+  color: gray;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.heart-icon.active {
+  color: red;
+}
+
+.cart-button {
+  margin-top: 10px;
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'BurzumGothic', serif;
+  font-size: 14px;
+}
+
+.cart-button:hover {
+  background-color: #ff0000;
+}
+
+.remove-button {
+  background-color: transparent;
+  color: #ff0000;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+#cart, #wishlist {
+  margin-top: 40px;
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 600px) {
   .item {
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    padding: 10px;
-    width: 220px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .item img {
-    width: 100%;
-    border-radius: 6px;
-    margin-bottom: 10px;
-  }
-
-  .precio {
-    color: white;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  .btn-whatsapp {
-    background-color: #000000;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-family: 'MedievalSharp', cursive;
-    font-size: 14px;
-    text-decoration: none;
-    text-align: center;
-    display: inline-block;
-    transition: background-color 0.3s ease;
     width: 100%;
   }
+}
 
-  .btn-whatsapp:hover {
-    background-color: #ff0000;
-    color: white;
-  }
-
-  @media (max-width: 600px) {
-    .item {
-      width: 100%;
-    }
-  }
-
- .volver-container {
+.volver-container {
   text-align: center;
   margin: 40px 0;
 }
@@ -95,7 +143,7 @@
   text-decoration: none;
   padding: 10px 20px;
   display: inline-block;
-  border:  none;
+  border: none;
   border-radius: 8px;
   transition: background-color 0.3s ease;
 }
@@ -104,11 +152,7 @@
   background-color: #ff0000;
   color: white;
 }
- 
- .presentacion {
-  text-align: center;
-  margin: 20px 0;
-}
+
 .nequi-btn {
   position: fixed;
   bottom: 20px;
@@ -117,7 +161,6 @@
   color: white;
   font-family: 'BurzumGothic', serif;
   padding: 12px 18px;
-  border-radius: none;
   text-decoration: none;
   font-size: 16px;
   z-index: 999;
@@ -127,87 +170,110 @@
 
 .nequi-btn:hover {
   background-color: #ff0000;
-    color: white;
+  color: white;
 }
-
 </style>
 </head>
- 
- <header>
-  <h1>CATALOGO</h1>
-  <p align="center"> BLACK METAL </p>
-  
-</div>
-  
+<body>
+<header>
+  <h1>CATÁLOGO</h1>
+  <p align="center">BLACK METAL</p>
 </header>
 
-  <div class="catalogo">
+<div class="catalogo" id="catalogo-container">
+  <!-- Los items se generarán dinámicamente -->
+</div>
 
-    <div class="item">
-      <img src="https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg" 
-      <div class="info">
-      <h3>DARKTHRONE</h3>
-      <div class="precio">$25.000</div>
-      <a class="btn-whatsapp" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
-    </div>
+<div id="wishlist">
+  <h3>Lista de deseos</h3>
+  <ul id="wishlist-items"></ul>
+</div>
 
-  <div class="item">
-      <img src="https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg" 
-      <div class="info">
-      <h3>MORBID MACABRE</h3>
-      <div class="precio">$25.000</div>
-      <a class="btn-whatsapp" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
-    </div>
+<div id="cart">
+  <h3>Carrito de compras</h3>
+  <ul id="cart-items"></ul>
+</div>
 
-<div class="item">
-      <img src="https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg"" 
-      <div class="info">
-      <h3>MASACRE</h3>
-      <div class="precio">$30.000</div>
-      <a class="btn-whatsapp" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
-    </div>
-
- 
-    <div class="item">
-      <img src="https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg" 
-      <div class="info">
-      <h3>DARKTHRONE</h3>
-      <div class="precio">$25.000</div>
-      <a class="btn-whatsapp" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
-    </div>
-
-  <div class="item">
-      <img src="https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg" 
-      <div class="info">
-      <h3>MORBID MACABRE</h3>
-      <div class="precio">$25.000</div>
-      <a class="btn-whatsapp" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
-    </div>
-
-<div class="item">
-      <img src="https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg"" 
-      <div class="info">
-      <h3>MASACRE</h3>
-      <div class="precio">$30.000</div>
-      <a class="btn-whatsapp" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
-    </div>
-   
-  <div class="volver-container">
+<div class="volver-container">
   <a href="PAGINA.html" class="back-link">↑ VOLVER ↑</a>
 </div>
-<!-- Pie de página -->
-<footer class="footer">
-  <p>© DERECHOS DE AUTOR - AVERNO - 08/06/2025 </p>
-</footer>
- 
-</body>
 
-<!-- Botón flotante Nequi -->
-<a href="https://wa.me/573001112233?text=Hola,%20quiero%20hacer%20un%20pago%20por%20Nequi" 
-   class="nequi-btn" 
-   target="_blank" 
-   title="Pagar con Nequi">
+<footer class="footer">
+  <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 08/06/2025</p>
+</footer>
+
+<a href="https://wa.me/573001112233?text=Hola,%20quiero%20hacer%20un%20pago%20por%20Nequi" class="nequi-btn" target="_blank" title="Pagar con Nequi">
   WHATSAPP
 </a>
 
+<script>
+const productos = [
+  {
+    nombre: "DARKTHRONE",
+    precio: 25000,
+    imagen: "https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg",
+    whatsapp: "https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P"
+  },
+];
+
+function crearItem(producto) {
+  const item = document.createElement("div");
+  item.className = "item";
+
+  item.innerHTML = `
+    <span class="heart-icon" onclick="toggleFavorite(this)">🖤</span>
+    <img src="${producto.imagen}" alt="${producto.nombre}">
+    <h3>${producto.nombre}</h3>
+    <div class="precio">$${producto.precio.toLocaleString()}</div>
+    <a class="btn-whatsapp" href="${producto.whatsapp}" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
+    <button class="cart-button" onclick="addToCart(this, '${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
+  `;
+
+  return item;
+}
+
+function renderCatalogo() {
+  const container = document.getElementById("catalogo-container");
+  productos.forEach(producto => {
+    const item = crearItem(producto);
+    container.appendChild(item);
+  });
+}
+
+function toggleFavorite(element) {
+  element.classList.toggle("active");
+  const title = element.parentElement.querySelector('h3').innerText;
+  const wishlist = document.getElementById("wishlist-items");
+  if (element.classList.contains("active")) {
+    const li = document.createElement("li");
+    li.textContent = title;
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "✖";
+    removeBtn.className = "remove-button";
+    removeBtn.onclick = () => li.remove();
+    li.appendChild(removeBtn);
+    wishlist.appendChild(li);
+  } else {
+    const items = wishlist.querySelectorAll("li");
+    items.forEach((item) => {
+      if (item.textContent.startsWith(title)) item.remove();
+    });
+  }
+}
+
+function addToCart(button, name, price) {
+  const cartList = document.getElementById("cart-items");
+  const li = document.createElement("li");
+  li.textContent = name + " - $" + price.toLocaleString();
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "✖";
+  removeBtn.className = "remove-button";
+  removeBtn.onclick = () => li.remove();
+  li.appendChild(removeBtn);
+  cartList.appendChild(li);
+}
+
+renderCatalogo();
+</script>
+</body>
 </html>
