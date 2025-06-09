@@ -109,26 +109,26 @@
   text-align: center;
   margin: 20px 0;
 }
-.nequi-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #6f0f19;
-  color: white;
-  font-family: 'BurzumGothic', serif;
-  padding: 12px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 16px;
-  z-index: 999;
-  box-shadow: 0 0 10px red;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
+.nequi-qr {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: #000;
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 8px;
+    cursor: pointer;
+  }
 
-.nequi-btn:hover {
-  background-color: #ff0000;
-  box-shadow: 0 0 15px #ff0000;
-}
+  .nequi-qr img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .nequi-qr:hover {
+    box-shadow: 0 0 10px red;
+  }
 
 </style>
 </head>
@@ -200,12 +200,11 @@
   <p>© DERECHOS DE AUTOR - AVERNO - 08/06/2025 </p>
 </footer>
  
-<!-- Botón flotante Nequi -->
- < div class="nequi-btn" 
-   target="_blank" 
-   title="PAGAR POR NEQUI"> NEQUI
-<a href="https://ibb.co/qYJrrJmW"><img src="https://i.ibb.co/qYJrrJmW/Sin-t-tulo.jpg" alt="Sin-t-tulo" border="0">
-</a>
-   </div>
+ <div class="nequi-qr">
+  <a href="https://i.ibb.co/TU-IMAGEN-QR.jpg" target="_blank">
+    <img src="https://i.ibb.co/TU-IMAGEN-QR.jpg" alt="Pagar con Nequi">
+  </a>
+</div>
+ 
 </body>
 </html>
