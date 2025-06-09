@@ -215,28 +215,16 @@ const productos = [
     whatsapp: "https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P"
   },
   {
-    nombre: "MAYHEM",
+    nombre: "MORBID MACABRE",
     precio: 30000,
-    imagen: "https://i.ibb.co/0JxHGQC/mayhem.jpg",
-    whatsapp: "https://wa.me/573001112233?text=Estoy%20interesado%20en%20el%20CD%20de%20Mayhem"
+    imagen: "https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg",
+    whatsapp: "https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P"
   },
   {
-    nombre: "BURZUM",
+    nombre: "MASACRE",
     precio: 28000,
-    imagen: "https://i.ibb.co/GtTk8S1/burzum.jpg",
-    whatsapp: "https://wa.me/573001112233?text=Estoy%20interesado%20en%20el%20CD%20de%20Burzum"
-  },
-  {
-    nombre: "IMMORTAL",
-    precio: 27000,
-    imagen: "https://i.ibb.co/zFyZzmd/immortal.jpg",
-    whatsapp: "https://wa.me/573001112233?text=Estoy%20interesado%20en%20el%20CD%20de%20Immortal"
-  },
-  {
-    nombre: "MARDUK",
-    precio: 29000,
-    imagen: "https://i.ibb.co/8NcDR4g/marduk.jpg",
-    whatsapp: "https://wa.me/573001112233?text=Estoy%20interesado%20en%20el%20CD%20de%20Marduk"
+    imagen: "https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg",
+    whatsapp: "https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P"
   }
 ];
 
@@ -245,7 +233,7 @@ function crearItem(producto) {
   item.className = "item";
 
   item.innerHTML = `
-    <span class="heart-icon" onclick="toggleFavorite(this)">🖤</span>
+    <span class="heart-icon" onclick="toggleFavorite(this)">⛧</span>
     <img src="${producto.imagen}" alt="${producto.nombre}">
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
