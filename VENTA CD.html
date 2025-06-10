@@ -208,16 +208,26 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 40px 0;
 }
 
 #radio-container audio {
-  width: 300px; /* o el ancho que prefieras */
+  width: 300px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 10px;
 }
-  
-audio::-webkit-media-controls-volume-slider {
+
+/* Color rojo para la barra de progreso en navegadores compatibles */
+audio::-webkit-media-controls-timeline {
   accent-color: red;
 }
+
+audio::-moz-range-track {
+  background-color: red;
+}
+
+</style>
 
 </style>
 </head>
@@ -227,12 +237,13 @@ audio::-webkit-media-controls-volume-slider {
   <p align="center">BLACK METAL</p>
   </header>
   
-  <div style="display: flex; justify-content: center; margin-top: 40px;">
-  <audio controls style="background-color: #1e1e1e; border-radius: 10px; padding: 10px; width: 300px;">
+<div id="radio-container">
+  <audio controls>
     <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
+    Tu navegador no soporta la reproducción de audio.
   </audio>
 </div>
-  
+
 <div class="catalogo" id="catalogo-container"></div>
 
 <div id="wishlist">
