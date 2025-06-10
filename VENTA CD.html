@@ -203,15 +203,28 @@ h1 {
   box-shadow: 0 0 5px #cc0000aa;
   outline: none;
 }
+  
+#radio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#radio-container audio {
+  width: 300px; /* o el ancho que prefieras */
+}
+
 </style>
 </head>
 <body>
 <header>
   <h1>CATÁLOGO</h1>
   <audio controls autoplay>
-  <source src="https://streamer.trueblackmetalradio.com:8000/stream" type="audio/mpeg">
+  <source src="http://stream.vincentsmetalworld.no:8000/;stream.mp3" type="audio/mpeg">
   Tu navegador no soporta audio.
 </audio>
+
 
   <p align="center">BLACK METAL</p>
 </header>
