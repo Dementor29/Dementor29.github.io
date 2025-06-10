@@ -46,6 +46,9 @@ h1 {
 
 .item img {
   width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background-color: #111;
   border-radius: 6px;
   margin-bottom: 10px;
 }
@@ -172,6 +175,34 @@ h1 {
   background-color: #ff0000;
   color: white;
 }
+
+.cantidad-label {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.cantidad-input {
+  width: 50px;
+  margin-left: 8px;
+  padding: 4px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #111;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.cantidad-input:focus {
+  border-color: #cc0000;
+  box-shadow: 0 0 5px #cc0000aa;
+  outline: none;
+}
 </style>
 </head>
 <body>
@@ -186,12 +217,14 @@ h1 {
   <h3>Lista de deseos</h3>
   <ul id="wishlist-items"></ul>
   <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+  <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
 </div>
 
 <div id="cart">
   <h3>Carrito de compras</h3>
   <ul id="cart-items"></ul>
   <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+  <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
 </div>
 
 <div class="volver-container">
@@ -208,38 +241,55 @@ h1 {
 
 <script>
 const productos = [
-    {
+  {
     nombre: "DARKTHRONE",
     precio: 25000,
-    imagen: "https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg",
-    whatsapp: "https://wa.me/573154277973?text=Estoy%20interesado%20en%20el%20CD%20de%20DARKTHRONE"
+    imagen: "https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg"
   },
   {
     nombre: "MORBID MACABRE",
     precio: 30000,
-    imagen: "https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg",
-    whatsapp: "https://wa.me/573154277973?text=Estoy%20interesado%20en%20el%20CD%20de%20MORBID MACABRE"
+    imagen: "https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg"
   },
   {
     nombre: "MASACRE",
     precio: 28000,
-    imagen: "https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg",
-    whatsapp: "https://wa.me/573154277973?text=Estoy%20interesado%20en%20el%20CD%20de%20MASACRE"
+    imagen: "https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg"
   }
 ];
+
+let wishlistData = {};
+let cartData = {};
 
 function crearItem(producto) {
   const item = document.createElement("div");
   item.className = "item";
+
   item.innerHTML = `
     <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">⛧</span>
     <img src="${producto.imagen}" alt="${producto.nombre}">
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
-    <a class="btn-whatsapp" href="${producto.whatsapp}" target="_blank" rel="noopener noreferrer">WHATSAPP</a>
-    <button class="cart-button" onclick="addToCart(this, '${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
+    <label class="cantidad-label">Cantidad:
+      <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
+    </label>
+    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
   `;
+
   return item;
+}
+
+function vaciarWishlist() {
+  wishlistData = {};
+  renderWishlist();
+  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+  document.querySelectorAll('.cantidad-input').forEach(input => input.value = 1);
+}
+
+function vaciarCarrito() {
+  cartData = {};
+  renderCarrito();
+  document.querySelectorAll('.cantidad-input').forEach(input => input.value = 1);
 }
 
 function renderCatalogo() {
@@ -251,61 +301,111 @@ function renderCatalogo() {
 }
 
 function toggleFavorite(element, nombre, precio) {
-  element.classList.toggle("active");
-  const wishlist = document.getElementById("wishlist-items");
   if (element.classList.contains("active")) {
-    const li = document.createElement("li");
-    li.dataset.nombre = nombre;
-    li.dataset.precio = precio;
-    li.textContent = nombre + " - $" + precio.toLocaleString();
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "✖";
-    removeBtn.className = "remove-button";
-    removeBtn.onclick = () => li.remove();
-    li.appendChild(removeBtn);
-    wishlist.appendChild(li);
+    element.classList.remove("active");
+    delete wishlistData[nombre];
+    renderWishlist();
   } else {
-    const items = wishlist.querySelectorAll("li");
-    items.forEach((item) => {
-      if (item.dataset.nombre === nombre) item.remove();
-    });
+    element.classList.add("active");
+    wishlistData[nombre] = { precio: precio, cantidad: 1, element: element };
+    renderWishlist();
   }
 }
 
-function addToCart(button, name, price) {
-  const cartList = document.getElementById("cart-items");
-  const li = document.createElement("li");
-  li.textContent = name + " - $" + price.toLocaleString();
-  const removeBtn = document.createElement("button");
-  removeBtn.textContent = "✖";
-  removeBtn.className = "remove-button";
-  removeBtn.onclick = () => li.remove();
-  li.appendChild(removeBtn);
-  cartList.appendChild(li);
+function renderWishlist() {
+  const wishlist = document.getElementById("wishlist-items");
+  wishlist.innerHTML = "";
+  for (const nombre in wishlistData) {
+    const item = wishlistData[nombre];
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
+      <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+    `;
+    wishlist.appendChild(li);
+  }
+}
+
+function eliminarDeWishlist(nombre) {
+  if (wishlistData[nombre]) {
+    wishlistData[nombre].element.classList.remove("active");
+    delete wishlistData[nombre];
+    renderWishlist();
+  }
+}
+
+function addToCart(nombre, precio) {
+  const itemElement = Array.from(document.querySelectorAll('.item')).find(el => el.querySelector('h3').textContent === nombre);
+  const cantidadInput = itemElement.querySelector('.cantidad-input');
+  const cantidad = parseInt(cantidadInput.value) || 1;
+
+  cartData[nombre] = { precio: precio, cantidad: cantidad };
+
+  if (wishlistData[nombre]) {
+    wishlistData[nombre].cantidad = cantidad;
+    renderWishlist();
+  }
+
+  renderCarrito();
+}
+
+function renderCarrito() {
+  const carrito = document.getElementById("cart-items");
+  carrito.innerHTML = "";
+  for (const nombre in cartData) {
+    const item = cartData[nombre];
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
+      <button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button>
+    `;
+    carrito.appendChild(li);
+  }
+}
+
+function eliminarDelCarrito(nombre) {
+  delete cartData[nombre];
+  renderCarrito();
 }
 
 function moverWishlistACarrito() {
-  const wishlistItems = document.querySelectorAll("#wishlist-items li");
-  wishlistItems.forEach(li => {
-    const nombre = li.dataset.nombre;
-    const precio = parseInt(li.dataset.precio);
-    addToCart(null, nombre, precio);
-  });
-  document.getElementById("wishlist-items").innerHTML = "";
+  for (const nombre in wishlistData) {
+    const item = wishlistData[nombre];
+    cartData[nombre] = { precio: item.precio, cantidad: item.cantidad };
+  }
+  wishlistData = {};
+  document.querySelectorAll(".heart-icon.active").forEach(icon => icon.classList.remove("active"));
+  renderWishlist();
+  renderCarrito();
 }
 
 function comprarPorWhatsapp() {
-  const items = document.querySelectorAll("#cart-items li");
-  if (items.length === 0) {
+  if (Object.keys(cartData).length === 0) {
     alert("El carrito está vacío.");
     return;
   }
+
   let mensaje = "Hola, quiero comprar los siguientes ítems:%0A";
-  items.forEach(item => {
-    mensaje += "- " + item.firstChild.textContent.trim() + "%0A";
-  });
+  for (const nombre in cartData) {
+    const item = cartData[nombre];
+    const subtotal = item.precio * item.cantidad;
+    mensaje += `- ${nombre} x${item.cantidad} = $${subtotal.toLocaleString()}%0A`;
+  }
+
   const url = `https://wa.me/573154277973?text=${mensaje}`;
   window.open(url, '_blank');
+}
+
+function actualizarCantidad(nombre, nuevaCantidad) {
+  const cantidad = parseInt(nuevaCantidad) || 1;
+  if (wishlistData[nombre]) {
+    wishlistData[nombre].cantidad = cantidad;
+    renderWishlist();
+  }
+  if (cartData[nombre]) {
+    cartData[nombre].cantidad = cantidad;
+    renderCarrito();
+  }
 }
 
 renderCatalogo();
