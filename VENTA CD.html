@@ -304,7 +304,7 @@ function comprarPorWhatsapp() {
   items.forEach(item => {
     mensaje += "- " + item.firstChild.textContent.trim() + "%0A";
   });
-  const url = `https://wa.me/573001112233?text=${mensaje}`;
+  const url = `"https://api.whatsapp.com/send?phone=573184558342&text=⛧ HOLA! PARA MAS INFORMACION ⛧ DESPERTAR DEL AVERNO ⛧ ESCRIBENOS ⛧"${mensaje}`;
   window.open(url, '_blank');
 }
 
