@@ -206,10 +206,12 @@ h1 {
 }
   
 #radio-container {
+  max-width: 500px;
+  margin: 40px auto;
+  text-align: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 40px 0;
 }
 
 #radio-container audio {
@@ -226,32 +228,34 @@ audio::-webkit-media-controls-timeline {
 audio::-moz-range-track {
   background-color: red;
 }
+  
 #radio-container {
   max-width: 500px;
   margin: 40px auto;
   text-align: center;
 }
-
+  
 .led-marquee {
   color: #ff0000;
   font-family: monospace;
   font-size: 16px;
   white-space: nowrap;
   overflow: hidden;
-  box-sizing: border-box;
-  border: 1px solid #ff0000;
-  border-radius: 8px;
-  padding: 8px;
-  background-color: #000;
-  margin-bottom: 15px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  padding: 5px 0;
+  margin-bottom: 10px;
   position: relative;
+  height: 20px;
 }
 
 .led-marquee::before {
   content: attr(data-text);
   position: absolute;
   white-space: nowrap;
-  animation: scroll-left 12s linear infinite;
+  animation: scroll-left 15s linear infinite;
+  left: 100%;
 }
 
 @keyframes scroll-left {
@@ -262,12 +266,6 @@ audio::-moz-range-track {
     left: -100%;
   }
 }
-
-.led-marquee::before {
-  content: "Transmitiendo en vivo: Black Metal, ocultismo y oscuridad desde el abismo.";
-  left: 100%;
-}
-
 </style>
 </head>
 <body>
@@ -277,10 +275,9 @@ audio::-moz-range-track {
   </header>
   
 <div id="radio-container">
-  <div class="led-marquee">
-    Transmitiendo En Vivo: Black Metal, Ocultismo Y Oscuridad Desde El Abismo.
+  <div class="led-marquee" data-text="Transmitiendo en vivo: Black Metal, ocultismo y oscuridad desde el abismo.">
+    Transmitiendo en vivo: Black Metal, ocultismo y oscuridad desde el abismo.
   </div>
-  
   <audio controls>
     <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
     Tu navegador no soporta la reproducción de audio.
