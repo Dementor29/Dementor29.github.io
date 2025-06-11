@@ -250,13 +250,22 @@ audio::-moz-range-track {
   height: 20px;
 }
 
+.led-marquee {
+  position: relative;
+  height: 20px; /* Ajusta según lo necesario */
+  overflow: hidden;
+}
+
 .led-marquee::before {
   content: attr(data-text);
   position: absolute;
   white-space: nowrap;
-  animation: scroll-left 15s linear infinite;
-  left: 100%;
+  animation: scroll-left 12s linear infinite;
+  color: #ff0000;
+  font-family: monospace;
+  font-size: 16px;
 }
+
 
 @keyframes scroll-left {
   0% {
@@ -275,12 +284,10 @@ audio::-moz-range-track {
   </header>
   
 <div id="radio-container">
-  <div class="led-marquee" data-text="Transmitiendo en vivo: Black Metal, ocultismo y oscuridad desde el abismo.">
-    Transmitiendo en vivo: Black Metal, ocultismo y oscuridad desde el abismo.
-  </div>
+  <div class="led-marquee" data-text="Transmitiendo En Vivo: Black Metal, Ocultismo Y Oscuridad Desde El Abismo."></div>
   <audio controls>
     <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
-    Tu navegador no soporta la reproducción de audio.
+  
   </audio>
 </div>
   
