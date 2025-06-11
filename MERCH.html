@@ -148,115 +148,156 @@
   <div class="volver-container">
     <a href="DDA.html" class="back-link">↑ VOLVER ↑</a>
   </div>
-
+  
   <script>
-    // Aquí cambiamos la lista de productos a prendas de ropa
-    const productos = [
-      {
-        nombre: "BURZUM",
-        precio: 40000,
-        imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg"
-      },
-      {
-        nombre: "DEICIDE",
-        precio: 85000,
-        imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg"
-      },
-      {
-        nombre: "BEHEMOTH",
-        precio: 20000,
-        imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg"
-      }
-    ];
-
-    let wishlistData = {};
-    let cartData = {};
-
-    function crearItem(producto) {
-      const item = document.createElement("div");
-      item.className = "item";
-      item.innerHTML = `
-        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <h3>${producto.nombre}</h3>
-        <div class="precio">$${producto.precio.toLocaleString()}</div>
-        <label class="cantidad-label">Cant:
-          <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
-        </label>
-        <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio})">
-          Agregar al carrito
-        </button>`;
-      return item;
+    
+  const productos = [
+    {
+      nombre: "BURZUM",
+      precio: 40000,
+      imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg"
+    },
+    {
+      nombre: "DEICIDE",
+      precio: 85000,
+      imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg"
+    },
+    {
+      nombre: "BEHEMOTH",
+      precio: 20000,
+      imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg"
     }
+  ];
 
-    function renderCatalogo() {
-      const cont = document.getElementById("catalogo-container");
-      productos.forEach(p => cont.appendChild(crearItem(p)));
+  let wishlistData = {};
+  let cartData = {};
+
+  function crearItem(producto) {
+    const item = document.createElement("div");
+    item.className = "item";
+
+    const idSafe = producto.nombre.replace(/\s+/g, "_");
+
+    item.innerHTML = `
+      <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
+      <img src="${producto.imagen}" alt="${producto.nombre}">
+      <h3>${producto.nombre}</h3>
+      <div class="precio">$${producto.precio.toLocaleString()}</div>
+      <label class="cantidad-label">Cant:
+        <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${idSafe}">
+      </label>
+      <label class="cantidad-label">Talla:
+        <select class="cantidad-input" id="talla-${idSafe}">
+          <option value="S">S - Pequeña</option>
+          <option value="M">M - Mediana</option>
+          <option value="L">L - Grande</option>
+          <option value="XL">XL - Extra grande</option>
+        </select>
+      </label>
+      <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio})">
+        Agregar al carrito
+      </button>`;
+    return item;
+  }
+
+  function renderCatalogo() {
+    const cont = document.getElementById("catalogo-container");
+    cont.innerHTML = "";
+    productos.forEach(p => cont.appendChild(crearItem(p)));
+  }
+
+  function toggleFavorite(el, n, p) {
+    if (el.classList.toggle("active")) wishlistData[n] = { precio: p, cantidad: 1, talla: "M" };
+    else delete wishlistData[n];
+    renderWishlist();
+  }
+
+  function renderWishlist() {
+    const ul = document.getElementById("wishlist-items");
+    ul.innerHTML = "";
+    for (let n in wishlistData) {
+      const it = wishlistData[n];
+      ul.innerHTML += `<li>${n} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
+        <button class="remove-button" onclick="eliminarDeWishlist('${n}')">✖</button></li>`;
     }
+  }
 
-    function toggleFavorite(el,n,p) {
-      if(el.classList.toggle("active")) wishlistData[n]={precio:p,cantidad:1};
-      else delete wishlistData[n];
+  function eliminarDeWishlist(n) {
+    delete wishlistData[n];
+    document.querySelector(`.heart-icon[onclick*="'${n}'"]`)?.classList.remove("active");
+    renderWishlist();
+  }
+
+  function addToCart(n, p) {
+    const idSafe = n.replace(/\s+/g, "_");
+    const qtyEl = document.getElementById(`cantidad-${idSafe}`);
+    const tallaEl = document.getElementById(`talla-${idSafe}`);
+    const qty = parseInt(qtyEl?.value || "1");
+    const talla = tallaEl?.value || "M";
+
+    cartData[n] = { precio: p, cantidad: qty, talla };
+
+    if (wishlistData[n]) {
+      wishlistData[n].cantidad = qty;
+      wishlistData[n].talla = talla;
       renderWishlist();
     }
 
-    function renderWishlist() {
-      const ul = document.getElementById("wishlist-items");
-      ul.innerHTML = "";
-      for(let n in wishlistData) {
-        const it = wishlistData[n];
-        ul.innerHTML += `<li>${n} x${it.cantidad} — $${(it.precio*it.cantidad).toLocaleString()}
-                          <button class="remove-button" onclick="eliminarDeWishlist('${n}')">✖</button>
-                        </li>`;
-      }
+    renderCarrito();
+  }
+
+  function renderCarrito() {
+    const ul = document.getElementById("cart-items");
+    ul.innerHTML = "";
+    for (let n in cartData) {
+      const it = cartData[n];
+      ul.innerHTML += `<li>${n} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
+        <button class="remove-button" onclick="eliminarDelCarrito('${n}')">✖</button></li>`;
+    }
+  }
+
+  function eliminarDelCarrito(n) {
+    delete cartData[n];
+    renderCarrito();
+  }
+
+  function moverWishlistACarrito() {
+    for (let n in wishlistData) {
+      cartData[n] = wishlistData[n];
+    }
+    wishlistData = {};
+    document.querySelectorAll(".heart-icon.active").forEach(i => i.classList.remove("active"));
+    renderWishlist();
+    renderCarrito();
+  }
+
+  function vaciarWishlist() {
+    wishlistData = {};
+    renderWishlist();
+  }
+
+  function vaciarCarrito() {
+    cartData = {};
+    renderCarrito();
+  }
+
+  function comprarPorWhatsapp() {
+    if (!Object.keys(cartData).length) {
+      alert("Carrito vacío");
+      return;
     }
 
-    function eliminarDeWishlist(n) {
-      delete wishlistData[n];
-      document.querySelector(`.heart-icon[onclick*="'${n}'"]`)?.classList.remove("active");
-      renderWishlist();
+    let msg = "Hola, quiero comprar:%0A";
+    for (let n in cartData) {
+      const it = cartData[n];
+      msg += `- ${n} x${it.cantidad} (Talla ${it.talla}) = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
     }
 
-    function addToCart(n,p) {
-      const qty = parseInt(document.querySelector(`.item:has(h3:contains('${n}')) .cantidad-input`).value)||1;
-      cartData[n]={precio:p,cantidad:qty};
-      if(wishlistData[n]) wishlistData[n].cantidad=qty, renderWishlist();
-      renderCarrito();
-    }
+    window.open(`https://wa.me/573000000000?text=${msg}`, '_blank');
+  }
 
-    function renderCarrito() {
-      const ul = document.getElementById("cart-items");
-      ul.innerHTML="";
-      for(let n in cartData) {
-        const it=cartData[n];
-        ul.innerHTML+=`<li>${n} x${it.cantidad} — $${(it.precio*it.cantidad).toLocaleString()}
-                        <button class="remove-button" onclick="eliminarDelCarrito('${n}')">✖</button>
-                      </li>`;
-      }
-    }
-
-    function eliminarDelCarrito(n){ delete cartData[n]; renderCarrito(); }
-
-    function moverWishlistACarrito(){
-      for(let n in wishlistData) cartData[n]=wishlistData[n];
-      wishlistData={}; document.querySelectorAll(".heart-icon.active").forEach(i=>i.classList.remove("active"));
-      renderWishlist(); renderCarrito();
-    }
-
-    function vaciarWishlist(){ wishlistData={}; renderWishlist(); }
-    function vaciarCarrito(){ cartData={}; renderCarrito(); }
-
-    function comprarPorWhatsapp(){
-      if(!Object.keys(cartData).length){ alert("Carrito vacío"); return; }
-      let msg="Hola, quiero comprar:%0A";
-      for(let n in cartData){
-        const it=cartData[n];
-        msg+=`- ${n} x${it.cantidad} = $${(it.precio*it.cantidad).toLocaleString()}%0A`;
-      }
-      window.open(`https://wa.me/573000000000?text=${msg}`,'_blank');
-    }
-
-    renderCatalogo();
-  </script>
+  renderCatalogo();
+    
+</script>
 </body>
 </html>
