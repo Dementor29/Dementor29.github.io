@@ -272,9 +272,10 @@
   }
 
   function vaciarWishlist() {
-    wishlistData = {};
-    renderWishlist();
-  }
+  wishlistData = {};
+  document.querySelectorAll(".heart-icon.active").forEach(icon => icon.classList.remove("active"));
+  renderWishlist();
+}
 
   function vaciarCarrito() {
     cartData = {};
