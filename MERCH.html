@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catálogo de Ropa</title>
+  <link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
+  <style>
+    @font-face {
+      font-family: 'BurzumGothic';
+      src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+    body {
+      background-color: #121212;
+      font-family: 'BurzumGothic', serif;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .catalogo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .item {
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      padding: 10px;
+      width: 220px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background-color: #111;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .precio {
+      color: white;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .heart-icon {
+      font-size: 24px;
+      color: gray;
+      cursor: pointer;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+    .heart-icon.active {
+      color: red;
+    }
+    .cantidad-label {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 14px;
+      color: #fff;
+    }
+    .cantidad-input {
+      width: 50px;
+      margin-left: 8px;
+      padding: 4px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background-color: #111;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .cart-button, .remove-button {
+      margin-top: 10px;
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: 'BurzumGothic', serif;
+      font-size: 14px;
+    }
+    .cart-button:hover, .remove-button:hover {
+      background-color: #ff0000;
+    }
+    #wishlist, #cart {
+      margin-top: 40px;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .volver-container {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .back-link {
+      font-family: 'BurzumGothic', serif;
+      font-size: 20px;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    .back-link:hover {
+      background-color: #ff0000;
+    }
+    /* Nequi & WhatsApp button omitted for brevity; reinclude as needed */
+  </style>
+</head>
+<body>
+  <h1>CATÁLOGO DE ROPA</h1>
+
+  <div class="catalogo" id="catalogo-container"></div>
+
+  <div id="wishlist">
+    <h3>Lista de deseos</h3>
+    <ul id="wishlist-items"></ul>
+    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+  </div>
+
+  <div id="cart">
+    <h3>Carrito de compras</h3>
+    <ul id="cart-items"></ul>
+    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+  </div>
+
+  <div class="volver-container">
+    <a href="#" class="back-link">↑ VOLVER ↑</a>
+  </div>
+
+  <script>
+    // Aquí cambiamos la lista de productos a prendas de ropa
+    const productos = [
+      {
+        nombre: "Camiseta Black Metal",
+        precio: 40000,
+        imagen: "https://i.imgur.com/1Xw1p4F.jpg"
+      },
+      {
+        nombre: "Sudadera Averno",
+        precio: 85000,
+        imagen: "https://i.imgur.com/aZbKq6L.jpg"
+      },
+      {
+        nombre: "Gorra Satánica",
+        precio: 20000,
+        imagen: "https://i.imgur.com/5lQK7Wd.jpg"
+      }
+    ];
+
+    let wishlistData = {};
+    let cartData = {};
+
+    function crearItem(producto) {
+      const item = document.createElement("div");
+      item.className = "item";
+      item.innerHTML = `
+        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h3>${producto.nombre}</h3>
+        <div class="precio">$${producto.precio.toLocaleString()}</div>
+        <label class="cantidad-label">Cant:
+          <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
+        </label>
+        <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio})">
+          Agregar al carrito
+        </button>`;
+      return item;
+    }
+
+    function renderCatalogo() {
+      const cont = document.getElementById("catalogo-container");
+      productos.forEach(p => cont.appendChild(crearItem(p)));
+    }
+
+    function toggleFavorite(el,n,p) {
+      if(el.classList.toggle("active")) wishlistData[n]={precio:p,cantidad:1};
+      else delete wishlistData[n];
+      renderWishlist();
+    }
+
+    function renderWishlist() {
+      const ul = document.getElementById("wishlist-items");
+      ul.innerHTML = "";
+      for(let n in wishlistData) {
+        const it = wishlistData[n];
+        ul.innerHTML += `<li>${n} x${it.cantidad} — $${(it.precio*it.cantidad).toLocaleString()}
+                          <button class="remove-button" onclick="eliminarDeWishlist('${n}')">✖</button>
+                        </li>`;
+      }
+    }
+
+    function eliminarDeWishlist(n) {
+      delete wishlistData[n];
+      document.querySelector(`.heart-icon[onclick*="'${n}'"]`)?.classList.remove("active");
+      renderWishlist();
+    }
+
+    function addToCart(n,p) {
+      const qty = parseInt(document.querySelector(`.item:has(h3:contains('${n}')) .cantidad-input`).value)||1;
+      cartData[n]={precio:p,cantidad:qty};
+      if(wishlistData[n]) wishlistData[n].cantidad=qty, renderWishlist();
+      renderCarrito();
+    }
+
+    function renderCarrito() {
+      const ul = document.getElementById("cart-items");
+      ul.innerHTML="";
+      for(let n in cartData) {
+        const it=cartData[n];
+        ul.innerHTML+=`<li>${n} x${it.cantidad} — $${(it.precio*it.cantidad).toLocaleString()}
+                        <button class="remove-button" onclick="eliminarDelCarrito('${n}')">✖</button>
+                      </li>`;
+      }
+    }
+
+    function eliminarDelCarrito(n){ delete cartData[n]; renderCarrito(); }
+
+    function moverWishlistACarrito(){
+      for(let n in wishlistData) cartData[n]=wishlistData[n];
+      wishlistData={}; document.querySelectorAll(".heart-icon.active").forEach(i=>i.classList.remove("active"));
+      renderWishlist(); renderCarrito();
+    }
+
+    function vaciarWishlist(){ wishlistData={}; renderWishlist(); }
+    function vaciarCarrito(){ cartData={}; renderCarrito(); }
+
+    function comprarPorWhatsapp(){
+      if(!Object.keys(cartData).length){ alert("Carrito vacío"); return; }
+      let msg="Hola, quiero comprar:%0A";
+      for(let n in cartData){
+        const it=cartData[n];
+        msg+=`- ${n} x${it.cantidad} = $${(it.precio*it.cantidad).toLocaleString()}%0A`;
+      }
+      window.open(`https://wa.me/573000000000?text=${msg}`,'_blank');
+    }
+
+    renderCatalogo();
+  </script>
+</body>
+</html>
