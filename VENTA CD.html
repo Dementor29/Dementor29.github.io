@@ -226,6 +226,47 @@ audio::-webkit-media-controls-timeline {
 audio::-moz-range-track {
   background-color: red;
 }
+#radio-container {
+  max-width: 500px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.led-marquee {
+  color: #ff0000;
+  font-family: monospace;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #ff0000;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #000;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.led-marquee::before {
+  content: attr(data-text);
+  position: absolute;
+  white-space: nowrap;
+  animation: scroll-left 12s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+.led-marquee::before {
+  content: "Transmitiendo en vivo: Black Metal, ocultismo y oscuridad desde el abismo.";
+  left: 100%;
+}
 
 </style>
 </head>
@@ -236,15 +277,15 @@ audio::-moz-range-track {
   </header>
   
 <div id="radio-container">
-  <h2>RADIO DEMONOLY</h2>
-  <p>EMITIENDO EN VIVO DESDE LAUT.FM — BLACK METAL, OSCURIDAD Y SONIDOS EXTREMOS.</p>
+  <div class="led-marquee">
+    Transmitiendo En Vivo: Black Metal, Ocultismo Y Oscuridad Desde El Abismo.
+  </div>
   
   <audio controls>
     <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
     Tu navegador no soporta la reproducción de audio.
   </audio>
 </div>
-
   
 <div class="catalogo" id="catalogo-container"></div>
 
