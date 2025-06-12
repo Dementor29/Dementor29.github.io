@@ -178,29 +178,27 @@
     const item = document.createElement("div");
     item.className = "item";
     const id = producto.nombre.replace(/\s+/g, "_");
-
-    item.innerHTML = `
-  <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
-  <img src="${producto.imagen}" alt="${producto.nombre}">
-  <h3>${producto.nombre}</h3>
-  <div class="precio">$${producto.precio.toLocaleString()}</div>
-  <label class="cantidad-label">Cant:
-    <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
-  </label>
-  <label class="cantidad-label">Talla:
-    <select class="cantidad-input" id="talla-${id}">
-      <option value="">Elige talla</option>
-      <option value="S">S</option><option value="M">M</option>
-      <option value="L">L</option><option value="XL">XL</option>
-    </select>
-  </label>
-  <span id="error-${id}" class="error-msg"></span>
-  <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-`;
-
+    
+ item.innerHTML = `
+      <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
+      <img src="${producto.imagen}" alt="${producto.nombre}">
+      <h3>${producto.nombre}</h3>
+      <div class="precio">$${producto.precio.toLocaleString()}</div>
+      <label class="cantidad-label">Cant:
+        <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
+      </label>
+      <label class="cantidad-label">Talla:
+        <select class="cantidad-input" id="talla-${id}">
+          <option value="">Elige talla</option>
+          <option value="S">S</option><option value="M">M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+      </label>
+      <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
+    `;
     return item;
   }
-
+  
   function renderCatalogo() {
     const cont = document.getElementById("catalogo-container");
     cont.innerHTML = "";
