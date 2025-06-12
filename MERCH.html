@@ -101,7 +101,6 @@
     .error-msg {
       color: red;
       font-size: 13px;
-      /* agregado para que el mensaje de wishlist quede en línea */
       display: inline-block;
       margin-left: 4px;
     }
@@ -185,7 +184,7 @@
 
   // Limpia error de wishlist al cambiar talla
   function clearWishlistError(id) {
-    const error = document.getElementById(`error-${id}`);
+    const error = document.getElementById(`wishlist-error-${id}`);
     if (error) error.textContent = "";
   }
 
@@ -248,7 +247,8 @@ function renderWishlist() {
             <option value="S">S</option><option value="M">M</option>
             <option value="L">L</option><option value="XL">XL</option>
           </select>
-          <span id="error-${id}" class="error-msg"></span>
+-          <span id="error-${id}" class="error-msg"></span>
++          <span id="wishlist-error-${id}" class="error-msg"></span>
         </label>
         <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
       </li>
@@ -258,7 +258,7 @@ function renderWishlist() {
 
   function eliminarDeWishlist(nombre) {
     delete wishlistData[nombre];
-    document.querySelector(`.heart-icon[onclick*="'${nombre}'"]`)?.classList.remove("active");
+    document.querySelector(`.heart-icon[onclick*="'${nombre}'"]`)?.classList.remove('active');
     renderWishlist();
   }
 
@@ -269,7 +269,7 @@ function renderWishlist() {
     const error = document.getElementById(`error-${id}`);
 
     if (!talla) {
-      if (error) error.textContent = "POR FAVOR  SELECCIONA ⛧ UNA TALLA.";
+      if (error) error.textContent = "POR FAVOR SELECCIONA UNA TALLA.";
       return;
     } else {
       if (error) error.textContent = "";
@@ -285,10 +285,11 @@ function renderWishlist() {
       const id = nombre.replace(/\s+/g, "_");
       const selectTalla = document.getElementById(`wishlist-talla-${id}`);
       const talla = selectTalla?.value;
-      const error = document.getElementById(`error-${id}`);
+-    const error = document.getElementById(`error-${id}`);
++    const error = document.getElementById(`wishlist-error-${id}`);
 
       if (!talla) {
-        error.textContent = "POR FAVOR  SELECCIONA ⛧ UNA TALLA.";
+        error.textContent = "POR FAVOR SELECCIONA UNA TALLA.";
         todoOk = false;
       } else {
         error.textContent = "";
@@ -322,30 +323,24 @@ function renderWishlist() {
   }
 
   function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
-  // Desactivar corazones y resetear catálogo
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
-  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
+    wishlistData = {};
+    renderWishlist();
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+    document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
+    document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
+    document.querySelectorAll('.error-msg').forEach(span => span.textContent = '');
+  }
 
-  // **Limpia todos los mensajes de error**:
-  document.querySelectorAll('.error-msg').forEach(span => span.textContent = '');
-}
-
-function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
-  // Reset catálogo y corazones
-  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
-  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-  wishlistData = {};
-  renderWishlist();
-
-  // **Limpia todos los mensajes de error**:
-  document.querySelectorAll('.error-msg').forEach(span => span.textContent = '');
-}
+  function vaciarCarrito() {
+    cartData = {};
+    renderCarrito();
+    document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
+    document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+    wishlistData = {};
+    renderWishlist();
+    document.querySelectorAll('.error-msg').forEach(span => span.textContent = '');
+  }
 
   function comprarPorWhatsapp() {
     if (!Object.keys(cartData).length) {
