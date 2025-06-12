@@ -118,7 +118,6 @@
     }
     .back-link:hover {
       background-color: #ff0000;
-    }
     .alert-overlay {
       position: fixed;
       top: 0;
@@ -132,7 +131,34 @@
       z-index: 9999;
       animation: fadeIn 0.3s ease-in-out;
     }
-    
+    .alert-box {
+      background: url('https://files.oaiusercontent.com/file-000000006aac622f958ee4e3ef694592') center/cover no-repeat;
+      background-color: black;
+      padding: 40px;
+      border: 2px solid red;
+      color: red;
+      font-family: 'BurzumGothic', serif;
+      font-size: 20px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 30px red;
+      position: relative;
+    }
+    .alert-box::before {
+      content: '☩';
+      font-size: 36px;
+      display: block;
+      margin-bottom: 20px;
+      animation: rotateOpen 0.5s ease forwards;
+    }
+    @keyframes rotateOpen {
+      from { transform: rotate(0deg); opacity: 0; }
+      to { transform: rotate(180deg); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
     .alert-overlay { display: none; /* oculto por defecto */ /* resto de estilos… */ }
     .alert-box::before { content: '⛧'; /* cruz invertida */ /* resto de estilos… */ }
     .alert-close { /* posiciona el botón cerrar en la esquina */ }
