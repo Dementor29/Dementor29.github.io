@@ -180,9 +180,8 @@
   <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank" title="Pagar con Nequi">
     WHATSAPP
   </a>
-
-  <<script>
-    
+  
+<script>
   const productos = [
     {
       nombre: "BURZUM",
@@ -241,8 +240,9 @@
   }
 
   function toggleFavorite(el, nombre, precio) {
+    const id = nombre.replace(/\s+/g, "_");
     if (el.classList.toggle("active")) {
-      wishlistData[nombre] = { precio: precio };
+      wishlistData[nombre] = { precio: precio, talla: "" };
     } else {
       delete wishlistData[nombre];
     }
@@ -252,11 +252,32 @@
   function renderWishlist() {
     const ul = document.getElementById("wishlist-items");
     ul.innerHTML = "";
+
     for (let nombre in wishlistData) {
       const item = wishlistData[nombre];
-      ul.innerHTML += `<li>${nombre} — $${item.precio.toLocaleString()}
-        <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button></li>`;
+      const id = nombre.replace(/\s+/g, "_");
+
+      ul.innerHTML += `
+        <li>
+          ${nombre} — $${item.precio.toLocaleString()} 
+          <select id="wishlist-talla-${id}" onchange="actualizarTallaWishlist('${nombre}')">
+            <option value="">Seleccionar</option>
+            <option value="S" ${item.talla === "S" ? "selected" : ""}>S</option>
+            <option value="M" ${item.talla === "M" ? "selected" : ""}>M</option>
+            <option value="L" ${item.talla === "L" ? "selected" : ""}>L</option>
+            <option value="XL" ${item.talla === "XL" ? "selected" : ""}>XL</option>
+          </select>
+          <div class="error-msg" id="wishlist-error-${id}">⚠ Por favor selecciona una talla.</div>
+          <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+        </li>`;
     }
+  }
+
+  function actualizarTallaWishlist(nombre) {
+    const id = nombre.replace(/\s+/g, "_");
+    const select = document.getElementById(`wishlist-talla-${id}`);
+    wishlistData[nombre].talla = select.value;
+    document.getElementById(`wishlist-error-${id}`).style.display = "none";
   }
 
   function eliminarDeWishlist(nombre) {
@@ -300,11 +321,33 @@
   }
 
   function moverWishlistACarrito() {
-    if (Object.keys(wishlistData).length === 0) {
-      alert("La lista de deseos está vacía.");
-    } else {
-      alert("⚠ Por favor selecciona la talla del producto directamente en el catálogo antes de comprar.");
+    let faltanTallas = false;
+
+    for (let nombre in wishlistData) {
+      const item = wishlistData[nombre];
+      const id = nombre.replace(/\s+/g, "_");
+      const talla = document.getElementById(`wishlist-talla-${id}`).value;
+
+      if (!talla) {
+        document.getElementById(`wishlist-error-${id}`).style.display = "block";
+        faltanTallas = true;
+      } else {
+        document.getElementById(`wishlist-error-${id}`).style.display = "none";
+      }
     }
+
+    if (faltanTallas) {
+      return;
+    }
+
+    // Si todas las tallas están bien, proceder con WhatsApp
+    let msg = "Hola, quiero comprar desde mi lista de deseos:%0A";
+    for (let nombre in wishlistData) {
+      const item = wishlistData[nombre];
+      msg += `- ${nombre} (Talla ${item.talla}) — $${item.precio.toLocaleString()}%0A`;
+    }
+
+    window.open(`https://wa.me/573154277973?text=${msg}`, '_blank');
   }
 
   function vaciarWishlist() {
@@ -336,7 +379,7 @@
   }
 
   renderCatalogo();
-    
+  
 </script>
 </body>
 </html>
