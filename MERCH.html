@@ -291,15 +291,23 @@
   }
 
   function vaciarWishlist() {
-    wishlistData = {};
-    renderWishlist();
-    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-  }
+  wishlistData = {};
+  renderWishlist();
+  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+
+  // Reiniciar tallas y cantidades en el catálogo
+  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
+  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
+}
 
   function vaciarCarrito() {
-    cartData = {};
-    renderCarrito();
-  }
+  cartData = {};
+  renderCarrito();
+
+  // Reiniciar tallas y cantidades en el catálogo
+  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
+  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
+}
 
   function comprarPorWhatsapp() {
     if (!Object.keys(cartData).length) {
