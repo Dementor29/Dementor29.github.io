@@ -123,28 +123,31 @@
     .back-link:hover {
       background-color: #ff0000;
     }
-    
-  .nequi-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #6f0f19;
-  color: white;
-  font-family: 'BurzumGothic', serif;
-  padding: 12px 18px;
-  text-decoration: none;
-  font-size: 16px;
-  z-index: 999;
-  box-shadow: 0 0 10px red;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.nequi-btn:hover {
-  background-color: #ff0000;
-  color: white;
-}
-
-</style>
+    .error-msg {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+    .nequi-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #6f0f19;
+      color: white;
+      font-family: 'BurzumGothic', serif;
+      padding: 12px 18px;
+      text-decoration: none;
+      font-size: 16px;
+      z-index: 999;
+      box-shadow: 0 0 10px red;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nequi-btn:hover {
+      background-color: #ff0000;
+      color: white;
+    }
+  </style>
 </head>
 <body>
   
@@ -170,166 +173,174 @@
     <a href="DDA.html" class="back-link">↑ VOLVER ↑</a>
   </div>
   
-<footer class="footer">
-  <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
-</footer>
+  <footer class="footer">
+    <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
+  </footer>
 
-<a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank" title="Pagar con Nequi">
-  WHATSAPP
-</a>
+  <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank" title="Pagar con Nequi">
+    WHATSAPP
+  </a>
 
   <script>
-    
-  const productos = [
-    {
-      nombre: "BURZUM",
-      precio: 40000,
-      imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg"
-    },
-    {
-      nombre: "DEICIDE",
-      precio: 85000,
-      imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg"
-    },
-    {
-      nombre: "BEHEMOTH",
-      precio: 20000,
-      imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg"
+    const productos = [
+      {
+        nombre: "BURZUM",
+        precio: 40000,
+        imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg"
+      },
+      {
+        nombre: "DEICIDE",
+        precio: 85000,
+        imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg"
+      },
+      {
+        nombre: "BEHEMOTH",
+        precio: 20000,
+        imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg"
+      }
+    ];
+
+    let wishlistData = {};
+    let cartData = {};
+
+    function crearItem(producto) {
+      const item = document.createElement("div");
+      item.className = "item";
+
+      const idSafe = producto.nombre.replace(/\s+/g, "_");
+
+      item.innerHTML = `
+        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h3>${producto.nombre}</h3>
+        <div class="precio">$${producto.precio.toLocaleString()}</div>
+        <label class="cantidad-label">Cant:
+          <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${idSafe}">
+        </label>
+        <label class="cantidad-label">Talla:
+          <select class="cantidad-input" id="talla-${idSafe}">
+            <option value="">Seleccionar</option>
+            <option value="S">S - Pequeña</option>
+            <option value="M">M - Mediana</option>
+            <option value="L">L - Grande</option>
+            <option value="XL">XL - Extra grande</option>
+          </select>
+        </label>
+        <div class="error-msg" id="error-${idSafe}">⚠ Por favor selecciona una talla.</div>
+        <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio})">
+          Agregar al carrito
+        </button>`;
+      return item;
     }
-  ];
 
-  let wishlistData = {};
-  let cartData = {};
-
-  function crearItem(producto) {
-    const item = document.createElement("div");
-    item.className = "item";
-
-    const idSafe = producto.nombre.replace(/\s+/g, "_");
-
-    item.innerHTML = `
-      <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
-      <img src="${producto.imagen}" alt="${producto.nombre}">
-      <h3>${producto.nombre}</h3>
-      <div class="precio">$${producto.precio.toLocaleString()}</div>
-      <label class="cantidad-label">Cant:
-        <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${idSafe}">
-      </label>
-      <label class="cantidad-label">Talla:
-        <select class="cantidad-input" id="talla-${idSafe}">
-          <option value="S">S - Pequeña</option>
-          <option value="M">M - Mediana</option>
-          <option value="L">L - Grande</option>
-          <option value="XL">XL - Extra grande</option>
-        </select>
-      </label>
-      <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio})">
-        Agregar al carrito
-      </button>`;
-    return item;
-  }
-
-  function renderCatalogo() {
-    const cont = document.getElementById("catalogo-container");
-    cont.innerHTML = "";
-    productos.forEach(p => cont.appendChild(crearItem(p)));
-  }
-
-  function toggleFavorite(el, n, p) {
-    if (el.classList.toggle("active")) wishlistData[n] = { precio: p, cantidad: 1, talla: "M" };
-    else delete wishlistData[n];
-    renderWishlist();
-  }
-
-  function renderWishlist() {
-    const ul = document.getElementById("wishlist-items");
-    ul.innerHTML = "";
-    for (let n in wishlistData) {
-      const it = wishlistData[n];
-      ul.innerHTML += `<li>${n} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
-        <button class="remove-button" onclick="eliminarDeWishlist('${n}')">✖</button></li>`;
+    function renderCatalogo() {
+      const cont = document.getElementById("catalogo-container");
+      cont.innerHTML = "";
+      productos.forEach(p => cont.appendChild(crearItem(p)));
     }
-  }
 
-  function eliminarDeWishlist(n) {
-    delete wishlistData[n];
-    document.querySelector(`.heart-icon[onclick*="'${n}'"]`)?.classList.remove("active");
-    renderWishlist();
-  }
-
-  function addToCart(n, p) {
-    const idSafe = n.replace(/\s+/g, "_");
-    const qtyEl = document.getElementById(`cantidad-${idSafe}`);
-    const tallaEl = document.getElementById(`talla-${idSafe}`);
-    const qty = parseInt(qtyEl?.value || "1");
-    const talla = tallaEl?.value || "M";
-
-    cartData[n] = { precio: p, cantidad: qty, talla };
-
-    if (wishlistData[n]) {
-      wishlistData[n].cantidad = qty;
-      wishlistData[n].talla = talla;
+    function toggleFavorite(el, n, p) {
+      if (el.classList.toggle("active")) wishlistData[n] = { precio: p, cantidad: 1, talla: "M" };
+      else delete wishlistData[n];
       renderWishlist();
     }
 
-    renderCarrito();
-  }
-
-  function renderCarrito() {
-    const ul = document.getElementById("cart-items");
-    ul.innerHTML = "";
-    for (let n in cartData) {
-      const it = cartData[n];
-      ul.innerHTML += `<li>${n} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
-        <button class="remove-button" onclick="eliminarDelCarrito('${n}')">✖</button></li>`;
-    }
-  }
-
-  function eliminarDelCarrito(n) {
-    delete cartData[n];
-    renderCarrito();
-  }
-
-  function moverWishlistACarrito() {
-    for (let n in wishlistData) {
-      cartData[n] = wishlistData[n];
-    }
-    wishlistData = {};
-    document.querySelectorAll(".heart-icon.active").forEach(i => i.classList.remove("active"));
-    renderWishlist();
-    renderCarrito();
-  }
-
-  function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-  document.querySelectorAll('.cantidad-input').forEach(input => input.value = 1);  // Asegúrate de tener esta línea
-}
-
-  function vaciarCarrito() {
-    cartData = {};
-    renderCarrito();
-    document.querySelectorAll('.cantidad-input').forEach(input => input.value = 1);
-  }
-
-  function comprarPorWhatsapp() {
-    if (!Object.keys(cartData).length) {
-      alert("Carrito vacío");
-      return;
+    function renderWishlist() {
+      const ul = document.getElementById("wishlist-items");
+      ul.innerHTML = "";
+      for (let n in wishlistData) {
+        const it = wishlistData[n];
+        ul.innerHTML += `<li>${n} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
+          <button class="remove-button" onclick="eliminarDeWishlist('${n}')">✖</button></li>`;
+      }
     }
 
-    let msg = "Hola, quiero comprar:%0A";
-    for (let n in cartData) {
-      const it = cartData[n];
-      msg += `- ${n} x${it.cantidad} (Talla ${it.talla}) = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
+    function eliminarDeWishlist(n) {
+      delete wishlistData[n];
+      document.querySelector(`.heart-icon[onclick*="'${n}'"]`)?.classList.remove("active");
+      renderWishlist();
     }
 
-    window.open(`https://wa.me/573154277973?text=${msg}`, '_blank');
-  }
+    function addToCart(n, p) {
+      const idSafe = n.replace(/\s+/g, "_");
+      const qtyEl = document.getElementById(`cantidad-${idSafe}`);
+      const tallaEl = document.getElementById(`talla-${idSafe}`);
+      const errorMsg = document.getElementById(`error-${idSafe}`);
+      const qty = parseInt(qtyEl?.value || "1");
+      const talla = tallaEl?.value;
 
-  renderCatalogo();
-    
-</script>
+      if (!talla) {
+        errorMsg.style.display = "block";
+        return;
+      } else {
+        errorMsg.style.display = "none";
+      }
+
+      cartData[n] = { precio: p, cantidad: qty, talla };
+
+      if (wishlistData[n]) {
+        wishlistData[n].cantidad = qty;
+        wishlistData[n].talla = talla;
+        renderWishlist();
+      }
+
+      renderCarrito();
+    }
+
+    function renderCarrito() {
+      const ul = document.getElementById("cart-items");
+      ul.innerHTML = "";
+      for (let n in cartData) {
+        const it = cartData[n];
+        ul.innerHTML += `<li>${n} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
+          <button class="remove-button" onclick="eliminarDelCarrito('${n}')">✖</button></li>`;
+      }
+    }
+
+    function eliminarDelCarrito(n) {
+      delete cartData[n];
+      renderCarrito();
+    }
+
+    function moverWishlistACarrito() {
+      for (let n in wishlistData) {
+        cartData[n] = wishlistData[n];
+      }
+      wishlistData = {};
+      document.querySelectorAll(".heart-icon.active").forEach(i => i.classList.remove("active"));
+      renderWishlist();
+      renderCarrito();
+    }
+
+    function vaciarWishlist() {
+      wishlistData = {};
+      renderWishlist();
+      document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+      document.querySelectorAll('.cantidad-input[type="number"]').forEach(input => input.value = 1);
+    }
+
+    function vaciarCarrito() {
+      cartData = {};
+      renderCarrito();
+      document.querySelectorAll('.cantidad-input[type="number"]').forEach(input => input.value = 1);
+    }
+
+    function comprarPorWhatsapp() {
+      if (!Object.keys(cartData).length) {
+        alert("Carrito vacío");
+        return;
+      }
+
+      let msg = "Hola, quiero comprar:%0A";
+      for (let n in cartData) {
+        const it = cartData[n];
+        msg += `- ${n} x${it.cantidad} (Talla ${it.talla}) = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
+      }
+
+      window.open(`https://wa.me/573154277973?text=${msg}`, '_blank');
+    }
+
+    renderCatalogo();
+  </script>
 </body>
 </html>
