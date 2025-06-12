@@ -9,6 +9,8 @@
     @font-face {
       font-family: 'BurzumGothic';
       src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
     }
     body {
       background-color: #121212;
@@ -17,8 +19,15 @@
       margin: 0;
       padding: 20px;
     }
-    h1, h2, h3 { text-align: center; }
-    .catalogo { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    h1, h2, h3 {
+      text-align: center;
+    }
+    .catalogo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
     .item {
       background-color: #1e1e1e;
       border-radius: 8px;
@@ -30,83 +39,136 @@
       align-items: center;
       position: relative;
     }
-    .item img { width: 100%; height: 220px; object-fit: cover; background-color: #111; border-radius: 6px; margin-bottom: 10px; }
-    .precio { font-weight: bold; margin-bottom: 10px; }
-    .heart-icon {
-      font-size: 24px; color: gray; cursor: pointer;
-      position: absolute; top: 8px; right: 8px;
+    .item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background-color: #111;
+      border-radius: 6px;
+      margin-bottom: 10px;
     }
-    .heart-icon.active { color: red; }
-    .cantidad-label { font-size: 14px; color: #fff; margin-top: 8px; }
+    .precio {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .heart-icon {
+      font-size: 24px;
+      color: gray;
+      cursor: pointer;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+    .heart-icon.active {
+      color: red;
+    }
+    .cantidad-label {
+      font-size: 14px;
+      color: #fff;
+      margin-top: 8px;
+    }
     .cantidad-input {
-      width: 50px; margin-left: 8px; padding: 4px;
-      border: 1px solid #555; border-radius: 4px;
-      background-color: #111; color: #fff;
-      font-family: inherit; font-size: 14px;
+      width: 50px;
+      margin-left: 8px;
+      padding: 4px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background-color: #111;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
     }
     .cart-button, .remove-button {
-      margin-top: 10px; background-color: #444;
-      color: white; border: none; padding: 8px 12px;
-      cursor: pointer; border-radius: 4px;
+      margin-top: 10px;
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
       font-family: 'BurzumGothic', serif;
     }
-    .cart-button:hover, .remove-button:hover { background-color: #ff0000; }
+    .cart-button:hover, .remove-button:hover {
+      background-color: #ff0000;
+    }
     #wishlist, #cart {
-      margin-top: 40px; background: #1e1e1e;
-      padding: 20px; border-radius: 8px;
-      max-width: 600px; margin: auto;
+      margin-top: 40px;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .error-msg { color: red; font-size: 13px; }
-    .volver-container { text-align: center; margin: 40px 0; }
+    .error-msg {
+      color: red;
+      font-size: 13px;
+    }
+    .volver-container {
+      text-align: center;
+      margin: 40px 0;
+    }
     .back-link {
-      font-family: 'BurzumGothic', serif; font-size: 20px;
-      color: white; text-decoration: none;
-      padding: 10px 20px; border-radius: 8px;
-    }
-    .back-link:hover { background-color: #ff0000; }
-    .alert-overlay {
-      position: fixed; top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.9);
-      display: none; align-items: center;
-      justify-content: center; z-index: 9999;
-    }
-    .alert-box {
-      background:
-        url('https://files.oaiusercontent.com/file-000000006aac622f958ee4e3ef694592')
-        center/cover no-repeat, black;
-      padding: 40px; border: 2px solid red;
-      color: red; font-family: 'BurzumGothic', serif;
-      font-size: 20px; max-width: 400px;
-      text-align: center; box-shadow: 0 0 30px red;
-      position: relative;
-    }
-    .alert-box::before {
-      content: '⛧'; font-size: 36px;
-      display: block; margin-bottom: 20px;
-    }
-    .alert-close {
-      position: absolute; top: 8px; right: 12px;
-      font-size: 24px; color: red; cursor: pointer;
-    }
-    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    .nequi-btn {
-      position: fixed; bottom: 20px; right: 20px;
-      background-color: #6f0f19; color: white;
       font-family: 'BurzumGothic', serif;
-      padding: 12px 18px; text-decoration: none;
-      font-size: 16px; z-index: 999;
-      box-shadow: 0 0 10px red;
+      font-size: 20px;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
     }
-    .nequi-btn:hover { background-color: #ff0000; }
+    .back-link:hover {
+      background-color: #ff0000;
+    }
+    .alert-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    .alert-overlay { display: none; /* oculto por defecto */ /* resto de estilos… */ }
+    .alert-box::before { content: '⛧'; /* cruz invertida */ /* resto de estilos… */ }
+    .alert-close { /* posiciona el botón cerrar en la esquina */ }
+
+    .nequi-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #6f0f19;
+      color: white;
+      font-family: 'BurzumGothic', serif;
+      padding: 12px 18px;
+      text-decoration: none;
+      font-size: 16px;
+      z-index: 999;
+      box-shadow: 0 0 10px red;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nequi-btn:hover {
+      background-color: #ff0000;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Alerta oculta por defecto -->
-  <div class="alert-overlay" id="alert-overlay">
+  <!-- Alerta obligatoria -->
+  <div class="alert-overlay" id="alerta-importante">
     <div class="alert-box">
-      <span class="alert-close" onclick="hideAlert()">✖</span>
+      Por favor elige una talla para continuar.
+    </div>
+  </div>
+  
+  <!-- ALERTA OCULTA POR DEFECTO -->
+  <div class="alert-overlay" id="alert-overlay" style="display:none;">
+    <div class="alert-box">
+      <span class="alert-close" onclick="hideAlert()">⛧</span>
       Por favor elige una talla para continuar.
     </div>
   </div>
@@ -139,30 +201,29 @@
   <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank">WHATSAPP</a>
 
   <script>
-    
     const productos = [
       { nombre: "BURZUM", precio: 40000, imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg" },
-      { nombre: "DEICIDE", precio: 85000, imagen: "https://napalmrecords.com/media/.../85978_deicide_banished_by_sin_shirt.jpg" },
-      { nombre: "BEHEMOTH", precio: 20000, imagen: "https://napalmrecords.com/media/.../82769-behemoth-the-satanist-shirt-front.jpg" }
+      { nombre: "DEICIDE", precio: 85000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg" },
+      { nombre: "BEHEMOTH", precio: 20000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg" }
     ];
 
-    let wishlistData = {}, cartData = {};
+    let wishlistData = {};
+    let cartData = {};
 
     function crearItem(producto) {
-      const item = document.createElement('div');
-      item.className = 'item';
-      const id = producto.nombre.replace(/\s+/g,'_');
+      const item = document.createElement("div");
+      item.className = "item";
+      const id = producto.nombre.replace(/\s+/g, "_");
+
       item.innerHTML = `
         <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
         <img src="${producto.imagen}" alt="${producto.nombre}">
         <h3>${producto.nombre}</h3>
         <div class="precio">$${producto.precio.toLocaleString()}</div>
-        <label class="cantidad-label">
-          Cant:
+        <label class="cantidad-label">Cant:
           <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
         </label>
-        <label class="cantidad-label">
-          Talla:
+        <label class="cantidad-label">Talla:
           <select class="cantidad-input" id="talla-${id}">
             <option value="">Elige talla</option>
             <option value="S">S</option>
@@ -171,33 +232,35 @@
             <option value="XL">XL</option>
           </select>
         </label>
-        <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio})">
-          Agregar al carrito
-        </button>`;
+        <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio})">Agregar al carrito</button>`;
       return item;
     }
 
     function renderCatalogo() {
-      const cont = document.getElementById('catalogo-container');
-      cont.innerHTML = '';
+      const cont = document.getElementById("catalogo-container");
+      cont.innerHTML = "";
       productos.forEach(p => cont.appendChild(crearItem(p)));
     }
 
     function toggleFavorite(el, nombre, precio) {
-      const id = nombre.replace(/\s+/g,'_');
-      if (el.classList.toggle('active')) wishlistData[nombre] = { precio };
-      else delete wishlistData[nombre];
+      const id = nombre.replace(/\s+/g, "_");
+      if (el.classList.toggle("active")) {
+        wishlistData[nombre] = { precio, talla: "" };
+      } else {
+        delete wishlistData[nombre];
+      }
       renderWishlist();
     }
 
     function renderWishlist() {
-      const ul = document.getElementById('wishlist-items');
-      ul.innerHTML = '';
+      const ul = document.getElementById("wishlist-items");
+      ul.innerHTML = "";
       for (let nombre in wishlistData) {
-        const id = nombre.replace(/\s+/g,'_');
+        const item = wishlistData[nombre];
+        const id = nombre.replace(/\s+/g, "_");
         ul.innerHTML += `
           <li>
-            ${nombre} — $${wishlistData[nombre].precio.toLocaleString()}
+            ${nombre} — $${item.precio.toLocaleString()}
             <select id="wishlist-talla-${id}">
               <option value="">Elige talla</option>
               <option value="S">S</option>
@@ -213,30 +276,32 @@
 
     function eliminarDeWishlist(nombre) {
       delete wishlistData[nombre];
-      document.querySelector(`.heart-icon[onclick*="'${nombre}'"]`)?.classList.remove('active');
+      document.querySelector(`.heart-icon[onclick*="'${nombre}'"]`)?.classList.remove("active");
       renderWishlist();
     }
-
+    
     function addToCart(nombre, precio) {
-      const id = nombre.replace(/\s+/g,'_');
-      const qty = parseInt(document.getElementById(`cantidad-${id}`).value) || 1;
-      const talla = document.getElementById(`talla-${id}`).value;
-      if (!talla) { showAlert(); return; }
-      cartData[nombre] = { precio, cantidad: qty, talla };
+    const id = nombre.replace(/\s+/g,'_');
+    const talla = document.getElementById(`talla-${id}`).value;
+    if (!talla) {
+    showAlert();      // muestra la alerta
+    return;
+    }
+      cartData[nombre] = { precio, cantidad, talla };
       renderCarrito();
     }
 
     function moverWishlistACarrito() {
       let faltan = false;
       for (let nombre in wishlistData) {
-        const id = nombre.replace(/\s+/g,'_');
+        const id = nombre.replace(/\s+/g, "_");
         const sel = document.getElementById(`wishlist-talla-${id}`);
         const err = document.getElementById(`error-${id}`);
         if (!sel.value) {
-          err.textContent = 'Por favor selecciona una talla.';
+          err.textContent = "Por favor selecciona una talla.";
           faltan = true;
         } else {
-          err.textContent = '';
+          err.textContent = "";
           cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla: sel.value };
         }
       }
@@ -247,11 +312,11 @@
     }
 
     function renderCarrito() {
-      const ul = document.getElementById('cart-items');
-      ul.innerHTML = '';
+      const ul = document.getElementById("cart-items");
+      ul.innerHTML = "";
       for (let nombre in cartData) {
         const it = cartData[nombre];
-        ul.innerHTML += `<li>${nombre} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio*it.cantidad).toLocaleString()}
+        ul.innerHTML += `<li>${nombre} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
           <button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
       }
     }
@@ -259,7 +324,8 @@
     function eliminarDelCarrito(nombre) {
       delete cartData[nombre];
       renderCarrito();
-      if (!Object.keys(cartData).length) {
+      // desmarcar corazones si se vació el carrito completamente
+      if (Object.keys(cartData).length === 0) {
         document.querySelectorAll('.heart-icon.active').forEach(i=>i.classList.remove('active'));
       }
     }
@@ -268,6 +334,7 @@
       wishlistData = {};
       renderWishlist();
       document.querySelectorAll('.heart-icon.active').forEach(i=>i.classList.remove('active'));
+      // reiniciar selects y contadores
       document.querySelectorAll('#catalogo-container select').forEach(s=>s.value='');
       document.querySelectorAll('#catalogo-container input[type="number"]').forEach(i=>i.value=1);
     }
@@ -281,25 +348,26 @@
     }
 
     function comprarPorWhatsapp() {
-      if (!Object.keys(cartData).length) { alert('Carrito vacío'); return; }
+      if (!Object.keys(cartData).length) {
+        alert("Carrito vacío");
+        return;
+      }
       let msg = "Hola, quiero comprar:%0A";
       for (let n in cartData) {
         const it = cartData[n];
-        msg += `- ${n} x${it.cantidad} (Talla ${it.talla}) = $${(it.precio*it.cantidad).toLocaleString()}%0A`;
+        msg += `- ${n} x${it.cantidad} (Talla ${it.talla}) = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
       }
       window.open(`https://wa.me/573154277973?text=${msg}`, '_blank');
     }
 
-    function showAlert() {
-      document.getElementById('alert-overlay').style.display = 'flex';
-    }
-
-    function hideAlert() {
-      document.getElementById('alert-overlay').style.display = 'none';
-    }
-
-    // Iniciar catálogo
-    renderCatalogo();
+  function showAlert() {
+  document.getElementById('alert-overlay').style.display = 'flex';
+  }
+  function hideAlert() {
+  document.getElementById('alert-overlay').style.display = 'none';
+  }
+    
+  renderCatalogo();
     
 </script>
 </body>
