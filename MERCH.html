@@ -65,7 +65,7 @@
       color: #fff;
       margin-top: 8px;
     }
-    .cantidad-input {
+    .cantidad-input, select {
       width: 50px;
       margin-left: 8px;
       padding: 4px;
@@ -98,10 +98,6 @@
       margin-left: auto;
       margin-right: auto;
     }
-    .error-msg {
-      color: red;
-      font-size: 13px;
-    }
     .volver-container {
       text-align: center;
       margin: 40px 0;
@@ -133,6 +129,47 @@
     .nequi-btn:hover {
       background-color: #ff0000;
     }
+    /* Modal de selección de talla */
+    #modalOverlay, #tallaModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      z-index: 1000;
+    }
+    #modalOverlay {
+      background: rgba(0,0,0,0.7);
+    }
+    #tallaModal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #tallaModal .modal-content {
+      background: #000;
+      padding: 20px;
+      border: 2px solid red;
+      border-radius: 8px;
+      color: red;
+      position: relative;
+      text-align: center;
+      max-width: 300px;
+      margin: auto;
+    }
+    #tallaModal .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      cursor: pointer;
+      font-size: 20px;
+      color: red;
+    }
+    #tallaModal .icon {
+      font-size: 40px;
+      margin: 10px 0;
+    }
   </style>
 </head>
 <body>
@@ -163,6 +200,16 @@
 </footer>
 
 <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank">WHATSAPP</a>
+
+<!-- Modal de talla -->
+<div id="modalOverlay"></div>
+<div id="tallaModal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="hideTallaModal()">✕</span>
+    <div class="icon">☦️💀</div>
+    <p>Debes elegir talla</p>
+  </div>
+</div>
 
 <script>
   const productos = [
@@ -222,14 +269,13 @@
       const producto = wishlistData[nombre];
       const id = nombre.replace(/\s+/g, "_");
       ul.innerHTML += `
-        <li>
+        <li id="wish-${id}">
           ${nombre} — $${producto.precio.toLocaleString()}
           <select id="wishlist-talla-${id}" class="cantidad-input">
             <option value="">Elige talla</option>
             <option value="S">S</option><option value="M">M</option>
             <option value="L">L</option><option value="XL">XL</option>
           </select>
-          <span id="error-${id}" class="error-msg"></span>
           <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
         </li>
       `;
@@ -247,11 +293,13 @@
     const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
     const talla = document.getElementById(`talla-${id}`).value;
     if (!talla) {
-      alert("Por favor selecciona una talla.");
+      showTallaModal();
       return;
     }
     cartData[nombre] = { precio, cantidad, talla };
     renderCarrito();
+    // si venía de wishlist, quitar estado activo
+    document.querySelector(`.heart-icon[onclick*="'${nombre}'"]`)?.classList.remove("active");
   }
 
   function moverWishlistACarrito() {
@@ -259,20 +307,21 @@
     for (let nombre in wishlistData) {
       const id = nombre.replace(/\s+/g, "_");
       const talla = document.getElementById(`wishlist-talla-${id}`)?.value;
-      const error = document.getElementById(`error-${id}`);
       if (!talla) {
-        error.textContent = "Por favor selecciona una talla.";
         todoOk = false;
       } else {
-        error.textContent = "";
         cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla };
       }
     }
-    if (todoOk) {
-      wishlistData = {};
-      renderWishlist();
-      renderCarrito();
+    if (!todoOk) {
+      showTallaModal();
+      return;
     }
+    wishlistData = {};
+    renderWishlist();
+    renderCarrito();
+    // desmarcar todos
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
   }
 
   function renderCarrito() {
@@ -280,38 +329,39 @@
     ul.innerHTML = "";
     for (let nombre in cartData) {
       const it = cartData[nombre];
-      ul.innerHTML += `<li>${nombre} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
-        <button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+      ul.innerHTML += `<li>${nombre} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
     }
   }
 
   function eliminarDelCarrito(nombre) {
     delete cartData[nombre];
     renderCarrito();
+    // al eliminar, desmarcar icono
+    document.querySelector(`.heart-icon[onclick*="'${nombre}'"]`)?.classList.remove("active");
   }
 
   function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-
-  // Reiniciar tallas y cantidades en el catálogo
-  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
-  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
-}
+    wishlistData = {};
+    renderWishlist();
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+    resetInputs();
+  }
 
   function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
+    cartData = {};
+    renderCarrito();
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+    resetInputs();
+  }
 
-  // Reiniciar tallas y cantidades en el catálogo
-  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
-  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
-}
+  function resetInputs() {
+    document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
+    document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
+  }
 
   function comprarPorWhatsapp() {
     if (!Object.keys(cartData).length) {
-      alert("Carrito vacío");
+      showTallaModal();
       return;
     }
     let msg = "Hola, quiero comprar:%0A";
@@ -322,8 +372,19 @@
     window.open(`https://wa.me/573154277973?text=${msg}`, '_blank');
   }
 
+  // funciones modal
+  const overlay = document.getElementById('modalOverlay');
+  const tallaModal = document.getElementById('tallaModal');
+  function showTallaModal() {
+    overlay.style.display = 'block';
+    tallaModal.style.display = 'block';
+  }
+  function hideTallaModal() {
+    overlay.style.display = 'none';
+    tallaModal.style.display = 'none';
+  }
+
   renderCatalogo();
-  
 </script>
 </body>
 </html>
