@@ -222,17 +222,16 @@
     for (let nombre in wishlistData) {
       const producto = wishlistData[nombre];
       const id = nombre.replace(/\s+/g, "_");
-      ul.innerHTML += `
+      
+   ul.innerHTML += `
   <li>
     ${nombre} — $${producto.precio.toLocaleString()}
-    <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
-      <select id="wishlist-talla-${id}" class="cantidad-input">
-        <option value="">Elige talla</option>
-        <option value="S">S</option><option value="M">M</option>
-        <option value="L">L</option><option value="XL">XL</option>
-      </select>
-      <span id="error-${id}" class="error-msg"></span>
-    </div>
+    <select id="wishlist-talla-${id}" class="cantidad-input">
+      <option value="">Elige talla</option>
+      <option value="S">S</option><option value="M">M</option>
+      <option value="L">L</option><option value="XL">XL</option>
+    </select>
+    <span id="error-${id}" class="error-msg"></span>
     <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
   </li>
 `;
