@@ -324,6 +324,19 @@
 
   renderCatalogo();
   
+   function mostrarAlertaTalla() {
+      const alerta = document.getElementById('alerta-talla');
+      alerta.innerHTML = `
+        <div class="alert-overlay">
+          <div class="alert-box">
+            Por favor elige una talla para continuar.
+          </div>
+        </div>`;
+      setTimeout(() => {
+        alerta.innerHTML = '';
+      }, 3000);
+    }
+  
 </script>
 </body>
 </html>
