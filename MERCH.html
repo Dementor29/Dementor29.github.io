@@ -9,6 +9,8 @@
     @font-face {
       font-family: 'BurzumGothic';
       src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
     }
     body {
       background-color: #121212;
@@ -170,6 +172,7 @@
       font-size: 16px;
       z-index: 999;
       box-shadow: 0 0 10px red;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
     .nequi-btn:hover {
       background-color: #ff0000;
@@ -178,206 +181,221 @@
 </head>
 <body>
 
-<h2>ROPA ⛧ ACCESORIOS</h2>
-<div class="catalogo" id="catalogo-container"></div>
+  <!-- Alerta obligatoria -->
+  <div class="alert-overlay" id="alerta-importante">
+    <div class="alert-box">
+      Por favor elige una talla para continuar.
+    </div>
+  </div>
 
-<div id="wishlist">
-  <h3>Lista de deseos</h3>
-  <ul id="wishlist-items"></ul>
-  <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
-  <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
-</div>
+  <script>
+    // Ocultar la alerta después de 3 segundos
+    setTimeout(() => {
+      const alerta = document.getElementById("alerta-importante");
+      if (alerta) alerta.remove();
+    }, 3000);
+  </script>
 
-<div id="cart">
-  <h3>Carrito de compras</h3>
-  <ul id="cart-items"></ul>
-  <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
-  <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
-</div>
+  <h2>ROPA ⛧ ACCESORIOS</h2>
+  <div class="catalogo" id="catalogo-container"></div>
 
-<div class="volver-container">
-  <a href="DDA.html" class="back-link">↑ VOLVER ↑</a>
-</div>
+  <div id="wishlist">
+    <h3>Lista de deseos</h3>
+    <ul id="wishlist-items"></ul>
+    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+  </div>
 
-<footer>
-  <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
-</footer>
+  <div id="cart">
+    <h3>Carrito de compras</h3>
+    <ul id="cart-items"></ul>
+    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+  </div>
 
-<a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank">WHATSAPP</a>
+  <div class="volver-container">
+    <a href="DDA.html" class="back-link">↑ VOLVER ↑</a>
+  </div>
 
-<script>
-  const productos = [
-    { nombre: "BURZUM", precio: 40000, imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg" },
-    { nombre: "DEICIDE", precio: 85000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg" },
-    { nombre: "BEHEMOTH", precio: 20000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg" }
-  ];
+  <footer>
+    <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
+  </footer>
 
-  let wishlistData = {};
-  let cartData = {};
+  <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank">WHATSAPP</a>
 
-  function crearItem(producto) {
-    const item = document.createElement("div");
-    item.className = "item";
-    const id = producto.nombre.replace(/\s+/g, "_");
+  <script>
+    
+    const productos = [
+      { nombre: "BURZUM", precio: 40000, imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg" },
+      { nombre: "DEICIDE", precio: 85000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg" },
+      { nombre: "BEHEMOTH", precio: 20000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg" }
+    ];
 
-    item.innerHTML = `
-      <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
-      <img src="${producto.imagen}" alt="${producto.nombre}">
-      <h3>${producto.nombre}</h3>
-      <div class="precio">$${producto.precio.toLocaleString()}</div>
-      <label class="cantidad-label">Cant:
-        <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
-      </label>
-      <label class="cantidad-label">Talla:
-        <select class="cantidad-input" id="talla-${id}">
-          <option value="">Elige talla</option>
-          <option value="S">S</option><option value="M">M</option>
-          <option value="L">L</option><option value="XL">XL</option>
-        </select>
-      </label>
-      <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-    `;
-    return item;
-  }
+    let wishlistData = {};
+    let cartData = {};
 
-  function renderCatalogo() {
-    const cont = document.getElementById("catalogo-container");
-    cont.innerHTML = "";
-    productos.forEach(p => cont.appendChild(crearItem(p)));
-  }
+    function crearItem(producto) {
+      const item = document.createElement("div");
+      item.className = "item";
+      const id = producto.nombre.replace(/\s+/g, "_");
 
-  function toggleFavorite(el, nombre, precio) {
-    el.classList.toggle("active");
-    if (wishlistData[nombre]) {
-      delete wishlistData[nombre];
-    } else {
-      wishlistData[nombre] = { precio };
-    }
-    renderWishlist();
-  }
-
-  function renderWishlist() {
-    const ul = document.getElementById("wishlist-items");
-    ul.innerHTML = "";
-    for (let nombre in wishlistData) {
-      const producto = wishlistData[nombre];
-      const id = nombre.replace(/\s+/g, "_");
-      ul.innerHTML += `
-        <li>
-          ${nombre} — $${producto.precio.toLocaleString()}
-          <select id="wishlist-talla-${id}" class="cantidad-input">
+      item.innerHTML = `
+        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h3>${producto.nombre}</h3>
+        <div class="precio">$${producto.precio.toLocaleString()}</div>
+        <label class="cantidad-label">Cant:
+          <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
+        </label>
+        <label class="cantidad-label">Talla:
+          <select class="cantidad-input" id="talla-${id}">
             <option value="">Elige talla</option>
-            <option value="S">S</option><option value="M">M</option>
-            <option value="L">L</option><option value="XL">XL</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
           </select>
-          <span id="error-${id}" class="error-msg"></span>
-          <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-        </li>
-      `;
+        </label>
+        <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio})">Agregar al carrito</button>`;
+      return item;
     }
-  }
 
-  function eliminarDeWishlist(nombre) {
-    delete wishlistData[nombre];
-    document.querySelector(`.heart-icon[onclick*="'${nombre}'"]`)?.classList.remove("active");
-    renderWishlist();
-  }
-
-  function addToCart(nombre, precio) {
-    const id = nombre.replace(/\s+/g, "_");
-    const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
-    const talla = document.getElementById(`talla-${id}`).value;
-    if (!talla) {
-      alert("Por favor selecciona una talla.");
-      return;
+    function renderCatalogo() {
+      const cont = document.getElementById("catalogo-container");
+      cont.innerHTML = "";
+      productos.forEach(p => cont.appendChild(crearItem(p)));
     }
-    cartData[nombre] = { precio, cantidad, talla };
-    renderCarrito();
-  }
 
-  function moverWishlistACarrito() {
-    let todoOk = true;
-    for (let nombre in wishlistData) {
+    function toggleFavorite(el, nombre, precio) {
       const id = nombre.replace(/\s+/g, "_");
-      const talla = document.getElementById(`wishlist-talla-${id}`)?.value;
-      const error = document.getElementById(`error-${id}`);
-      if (!talla) {
-        error.textContent = "Por favor selecciona una talla.";
-        todoOk = false;
+      if (el.classList.toggle("active")) {
+        wishlistData[nombre] = { precio, talla: "" };
       } else {
-        error.textContent = "";
-        cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla };
+        delete wishlistData[nombre];
+      }
+      renderWishlist();
+    }
+
+    function renderWishlist() {
+      const ul = document.getElementById("wishlist-items");
+      ul.innerHTML = "";
+      for (let nombre in wishlistData) {
+        const item = wishlistData[nombre];
+        const id = nombre.replace(/\s+/g, "_");
+        ul.innerHTML += `
+          <li>
+            ${nombre} — $${item.precio.toLocaleString()}
+            <select id="wishlist-talla-${id}">
+              <option value="">Elige talla</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+            <span id="error-${id}" class="error-msg"></span>
+            <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+          </li>`;
       }
     }
-    if (todoOk) {
+
+    function eliminarDeWishlist(nombre) {
+      delete wishlistData[nombre];
+      document.querySelector(`.heart-icon[onclick*="'${nombre}'"]`)?.classList.remove("active");
+      renderWishlist();
+    }
+
+    function addToCart(nombre, precio) {
+      const id = nombre.replace(/\s+/g, "_");
+      const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
+      const talla = document.getElementById(`talla-${id}`).value;
+      if (!talla) {
+        mostrarAlertaTalla();
+        return;
+      }
+      cartData[nombre] = { precio, cantidad, talla };
+      renderCarrito();
+    }
+
+    function moverWishlistACarrito() {
+      let faltan = false;
+      for (let nombre in wishlistData) {
+        const id = nombre.replace(/\s+/g, "_");
+        const sel = document.getElementById(`wishlist-talla-${id}`);
+        const err = document.getElementById(`error-${id}`);
+        if (!sel.value) {
+          err.textContent = "Por favor selecciona una talla.";
+          faltan = true;
+        } else {
+          err.textContent = "";
+          cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla: sel.value };
+        }
+      }
+      if (faltan) return;
       wishlistData = {};
       renderWishlist();
       renderCarrito();
     }
-  }
 
-  function renderCarrito() {
-    const ul = document.getElementById("cart-items");
-    ul.innerHTML = "";
-    for (let nombre in cartData) {
-      const it = cartData[nombre];
-      ul.innerHTML += `<li>${nombre} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
-        <button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+    function renderCarrito() {
+      const ul = document.getElementById("cart-items");
+      ul.innerHTML = "";
+      for (let nombre in cartData) {
+        const it = cartData[nombre];
+        ul.innerHTML += `<li>${nombre} x${it.cantidad} (Talla ${it.talla}) — $${(it.precio * it.cantidad).toLocaleString()}
+          <button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+      }
     }
-  }
 
-  function eliminarDelCarrito(nombre) {
-    delete cartData[nombre];
-    renderCarrito();
-  }
-
-  function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-
-  // Reiniciar tallas y cantidades en el catálogo
-  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
-  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
-}
-
-  function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
-
-  // Reiniciar tallas y cantidades en el catálogo
-  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
-  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
-}
-
-  function comprarPorWhatsapp() {
-    if (!Object.keys(cartData).length) {
-      alert("Carrito vacío");
-      return;
+    function eliminarDelCarrito(nombre) {
+      delete cartData[nombre];
+      renderCarrito();
+      // desmarcar corazones si se vació el carrito completamente
+      if (Object.keys(cartData).length === 0) {
+        document.querySelectorAll('.heart-icon.active').forEach(i=>i.classList.remove('active'));
+      }
     }
-    let msg = "Hola, quiero comprar:%0A";
-    for (let nombre in cartData) {
-      const it = cartData[nombre];
-      msg += `- ${nombre} x${it.cantidad} (Talla ${it.talla}) = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
-    }
-    window.open(`https://wa.me/573154277973?text=${msg}`, '_blank');
-  }
 
-  renderCatalogo();
-  
-   function mostrarAlertaTalla() {
+    function vaciarWishlist() {
+      wishlistData = {};
+      renderWishlist();
+      document.querySelectorAll('.heart-icon.active').forEach(i=>i.classList.remove('active'));
+      // reiniciar selects y contadores
+      document.querySelectorAll('#catalogo-container select').forEach(s=>s.value='');
+      document.querySelectorAll('#catalogo-container input[type="number"]').forEach(i=>i.value=1);
+    }
+
+    function vaciarCarrito() {
+      cartData = {};
+      renderCarrito();
+      document.querySelectorAll('.heart-icon.active').forEach(i=>i.classList.remove('active'));
+      document.querySelectorAll('#catalogo-container select').forEach(s=>s.value='');
+      document.querySelectorAll('#catalogo-container input[type="number"]').forEach(i=>i.value=1);
+    }
+
+    function comprarPorWhatsapp() {
+      if (!Object.keys(cartData).length) {
+        alert("Carrito vacío");
+        return;
+      }
+      let msg = "Hola, quiero comprar:%0A";
+      for (let n in cartData) {
+        const it = cartData[n];
+        msg += `- ${n} x${it.cantidad} (Talla ${it.talla}) = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
+      }
+      window.open(`https://wa.me/573154277973?text=${msg}`, '_blank');
+    }
+
+    function mostrarAlertaTalla() {
       const alerta = document.getElementById('alerta-talla');
       alerta.innerHTML = `
         <div class="alert-overlay">
-          <div class="alert-box">
-            Por favor elige una talla para continuar.
-          </div>
+          <div class="alert-box">Por favor elige una talla para continuar.</div>
         </div>`;
-      setTimeout(() => {
-        alerta.innerHTML = '';
-      }, 3000);
+      setTimeout(() => { alerta.innerHTML = ''; }, 3000);
     }
-  
-</script>
+
+    renderCatalogo();
+    
+ </script>
 </body>
 </html>
