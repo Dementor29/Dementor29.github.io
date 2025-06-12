@@ -255,25 +255,28 @@
   }
 
   function moverWishlistACarrito() {
-    let todoOk = true;
-    for (let nombre in wishlistData) {
-      const id = nombre.replace(/\s+/g, "_");
-      const talla = document.getElementById(`wishlist-talla-${id}`)?.value;
-      const error = document.getElementById(`error-${id}`);
-      if (!talla) {
-        error.textContent = "POR FAVOR SELECCIONA UNA TALLA.";
-        todoOk = false;
-      } else {
-        error.textContent = "";
-        cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla };
-      }
-    }
-    if (todoOk) {
-      wishlistData = {};
-      renderWishlist();
-      renderCarrito();
+  let todoOk = true;
+  for (let nombre in wishlistData) {
+    const id = nombre.replace(/\s+/g, "_");
+    const talla = document.getElementById(`wishlist-talla-${id}`)?.value;
+    const error = document.getElementById(`error-${id}`);
+    if (!talla) {
+      error.textContent = "POR  FAVOR  SELECCIONA  UNA  TALLA.";
+      todoOk = false;
+    } else {
+      error.textContent = "";
+      cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla };
     }
   }
+  if (todoOk) {
+    wishlistData = {};
+    renderWishlist();
+    renderCarrito();
+
+    // Desmarcar corazones (quitar la clase .active de los íconos)
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+  }
+}
 
   function renderCarrito() {
     const ul = document.getElementById("cart-items");
