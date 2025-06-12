@@ -261,7 +261,7 @@
       const talla = document.getElementById(`wishlist-talla-${id}`)?.value;
       const error = document.getElementById(`error-${id}`);
       if (!talla) {
-        error.textContent = "Por favor selecciona una talla.";
+        error.textContent = "POR FAVOR SELECCIONA UNA TALLA.";
         todoOk = false;
       } else {
         error.textContent = "";
@@ -307,7 +307,15 @@
   // Reiniciar tallas y cantidades en el catálogo
   document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
   document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
+
+  // Quitar íconos de corazón activos (lista de deseos)
+  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+
+  // Limpiar la lista de deseos también si lo deseas
+  wishlistData = {};
+  renderWishlist();
 }
+
 
   function comprarPorWhatsapp() {
     if (!Object.keys(cartData).length) {
