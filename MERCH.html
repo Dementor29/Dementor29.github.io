@@ -9,8 +9,6 @@
     @font-face {
       font-family: 'BurzumGothic';
       src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
     }
     body {
       background-color: #121212;
@@ -19,9 +17,8 @@
       margin: 0;
       padding: 20px;
     }
-    h1 {
+    h1, h2, h3 {
       text-align: center;
-      margin-bottom: 30px;
     }
     .catalogo {
       display: flex;
@@ -49,7 +46,6 @@
       margin-bottom: 10px;
     }
     .precio {
-      color: white;
       font-weight: bold;
       margin-bottom: 10px;
     }
@@ -65,12 +61,9 @@
       color: red;
     }
     .cantidad-label {
-      font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      margin-top: 8px;
       font-size: 14px;
       color: #fff;
+      margin-top: 8px;
     }
     .cantidad-input {
       width: 50px;
@@ -82,7 +75,6 @@
       color: #fff;
       font-family: inherit;
       font-size: 14px;
-      transition: all 0.2s ease;
     }
     .cart-button, .remove-button {
       margin-top: 10px;
@@ -93,7 +85,6 @@
       cursor: pointer;
       border-radius: 4px;
       font-family: 'BurzumGothic', serif;
-      font-size: 14px;
     }
     .cart-button:hover, .remove-button:hover {
       background-color: #ff0000;
@@ -107,6 +98,10 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .error-msg {
+      color: red;
+      font-size: 13px;
+    }
     .volver-container {
       text-align: center;
       margin: 40px 0;
@@ -118,16 +113,9 @@
       text-decoration: none;
       padding: 10px 20px;
       border-radius: 8px;
-      transition: background-color 0.3s ease;
     }
     .back-link:hover {
       background-color: #ff0000;
-    }
-    .error-msg {
-      color: red;
-      font-size: 12px;
-      margin-top: 5px;
-      display: none;
     }
     .nequi-btn {
       position: fixed;
@@ -141,63 +129,46 @@
       font-size: 16px;
       z-index: 999;
       box-shadow: 0 0 10px red;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
     .nequi-btn:hover {
       background-color: #ff0000;
-      color: white;
     }
   </style>
 </head>
 <body>
-  
-  <h2 align="center">ROPA ⛧ ACCESORIOS</h2>
 
-  <div class="catalogo" id="catalogo-container"></div>
+<h2>ROPA ⛧ ACCESORIOS</h2>
+<div class="catalogo" id="catalogo-container"></div>
 
-  <div id="wishlist">
-    <h3>Lista de deseos</h3>
-    <ul id="wishlist-items"></ul>
-    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
-    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
-  </div>
+<div id="wishlist">
+  <h3>Lista de deseos</h3>
+  <ul id="wishlist-items"></ul>
+  <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+  <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+</div>
 
-  <div id="cart">
-    <h3>Carrito de compras</h3>
-    <ul id="cart-items"></ul>
-    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
-    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
-  </div>
+<div id="cart">
+  <h3>Carrito de compras</h3>
+  <ul id="cart-items"></ul>
+  <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+  <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+</div>
 
-  <div class="volver-container">
-    <a href="DDA.html" class="back-link">↑ VOLVER ↑</a>
-  </div>
-  
-  <footer class="footer">
-    <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
-  </footer>
+<div class="volver-container">
+  <a href="DDA.html" class="back-link">↑ VOLVER ↑</a>
+</div>
 
-  <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank" title="Pagar con Nequi">
-    WHATSAPP
-  </a>
-  
+<footer>
+  <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
+</footer>
+
+<a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank">WHATSAPP</a>
+
 <script>
   const productos = [
-    {
-      nombre: "BURZUM",
-      precio: 40000,
-      imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg"
-    },
-    {
-      nombre: "DEICIDE",
-      precio: 85000,
-      imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg"
-    },
-    {
-      nombre: "BEHEMOTH",
-      precio: 20000,
-      imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg"
-    }
+    { nombre: "BURZUM", precio: 40000, imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg" },
+    { nombre: "DEICIDE", precio: 85000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg" },
+    { nombre: "BEHEMOTH", precio: 20000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg" }
   ];
 
   let wishlistData = {};
@@ -206,8 +177,7 @@
   function crearItem(producto) {
     const item = document.createElement("div");
     item.className = "item";
-
-    const idSafe = producto.nombre.replace(/\s+/g, "_");
+    const id = producto.nombre.replace(/\s+/g, "_");
 
     item.innerHTML = `
       <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
@@ -215,21 +185,17 @@
       <h3>${producto.nombre}</h3>
       <div class="precio">$${producto.precio.toLocaleString()}</div>
       <label class="cantidad-label">Cant:
-        <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${idSafe}">
+        <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
       </label>
       <label class="cantidad-label">Talla:
-        <select class="cantidad-input" id="talla-${idSafe}">
-          <option value="">Seleccionar</option>
-          <option value="S">S - Pequeña</option>
-          <option value="M">M - Mediana</option>
-          <option value="L">L - Grande</option>
-          <option value="XL">XL - Extra grande</option>
+        <select class="cantidad-input" id="talla-${id}">
+          <option value="">Elige talla</option>
+          <option value="S">S</option><option value="M">M</option>
+          <option value="L">L</option><option value="XL">XL</option>
         </select>
       </label>
-      <div class="error-msg" id="error-${idSafe}">⚠ Por favor selecciona una talla.</div>
-      <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio})">
-        Agregar al carrito
-      </button>`;
+      <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
+    `;
     return item;
   }
 
@@ -240,11 +206,11 @@
   }
 
   function toggleFavorite(el, nombre, precio) {
-    const id = nombre.replace(/\s+/g, "_");
-    if (el.classList.toggle("active")) {
-      wishlistData[nombre] = { precio: precio, talla: "" };
-    } else {
+    el.classList.toggle("active");
+    if (wishlistData[nombre]) {
       delete wishlistData[nombre];
+    } else {
+      wishlistData[nombre] = { precio };
     }
     renderWishlist();
   }
@@ -252,32 +218,22 @@
   function renderWishlist() {
     const ul = document.getElementById("wishlist-items");
     ul.innerHTML = "";
-
     for (let nombre in wishlistData) {
-      const item = wishlistData[nombre];
+      const producto = wishlistData[nombre];
       const id = nombre.replace(/\s+/g, "_");
-
       ul.innerHTML += `
         <li>
-          ${nombre} — $${item.precio.toLocaleString()} 
-          <select id="wishlist-talla-${id}" onchange="actualizarTallaWishlist('${nombre}')">
-            <option value="">Seleccionar</option>
-            <option value="S" ${item.talla === "S" ? "selected" : ""}>S</option>
-            <option value="M" ${item.talla === "M" ? "selected" : ""}>M</option>
-            <option value="L" ${item.talla === "L" ? "selected" : ""}>L</option>
-            <option value="XL" ${item.talla === "XL" ? "selected" : ""}>XL</option>
+          ${nombre} — $${producto.precio.toLocaleString()}
+          <select id="wishlist-talla-${id}" class="cantidad-input">
+            <option value="">Elige talla</option>
+            <option value="S">S</option><option value="M">M</option>
+            <option value="L">L</option><option value="XL">XL</option>
           </select>
-          <div class="error-msg" id="wishlist-error-${id}">⚠ Por favor selecciona una talla.</div>
+          <span id="error-${id}" class="error-msg"></span>
           <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-        </li>`;
+        </li>
+      `;
     }
-  }
-
-  function actualizarTallaWishlist(nombre) {
-    const id = nombre.replace(/\s+/g, "_");
-    const select = document.getElementById(`wishlist-talla-${id}`);
-    wishlistData[nombre].talla = select.value;
-    document.getElementById(`wishlist-error-${id}`).style.display = "none";
   }
 
   function eliminarDeWishlist(nombre) {
@@ -287,22 +243,36 @@
   }
 
   function addToCart(nombre, precio) {
-    const idSafe = nombre.replace(/\s+/g, "_");
-    const qtyEl = document.getElementById(`cantidad-${idSafe}`);
-    const tallaEl = document.getElementById(`talla-${idSafe}`);
-    const errorMsg = document.getElementById(`error-${idSafe}`);
-    const qty = parseInt(qtyEl?.value || "1");
-    const talla = tallaEl?.value;
-
+    const id = nombre.replace(/\s+/g, "_");
+    const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
+    const talla = document.getElementById(`talla-${id}`).value;
     if (!talla) {
-      errorMsg.style.display = "block";
+      alert("Por favor selecciona una talla.");
       return;
-    } else {
-      errorMsg.style.display = "none";
     }
-
-    cartData[nombre] = { precio: precio, cantidad: qty, talla };
+    cartData[nombre] = { precio, cantidad, talla };
     renderCarrito();
+  }
+
+  function moverWishlistACarrito() {
+    let todoOk = true;
+    for (let nombre in wishlistData) {
+      const id = nombre.replace(/\s+/g, "_");
+      const talla = document.getElementById(`wishlist-talla-${id}`)?.value;
+      const error = document.getElementById(`error-${id}`);
+      if (!talla) {
+        error.textContent = "Por favor selecciona una talla.";
+        todoOk = false;
+      } else {
+        error.textContent = "";
+        cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla };
+      }
+    }
+    if (todoOk) {
+      wishlistData = {};
+      renderWishlist();
+      renderCarrito();
+    }
   }
 
   function renderCarrito() {
@@ -320,47 +290,15 @@
     renderCarrito();
   }
 
-  function moverWishlistACarrito() {
-    let faltanTallas = false;
-
-    for (let nombre in wishlistData) {
-      const item = wishlistData[nombre];
-      const id = nombre.replace(/\s+/g, "_");
-      const talla = document.getElementById(`wishlist-talla-${id}`).value;
-
-      if (!talla) {
-        document.getElementById(`wishlist-error-${id}`).style.display = "block";
-        faltanTallas = true;
-      } else {
-        document.getElementById(`wishlist-error-${id}`).style.display = "none";
-      }
-    }
-
-    if (faltanTallas) {
-      return;
-    }
-
-    // Si todas las tallas están bien, proceder con WhatsApp
-    let msg = "Hola, quiero comprar desde mi lista de deseos:%0A";
-    for (let nombre in wishlistData) {
-      const item = wishlistData[nombre];
-      msg += `- ${nombre} (Talla ${item.talla}) — $${item.precio.toLocaleString()}%0A`;
-    }
-
-    window.open(`https://wa.me/573154277973?text=${msg}`, '_blank');
-  }
-
   function vaciarWishlist() {
     wishlistData = {};
     renderWishlist();
     document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-    document.querySelectorAll('.cantidad-input[type="number"]').forEach(input => input.value = 1);
   }
 
   function vaciarCarrito() {
     cartData = {};
     renderCarrito();
-    document.querySelectorAll('.cantidad-input[type="number"]').forEach(input => input.value = 1);
   }
 
   function comprarPorWhatsapp() {
@@ -368,13 +306,11 @@
       alert("Carrito vacío");
       return;
     }
-
     let msg = "Hola, quiero comprar:%0A";
-    for (let n in cartData) {
-      const it = cartData[n];
-      msg += `- ${n} x${it.cantidad} (Talla ${it.talla}) = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
+    for (let nombre in cartData) {
+      const it = cartData[nombre];
+      msg += `- ${nombre} x${it.cantidad} (Talla ${it.talla}) = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
     }
-
     window.open(`https://wa.me/573154277973?text=${msg}`, '_blank');
   }
 
