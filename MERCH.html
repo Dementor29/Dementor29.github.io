@@ -206,6 +206,11 @@
     productos.forEach(p => cont.appendChild(crearItem(p)));
   }
 
+  function clearWishlistError(id) {
+  const error = document.getElementById(`error-${id}`);
+  if (error) error.textContent = "";
+  }
+  
   function toggleFavorite(el, nombre, precio) {
     el.classList.toggle("active");
     if (wishlistData[nombre]) {
@@ -217,24 +222,29 @@
   }
 
   function renderWishlist() {
-    const ul = document.getElementById("wishlist-items");
-    ul.innerHTML = "";
-    for (let nombre in wishlistData) {
-      const producto = wishlistData[nombre];
-      const id = nombre.replace(/\s+/g, "_");
-      
-   ul.innerHTML += `
-  <li>
-    ${nombre} — $${producto.precio.toLocaleString()}
-    <select id="wishlist-talla-${id}" class="cantidad-input">
-      <option value="">Elige talla</option>
-      <option value="S">S</option><option value="M">M</option>
-      <option value="L">L</option><option value="XL">XL</option>
-    </select>
-    <span id="error-${id}" class="error-msg"></span>
-    <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-  </li>
-`;
+  const ul = document.getElementById("wishlist-items");
+  ul.innerHTML = "";
+  for (let nombre in wishlistData) {
+    const producto = wishlistData[nombre];
+    const id = nombre.replace(/\s+/g, "_");
+    ul.innerHTML += `
+      <li>
+        ${nombre} — $${producto.precio.toLocaleString()}
+        <div style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+          <select 
+            id="wishlist-talla-${id}" 
+            class="cantidad-input" 
+            onchange="clearWishlistError('${id}')"
+          >
+            <option value="">Elige talla</option>
+            <option value="S">S</option><option value="M">M</option>
+            <option value="L">L</option><option value="XL">XL</option>
+          </select>
+          <span id="error-${id}" class="error-msg"></span>
+        </div>
+        <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+      </li>
+    `;
     }
   }
 
@@ -262,26 +272,28 @@
   }
 
   function moverWishlistACarrito() {
-    let todoOk = true;
-    for (let nombre in wishlistData) {
-      const id = nombre.replace(/\s+/g, "_");
-      const talla = document.getElementById(`wishlist-talla-${id}`)?.value;
-      const error = document.getElementById(`error-${id}`);
-      if (!talla) {
-        error.textContent = "POR FAVOR SELECCIONA UNA TALLA.";
-        todoOk = false;
-      } else {
-        error.textContent = "";
-        cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla };
-      }
-    }
-    if (todoOk) {
-      wishlistData = {};
-      renderWishlist();
-      renderCarrito();
-      document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+  let todoOk = true;
+  for (let nombre in wishlistData) {
+    const id = nombre.replace(/\s+/g, "_");
+    const tallaSelect = document.getElementById(`wishlist-talla-${id}`);
+    const talla = tallaSelect?.value;
+    const error = document.getElementById(`error-${id}`);
+    if (!talla) {
+      error.textContent = "POR FAVOR SELECCIONA UNA TALLA.";
+      todoOk = false;
+    } else {
+      error.textContent = "";
+      cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla };
     }
   }
+
+  if (todoOk) {
+    wishlistData = {};
+    renderWishlist();
+    renderCarrito();
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+  }
+}
 
   function renderCarrito() {
     const ul = document.getElementById("cart-items");
