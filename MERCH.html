@@ -178,8 +178,8 @@
     const item = document.createElement("div");
     item.className = "item";
     const id = producto.nombre.replace(/\s+/g, "_");
-    
- item.innerHTML = `
+
+    item.innerHTML = `
       <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <h3>${producto.nombre}</h3>
@@ -194,11 +194,12 @@
           <option value="L">L</option><option value="XL">XL</option>
         </select>
       </label>
+      <span id="error-${id}" class="error-msg"></span>
       <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
     `;
     return item;
   }
-  
+
   function renderCatalogo() {
     const cont = document.getElementById("catalogo-container");
     cont.innerHTML = "";
@@ -246,43 +247,40 @@
     const id = nombre.replace(/\s+/g, "_");
     const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
     const talla = document.getElementById(`talla-${id}`).value;
+    const error = document.getElementById(`error-${id}`);
 
-  if (!talla) {
-  const error = document.getElementById(`error-${id}`);
-  if (error) {
-    error.textContent = "POR  FAVOR  SELECCIONA ⛧ UNA  TALLA.";
-  }
-  return;
-  } else {
-  const error = document.getElementById(`error-${id}`);
-  if (error) {
-    error.textContent = "";
-  }
+    if (!talla) {
+      if (error) error.textContent = "POR FAVOR SELECCIONA UNA TALLA.";
+      return;
+    } else {
+      if (error) error.textContent = "";
+    }
+
+    cartData[nombre] = { precio, cantidad, talla };
+    renderCarrito();
   }
 
   function moverWishlistACarrito() {
-  let todoOk = true;
-  for (let nombre in wishlistData) {
-    const id = nombre.replace(/\s+/g, "_");
-    const talla = document.getElementById(`wishlist-talla-${id}`)?.value;
-    const error = document.getElementById(`error-${id}`);
-    if (!talla) {
-      error.textContent = "POR  FAVOR  SELECCIONA  UNA  TALLA.";
-      todoOk = false;
-    } else {
-      error.textContent = "";
-      cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla };
+    let todoOk = true;
+    for (let nombre in wishlistData) {
+      const id = nombre.replace(/\s+/g, "_");
+      const talla = document.getElementById(`wishlist-talla-${id}`)?.value;
+      const error = document.getElementById(`error-${id}`);
+      if (!talla) {
+        error.textContent = "POR FAVOR SELECCIONA UNA TALLA.";
+        todoOk = false;
+      } else {
+        error.textContent = "";
+        cartData[nombre] = { precio: wishlistData[nombre].precio, cantidad: 1, talla };
+      }
+    }
+    if (todoOk) {
+      wishlistData = {};
+      renderWishlist();
+      renderCarrito();
+      document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
     }
   }
-  if (todoOk) {
-    wishlistData = {};
-    renderWishlist();
-    renderCarrito();
-
-    // Desmarcar corazones (quitar la clase .active de los íconos)
-    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-  }
-}
 
   function renderCarrito() {
     const ul = document.getElementById("cart-items");
@@ -300,30 +298,22 @@
   }
 
   function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-
-  // Reiniciar tallas y cantidades en el catálogo
-  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
-  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
-}
+    wishlistData = {};
+    renderWishlist();
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+    document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
+    document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
+  }
 
   function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
-
-  // Reiniciar tallas y cantidades en el catálogo
-  document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
-  document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
-
-  // Quitar íconos de corazón activos (lista de deseos)
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-
-  // Limpiar la lista de deseos también si lo deseas
-  wishlistData = {};
-  renderWishlist();
-}
+    cartData = {};
+    renderCarrito();
+    document.querySelectorAll('#catalogo-container select').forEach(sel => sel.value = '');
+    document.querySelectorAll('#catalogo-container input[type="number"]').forEach(input => input.value = 1);
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+    wishlistData = {};
+    renderWishlist();
+  }
 
   function comprarPorWhatsapp() {
     if (!Object.keys(cartData).length) {
@@ -339,7 +329,6 @@
   }
 
   renderCatalogo();
-  
 </script>
 </body>
 </html>
