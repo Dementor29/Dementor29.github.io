@@ -1,307 +1,295 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Despertar Del ⛧ Averno</title>
-<style>
-@font-face {
-  font-family: 'BurzumGothic';
-  src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+  <link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Despertar Del ⛧ Averno</title>
+  <style>
+    @font-face {
+      font-family: 'BurzumGothic';
+      src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-body {
-  background-color: #121212;
-  font-family: 'BurzumGothic', serif;
-  color: white;
-  margin: 0;
-  padding: 20px;
-}
+    body {
+      background-color: #121212;
+      font-family: 'BurzumGothic', serif;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
 
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-}
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-.catalogo {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
+    .catalogo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
 
-.item {
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  padding: 10px;
-  width: 220px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
+    .item {
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      padding: 10px;
+      width: 220px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
 
-.item img {
-  width: 100%;
-  height: 220px;
-  object-fit: contain;
-  background-color: #111;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
+    .item img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      background-color: #111;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
 
-.precio {
-  color: white;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+    .precio {
+      color: white;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
-.btn-whatsapp {
-  background-color: #000000;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-family: 'BurzumGothic', serif;
-  font-size: 14px;
-  text-decoration: none;
-  text-align: center;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-  width: 100%;
-}
+    .btn-whatsapp {
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: 'BurzumGothic', serif;
+      font-size: 14px;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
 
-.btn-whatsapp:hover {
-  background-color: #ff0000;
-  color: white;
-}
+    .btn-whatsapp:hover {
+      background-color: #ff0000;
+      color: white;
+    }
 
-.heart-icon {
-  font-size: 24px;
-  color: gray;
-  cursor: pointer;
-  position: absolute;
-  top: 8px;
-  right: 8px;
-}
+    .heart-icon {
+      font-size: 24px;
+      color: gray;
+      cursor: pointer;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
 
-.heart-icon.active {
-  color: red;
-}
+    .heart-icon.active {
+      color: red;
+    }
 
-.cart-button {
-  margin-top: 10px;
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-family: 'BurzumGothic', serif;
-  font-size: 14px;
-}
+    .cart-button {
+      margin-top: 10px;
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: 'BurzumGothic', serif;
+      font-size: 14px;
+    }
 
-.cart-button:hover {
-  background-color: #ff0000;
-}
+    .cart-button:hover {
+      background-color: #ff0000;
+    }
 
-.remove-button {
-  background-color: transparent;
-  color: #ff0000;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  margin-left: 10px;
-}
+    .remove-button {
+      background-color: transparent;
+      color: #ff0000;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 10px;
+    }
 
-#cart, #wishlist {
-  margin-top: 40px;
-  background: #1e1e1e;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
+    #cart, #wishlist {
+      margin-top: 40px;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-@media (max-width: 600px) {
-  .item {
-    width: 100%;
-  }
-}
+    @media (max-width: 600px) {
+      .item {
+        width: 100%;
+      }
+    }
 
-.volver-container {
-  text-align: center;
-  margin: 40px 0;
-}
+    .volver-container {
+      text-align: center;
+      margin: 40px 0;
+    }
 
-.back-link {
-  font-family: 'BurzumGothic', serif;
-  font-size: 20px;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  display: inline-block;
-  border: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
+    .back-link {
+      font-family: 'BurzumGothic', serif;
+      font-size: 20px;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      display: inline-block;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
 
-.back-link:hover {
-  background-color: #ff0000;
-  color: white;
-}
+    .back-link:hover {
+      background-color: #ff0000;
+      color: white;
+    }
 
-.nequi-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #6f0f19;
-  color: white;
-  font-family: 'BurzumGothic', serif;
-  padding: 12px 18px;
-  text-decoration: none;
-  font-size: 16px;
-  z-index: 999;
-  box-shadow: 0 0 10px red;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
+    .nequi-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #6f0f19;
+      color: white;
+      font-family: 'BurzumGothic', serif;
+      padding: 12px 18px;
+      text-decoration: none;
+      font-size: 16px;
+      z-index: 999;
+      box-shadow: 0 0 10px red;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.nequi-btn:hover {
-  background-color: #ff0000;
-  color: white;
-}
+    .nequi-btn:hover {
+      background-color: #ff0000;
+      color: white;
+    }
 
-.cantidad-label {
-  font-family: 'Arial', sans-serif;
-  display: flex;
-  align-items: center;
-  margin-top: 8px;
-  font-size: 14px;
-  color: #fff;
-}
+    .cantidad-label {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 14px;
+      color: #fff;
+    }
 
-.cantidad-input {
-  width: 50px;
-  margin-left: 8px;
-  padding: 4px;
-  border: 1px solid #555;
-  border-radius: 4px;
-  background-color: #111;
-  color: #fff;
-  font-family: inherit;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
+    .cantidad-input {
+      width: 50px;
+      margin-left: 8px;
+      padding: 4px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background-color: #111;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
 
-.cantidad-input:focus {
-  border-color: #cc0000;
-  box-shadow: 0 0 5px #cc0000aa;
-  outline: none;
-}
-  
-#radio-container {
-  max-width: 500px;
-  margin: 40px auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .cantidad-input:focus {
+      border-color: #cc0000;
+      box-shadow: 0 0 5px #cc0000aa;
+      outline: none;
+    }
 
-#radio-container audio {
-  width: 300px;
-  background-color: #1e1e1e;
-  border-radius: 10px;
-  padding: 10px;
-}
-/* Color rojo para la barra de progreso en navegadores compatibles */
-audio::-webkit-media-controls-timeline {
-  accent-color: red;
-}
+    /* Contenedor de radio */
+    #radio-container {
+      max-width: 500px;
+      margin: 40px auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-audio::-moz-range-track {
-  background-color: red;
-}
-  
-#radio-container {
-  max-width: 500px;
-  margin: 40px auto;
-  text-align: center;
-}
-  
-.led-marquee {
-  color: #ff0000;
-  font-family: monospace;
-  font-size: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 100%;
-  text-align: left;
-  background: none;
-  padding: 5px 0;
-  margin-bottom: 10px;
-  position: relative;
-  height: 20px;
-}
+    /* Estilos del reproductor */
+    #radio-container audio {
+      width: 300px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 10px;
+    }
 
-.led-marquee {
-  position: relative;
-  height: 20px; /* Ajusta según lo necesario */
-  overflow: hidden;
-}
+    /* Animación LED */
+    .led-marquee {
+      color: #ff0000;
+      font-family: monospace;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 10px;
+      position: relative;
+      height: 20px;
+    }
 
-.led-marquee::before {
-  content: attr(data-text);
-  position: absolute;
-  white-space: nowrap;
-  animation: scroll-left 12s linear infinite;
-  color: #ff0000;
-  font-family: monospace;
-  font-size: 16px;
-}
+    .led-marquee::before {
+      content: attr(data-text);
+      position: absolute;
+      white-space: nowrap;
+      animation: scroll-left 12s linear infinite;
+    }
 
+    @keyframes scroll-left {
+      0% { left: 100%; }
+      100% { left: -100%; }
+    }
 
-@keyframes scroll-left {
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: -100%;
-  }
-}
-</style>
+    /* NUEVOS ESTILOS PARA INDICACIONES Y CRÉDITOS */
+    .radio-hint {
+      font-size: 12px;
+      color: #bbb;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    .radio-credit {
+      font-size: 10px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+  </style>
 </head>
 <body>
-<header>
-  <h1>CATÁLOGO</h1>
-  <p align="center">BLACK METAL</p>
+  <header>
+    <h1>CATÁLOGO</h1>
+    <p align="center">BLACK METAL</p>
   </header>
   
-<div id="radio-container">
-  <div class="led-marquee" data-text="TRASMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
-  <audio controls>
-    <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
+  <div id="radio-container">
+    <div class="led-marquee" data-text="TRASMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
+    <audio controls>
+      <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
+      Tu navegador no soporta reproducción de audio.
+    </audio>
+    <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
+    <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
+  </div>
   
-  </audio>
-</div>
-  
-<div class="catalogo" id="catalogo-container"></div>
+  <div class="catalogo" id="catalogo-container"></div>
 
-<div id="wishlist">
-  <h3>Lista de deseos</h3>
-  <ul id="wishlist-items"></ul>
-  <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
-  <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
-</div>
+  <div id="wishlist">
+    <h3>Lista de deseos</h3>
+    <ul id="wishlist-items"></ul>
+    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+  </div>
 
-<div id="cart">
-  <h3>Carrito de compras</h3>
+  <div id="cart">
+<h3>Carrito de compras</h3>
   <ul id="cart-items"></ul>
   <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
   <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
@@ -345,7 +333,7 @@ function crearItem(producto) {
   const item = document.createElement("div");
   item.className = "item";
 
-  item.innerHTML = `
+  item.innerHTML = 
     <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">⛧</span>
     <img src="${producto.imagen}" alt="${producto.nombre}">
     <h3>${producto.nombre}</h3>
@@ -354,7 +342,7 @@ function crearItem(producto) {
       <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
     </label>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-  `;
+  ;
 
   return item;
 }
@@ -398,10 +386,10 @@ function renderWishlist() {
   for (const nombre in wishlistData) {
     const item = wishlistData[nombre];
     const li = document.createElement("li");
-    li.innerHTML = `
+    li.innerHTML = 
       ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
       <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-    `;
+    ;
     wishlist.appendChild(li);
   }
 }
@@ -435,10 +423,10 @@ function renderCarrito() {
   for (const nombre in cartData) {
     const item = cartData[nombre];
     const li = document.createElement("li");
-    li.innerHTML = `
+    li.innerHTML = 
       ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
       <button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button>
-    `;
+    ;
     carrito.appendChild(li);
   }
 }
@@ -469,10 +457,10 @@ function comprarPorWhatsapp() {
   for (const nombre in cartData) {
     const item = cartData[nombre];
     const subtotal = item.precio * item.cantidad;
-    mensaje += `- ${nombre} x${item.cantidad} = $${subtotal.toLocaleString()}%0A`;
+    mensaje += - ${nombre} x${item.cantidad} = $${subtotal.toLocaleString()}%0A;
   }
 
-  const url = `https://wa.me/573154277973?text=${mensaje}`;
+  const url = https://wa.me/573154277973?text=${mensaje};
   window.open(url, '_blank');
 }
 
