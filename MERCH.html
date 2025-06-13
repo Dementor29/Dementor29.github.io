@@ -429,5 +429,18 @@ function vaciarCarrito() {
 document.getElementById('flyer-close').onclick = function () {
   document.getElementById('flyer-overlay').style.display = 'none';
 }
+    // Mostrar solo si no ha sido cerrado aún
+  window.onload = function () {
+    if (sessionStorage.getItem('flyerClosed') === 'true') {
+      document.getElementById('flyer-overlay').style.display = 'none';
+    }
+  };
+
+  // Cerrar y recordar
+  document.getElementById('flyer-close').onclick = function () {
+    document.getElementById('flyer-overlay').style.display = 'none';
+    sessionStorage.setItem('flyerClosed', 'true');
+  };
+    
 </script></body>
 </html>
