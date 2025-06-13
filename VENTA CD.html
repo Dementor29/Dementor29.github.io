@@ -21,246 +21,36 @@
       padding: 20px;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .catalogo {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .item {
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      padding: 10px;
-      width: 220px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-
-    .item img {
-      width: 100%;
-      height: 220px;
-      object-fit: contain;
-      background-color: #111;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-
-    .precio {
-      color: white;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .btn-whatsapp {
-      background-color: #000000;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-family: 'BurzumGothic', serif;
-      font-size: 14px;
-      text-decoration: none;
-      text-align: center;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-      width: 100%;
-    }
-
-    .btn-whatsapp:hover {
-      background-color: #ff0000;
-      color: white;
-    }
-
-    .heart-icon {
-      font-size: 24px;
-      color: gray;
-      cursor: pointer;
-      position: absolute;
-      top: 8px;
-      right: 8px;
-    }
-
-    .heart-icon.active {
-      color: red;
-    }
-
-    .cart-button {
-      margin-top: 10px;
-      background-color: #444;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-family: 'BurzumGothic', serif;
-      font-size: 14px;
-    }
-
-    .cart-button:hover {
-      background-color: #ff0000;
-    }
-
-    .remove-button {
-      background-color: transparent;
-      color: #ff0000;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      margin-left: 10px;
-    }
-
-    #cart, #wishlist {
-      margin-top: 40px;
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    @media (max-width: 600px) {
-      .item {
-        width: 100%;
-      }
-    }
-
-    .volver-container {
-      text-align: center;
-      margin: 40px 0;
-    }
-
-    .back-link {
-      font-family: 'BurzumGothic', serif;
-      font-size: 20px;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      display: inline-block;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-    }
-
-    .back-link:hover {
-      background-color: #ff0000;
-      color: white;
-    }
-
-    .nequi-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #6f0f19;
-      color: white;
-      font-family: 'BurzumGothic', serif;
-      padding: 12px 18px;
-      text-decoration: none;
-      font-size: 16px;
-      z-index: 999;
-      box-shadow: 0 0 10px red;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .nequi-btn:hover {
-      background-color: #ff0000;
-      color: white;
-    }
-
-    .cantidad-label {
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      align-items: center;
-      margin-top: 8px;
-      font-size: 14px;
-      color: #fff;
-    }
-
-    .cantidad-input {
-      width: 50px;
-      margin-left: 8px;
-      padding: 4px;
-      border: 1px solid #555;
-      border-radius: 4px;
-      background-color: #111;
-      color: #fff;
-      font-family: inherit;
-      font-size: 14px;
-      transition: all 0.2s ease;
-    }
-
-    .cantidad-input:focus {
-      border-color: #cc0000;
-      box-shadow: 0 0 5px #cc0000aa;
-      outline: none;
-    }
-
+    h1 { text-align: center; margin-bottom: 30px; }
+    .catalogo { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .item { background-color: #1e1e1e; border-radius: 8px; padding: 10px; width: 220px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; position: relative; }
+    .item img { width: 100%; height: 220px; object-fit: contain; background-color: #111; border-radius: 6px; margin-bottom: 10px; }
+    .precio { color: white; font-weight: bold; margin-bottom: 10px; }
+    .btn-whatsapp { background-color: #000; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; font-family: 'BurzumGothic', serif; font-size: 14px; text-decoration: none; text-align: center; display: inline-block; transition: background-color 0.3s ease; width: 100%; }
+    .btn-whatsapp:hover { background-color: #ff0000; }
+    .heart-icon { font-size: 24px; color: gray; cursor: pointer; position: absolute; top: 8px; right: 8px; }
+    .heart-icon.active { color: red; }
+    .cart-button { margin-top: 10px; background-color: #444; color: white; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-family: 'BurzumGothic', serif; font-size: 14px; }
+    .cart-button:hover { background-color: #ff0000; }
+    .remove-button { background-color: transparent; color: #ff0000; border: none; cursor: pointer; font-size: 14px; margin-left: 10px; }
+    #cart, #wishlist { margin-top: 40px; background: #1e1e1e; padding: 20px; border-radius: 8px; max-width: 600px; margin: 40px auto; }
+    @media (max-width: 600px) { .item { width: 100%; } }
+    .volver-container { text-align: center; margin: 40px 0; }
+    .back-link { font-family: 'BurzumGothic', serif; font-size: 20px; color: white; text-decoration: none; padding: 10px 20px; display: inline-block; border-radius: 8px; transition: background-color 0.3s ease; }
+    .back-link:hover { background-color: #ff0000; }
+    .nequi-btn { position: fixed; bottom: 20px; right: 20px; background-color: #6f0f19; color: white; font-family: 'BurzumGothic', serif; padding: 12px 18px; text-decoration: none; font-size: 16px; z-index: 999; box-shadow: 0 0 10px red; transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+    .nequi-btn:hover { background-color: #ff0000; }
+    .cantidad-label { font-family: 'Arial', sans-serif; display: flex; align-items: center; margin-top: 8px; font-size: 14px; color: #fff; }
+    .cantidad-input { width: 50px; margin-left: 8px; padding: 4px; border: 1px solid #555; border-radius: 4px; background-color: #111; color: #fff; font-family: inherit; font-size: 14px; transition: all 0.2s ease; }
+    .cantidad-input:focus { border-color: #cc0000; box-shadow: 0 0 5px #cc0000aa; outline: none; }
     /* Contenedor de radio */
-    #radio-container {
-      max-width: 500px;
-      margin: 40px auto;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* Estilos del reproductor */
-    #radio-container audio {
-      width: 300px;
-      background-color: #1e1e1e;
-      border-radius: 10px;
-      padding: 10px;
-    }
-
-    /* Animación LED */
-    .led-marquee {
-      color: #ff0000;
-      font-family: monospace;
-      font-size: 16px;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 100%;
-      margin-bottom: 10px;
-      position: relative;
-      height: 20px;
-    }
-
-    .led-marquee::before {
-      content: attr(data-text);
-      position: absolute;
-      white-space: nowrap;
-      animation: scroll-left 12s linear infinite;
-    }
-
-    @keyframes scroll-left {
-      0% { left: 100%; }
-      100% { left: -100%; }
-    }
-
-    /* NUEVOS ESTILOS PARA INDICACIONES Y CRÉDITOS */
-    .radio-hint {
-      font-size: 12px;
-      color: #bbb;
-      margin-top: 8px;
-      font-style: italic;
-    }
-
-    .radio-credit {
-      font-size: 10px;
-      color: #888;
-      margin-top: 4px;
-    }
-
+    #radio-container { max-width: 500px; margin: 40px auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    #radio-container audio { width: 300px; background-color: #1e1e1e; border-radius: 10px; padding: 10px; }
+    .led-marquee { color: #ff0000; font-family: monospace; font-size: 16px; white-space: nowrap; overflow: hidden; width: 100%; margin-bottom: 10px; position: relative; height: 20px; }
+    .led-marquee::before { content: attr(data-text); position: absolute; white-space: nowrap; animation: scroll-left 12s linear infinite; }
+    @keyframes scroll-left { 0% { left: 100%; } 100% { left: -100%; } }
+    .radio-hint { font-size: 12px; color: #bbb; margin-top: 8px; font-style: italic; }
+    .radio-credit { font-size: 10px; color: #888; margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -268,7 +58,6 @@
     <h1>CATÁLOGO</h1>
     <p align="center">BLACK METAL</p>
   </header>
-  
   <div id="radio-container">
     <div class="led-marquee" data-text="TRASMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
     <audio controls>
@@ -278,206 +67,51 @@
     <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
     <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
   </div>
-  
   <div class="catalogo" id="catalogo-container"></div>
-
   <div id="wishlist">
     <h3>Lista de deseos</h3>
     <ul id="wishlist-items"></ul>
     <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
     <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
   </div>
-
   <div id="cart">
-<h3>Carrito de compras</h3>
-  <ul id="cart-items"></ul>
-  <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
-  <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
-</div>
-
-<div class="volver-container">
-  <a href="DDA.html" class="back-link">↑ VOLVER ↑</a>
-</div>
-
-<footer class="footer">
-  <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
-</footer>
-
-<a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank" title="Pagar con Nequi">
-  WHATSAPP
-</a>
-
-<script>
-const productos = [
-  {
-    nombre: "DARKTHRONE",
-    precio: 25000,
-    imagen: "https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg"
-  },
-  {
-    nombre: "MORBID MACABRE",
-    precio: 30000,
-    imagen: "https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg"
-  },
-  {
-    nombre: "MASACRE",
-    precio: 28000,
-    imagen: "https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg"
-  }
-];
-
-let wishlistData = {};
-let cartData = {};
-
-function crearItem(producto) {
-  const item = document.createElement("div");
-  item.className = "item";
-
-  item.innerHTML = 
-    <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">⛧</span>
-    <img src="${producto.imagen}" alt="${producto.nombre}">
-    <h3>${producto.nombre}</h3>
-    <div class="precio">$${producto.precio.toLocaleString()}</div>
-    <label class="cantidad-label">Cantidad:
-      <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
-    </label>
-    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-  ;
-
-  return item;
-}
-
-function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-  document.querySelectorAll('.cantidad-input').forEach(input => input.value = 1);
-}
-
-function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
-  document.querySelectorAll('.cantidad-input').forEach(input => input.value = 1);
-}
-
-function renderCatalogo() {
-  const container = document.getElementById("catalogo-container");
-  productos.forEach(producto => {
-    const item = crearItem(producto);
-    container.appendChild(item);
-  });
-}
-
-function toggleFavorite(element, nombre, precio) {
-  if (element.classList.contains("active")) {
-    element.classList.remove("active");
-    delete wishlistData[nombre];
-    renderWishlist();
-  } else {
-    element.classList.add("active");
-    wishlistData[nombre] = { precio: precio, cantidad: 1, element: element };
-    renderWishlist();
-  }
-}
-
-function renderWishlist() {
-  const wishlist = document.getElementById("wishlist-items");
-  wishlist.innerHTML = "";
-  for (const nombre in wishlistData) {
-    const item = wishlistData[nombre];
-    const li = document.createElement("li");
-    li.innerHTML = 
-      ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
-      <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-    ;
-    wishlist.appendChild(li);
-  }
-}
-
-function eliminarDeWishlist(nombre) {
-  if (wishlistData[nombre]) {
-    wishlistData[nombre].element.classList.remove("active");
-    delete wishlistData[nombre];
-    renderWishlist();
-  }
-}
-
-function addToCart(nombre, precio) {
-  const itemElement = Array.from(document.querySelectorAll('.item')).find(el => el.querySelector('h3').textContent === nombre);
-  const cantidadInput = itemElement.querySelector('.cantidad-input');
-  const cantidad = parseInt(cantidadInput.value) || 1;
-
-  cartData[nombre] = { precio: precio, cantidad: cantidad };
-
-  if (wishlistData[nombre]) {
-    wishlistData[nombre].cantidad = cantidad;
-    renderWishlist();
-  }
-
-  renderCarrito();
-}
-
-function renderCarrito() {
-  const carrito = document.getElementById("cart-items");
-  carrito.innerHTML = "";
-  for (const nombre in cartData) {
-    const item = cartData[nombre];
-    const li = document.createElement("li");
-    li.innerHTML = 
-      ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
-      <button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button>
-    ;
-    carrito.appendChild(li);
-  }
-}
-
-function eliminarDelCarrito(nombre) {
-  delete cartData[nombre];
-  renderCarrito();
-}
-
-function moverWishlistACarrito() {
-  for (const nombre in wishlistData) {
-    const item = wishlistData[nombre];
-    cartData[nombre] = { precio: item.precio, cantidad: item.cantidad };
-  }
-  wishlistData = {};
-  document.querySelectorAll(".heart-icon.active").forEach(icon => icon.classList.remove("active"));
-  renderWishlist();
-  renderCarrito();
-}
-
-function comprarPorWhatsapp() {
-  if (Object.keys(cartData).length === 0) {
-    alert("El carrito está vacío.");
-    return;
-  }
-
-  let mensaje = "Hola, quiero comprar los siguientes ítems:%0A";
-  for (const nombre in cartData) {
-    const item = cartData[nombre];
-    const subtotal = item.precio * item.cantidad;
-    mensaje += - ${nombre} x${item.cantidad} = $${subtotal.toLocaleString()}%0A;
-  }
-
-  const url = https://wa.me/573154277973?text=${mensaje};
-  window.open(url, '_blank');
-}
-
-function actualizarCantidad(nombre, nuevaCantidad) {
-  const cantidad = parseInt(nuevaCantidad) || 1;
-  if (wishlistData[nombre]) {
-    wishlistData[nombre].cantidad = cantidad;
-    renderWishlist();
-  }
-  if (cartData[nombre]) {
-    cartData[nombre].cantidad = cantidad;
-    renderCarrito();
-  }
-}
-  
-renderCatalogo();
-
-</script>
+    <h3>Carrito de compras</h3>
+    <ul id="cart-items"></ul>
+    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+  </div>
+  <div class="volver-container">
+    <a href="DDA.html" class="back-link">↑ VOLVER ↑</a>
+  </div>
+  <footer class="footer">
+    <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
+  </footer>
+  <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank" title="Pagar con Nequi">WHATSAPP</a>
+  <script>
+    const productos = [
+      { nombre: "DARKTHRONE", precio: 25000, imagen: "https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg" },
+      { nombre: "MORBID MACABRE", precio: 30000, imagen: "https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg" },
+      { nombre: "MASACRE", precio: 28000, imagen: "https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg" }
+    ];
+    let wishlistData = {};
+    let cartData = {};
+    function crearItem(producto) {
+      const item = document.createElement("div"); item.className = "item";
+      item.innerHTML = `<span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">⛧</span><img src="${producto.imagen}" alt="${producto.nombre}"><h3>${producto.nombre}</h3><div class="precio">$${producto.precio.toLocaleString()}</div><label class="cantidad-label">Cantidad:<input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)"></label><button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>`;
+      return item;
+    }
+    function vaciarWishlist() { wishlistData = {}; renderWishlist(); document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active')); document.querySelectorAll('.cantidad-input').forEach(input => input.value = 1); }
+    function vaciarCarrito() { cartData = {}; renderCarrito(); document.querySelectorAll('.cantidad-input').forEach(input => input.value = 1); }
+    function renderCatalogo() { const container = document.getElementById("catalogo-container"); productos.forEach(producto => container.appendChild(crearItem(producto))); }
+    function toggleFavorite(element, nombre, precio) { if (element.classList.contains("active")) { element.classList.remove("active"); delete wishlistData[nombre]; } else { element.classList.add("active"); wishlistData[nombre] = { precio: precio, cantidad: 1, element: element }; } renderWishlist(); }
+    function renderWishlist() { const wishlist = document.getElementById("wishlist-items"); wishlist.innerHTML = ""; for (const nombre in wishlistData) { const item = wishlistData[nombre]; const li = document.createElement("li"); li.innerHTML = `${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}<button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>`; wishlist.appendChild(li); } }
+    function eliminarDeWishlist(nombre) { if (wishlistData[nombre]) { wishlistData[nombre].element.classList.remove("active"); delete wishlistData[nombre]; renderWishlist(); } }
+    function addToCart(nombre, precio) { const el = Array.from(document.querySelectorAll('.item')).find(el => el.querySelector('h3').textContent===nombre); const cant= parseInt(el.querySelector('.cantidad-input').value) || 1; cartData[nombre]={precio,cantidad:cant}; if(wishlistData[nombre]){ wishlistData[nombre].cantidad=cant; renderWishlist(); } renderCarrito(); }
+    function renderCarrito() { const carrito=document.getElementById("cart-items"); carrito.innerHTML=""; for(const nombre in cartData){const item=cartData[nombre]; const li=document.createElement("li"); li.innerHTML=`${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button>`; carrito.appendChild(li);} }
+    function eliminarDelCarrito(nombre){ delete cartData[nombre]; renderCarrito(); }
+    function moverWishlistACarrito(){ for(const nombre in wishlistData){const item=wishlistData[nombre]; cartData[nombre]={precio:item.precio,cantidad:item.cantidad};} wishlistData={}; document.querySelectorAll('.heart-icon.active').forEach(icon=>icon.classList.remove('active')); renderWishlist(); renderCarrito(); }
+    function comprarPorWhatsapp(){ if(Object.keys(cartData).length===0){alert("El carrito está vacío.");return;} let msg="Hola, quiero comprar los siguientes ítems:%0A"; for(const nombre in cartData){const item=cartData[nombre]; msg+=`- ${nombre} x${item.cantidad} = $${(item.precio*item.cantidad).toLocaleString()}%0A`; } window.open(`https://wa.me/573154277973?text=${msg}`,'_blank'); }
+    function actualizarCantidad(nombre,nuev){ const c=parseInt(nuev)||1; if(wishlistData[nombre]){wishlistData[nombre].cantidad=c;renderWishlist();} if(cartData[nombre]){cartData[nombre].cantidad=c;renderCarrito();}} renderCatalogo();
+  </script>
 </body>
 </html>
