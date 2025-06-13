@@ -98,7 +98,27 @@ img {
   max-width: 100%; /* nunca exceda el ancho de la pantalla */
   height: auto;    /* mantén la proporción */
 }
-	
+/* 1) Quitar el subrayado de todos los enlaces de lista y fijar su color */
+ul li a {
+  color: white;           /* Mantiene el texto blanco */
+  text-decoration: none;  /* Elimina el subrayado */
+}
+
+/* 2) Si quieres subrayar sólo al pasar el ratón (opcional) */
+ul li a:hover {
+  text-decoration: underline;
+}
+
+/* 3) Quitar el borde azul que aparece al tocar en móviles */
+ul li a:focus,
+ul li a:active {
+  outline: none;
+}
+/* Quita la línea blanca alrededor del copyright */
+header > div {
+  border: none !important;
+}
+
 </style>
 
 <font color="#C10202">	
