@@ -77,6 +77,28 @@ footer {
 article {
 color:white;
 }
+/* 1) Enlaces sin líneas azules ni subrayado */
+nav.main-nav ol li a,
+nav.main-nav ol li a:focus,
+nav.main-nav ol li a:active {
+  text-decoration: none;   /* quita subrayado */
+  outline: none;           /* quita el borde azul al hacer clic */
+}
+
+/* 2) Reproductor más compacto */
+audio {
+  width: 300px;    /* ajusta el ancho fijo */
+  max-width: 100%; /* sigue siendo responsivo */
+  margin: 16px auto;
+  display: block;
+}
+
+/* 3) Imagen final responsiva */
+img {
+  max-width: 100%; /* nunca exceda el ancho de la pantalla */
+  height: auto;    /* mantén la proporción */
+}
+	
 </style>
 
 <font color="#C10202">	
