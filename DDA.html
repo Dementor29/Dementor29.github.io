@@ -13,6 +13,29 @@
 
 <style>
 	
+  .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .video-container iframe {
+    flex: 1 1 280px; /* crecer, encoger, base mínima */
+    max-width: 280px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: none;
+  }
+
+  /* Ajuste para pantallas pequeñas */
+  @media (max-width: 180px) {
+    .video-container iframe {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }	
+	
 .float{
   position:fixed;
   width:60px;
@@ -337,33 +360,7 @@ Dejo plasmado en esta página distintos <span style="color:red;">medios</span> d
 </div>
 
 <h2 align="center">VIDEOS</h2>
-
-<style>
-  .video-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .video-container iframe {
-    flex: 1 1 380px; /* crecer, encoger, base mínima */
-    max-width: 380px;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    border: none;
-  }
-
-  /* Ajuste para pantallas pequeñas */
-  @media (max-width: 180px) {
-    .video-container iframe {
-      flex: 1 1 100%;
-      max-width: 100%;
-    }
-  }
-  
-</style>
-
+	
   <div class="video-container">
   <iframe src="https://www.youtube.com/embed/tP7-X3ddpL8" title="YouTube video player" allowfullscreen></iframe>
   <iframe src="https://www.youtube.com/embed/OKgMXrFz_gM?controls=0" title="YouTube video player" allowfullscreen></iframe>
