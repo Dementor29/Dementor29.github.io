@@ -10,152 +10,140 @@
 </head>
 
 <body bgcolor="black">
+
 <style>
 	
-  .video-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .video-container iframe {
-    flex: 1 1 380px; /* crecer, encoger, base mínima */
-    max-width: 380px;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    border: none;
-  }
-
-  /* Ajuste para pantallas pequeñas */
-  @media (max-width: 180px) {
-    .video-container iframe {
-      flex: 1 1 100%;
-      max-width: 100%;
-    }
-  }	
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#25d366;
+  color:#fff;
+  border-radius:50px;
+  text-align:center;
+  font-size:30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+.float:hover {
+  text-decoration: none;
+  color: #25d366;
+  background-color:#fff;
 }
 
-/* Fondo y texto base */
-body {
-  background-color: black;
+.my-float{
+  margin-top:16px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
   color: white;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
 }
 
-/* ===== Header e imagen ===== */
+tr:nth-child(even) {
+  
+}
 header {
+  padding: 8px;
   text-align: center;
-  padding: 16px;
+  font-size: 18px;
+  color: white;
+}
+*{
+ box-sizing: border-box;
+}
+.column{
+  float: left;
+  width: 33.33%;
+  padding: 5px;
 }
 
-/* Restaurar tamaño original de tu imagen de cabecera */
-header img {
-  max-width: 100%;
-  height: auto;
-  /* Si quieres un ancho fijo, por ejemplo 300px: */
-  /* width: 300px; */
-  margin: 0 auto;
-  display: block;
-}
-
-/* ===== Navegación principal ===== */
-nav.main-nav ul {
-  list-style: none;
+footer {
+  padding: 00px;
   text-align: center;
-  padding: 16px 0;
+  font-size: 20px;
+  color: white;
 }
-
-nav.main-nav ul li {
-  display: inline-block;
-  margin: 0 12px;
+article {
+color:white;
 }
-
-/* Color y estilo de TODOS los enlaces del menú principal */
-nav.main-nav ul li a {
-  color: white;            /* tu color deseado */
-  text-decoration: none;   /* sin subrayado */
-  font-weight: bold;
-}
-
-/* Subrayado solo al hover */
-nav.main-nav ul li a:hover {
-  text-decoration: underline;
-}
-
-/* Quitar recuadro azul al hacer foco/tocar */
+/* 1) Enlaces sin líneas azules ni subrayado */
+nav.main-nav ul li a,
 nav.main-nav ul li a:focus,
 nav.main-nav ul li a:active {
-  outline: none;
+  text-decoration: none;   /* quita subrayado */
+  outline: none;           /* quita el borde azul al hacer clic */
+}
+	
+/* Color específico para los enlaces del menú principal */
+nav.main-nav ul li a {
+  color: white;           /* Cámbialo por el color que quieras, por ejemplo: white, #ff0000, etc. */
 }
 
-/* ===== Audio compacto ===== */
+/* 2) Reproductor más compacto */
 audio {
-  display: block;
-  width: 300px;    /* ancho fijo */
-  max-width: 100%;
+  width: 300px;    /* ajusta el ancho fijo */
+  max-width: 100%; /* sigue siendo responsivo */
   margin: 16px auto;
+  display: block;
 }
 
-/* ===== Listas genéricas (links en otras <ul>) ===== */
+/* 3) Imagen final responsiva */
+img {
+  max-width: 100%; /* nunca exceda el ancho de la pantalla */
+  height: auto;    /* mantén la proporción */
+}
+/* 1) Quitar el subrayado de todos los enlaces de lista y fijar su color */
 ul li a {
-  color: white;          /* texto blanco */
-  text-decoration: none; /* sin subrayado */
+  color: red;           /* Mantiene el texto blanco */
+  text-decoration: none;  /* Elimina el subrayado */
 }
 
+/* 2) Si quieres subrayar sólo al pasar el ratón (opcional) */
 ul li a:hover {
   text-decoration: underline;
 }
 
+/* 3) Quitar el borde azul que aparece al tocar en móviles */
 ul li a:focus,
 ul li a:active {
   outline: none;
 }
-
-/* ===== Imágenes responsivas ===== */
-img {
-  max-width: 100% !important;
-  height: auto !important;
-  display: block;
-  margin: 16px auto;
+/* Quita la línea blanca alrededor del copyright */
+header > div {
+  border: none !important;
 }
-
-/* ===== Footer ===== */
-footer {
-  text-align: center;
-  padding: 16px;
-  font-size: 1em;
-}
-
-/* ===== Botón flotante WhatsApp ===== */
-.float {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 60px;
-  height: 60px;
-  background-color: #25d366;
-  color: #fff;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 60px;
-  font-size: 28px;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-  z-index: 1000;
-}
-
-.float:hover {
-  background-color: #fff;
-  color: #25d366;
-  text-decoration: none;
-}
-
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active,
+    a:focus {
+      color: white !important;          
+      text-decoration: none !important; 
+      outline: none !important;         
+    }
+    a:hover {
+      text-decoration: underline !important;
+    }
+    img {
+      width: auto       !important;
+      max-width: 100%   !important;
+      height: auto      !important;
+      display: block    !important;
+      margin: 0 auto    !important;
+    }
+	
 </style>
 
 <font color="#C10202">	
@@ -194,7 +182,7 @@ footer {
   <p>SECTA ⛧ PRIVADA ⛧ PALMIRA</p>
 </footer>
 
-<center><img src="https://i.ibb.co/njXWmYd/368498731-316207007639528-1871313160801229970-n.jpg" alt="Símbolo satánico" height="290" width="368"></center>
+<center><img src="https://i.ibb.co/njXWmYd/368498731-316207007639528-1871313160801229970-n.jpg" alt="Símbolo satánico" height="370" width="368"></center>
 
 <p style="font-size:110%;"><span style="color:white;">Es un placer poder compartir con ustedes y a quienes les interese este camino de oscuridad, que nos lleva a un despertar de conciencia profundo y reflexivo, donde hemos vivido con los ojos vendados y la mente dopada por quienes se atrevieron a inculcar de manera obligada y a la fuerza en nuestras vidas, tomando decisiones por nosotros y obligándonos a tomar otros pensamientos y religiones que a lo mejor no hubiéramos querido seguir.
 </span></p>
@@ -349,6 +337,32 @@ Dejo plasmado en esta página distintos <span style="color:red;">medios</span> d
 </div>
 
 <h2 align="center">VIDEOS</h2>
+
+<style>
+  .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .video-container iframe {
+    flex: 1 1 380px; /* crecer, encoger, base mínima */
+    max-width: 380px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: none;
+  }
+
+  /* Ajuste para pantallas pequeñas */
+  @media (max-width: 180px) {
+    .video-container iframe {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+  
+</style>
 
   <div class="video-container">
   <iframe src="https://www.youtube.com/embed/tP7-X3ddpL8" title="YouTube video player" allowfullscreen></iframe>
