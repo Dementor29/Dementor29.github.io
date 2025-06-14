@@ -370,6 +370,11 @@ function vaciarWishlist() {
   renderWishlist();
 }
 
+function vaciarCarrito() {
+  cartData = {};
+  renderCarrito();
+}
+
 function addToCart(nombre, precio) {  
   const elemento = Array.from(document.querySelectorAll('.item'))
     .find(el => el.querySelector('h3').textContent === nombre);
