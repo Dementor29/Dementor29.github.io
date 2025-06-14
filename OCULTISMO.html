@@ -245,6 +245,46 @@
         height: auto;
       }
     }
+    
+    .modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(18, 18, 18, 0.9);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10010;
+}
+
+.modal-content {
+  background-color: rgba(30, 30, 30, 0.95);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 600px;
+  color: white;
+  font-family: 'BurzumGothic', serif;
+  position: relative;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+}
+
+.cerrar-modal:hover {
+  color: #ffffff;
+}
+
 </style>
 </head>
 <body>
@@ -289,17 +329,17 @@
 <script>
 const productos = [
   {
-    nombre: "NECRONOMICON",
+    nombre: "ALEISTER CROWLEY Y EL DIOS OCULTO",
     precio:  150000,
     imagen: "https://manussinistra.com/wp-content/uploads/2021/04/239961241_4589817201042318_8160221644658319591_n.jpg"
   },
   {
-    nombre: "CLAVICULA SALOMONIS",
+    nombre: "LA BIBLIA SATANICA",
     precio:  150000,
     imagen: "https://manussinistra.com/wp-content/uploads/2019/11/biblia-satanica-anton-szandor-lavey.png"
   },
   {
-    nombre: "LIBER NULL",
+    nombre: "AKHKHARU MAGIA(K) VAMPYRICA",
     precio:  150000,
     imagen: "https://manussinistra.com/wp-content/uploads/2019/11/Akhkharu-Magia-Vampyrica-Michael-W.-Ford.png"
   }
@@ -322,6 +362,7 @@ function crearItem(producto) {
       <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
     </label>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
+    <button class="cart-button" onclick="verDescripcion('${producto.nombre}')">Ver más</button>
   `;
   return item;
 }
@@ -454,8 +495,32 @@ renderCatalogo();
   document.getElementById('flyer-close').onclick = function () {
     document.getElementById('flyer-overlay').style.display = 'none';
   };
+    const descripcionesLibros = {
+  "NECRONOMICON": `El Necronomicón es un grimorio ficticio creado por H.P. Lovecraft que ha inspirado a diversos autores de ocultismo moderno. Esta edición explora conceptos de magia, entidades ancestrales, invocaciones y mitología esotérica.`,
+  "CLAVICULA SALOMONIS": `También conocida como la Llave de Salomón, este libro es uno de los tratados de magia ceremonial más antiguos. Contiene rituales de invocación, símbolos y enseñanzas atribuidas al rey Salomón.`,
+  "LIBER NULL": `Obra clave del caos magick escrita por Peter J. Carroll. Se centra en técnicas para desarrollar la voluntad, alterar la conciencia y trabajar con sigilos, entidades y energías mágicas.`
+};
+
+function verDescripcion(nombreLibro) {
+  const modal = document.getElementById("descripcion-modal");
+  const contenido = document.getElementById("descripcion-contenido");
+  contenido.innerHTML = `<h2>${nombreLibro}</h2><p style="margin-top:10px;">${descripcionesLibros[nombreLibro]}</p>`;
+  modal.style.display = "flex";
+}
+
+function cerrarModal() {
+  document.getElementById("descripcion-modal").style.display = "none";
+}
+
 </script>
 
+<!-- MODAL DESCRIPCIÓN LIBRO -->
+<div id="descripcion-modal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <button class="cerrar-modal" onclick="cerrarModal()">✖</button>
+    <div id="descripcion-contenido"></div>
+  </div>
+</div>
 
 </body>
 </html>
