@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Despertar Del ⛧ Averno</title>
-  <style>
+<link href="https://static.thenounproject.com/png/26242-200.png" rel="shortcut icon"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Despertar Del ⛧ Averno</title>
+<style>
     @font-face {
       font-family: 'BurzumGothic';
       src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
@@ -264,54 +265,94 @@
       color: #888;
       margin-top: 4px;
     }
-  </style>
+  
+/* FLYER EMERGENTE */
+#flyer-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(255, 255, 255, 0.85); /* fondo blanco translúcido */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#flyer-overlay img {
+  width: 50%;
+  height: auto;
+  max-width: 600px;
+  max-height: 90%;
+  display: block;
+  margin: auto;
+}
+@media (max-width: 768px) {
+  #flyer-overlay img {
+    width: 90vw;
+    height: auto;
+  }
+}
+#flyer-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 26px;
+  font-family: 'BurzumGothic', serif;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  z-index: 10001;
+}
+#flyer-close:hover {
+  color: #ff0000;
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>CATÁLOGO</h1>
-    <p align="center">BLACK METAL</p>
-  </header>
+<div id="flyer-overlay">
+<button id="flyer-close">𝕏</button>
+<img alt="Flyer Averno Store" src="https://i.postimg.cc/9FWWQWys/AVERNO-STORE.png"/>
+</div>
 
-  <div id="radio-container">
-    <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
-    <audio controls>
-      <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
+<header>
+<h1>CATÁLOGO</h1>
+<p align="center">BLACK METAL</p>
+</header>
+<div id="radio-container">
+<div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
+<audio controls="">
+<source src="https://stream.laut.fm/demonology" type="audio/mpeg"/>
       Tu navegador no soporta reproducción de audio.
     </audio>
-    <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
-    <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
-  </div>
-
-  <div class="catalogo" id="catalogo-container"></div>
-
-  <div id="wishlist">
-    <h3>Lista de deseos</h3>
-    <ul id="wishlist-items"></ul>
-    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
-    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
-  </div>
-
-  <div id="cart">
-    <h3>Carrito de compras</h3>
-    <ul id="cart-items"></ul>
-    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
-    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
-  </div>
-
-  <div class="volver-container">
-    <a href="DDA.html" class="back-link">↑ VOLVER ↑</a>
-  </div>
-
-  <footer class="footer">
-    <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
-  </footer>
-
-  <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P"
-     class="nequi-btn" target="_blank" title="Pagar con Nequi">
+<p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
+<small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
+</div>
+<div class="catalogo" id="catalogo-container"></div>
+<div id="wishlist">
+<h3>Lista de deseos</h3>
+<ul id="wishlist-items"></ul>
+<button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+<button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+</div>
+<div id="cart">
+<h3>Carrito de compras</h3>
+<ul id="cart-items"></ul>
+<button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+<button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+</div>
+<div class="volver-container">
+<a class="back-link" href="DDA.html">↑ VOLVER ↑</a>
+</div>
+<footer class="footer">
+<p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
+</footer>
+<a class="nequi-btn" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank" title="Pagar con Nequi">
      WHATSAPP
   </a>
-
-  <script>
+<script>
     const productos = [
       {
         nombre: "DARKTHRONE",
@@ -480,5 +521,11 @@
     // Inicializa el catálogo al cargar la página
     renderCatalogo();
   </script>
+
+<script>
+  document.getElementById('flyer-close').onclick = function () {
+    document.getElementById('flyer-overlay').style.display = 'none';
+  };
+</script>
 </body>
 </html>
