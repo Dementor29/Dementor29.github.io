@@ -283,161 +283,180 @@
 <a class="nequi-btn" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank" title="Pagar con Nequi">
      WHATSAPP
 </a>
+    
+<script>
+    const productos = [
+      {
+        nombre: "DARKTHRONE",
+        precio: 25000,
+        imagen: "https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg"
+      },
+      {
+        nombre: "MORBID MACABRE",
+        precio: 30000,
+        imagen: "https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg"
+      },
+      {
+        nombre: "MASACRE",
+        precio: 28000,
+        imagen: "https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg"
+      }
+    ];
+
+    let wishlistData = {};
+    let cartData = {};
+
+    function crearItem(producto) {
+      const item = document.createElement("div");
+      item.className = "item";
+
+      item.innerHTML = `
+        <span class="heart-icon"
+              onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">
+          ⛧
+        </span>
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h3>${producto.nombre}</h3>
+        <div class="precio">$${producto.precio.toLocaleString()}</div>
+        <label class="cantidad-label">
+          Cantidad:
+          <input type="number"
+                 min="1"
+                 value="1"
+                 class="cantidad-input"
+                 onchange="actualizarCantidad('${producto.nombre}', this.value)">
+        </label>
+        <button class="cart-button"
+                onclick="addToCart('${producto.nombre}', ${producto.precio})">
+          Agregar al carrito
+        </button>
+      `;
+      return item;
+    }
+
+    function renderCatalogo() {
+      const container = document.getElementById("catalogo-container");
+      productos.forEach(producto => {
+        container.appendChild(crearItem(producto));
+      });
+    }
+
+    function toggleFavorite(element, nombre, precio) {
+      if (element.classList.contains("active")) {
+        element.classList.remove("active");
+        delete wishlistData[nombre];
+      } else {
+        element.classList.add("active");
+        wishlistData[nombre] = { precio: precio, cantidad: 1, element: element };
+      }
+      renderWishlist();
+    }
+
+    function renderWishlist() {
+      const wishlist = document.getElementById("wishlist-items");
+      wishlist.innerHTML = "";
+      for (const nombre in wishlistData) {
+        const item = wishlistData[nombre];
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
+          <button class="remove-button"
+                  onclick="eliminarDeWishlist('${nombre}')">
+            ✖
+          </button>
+        `;
+        wishlist.appendChild(li);
+      }
+    }
+
+    function eliminarDeWishlist(nombre) {
+      if (wishlistData[nombre]) {
+        wishlistData[nombre].element.classList.remove("active");
+        delete wishlistData[nombre];
+        renderWishlist();
+      }
+    }
+
+    function addToCart(nombre, precio) {  
+      const elemento = Array.from(document.querySelectorAll('.item'))
+        .find(el => el.querySelector('h3').textContent === nombre);
+      const cantidad = parseInt(elemento.querySelector('.cantidad-input').value) || 1;
+      cartData[nombre] = { precio: precio, cantidad: cantidad };
+
+      if (wishlistData[nombre]) {
+        wishlistData[nombre].cantidad = cantidad;
+        renderWishlist();
+      }
+      renderCarrito();
+    }
+
+    function renderCarrito() {
+      const carrito = document.getElementById("cart-items");
+      carrito.innerHTML = "";
+      for (const nombre in cartData) {
+        const item = cartData[nombre];
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
+          <button class="remove-button"
+                  onclick="eliminarDelCarrito('${nombre}')">
+            ✖
+          </button>
+        `;
+        carrito.appendChild(li);
+      }
+    }
+
+    function eliminarDelCarrito(nombre) {
+      delete cartData[nombre];
+      renderCarrito();
+    }
+
+    function moverWishlistACarrito() {
+      for (const nombre in wishlistData) {
+        const item = wishlistData[nombre];
+        cartData[nombre] = { precio: item.precio, cantidad: item.cantidad };
+      }
+      wishlistData = {};
+      document.querySelectorAll(".heart-icon.active")
+              .forEach(icon => icon.classList.remove("active"));
+      renderWishlist();
+      renderCarrito();
+    }
+
+    function comprarPorWhatsapp() {
+      if (Object.keys(cartData).length === 0) {
+        alert("El carrito está vacío.");
+        return;
+      }
+      let mensaje = "Hola, quiero comprar los siguientes ítems:%0A";
+      for (const nombre in cartData) {
+        const item = cartData[nombre];
+        const subtotal = item.precio * item.cantidad;
+        mensaje += `- ${nombre} x${item.cantidad} = $${subtotal.toLocaleString()}%0A`;
+      }
+      const url = `https://wa.me/573154277973?text=${mensaje}`;
+      window.open(url, '_blank');
+    }
+
+    function actualizarCantidad(nombre, nuevaCantidad) {
+      const cant = parseInt(nuevaCantidad) || 1;
+      if (wishlistData[nombre]) {
+        wishlistData[nombre].cantidad = cant;
+        renderWishlist();
+      }
+      if (cartData[nombre]) {
+        cartData[nombre].cantidad = cant;
+        renderCarrito();
+      }
+    }
+    // Inicializa el catálogo al cargar la página
+    renderCatalogo();
+  </script>
 
 <script>
-const productos = [
-  {
-    nombre: "GRIMORIO DE TIAMAT",
-    precio: 150000,
-    imagen: "https://manussinistra.com/wp-content/uploads/2021/04/grimorio-tiamat.png"
-  },
-  {
-    nombre: "LA BIBLIA SATANICA",
-    precio:  150000,
-    imagen: "https://manussinistra.com/wp-content/uploads/2019/11/biblia-satanica-anton-szandor-lavey.png"
-  },
-  {
-    nombre: "AKHKHARU: MAGIA[K] VAMPYRICA",
-    precio:  150000,
-    imagen: "https://manussinistra.com/wp-content/uploads/2019/11/Akhkharu-Magia-Vampyrica-Michael-W.-Ford.png"
-  }
-];
-
-let wishlistData = {};
-let cartData = {};
-
-function crearItem(producto) {
-  const item = document.createElement("div");
-  item.className = "item";
-
-  item.innerHTML = `
-    <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">⛧</span>
-    <img src="${producto.imagen}" alt="${producto.nombre}">
-    <h3>${producto.nombre}</h3>
-    <div class="precio">$${producto.precio.toLocaleString()}</div>
-    <label class="cantidad-label">
-      Cantidad:
-      <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
-    </label>
-    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-  `;
-  return item;
-}
-
-function renderCatalogo() {
-  const container = document.getElementById("catalogo-container");
-  productos.forEach(producto => {
-    container.appendChild(crearItem(producto));
-  });
-}
-
-function toggleFavorite(element, nombre, precio) {
-  if (element.classList.contains("active")) {
-    element.classList.remove("active");
-    delete wishlistData[nombre];
-  } else {
-    element.classList.add("active");
-    wishlistData[nombre] = { precio: precio, cantidad: 1, element: element };
-  }
-  renderWishlist();
-}
-
-function renderWishlist() {
-  const wishlist = document.getElementById("wishlist-items");
-  wishlist.innerHTML = "";
-  for (const nombre in wishlistData) {
-    const item = wishlistData[nombre];
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
-      <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-    `;
-    wishlist.appendChild(li);
-  }
-}
-
-function eliminarDeWishlist(nombre) {
-  if (wishlistData[nombre]) {
-    wishlistData[nombre].element.classList.remove("active");
-    delete wishlistData[nombre];
-    renderWishlist();
-  }
-}
-
-function addToCart(nombre, precio) {  
-  const elemento = Array.from(document.querySelectorAll('.item'))
-    .find(el => el.querySelector('h3').textContent === nombre);
-  const cantidad = parseInt(elemento.querySelector('.cantidad-input').value) || 1;
-  cartData[nombre] = { precio: precio, cantidad: cantidad };
-  if (wishlistData[nombre]) {
-    wishlistData[nombre].cantidad = cantidad;
-    renderWishlist();
-  }
-  renderCarrito();
-}
-
-function renderCarrito() {
-  const carrito = document.getElementById("cart-items");
-  carrito.innerHTML = "";
-  for (const nombre in cartData) {
-    const item = cartData[nombre];
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
-      <button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button>
-    `;
-    carrito.appendChild(li);
-  }
-}
-
-function eliminarDelCarrito(nombre) {
-  delete cartData[nombre];
-  renderCarrito();
-}
-
-function moverWishlistACarrito() {
-  for (const nombre in wishlistData) {
-    const item = wishlistData[nombre];
-    cartData[nombre] = { precio: item.precio, cantidad: item.cantidad };
-  }
-  wishlistData = {};
-  document.querySelectorAll(".heart-icon.active")
-          .forEach(icon => icon.classList.remove("active"));
-  renderWishlist();
-  renderCarrito();
-}
-
-function comprarPorWhatsapp() {
-  if (Object.keys(cartData).length === 0) {
-    alert("El carrito está vacío.");
-    return;
-  }
-  let mensaje = "Hola, quiero comprar los siguientes ítems:%0A";
-  for (const nombre in cartData) {
-    const item = cartData[nombre];
-    const subtotal = item.precio * item.cantidad;
-    mensaje += `- ${nombre} x${item.cantidad} = $${subtotal.toLocaleString()}%0A`;
-  }
-  const url = `https://wa.me/573154277973?text=${mensaje}`;
-  window.open(url, '_blank');
-}
-
-function actualizarCantidad(nombre, nuevaCantidad) {
-  const cant = parseInt(nuevaCantidad) || 1;
-  if (wishlistData[nombre]) {
-    wishlistData[nombre].cantidad = cant;
-    renderWishlist();
-  }
-  if (cartData[nombre]) {
-    cartData[nombre].cantidad = cant;
-    renderCarrito();
-  }
-}
-
-renderCatalogo();
-    
-document.getElementById('flyer-close').onclick = function () {
-document.getElementById('flyer-overlay').style.display = 'none';
+  document.getElementById('flyer-close').onclick = function () {
+    document.getElementById('flyer-overlay').style.display = 'none';
   };
     
 </script>
