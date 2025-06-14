@@ -285,6 +285,11 @@
   color: #ffffff;
 }
 
+.item h3 {
+  font-size: 16px;
+  text-align: center;
+}
+
 </style>
 </head>
 <body>
@@ -337,11 +342,13 @@ const productos = [
     nombre: "LA BIBLIA SATANICA",
     precio:  150000,
     imagen: "https://manussinistra.com/wp-content/uploads/2019/11/biblia-satanica-anton-szandor-lavey.png"
+    
   },
   {
     nombre: "AKHKHARU MAGIA(K) VAMPYRICA",
     precio:  150000,
     imagen: "https://manussinistra.com/wp-content/uploads/2019/11/Akhkharu-Magia-Vampyrica-Michael-W.-Ford.png"
+    descripcion: "khkharu: Magia(k) Vampyrica presenta la práctica mágica centrada en la corriente iniciática predatoria del luciferianismo. El vampirismo o vampyrismo es un enfoque filosófico y espiritual extremo dentro de la magia(k). Este toma las partes profundas de la psique y las manifiesta en la vida de la persona encaminándolas hacia fines productivos, mientras que el lado espiritual se ve desarrollado por la absorción de la energía que el mago se entrena para poder tomar. Este tomo te enseña los pasos para volverte un depredador y situarte en la cima de la pirámide mediante la práctica del Yoga Ahrimánico, las técnicas para drenar a través de los chakras y la magia(k) astral (proyección fuera del cuerpo y la cacería en las pesadillas), junto con el recorrido y las evocaciones e invocaciones a energías densas del Lado Nocturno para crecer en poder. Los peligros están siempre presentes; lo extremo de esta aproximación no la hace apta para todos, ni todos están hechos para el dominio y liderazgo."  
   }
 ];
 
@@ -495,7 +502,8 @@ renderCatalogo();
   document.getElementById('flyer-close').onclick = function () {
     document.getElementById('flyer-overlay').style.display = 'none';
   };
-    const descripcionesLibros = {
+
+const descripcionesLibros = {
   "NECRONOMICON": `El Necronomicón es un grimorio ficticio creado por H.P. Lovecraft que ha inspirado a diversos autores de ocultismo moderno. Esta edición explora conceptos de magia, entidades ancestrales, invocaciones y mitología esotérica.`,
   "CLAVICULA SALOMONIS": `También conocida como la Llave de Salomón, este libro es uno de los tratados de magia ceremonial más antiguos. Contiene rituales de invocación, símbolos y enseñanzas atribuidas al rey Salomón.`,
   "LIBER NULL": `Obra clave del caos magick escrita por Peter J. Carroll. Se centra en técnicas para desarrollar la voluntad, alterar la conciencia y trabajar con sigilos, entidades y energías mágicas.`
