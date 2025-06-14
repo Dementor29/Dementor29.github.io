@@ -271,34 +271,22 @@
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: rgba(255, 255, 255, 0.85); /* fondo blanco translúcido */
+  background: rgba(255, 255, 255, 0.50);
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  box-sizing: border-box;
 }
 #flyer-overlay img {
   width: 50%;
   height: auto;
   max-width: 600px;
   max-height: 90%;
-  display: block;
-  margin: auto;
-}
-@media (max-width: 768px) {
-  #flyer-overlay img {
-    width: 90vw;
-    height: auto;
-  }
 }
 #flyer-close {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 26px;
-  font-family: 'BurzumGothic', serif;
+  top: 20px; right: 30px;
+  font-size: 30px;
   color: white;
   background: none;
   border: none;
@@ -309,11 +297,18 @@
 #flyer-close:hover {
   color: #ff0000;
 }
+
+@media (max-width: 868px) {
+  #flyer-overlay img {
+    width: 90vw;
+    height: auto;
+  }
+}
 </style>
 </head>
 <body>
 <div id="flyer-overlay">
-<button id="flyer-close">𝕏</button>
+<button id="flyer-close">𖤐</button>
 <img alt="Flyer Averno Store" src="https://i.postimg.cc/9FWWQWys/AVERNO-STORE.png"/>
 </div>
 
@@ -526,6 +521,7 @@
   document.getElementById('flyer-close').onclick = function () {
     document.getElementById('flyer-overlay').style.display = 'none';
   };
+    
 </script>
 </body>
 </html>
