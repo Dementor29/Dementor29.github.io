@@ -513,7 +513,13 @@ const descripcionesLibros = {
 function verDescripcion(nombreLibro) {
   const modal = document.getElementById("descripcion-modal");
   const contenido = document.getElementById("descripcion-contenido");
-  contenido.innerHTML = `<h2>${nombreLibro}</h2><p style="margin-top:10px;">${descripcionesLibros[nombreLibro]}</p>`;
+  const producto = productos.find(p => p.nombre === nombreLibro);
+  if (!producto) return;
+
+  contenido.innerHTML = `
+    <h2 style="margin-bottom: 10px;">${producto.nombre}</h2>
+    <p style="font-size: 16px; line-height: 1.6;">${producto.descripcion}</p>
+  `;
   modal.style.display = "flex";
 }
 
