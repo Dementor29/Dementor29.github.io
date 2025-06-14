@@ -363,6 +363,12 @@ function eliminarDeWishlist(nombre) {
     renderWishlist();
   }
 }
+    
+function vaciarWishlist() {
+  wishlistData = {};
+  document.querySelectorAll(".heart-icon.active").forEach(icon => icon.classList.remove("active"));
+  renderWishlist();
+}
 
 function addToCart(nombre, precio) {  
   const elemento = Array.from(document.querySelectorAll('.item'))
