@@ -33,7 +33,7 @@
       justify-content: center;
     }
 
-.item {
+    .item {
       background-color: #1e1e1e;
       border-radius: 8px;
       padding: 10px;
@@ -43,10 +43,17 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      height: 470px; 
-      justify-content: space-between; 
     }
-    
+
+    .item img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      background-color: #111;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
     .precio {
       color: white;
       font-weight: bold;
@@ -284,7 +291,7 @@
   min-height: 40px; /* más espacio para títulos largos */
   margin: 10px 0;
 }
-    
+
 </style>
 </head>
 <body>
@@ -327,24 +334,25 @@
 </a>
     
 <script>
+    
 const productos = [
   {
     nombre: "ALEISTER CROWLEY Y EL DIOS OCULTO",
     precio:  150000,
     imagen: "https://manussinistra.com/wp-content/uploads/2021/04/239961241_4589817201042318_8160221644658319591_n.jpg",
-    descripcion: "Aleister Crowley se comprometió en liberar al hombre de la esclavitud al mostrarle la forma de invocar a su genio latente: el Dios Oculto. Es característico de Crowley que para este fin utilizara las misteriosas energías del sexo, la más potente y mas obsesiva de las ilusiones del hombre que, de usarse imprudentemente, refuerza el falso sentido de existencia individual que lo divorcia de la plenitud de la consciencia cósmica."
+    descripcion: "Aquí se coloca la descripción"
   },
   {
     nombre: "LA BIBLIA SATANICA",
     precio:  150000,
     imagen: "https://manussinistra.com/wp-content/uploads/2019/11/biblia-satanica-anton-szandor-lavey.png",
-    descripcion: "La Biblia Satánica fue escrita por Anton LaVey en 1969, tras la fundación en 1966 de la infame Iglesia de Satán. Este libro es una colección de ensayos y rituales satánicos básicos, y describe la ideología satánica de LaVey. Contiene los principios centrales del satanismo laveyano y es considerado la base de la filosofía y el dogma que constituyen el satanismo."
+    descripcion: "Aquí se coloca la descripción"
   },
   {
     nombre: "AKHKHARU MAGIA(K) VAMPYRICA",
     precio:  150000,
     imagen: "https://manussinistra.com/wp-content/uploads/2019/11/Akhkharu-Magia-Vampyrica-Michael-W.-Ford.png",
-    descripcion: "khkharu: Magia(k) Vampyrica presenta la práctica mágica centrada en la corriente iniciática predatoria del luciferianismo. El vampirismo o vampyrismo es un enfoque filosófico y espiritual extremo dentro de la magia(k). Este toma las partes profundas de la psique y las manifiesta en la vida de la persona encaminándolas hacia fines productivos, mientras que el lado espiritual se ve desarrollado por la absorción de la energía que el mago se entrena para poder tomar. Este tomo te enseña los pasos para volverte un depredador y situarte en la cima de la pirámide mediante la práctica del Yoga Ahrimánico, las técnicas para drenar a través de los chakras y la magia(k) astral (proyección fuera del cuerpo y la cacería en las pesadillas), junto con el recorrido y las evocaciones e invocaciones a energías densas del Lado Nocturno para crecer en poder. Los peligros están siempre presentes; lo extremo de esta aproximación no la hace apta para todos, ni todos están hechos para el dominio y liderazgo."
+    descripcion: "Aquí se coloca la descripción"
   }
 ];
 
@@ -364,10 +372,8 @@ function crearItem(producto) {
       Cantidad:
       <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
     </label>
-    <div style="margin-top: auto; width: 100%; display: flex; flex-direction: column; gap: 5px;">
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
     <button class="cart-button" onclick="verDescripcion('${producto.nombre}')">Ver más</button>
-    </div>
   `;
   return item;
 }
@@ -510,6 +516,7 @@ const descripcionesLibros = {
 function verDescripcion(nombreLibro) {
   const modal = document.getElementById("descripcion-modal");
   const contenido = document.getElementById("descripcion-contenido");
+
   const producto = productos.find(p => p.nombre === nombreLibro);
   if (!producto) return;
 
