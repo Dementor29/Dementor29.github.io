@@ -176,7 +176,18 @@
 }
     
 header {
-  margin-bottom: 60px; /* Aumenta este valor si deseas más espacio */
+  margin-bottom: 40px; /* Aumenta este valor si deseas más espacio */
+}
+
+.producto {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.producto.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 </style>
@@ -444,6 +455,19 @@ function vaciarCarrito() {
     document.getElementById('flyer-overlay').style.display = 'none';
   };
 
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+document.querySelectorAll('.producto').forEach(el => observer.observe(el));
+<
+  
 </script>
 </body>
 </html>
