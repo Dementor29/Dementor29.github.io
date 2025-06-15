@@ -293,40 +293,42 @@ function crearItem(producto, esRopa = true) {
       renderWishlist();
     }
 
-    function renderWishlist() {
-      const ul = document.getElementById("wishlist-items");
-      ul.innerHTML = "";
-      for (let nombre in wishlistData) {
-      const producto = wishlistData[nombre];
-      const id = nombre.replace(/\s+/g, "_");
-      const tallaSelect = producto.esRopa ? `
-    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-    <select id="wishlist-talla-${id}" class="cantidad-input">
-      <option value="">Elige talla</option>
-      <option value="S">S</option><option value="M">M</option>
-      <option value="L">L</option><option value="XL">XL</option>
-    </select>
-    </label>
-    <span id="error-wishlist-${id}" class="error-msg"></span>
+  function renderWishlist() {
+  const ul = document.getElementById("wishlist-items");
+  ul.innerHTML = "";
+
+  for (let nombre in wishlistData) {
+    const producto = wishlistData[nombre];
+    const id = nombre.replace(/\s+/g, "_");
+
+    const tallaSelect = producto.esRopa ? `
+      <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+        <select id="wishlist-talla-${id}" class="cantidad-input">
+          <option value="">Elige talla</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </label>
+      <span id="error-wishlist-${id}" class="error-msg"></span>
     ` : "";
+
     ul.innerHTML += `
-          <li style="margin-bottom: 12px;">
-            <span>${nombre} — $${producto.precio.toLocaleString()}</span>
-            ${tallaSelect}
-            <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-          </li>
-        `;
-      }
-      
-  if (producto.esRopa) {
-  const selectWishlist = document.getElementById(`wishlist-talla-${id}`);
-  const errorWishlist = document.getElementById(`error-wishlist-${id}`);
-  selectWishlist.addEventListener('change', () => {
-    if (selectWishlist.value) {
-      errorWishlist.textContent = "";
-    }
-  });
-}
+      <li style="margin-bottom: 12px;">
+        <span>${nombre} — $${producto.precio.toLocaleString()}</span>
+        ${tallaSelect}
+        <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+      </li>
+    `;
+
+    if (producto.esRopa) {
+      // Agregamos el event listener después de generar el elemento en el DOM
+      setTimeout(() => {
+        const selectWishlist = document.getElementById(`wishlist-talla-${id}`);
+        const errorWishlist = document.getElementById(`error-wishlist-${id}`);
+        selectWishli
+
     }
 
     function eliminarDeWishlist(nombre) {
