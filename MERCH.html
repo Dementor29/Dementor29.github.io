@@ -314,22 +314,25 @@ header {
       renderWishlist();
     }
 
-    function addToCart(nombre, precio, esRopa) {
-      const id = nombre.replace(/\s+/g, "_");
-      const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
-      let talla = "";
-     const errorEl = document.getElementById(`error-${id}`);
-  if (!talla) {
-  if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
-  return;
-  } else {
-  if (errorEl) errorEl.textContent = "";
+  function addToCart(nombre, precio, esRopa) {
+  const id = nombre.replace(/\s+/g, "_");
+  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
+  let talla = "";
+
+  if (esRopa) {
+    talla = document.getElementById(`talla-${id}`).value;
+    const errorEl = document.getElementById(`error-${id}`);
+    if (!talla) {
+      if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+      return;
+    } else {
+      if (errorEl) errorEl.textContent = "";
+    }
   }
 
-      }
-      cartData[nombre] = { precio, cantidad, talla };
-      renderCarrito();
-    }
+  cartData[nombre] = { precio, cantidad, talla };
+  renderCarrito();
+}
 
     function moverWishlistACarrito() {
       for (let nombre in wishlistData) {
