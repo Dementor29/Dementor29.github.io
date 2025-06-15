@@ -301,28 +301,37 @@ function crearItem(producto, esRopa = true) {
     const producto = wishlistData[nombre];
     const id = nombre.replace(/\s+/g, "_");
 
-    const tallaSelect = producto.esRopa ? `
-      <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-        <select id="wishlist-talla-${id}" class="cantidad-input">
-          <option value="">Elige talla</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
-      </label>
-      <span id="error-wishlist-${id}" class="error-msg"></span>
-    ` : "";
+    const li = document.createElement("li");
+    li.style.marginBottom = "12px";
 
-    ul.innerHTML += `
-      <li style="margin-bottom: 12px;">
-        <span>${nombre} — $${producto.precio.toLocaleString()}</span>
-        ${tallaSelect}
-        <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-      </li>
-    `;
+    const spanNombre = document.createElement("span");
+    spanNombre.textContent = `${nombre} — $${producto.precio.toLocaleString()}`;
+    li.appendChild(spanNombre);
 
     if (producto.esRopa) {
+      const label = document.createElement("label");
+      label.style.display = "inline-flex";
+      label.style.alignItems = "center";
+      label.style.gap = "8px";
+      label.style.marginLeft = "12px";
+
+      const select = document.createElement("select");
+      select.id = `wishlist-talla-${id}`;
+      select.className = "cantidad-input";
+
+      const opciones = ["", "S", "M", "L", "XL"];
+      opciones.forEach(talla => {
+        const option = document.createElement("option");
+        option.value = talla;
+        option.textContent = talla === "" ? "Elige talla" : talla;
+        select.appendChild(option);
+      });
+
+      const errorSpan = document.createElement("span");
+      errorSpan.id = `error-wishlist-${id}`;
+      errorSpan.className = "error-msg";
+
+      if (producto.esRopa) {
       // Agregamos el event listener después de generar el elemento en el DOM
       setTimeout(() => {
         const selectWishlist = document.getElementById(`wishlist-talla-${id}`);
@@ -330,6 +339,29 @@ function crearItem(producto, esRopa = true) {
         selectWishli
 
     }
+      // Agregar el listener al select para limpiar el error al seleccionar talla
+      select.addEventListener("change", () => {
+        if (select.value) {
+          errorSpan.textContent = "";
+        }
+      });
+
+      label.appendChild(select);
+      li.appendChild(label);
+      li.appendChild(errorSpan);
+    }
+
+    const boton = document.createElement("button");
+    boton.className = "remove-button";
+    boton.textContent = "✖";
+    boton.onclick = () => eliminarDeWishlist(nombre);
+    li.appendChild(boton);
+
+    ul.appendChild(li);
+  }
+}
+
+    
 
     function eliminarDeWishlist(nombre) {
       delete wishlistData[nombre];
