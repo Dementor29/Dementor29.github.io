@@ -256,26 +256,33 @@ header {
     item.className = "item";
     const id = producto.nombre.replace(/\s+/g, "_");
     item.innerHTML = `
-      <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
-      <img src="${producto.imagen}" alt="${producto.nombre}">
-      <h3>${producto.nombre}</h3>
-      <div class="precio">$${producto.precio.toLocaleString()}</div>
-      <label class="cantidad-label">Cant:
+  <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
+  <img src="${producto.imagen}" alt="${producto.nombre}">
+  <h3>${producto.nombre}</h3>
+  <div class="precio">$${producto.precio.toLocaleString()}</div>
+
+  ${producto.esAccesorio ? `
+    <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px;">
+      <label class="cantidad-label" style="margin: 0;">Cant:
         <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
       </label>
-      
-     ${producto.esAccesorio ? '' : `
+      <button class="cart-button" style="margin-top: 0;" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar</button>
+    </div>
+  ` : `
+    <label class="cantidad-label">Cant:
+      <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
+    </label>
     <label class="cantidad-label">Talla:
-    <select class="cantidad-input" id="talla-${id}" onchange="clearItemError('${id}')">
-      <option value="">Elige talla</option>
-      <option value="S">S</option><option value="M">M</option>
-      <option value="L">L</option><option value="XL">XL</option>
+      <select class="cantidad-input" id="talla-${id}" onchange="clearItemError('${id}')">
+        <option value="">Elige talla</option>
+        <option value="S">S</option><option value="M">M</option>
+        <option value="L">L</option><option value="XL">XL</option>
       </select>
     </label>
     <span id="error-${id}" class="error-msg"></span>
-`}
-  <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-    `;
+    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
+  `}
+`;
     
     return item;
   }
