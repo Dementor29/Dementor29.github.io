@@ -185,7 +185,12 @@
 </div>
 
 <h2>ROPA ⛧ ACCESORIOS</h2>
-<div class="catalogo" id="catalogo-container"></div>
+  
+<h2>⛧ ROPA ⛧</h2>
+<div class="catalogo" id="catalogo-ropa"></div>
+
+<h2>⛧ ACCESORIOS ⛧</h2>
+<div class="catalogo" id="catalogo-accesorios"></div>
 
 <div id="wishlist">
   <h3>Lista de deseos</h3>
@@ -212,11 +217,16 @@
 <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank">WHATSAPP</a>
 
 <script>
-  const productos = [
+  const productosRopa = [
     { nombre: "BURZUM", precio: 40000, imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg" },
     { nombre: "DEICIDE", precio: 85000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg" },
     { nombre: "BEHEMOTH", precio: 20000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg" }
   ];
+
+  const productosAccesorios = [
+  { nombre: "COLLAR INVERTIDO", precio: 15000, imagen: "https://i.postimg.cc/NfjZjRM1/collar-invertido.jpg" },
+  { nombre: "PULSERA PENTAGRAMA", precio: 12000, imagen: "https://i.postimg.cc/ZK9VzRRF/pulsera-pentagrama.jpg" }
+];
 
   let wishlistData = {};
   let cartData = {};
@@ -257,12 +267,17 @@
     `;
     return item;
   }
-
+  
   function renderCatalogo() {
-    const cont = document.getElementById("catalogo-container");
-    cont.innerHTML = "";
-    productos.forEach(p => cont.appendChild(crearItem(p)));
-  }
+  const contRopa = document.getElementById("catalogo-ropa");
+  const contAccesorios = document.getElementById("catalogo-accesorios");
+
+  contRopa.innerHTML = "";
+  contAccesorios.innerHTML = "";
+
+  productosRopa.forEach(p => contRopa.appendChild(crearItem(p)));
+  productosAccesorios.forEach(p => contAccesorios.appendChild(crearItem(p)));
+}
 
   function toggleFavorite(el, nombre, precio) {
     el.classList.toggle("active");
