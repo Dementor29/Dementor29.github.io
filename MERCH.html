@@ -191,6 +191,20 @@ header {
   text-align: center;
 }
 
+  #accesorios .item h3 {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+#accesorios .item {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 </style>
 </head>
 <body>
@@ -274,11 +288,12 @@ header {
   <div class="precio">$${producto.precio.toLocaleString()}</div>
 
  ${producto.esAccesorio ? `
-  <label class="cantidad-label">Cant:
-    <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
-  </label>
-  <span id="error-${id}" class="error-msg"></span>
-  <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
+  <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px;">
+    <label class="cantidad-label" style="margin: 0;">Cant:
+      <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
+    </label>
+    <button class="cart-button" style="margin-top: 0;" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar</button>
+  </div>
 ` : `
 
     <label class="cantidad-label">Cant:
