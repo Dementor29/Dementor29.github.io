@@ -285,13 +285,16 @@
   productosAccesorios.forEach(p => contAccesorios.appendChild(crearItem(p)));
 }
 
-  function toggleFavorite(el, nombre, precio) {
-    el.classList.toggle("active");
-    if (wishlistData[nombre]) delete wishlistData[nombre];
-    else wishlistData[nombre] = { precio };
-    renderWishlist();
+  function toggleFavorite(el, nombre, precio, tipo = "ropa") {
+  el.classList.toggle("active");
+  if (wishlistData[nombre]) {
+    delete wishlistData[nombre];
+  } else {
+    wishlistData[nombre] = { precio, tipo };
   }
-
+  renderWishlist();
+}
+  
 function renderWishlist() {
   const ul = document.getElementById("wishlist-items");
   ul.innerHTML = "";
@@ -300,26 +303,30 @@ function renderWishlist() {
     const producto = wishlistData[nombre];
     const id = nombre.replace(/\s+/g, "_");
 
+    // Si la talla es "-", es accesorio, así que no mostramos el campo de talla
+    const mostrarTalla = producto.talla && producto.talla !== "-" ? `
+      <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+        <select
+          id="wishlist-talla-${id}"
+          class="cantidad-input"
+          onchange="clearWishlistError('${id}')"
+        >
+          <option value="">Elige talla</option>
+          <option value="S">S</option><option value="M">M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+        <span id="error-${id}" class="error-msg"></span>
+      </label>` : "";
+
     ul.innerHTML += `
       <li style="margin-bottom: 12px;">
         <span>${nombre} — $${producto.precio.toLocaleString()}</span>
-        <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-          <select
-            id="wishlist-talla-${id}"
-            class="cantidad-input"
-            onchange="clearWishlistError('${id}')"
-          >
-            <option value="">Elige talla</option>
-            <option value="S">S</option><option value="M">M</option>
-            <option value="L">L</option><option value="XL">XL</option>
-          </select>
-          <span id="error-${id}" class="error-msg"></span>
-        </label>
+        ${mostrarTalla}
         <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
       </li>
     `;
   }
-}
+  }
 
   function eliminarDeWishlist(nombre) {
     delete wishlistData[nombre];
