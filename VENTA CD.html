@@ -486,6 +486,30 @@
       renderWishlist();
       renderCarrito();
     }
+    
+function vaciarWishlist() {
+  for (const nombre in wishlistData) {
+    if (wishlistData[nombre].element) {
+      wishlistData[nombre].element.classList.remove("active");
+    }
+  }
+  wishlistData = {};
+  renderWishlist();
+  reiniciarCantidades();
+}
+
+function vaciarCarrito() {
+  cartData = {};
+  renderCarrito();
+  reiniciarCantidades();
+}
+
+function reiniciarCantidades() {
+  const inputs = document.querySelectorAll(".cantidad-input");
+  inputs.forEach(input => {
+    input.value = 1;
+  });
+}
 
     function comprarPorWhatsapp() {
       if (Object.keys(cartData).length === 0) {
