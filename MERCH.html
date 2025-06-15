@@ -300,15 +300,17 @@ function crearItem(producto, esRopa = true) {
         const producto = wishlistData[nombre];
         const id = nombre.replace(/\s+/g, "_");
         const tallaSelect = producto.esRopa ? `
-          <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-            <select id="wishlist-talla-${id}" class="cantidad-input">
-              <option value="">Elige talla</option>
-              <option value="S">S</option><option value="M">M</option>
-              <option value="L">L</option><option value="XL">XL</option>
-            </select>
-          </label>` : "";
+    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+    <select id="wishlist-talla-${id}" class="cantidad-input">
+      <option value="">Elige talla</option>
+      <option value="S">S</option><option value="M">M</option>
+      <option value="L">L</option><option value="XL">XL</option>
+    </select>
+    </label>
+    <span id="error-wishlist-${id}" class="error-msg"></span>
+    ` : "";
 
-        ul.innerHTML += `
+    ul.innerHTML += `
           <li style="margin-bottom: 12px;">
             <span>${nombre} — $${producto.precio.toLocaleString()}</span>
             ${tallaSelect}
@@ -344,19 +346,23 @@ function crearItem(producto, esRopa = true) {
   renderCarrito();
 }
     function moverWishlistACarrito() {
-      for (let nombre in wishlistData) {
-        const producto = wishlistData[nombre];
-        const id = nombre.replace(/\s+/g, "_");
-        let talla = "";
-        if (producto.esRopa) {
-          talla = document.getElementById(`wishlist-talla-${id}`).value;
-        if (!talla) {
-        if (error) error.textContent = "POR FAVOR  SELECCIONA ⛧ UNA TALLA.";
+    for (let nombre in wishlistData) {
+    const producto = wishlistData[nombre];
+    const id = nombre.replace(/\s+/g, "_");
+    let talla = "";
+    if (producto.esRopa) {
+  talla = document.getElementById(`wishlist-talla-${id}`).value;
+
+    const errorEl = document.getElementById(`error-wishlist-${id}`);
+    if (!talla) {
+    if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
     return;
-        }
-          
-        }
-        cartData[nombre] = { precio: producto.precio, cantidad: 1, talla };
+    } else {
+    if (errorEl) errorEl.textContent = "";
+    }
+    }
+
+   cartData[nombre] = { precio: producto.precio, cantidad: 1, talla };
       }
       wishlistData = {};
       renderWishlist();
