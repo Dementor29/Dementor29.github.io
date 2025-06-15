@@ -176,7 +176,7 @@
 }
     
 header {
-  margin-bottom: 40px; /* Aumenta este valor si deseas más espacio */
+  margin-bottom: 60px; /* Aumenta este valor si deseas más espacio */
 }
     
 </style>
@@ -189,9 +189,14 @@ header {
 </div>
 
 <header>
-<h2>ROPA ⛧ ACCESORIOS</h2>
-<div class="catalogo" id="catalogo-container"></div>
+<h2>ROPA ⛧ ACCESORIOS</h2></header>
 </header>
+  
+  <h2>ROPA</h2>
+  <div class="catalogo" id="catalogo-ropa"></div>
+
+  <h2>ACCESORIOS</h2>
+  <div class="catalogo" id="catalogo-accesorios"></div>
   
 <div id="wishlist">
   <h3>Lista de deseos</h3>
@@ -218,11 +223,18 @@ header {
 <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank">WHATSAPP</a>
 
 <script>
-  const productos = [
-    { nombre: "BURZUM", precio: 40000, imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg" },
-    { nombre: "DEICIDE", precio: 85000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg" },
-    { nombre: "BEHEMOTH", precio: 20000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg" }
-  ];
+
+  const productosRopa = [
+  { nombre: "BURZUM", precio: 40000, imagen: "https://www.plastichead.com/cat_images/large/front/PH2848.jpg" },
+  { nombre: "DEICIDE", precio: 85000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/5/85978_deicide_banished_by_sin_shirt.jpg" },
+  { nombre: "BEHEMOTH", precio: 20000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg" }
+];
+
+const productosAccesorios = [
+  { nombre: "PIN DEATH", precio: 10000, imagen: "https://i.postimg.cc/FK2Gdsj5/pin.png" },
+  { nombre: "LLAVERO PENTAGRAMA", precio: 15000, imagen: "https://i.postimg.cc/05cNchTP/llavero.png" },
+  { nombre: "PARCHE BLACK METAL", precio: 18000, imagen: "https://i.postimg.cc/jSWvGxZB/parche.png" }
+];
 
   let wishlistData = {};
   let cartData = {};
@@ -263,19 +275,57 @@ header {
     `;
     return item;
   }
+  
+  function crearItemSinTalla(producto) {
+  const item = document.createElement("div");
+  item.className = "item";
+  const id = producto.nombre.replace(/\s+/g, "_");
+  item.innerHTML = `
+    <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, false)">⛧</span>
+    <img src="${producto.imagen}" alt="${producto.nombre}">
+    <h3>${producto.nombre}</h3>
+    <div class="precio">$${producto.precio.toLocaleString()}</div>
+    <label class="cantidad-label">Cant:
+      <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
+    </label>
+    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, false)">Agregar al carrito</button>
+  `;
+  return item;
+}
 
   function renderCatalogo() {
-    const cont = document.getElementById("catalogo-container");
-    cont.innerHTML = "";
-    productos.forEach(p => cont.appendChild(crearItem(p)));
+  const contRopa = document.getElementById("catalogo-ropa");
+  const contAcc = document.getElementById("catalogo-accesorios");
+  contRopa.innerHTML = "";
+  contAcc.innerHTML = "";
+
+  productosRopa.forEach(p => contRopa.appendChild(crearItem(p)));
+  productosAccesorios.forEach(p => contAcc.appendChild(crearItemSinTalla(p)));
+}
+
+function toggleFavorite(element, nombre, precio, conTalla = true) {
+  const id = nombre.replace(/\s+/g, "_");
+  let talla = "";
+
+  if (conTalla) {
+    const tallaSelect = document.getElementById(`talla-${id}`);
+    if (!tallaSelect) return alert("Selecciona una talla");
+    talla = tallaSelect.value;
+    if (!talla) return alert("Selecciona una talla");
   }
 
-  function toggleFavorite(el, nombre, precio) {
-    el.classList.toggle("active");
-    if (wishlistData[nombre]) delete wishlistData[nombre];
-    else wishlistData[nombre] = { precio };
-    renderWishlist();
+  const key = conTalla ? `${nombre} (${talla})` : nombre;
+
+  if (listaDeseos[key]) {
+    delete listaDeseos[key];
+    element.classList.remove("active");
+  } else {
+    listaDeseos[key] = { nombre, precio, talla: conTalla ? talla : null };
+    element.classList.add("active");
   }
+
+  actualizarListaDeseos();
+}
 
 function renderWishlist() {
   const ul = document.getElementById("wishlist-items");
@@ -312,22 +362,29 @@ function renderWishlist() {
     renderWishlist();
   }
 
-  function addToCart(nombre, precio) {
-    const id = nombre.replace(/\s+/g, "_");
-    const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
-    const talla = document.getElementById(`talla-${id}`).value;
-    const error = document.getElementById(`error-${id}`);
+ function addToCart(nombre, precio, conTalla = true) {
+  const id = nombre.replace(/\s+/g, "_");
+  const cantidadInput = document.getElementById(`cantidad-${id}`);
+  const cantidad = parseInt(cantidadInput?.value) || 1;
 
-    if (!talla) {
-      if (error) error.textContent = "POR FAVOR  SELECCIONA ⛧ UNA TALLA.";
-      return;
-    } else {
-      if (error) error.textContent = "";
-    }
-
-    cartData[nombre] = { precio, cantidad, talla };
-    renderCarrito();
+  let talla = "";
+  if (conTalla) {
+    const tallaSelect = document.getElementById(`talla-${id}`);
+    if (!tallaSelect) return alert("Selecciona una talla");
+    talla = tallaSelect.value;
+    if (!talla) return alert("Selecciona una talla");
   }
+
+  const key = conTalla ? `${nombre} (${talla})` : nombre;
+
+  if (carrito[key]) {
+    carrito[key].cantidad += cantidad;
+  } else {
+    carrito[key] = { precio, cantidad, talla: conTalla ? talla : null };
+  }
+
+  actualizarCarrito();
+}
 
   function moverWishlistACarrito() {
     let todoOk = true;
