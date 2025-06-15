@@ -421,11 +421,18 @@ function vaciarWishlist() {
   wishlistData = {};
   document.querySelectorAll(".heart-icon.active").forEach(icon => icon.classList.remove("active"));
   renderWishlist();
+
+  // Reiniciar los inputs de cantidad a 1
+  document.querySelectorAll(".cantidad-input").forEach(input => input.value = 1);
 }
+
 
 function vaciarCarrito() {
   cartData = {};
   renderCarrito();
+
+  // Reiniciar los inputs de cantidad a 1
+  document.querySelectorAll(".cantidad-input").forEach(input => input.value = 1);
 }
 
 function addToCart(nombre, precio) {  
