@@ -238,21 +238,21 @@ header {
     let wishlistData = {};
     let cartData = {};
 
-  function crearItem(producto, esRopa = true) {
+function crearItem(producto, esRopa = true) {
   const item = document.createElement("div");
   item.className = "item";
   const id = producto.nombre.replace(/\s+/g, "_");
 
-   let tallaSelect = esRopa ? `
-  <label class="cantidad-label">Talla:
-    <select class="cantidad-input" id="talla-${id}">
-      <option value="">Elige talla</option>
-      <option value="S">S</option><option value="M">M</option>
-      <option value="L">L</option><option value="XL">XL</option>
-    </select>
-  </label>
-  <span id="error-${id}" class="error-msg"></span>
-` : "";
+  let tallaSelect = esRopa ? `
+    <label class="cantidad-label">Talla:
+      <select class="cantidad-input" id="talla-${id}">
+        <option value="">Elige talla</option>
+        <option value="S">S</option><option value="M">M</option>
+        <option value="L">L</option><option value="XL">XL</option>
+      </select>
+    </label>
+    <span id="error-${id}" class="error-msg"></span>
+  ` : "";
 
   item.innerHTML = `
     <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
@@ -265,9 +265,20 @@ header {
     ${tallaSelect}
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
   `;
-    
-    return item;
-    }
+
+  // Aquí agregamos el listener que borra el error al cambiar la talla:
+  if (esRopa) {
+    const select = item.querySelector(`#talla-${id}`);
+    const errorSpan = item.querySelector(`#error-${id}`);
+    select.addEventListener('change', () => {
+      if (select.value) {
+        errorSpan.textContent = "";
+      }
+    });
+  }
+
+  return item;
+}
 
     function renderCatalogo(productos, contenedorId, esRopa) {
       const cont = document.getElementById(contenedorId);
