@@ -172,6 +172,13 @@ header {
   margin-bottom: 60px; /* Aumenta este valor si deseas más espacio */
 }
     
+.error-msg {
+  color: red;
+  font-size: 13px;
+  display: block;
+  margin-top: 4px;
+}
+
 </style>
 </head>
 <body>
@@ -236,16 +243,17 @@ header {
   item.className = "item";
   const id = producto.nombre.replace(/\s+/g, "_");
 
-  let tallaSelect = esRopa ? `
-    <label class="cantidad-label">Talla:
-      <select class="cantidad-input" id="talla-${id}">
-        <option value="">Elige talla</option>
-        <option value="S">S</option><option value="M">M</option>
-        <option value="L">L</option><option value="XL">XL</option>
-      </select>
-    </label>
-    <span id="error-${id}" class="error-msg"></span>
-  ` : "";
+   let tallaSelect = esRopa ? `
+  <label class="cantidad-label">Talla:
+    <select class="cantidad-input" id="talla-${id}">
+      <option value="">Elige talla</option>
+      <option value="S">S</option><option value="M">M</option>
+      <option value="L">L</option><option value="XL">XL</option>
+    </select>
+  </label>
+  <span id="error-${id}" class="error-msg"></span>
+` : "";
+
 
   item.innerHTML = `
     <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
@@ -310,12 +318,14 @@ header {
       const id = nombre.replace(/\s+/g, "_");
       const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
       let talla = "";
-      if (esRopa) {
-        talla = document.getElementById(`talla-${id}`).value;
-        if (!talla) {
-          alert("POR FAVOR SELECCIONA ⛧ UNA TALLA.");
-          return;
-        }
+     const errorEl = document.getElementById(`error-${id}`);
+  if (!talla) {
+  if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+  return;
+  } else {
+  if (errorEl) errorEl.textContent = "";
+  }
+
       }
       cartData[nombre] = { precio, cantidad, talla };
       renderCarrito();
