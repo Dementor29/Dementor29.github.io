@@ -231,31 +231,35 @@ header {
     let wishlistData = {};
     let cartData = {};
 
-    function crearItem(producto, esRopa = true) {
-      const item = document.createElement("div");
-      item.className = "item";
-      const id = producto.nombre.replace(/\s+/g, "_");
-      let tallaSelect = esRopa ? `
-        <label class="cantidad-label">Talla:
-          <select class="cantidad-input" id="talla-${id}">
-            <option value="">Elige talla</option>
-            <option value="S">S</option><option value="M">M</option>
-            <option value="L">L</option><option value="XL">XL</option>
-          </select>
-        </label>` : "";
+  function crearItem(producto, esRopa = true) {
+  const item = document.createElement("div");
+  item.className = "item";
+  const id = producto.nombre.replace(/\s+/g, "_");
 
-      item.innerHTML = `
-        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <h3>${producto.nombre}</h3>
-        <div class="precio">$${producto.precio.toLocaleString()}</div>
-        <label class="cantidad-label">Cant:
-          <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
-        </label>
-        ${tallaSelect}
-        <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
-      `;
-      return item;
+  let tallaSelect = esRopa ? `
+    <label class="cantidad-label">Talla:
+      <select class="cantidad-input" id="talla-${id}">
+        <option value="">Elige talla</option>
+        <option value="S">S</option><option value="M">M</option>
+        <option value="L">L</option><option value="XL">XL</option>
+      </select>
+    </label>
+    <span id="error-${id}" class="error-msg"></span>
+  ` : "";
+
+  item.innerHTML = `
+    <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
+    <img src="${producto.imagen}" alt="${producto.nombre}">
+    <h3>${producto.nombre}</h3>
+    <div class="precio">$${producto.precio.toLocaleString()}</div>
+    <label class="cantidad-label">Cant:
+      <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
+    </label>
+    ${tallaSelect}
+    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
+  `;
+    
+    return item;
     }
 
     function renderCatalogo(productos, contenedorId, esRopa) {
@@ -324,10 +328,11 @@ header {
         let talla = "";
         if (producto.esRopa) {
           talla = document.getElementById(`wishlist-talla-${id}`).value;
-          if (!talla) {
-            alert("POR FAVOR SELECCIONA ⛧ UNA TALLA.");
-            return;
-          }
+        if (!talla) {
+        if (error) error.textContent = "POR FAVOR  SELECCIONA ⛧ UNA TALLA.";
+    return;
+        }
+          
         }
         cartData[nombre] = { precio: producto.precio, cantidad: 1, talla };
       }
