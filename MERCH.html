@@ -376,6 +376,10 @@ function renderWishlist() {
     cartData[nombre] = { precio, cantidad, talla };
     renderCarrito();
   }
+  
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+cart.push({ nombre, precio, cantidad, talla });
+localStorage.setItem("cart", JSON.stringify(cart));
 
   function moverWishlistACarrito() {
     let todoOk = true;
