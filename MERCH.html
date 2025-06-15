@@ -129,13 +129,58 @@
     .nequi-btn:hover {
       background-color: #ff0000;
     }
-  </style>
+    /* FLYER EMERGENTE */
+#flyer-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(255, 255, 255, 0.50);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#flyer-overlay img {
+  width: 50%;
+  height: auto;
+  max-width: 600px;
+  max-height: 90%;
+}
+#flyer-close {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 30px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  z-index: 10001;
+}
+#flyer-close:hover {
+  color: #ff0000;
+}
+    
+@media (max-width: 868px) {
+  #flyer-overlay img {
+    width: 90vw;
+    height: auto;
+  }
+}
+    
+header {
+  margin-bottom: 60px; /* Aumenta este valor si deseas más espacio */
+}
+    
+</style>
 </head>
 <body>
+  
   <div id="flyer-overlay">
     <button id="flyer-close">𝕏</button>
     <img src="https://i.postimg.cc/9FWWQWys/AVERNO-STORE.png" alt="Flyer Averno Store">
   </div>
+  
   <header>
     <h2>ROPA ⛧ ACCESORIOS</h2>
   </header>
