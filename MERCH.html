@@ -237,7 +237,7 @@ header {
 ];
 
 function renderCatalogoAccesorios() {
-  const catalogo = document.getElementById("catalogoAccesorios");
+  const catalogo = document.getElementById("catalogo-accesorios"); // para accesorios
   productosAccesorios.forEach(p => {
     const id = p.nombre.replace(/\\s+/g, '_');
     catalogo.innerHTML += `
@@ -329,7 +329,7 @@ renderCatalogoAccesorios();
   }
 
   function renderCatalogo() {
-    const cont = document.getElementById("catalogo-container");
+    const catalogo = document.getElementById("catalogo-ropa"); // para ropa
     cont.innerHTML = "";
     productos.forEach(p => cont.appendChild(crearItem(p)));
   }
