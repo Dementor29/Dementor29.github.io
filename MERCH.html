@@ -254,7 +254,6 @@ header {
   <span id="error-${id}" class="error-msg"></span>
 ` : "";
 
-
   item.innerHTML = `
     <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
     <img src="${producto.imagen}" alt="${producto.nombre}">
@@ -314,7 +313,7 @@ header {
       renderWishlist();
     }
 
-  function addToCart(nombre, precio, esRopa) {
+ function addToCart(nombre, precio, esRopa) {
   const id = nombre.replace(/\s+/g, "_");
   const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
   let talla = "";
@@ -333,7 +332,6 @@ header {
   cartData[nombre] = { precio, cantidad, talla };
   renderCarrito();
 }
-
     function moverWishlistACarrito() {
       for (let nombre in wishlistData) {
         const producto = wishlistData[nombre];
@@ -369,19 +367,33 @@ header {
       renderCarrito();
     }
 
-    function vaciarWishlist() {
-      wishlistData = {};
-      renderWishlist();
-      document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-    }
+  function vaciarWishlist() {
+  wishlistData = {};
+  renderWishlist();
+  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
 
-    function vaciarCarrito() {
-      cartData = {};
-      renderCarrito();
-      wishlistData = {};
-      renderWishlist();
-      document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-    }
+  // Resetea cantidades, tallas y errores
+  document.querySelectorAll(".cantidad-input").forEach(input => {
+    if (input.type === "number") input.value = 1;
+    else input.value = "";
+  });
+  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+  }
+
+  function vaciarCarrito() {
+  cartData = {};
+  renderCarrito();
+  wishlistData = {};
+  renderWishlist();
+  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+
+  // Resetea cantidades, tallas y errores
+  document.querySelectorAll(".cantidad-input").forEach(input => {
+    if (input.type === "number") input.value = 1;
+    else input.value = "";
+  });
+  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+}
 
     function comprarPorWhatsapp() {
       if (!Object.keys(cartData).length) {
