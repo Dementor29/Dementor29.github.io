@@ -297,9 +297,9 @@ function crearItem(producto, esRopa = true) {
       const ul = document.getElementById("wishlist-items");
       ul.innerHTML = "";
       for (let nombre in wishlistData) {
-        const producto = wishlistData[nombre];
-        const id = nombre.replace(/\s+/g, "_");
-        const tallaSelect = producto.esRopa ? `
+      const producto = wishlistData[nombre];
+      const id = nombre.replace(/\s+/g, "_");
+      const tallaSelect = producto.esRopa ? `
     <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
     <select id="wishlist-talla-${id}" class="cantidad-input">
       <option value="">Elige talla</option>
@@ -309,7 +309,6 @@ function crearItem(producto, esRopa = true) {
     </label>
     <span id="error-wishlist-${id}" class="error-msg"></span>
     ` : "";
-
     ul.innerHTML += `
           <li style="margin-bottom: 12px;">
             <span>${nombre} — $${producto.precio.toLocaleString()}</span>
@@ -318,6 +317,16 @@ function crearItem(producto, esRopa = true) {
           </li>
         `;
       }
+      
+  if (producto.esRopa) {
+  const selectWishlist = document.getElementById(`wishlist-talla-${id}`);
+  const errorWishlist = document.getElementById(`error-wishlist-${id}`);
+  selectWishlist.addEventListener('change', () => {
+    if (selectWishlist.value) {
+      errorWishlist.textContent = "";
+    }
+  });
+}
     }
 
     function eliminarDeWishlist(nombre) {
