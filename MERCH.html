@@ -192,13 +192,11 @@ header {
 <h2>ROPA ⛧ ACCESORIOS</h2>
 </header>
   
-  <h2>ROPA</h2>
-  <div class="catalogo" id="catalogo-ropa"></div>
+<h2>ROPA</h2>
+<div class="catalogo" id="catalogo-ropa"></div>
 
-  <h2>ACCESORIOS</h2>
-  <div class="catalogo" id="catalogo-accesorios"></div>
-
-<div class="catalogo" id="catalogo-container"></div>
+<h2>ACCESORIOS</h2>
+<div class="catalogo" id="catalogo-accesorios"></div>
   
 <div id="wishlist">
   <h3>Lista de deseos</h3>
@@ -232,11 +230,63 @@ header {
   { nombre: "BEHEMOTH", precio: 20000, imagen: "https://napalmrecords.com/media/catalog/product/cache/3660ef7eded679f99c17826de5d2a471/8/2/82769-behemoth-the-satanist-shirt-front.jpg" }
 ];
 
-const productosAccesorios = [
+  const productosAccesorios = [
   { nombre: "PIN DEATH", precio: 10000, imagen: "https://i.postimg.cc/FK2Gdsj5/pin.png" },
   { nombre: "LLAVERO PENTAGRAMA", precio: 15000, imagen: "https://i.postimg.cc/05cNchTP/llavero.png" },
   { nombre: "PARCHE BLACK METAL", precio: 18000, imagen: "https://i.postimg.cc/jSWvGxZB/parche.png" }
 ];
+
+function renderCatalogoAccesorios() {
+  const catalogo = document.getElementById("catalogoAccesorios");
+  productosAccesorios.forEach(p => {
+    const id = p.nombre.replace(/\\s+/g, '_');
+    catalogo.innerHTML += `
+      <div class="producto">
+        <img src="${p.imagen}" alt="${p.nombre}">
+        <h3>${p.nombre}</h3>
+        <p>Precio: $${p.precio}</p>
+        <label>Cantidad:
+          <input type="number" id="cantidadAcc-${id}" value="1" min="1">
+        </label>
+        <button onclick="addToCartAccesorio('${p.nombre}', ${p.precio})">Agregar al carrito</button>
+        <span class="wishlist-icon" onclick="toggleFavoriteAccesorio(this, '${p.nombre}', ${p.precio})">❤️</span>
+      </div>
+    `;
+  });
+}
+
+function addToCartAccesorio(nombre, precio) {
+  const id = nombre.replace(/\\s+/g, '_');
+  const cantidad = parseInt(document.getElementById(`cantidadAcc-${id}`).value) || 1;
+  const key = nombre; // Sin talla
+
+  if (carrito[key]) {
+    carrito[key].cantidad += cantidad;
+  } else {
+    carrito[key] = { precio, cantidad, talla: null };
+  }
+
+  console.log("Carrito:", carrito);
+}
+
+function toggleFavoriteAccesorio(element, nombre, precio) {
+  const key = nombre; // Sin talla
+
+  if (listaDeseos[key]) {
+    delete listaDeseos[key];
+    element.classList.remove("active");
+  } else {
+    listaDeseos[key] = { nombre, precio, talla: null };
+    element.classList.add("active");
+  }
+
+  console.log("Lista de deseos:", listaDeseos);
+}
+
+// Llama esta función después de renderCatalogo()
+renderCatalogoAccesorios();
+
+  // TERMINA FUNCIONES DEL SEGUNDO CATALOGO Y EMPIEZA LO QUE TENIA ANTES.
 
   let wishlistData = {};
   let cartData = {};
