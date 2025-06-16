@@ -159,14 +159,20 @@
   padding: 0;
   border-radius: 0;
   }
+    
 .reproductor-personalizado {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
-  padding: 10px 20px;
+  padding: 15px;
   border-radius: 10px;
-  width: 80%;
-  margin: 20px auto;
+  width: 80%;               /* <--- controla el ancho visual */
+  max-width: 800px;         /* <--- evita que sea demasiado grande */
+  margin: 30px auto;        /* <--- centrado horizontal */
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.reproductor-personalizado audio {
+  width: 100%;
 }
 
 </style>
@@ -182,7 +188,7 @@
   <audio controls>
     <source src="AHRIMAN - Funeral Transilvano.mp3" type="audio/mp3">
   </audio>
-  </div>
+</div>
   
   <nav class="fade-in">
     <a href="#intro" style="color: #C10202;">INTRODUCCIÓN</a>
