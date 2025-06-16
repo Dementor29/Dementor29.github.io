@@ -112,7 +112,7 @@
     background: rgba(0, 0, 0, 0.40);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.05);
     }
 
     section h2 {
@@ -175,21 +175,20 @@
     padding: 0;
     border-radius: 0;
     }
-    
-    .reproductor-personalizado {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(3px);
-    padding: 15px;
-    border-radius: 10px;
-    width: 40%;               /* <--- controla el ancho visual */
-    max-width: 400px;         /* <--- evita que sea demasiado grande */
-    margin: 30px auto;        /* <--- centrado horizontal */
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-  }
-.reproductor-personalizado audio {
-  width: 100%;
-}
 
+    .bloque-reproductor {
+    padding: 50px 20px;
+    margin-bottom: 30px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
+    width: 80%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+    
 </style>
 </head>
 <body>
@@ -199,7 +198,7 @@
     <p>SATANISMO - LUCIFERINO</p>
   </header>
 
-  <div class="reproductor-personalizado">
+  <div class="bloque-reproductor fade-in">
   <audio controls>
     <source src="AHRIMAN - Funeral Transilvano.mp3" type="audio/mp3">
   </audio>
