@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,23 +22,24 @@
 
     body {
       background: url('bg.png') no-repeat center center fixed;
-      background-size: cover;
-      backdrop-filter: brightness(0.4);
+      background-size: contain;
+      backdrop-filter: brightness(0.6);
+      background-color: black;
     }
 
     header {
       text-align: center;
-      padding: 60px 20px 20px;
+      padding: 40px 20px 10px;
       background: rgba(0, 0, 0, 0.7);
     }
 
     header h1 {
-      font-size: 48px;
+      font-size: 36px;
       color: #C10202;
     }
 
     header p {
-      font-size: 18px;
+      font-size: 16px;
       color: #ccc;
     }
 
@@ -48,14 +48,14 @@
       flex-wrap: wrap;
       justify-content: center;
       background: rgba(0, 0, 0, 0.8);
-      padding: 20px;
+      padding: 15px;
       gap: 20px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 16px;
       border-bottom: 1px solid transparent;
       transition: 0.3s;
     }
@@ -64,32 +64,65 @@
       border-bottom: 1px solid red;
     }
 
+    .secondary-nav {
+      margin-top: 10px;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .secondary-nav a {
+      margin: 0 15px;
+      font-size: 15px;
+      color: #ff9999;
+      text-decoration: none;
+    }
+
+    .secondary-nav a:hover {
+      color: #ffffff;
+    }
+
     section {
-      padding: 60px 20px;
+      padding: 50px 20px;
       background: rgba(0, 0, 0, 0.7);
     }
 
     section h2 {
       text-align: center;
-      font-size: 36px;
-      margin-bottom: 20px;
+      font-size: 28px;
+      margin-bottom: 15px;
       color: #C10202;
     }
 
     section p {
       max-width: 800px;
-      margin: 0 auto;
-      font-size: 18px;
+      margin: 0 auto 20px;
+      font-size: 16px;
       line-height: 1.6;
       color: #eee;
+    }
+
+    .ver-mas {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .ver-mas a {
+      color: #ff5555;
+      font-size: 15px;
+      text-decoration: underline;
     }
 
     footer {
       text-align: center;
       padding: 40px 20px;
-      background: rgba(0, 0, 0, 0.9);
-      font-size: 16px;
-      color: #999;
+      background: rgba(0, 0, 0, 0.95);
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    footer p {
+      margin: 6px 0;
     }
 
     .fade-in {
@@ -104,6 +137,13 @@
         transform: translateY(0);
       }
     }
+
+    audio {
+      width: 260px;
+      max-width: 90%;
+      margin: 20px auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -111,6 +151,10 @@
     <h1>DESPERTAR DEL AVERNO</h1>
     <p>SATANISMO - LUCIFERINO</p>
   </header>
+
+  <audio controls>
+    <source src="AHRIMAN - Funeral Transilvano.mp3" type="audio/mp3">
+  </audio>
 
   <nav class="fade-in">
     <a href="#intro">INTRODUCCIÓN</a>
@@ -120,29 +164,42 @@
     <a href="#contacto">CONTACTO</a>
   </nav>
 
+  <div class="secondary-nav fade-in">
+    <a href="VENTA%20CD.html" target="_blank">VENTA CD</a>
+    <a href="MERCH.html" target="_blank">MERCH</a>
+    <a href="OCULTISMO.html" target="_blank">OCULTISMO</a>
+  </div>
+
   <section id="intro" class="fade-in">
     <h2>INTRODUCCIÓN</h2>
     <p>Este sitio fue creado para promover las filosofías del satanismo moderno y el estudio del ocultismo. Un lugar de encuentro para compartir ideas, arte y conocimiento desde las profundidades del averno interior.</p>
+    <div class="ver-mas"><a href="INTRODUCCION.html" target="_blank">Ver más</a></div>
   </section>
 
   <section id="bio" class="fade-in">
     <h2>AUTOBIOGRAFÍA</h2>
     <p>Explora el camino personal de transformación y despertar de conciencia, desde la rebeldía espiritual hasta el encuentro con lo oculto y lo verdadero.</p>
+    <div class="ver-mas"><a href="AUTOBIOGRAFIA.html" target="_blank">Ver más</a></div>
   </section>
 
   <section id="banda" class="fade-in">
     <h2>PROYECTO BANDA</h2>
     <p>Un proyecto musical oscuro y atmosférico nacido desde lo más profundo, combinando black metal, ritual y poesía de sombras.</p>
+    <div class="ver-mas"><a href="BANDA.html" target="_blank">Ver más</a></div>
   </section>
 
   <section id="multimedia" class="fade-in">
     <h2>ARCHIVOS MULTIMEDIA</h2>
     <p>Galería de imágenes, videos y sonidos rituales que acompañan la estética y el mensaje del Despertar del Averno.</p>
+    <div class="ver-mas"><a href="ARCHIVOS-MULTIMEDIA.html" target="_blank">Ver más</a></div>
   </section>
 
   <footer id="contacto" class="fade-in">
     <p>Contacto: despertar@averno.com</p>
     <p>Instagram: @despertar_del_averno</p>
+    <p>Teléfono: (escribe aquí tu número)</p>
+    <p>Correo: (escribe aquí tu otro correo si deseas)</p>
+    <p>Dirección: (escribe aquí si aplica)</p>
     <p>&copy; 2025 Despertar del Averno</p>
   </footer>
 </body>
