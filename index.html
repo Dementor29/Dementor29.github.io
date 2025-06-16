@@ -77,12 +77,13 @@
     }
 
     .secondary-nav {
-    margin-top: 40px; /* espacio decente desde el reproductor */
+    margin-top: 40px;
+    margin-bottom: 30px; /* 👈 agrega separación hacia las secciones */
     background: rgba(0, 0, 0, 0.85);
     padding: 12px;
     text-align: center;
     }
-    
+
     .secondary-nav a {
       margin: 0 15px;
       font-size: 15px;
@@ -94,14 +95,14 @@
       color: #ffffff;
     }
 
-  section {
-  padding: 50px 20px;
-  margin-bottom: 20px;
-  background: rgba(0, 0, 0, 0.40);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-}
+    section {
+    padding: 50px 20px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.40);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);  
+    }
 
     section h2 {
       text-align: center;
@@ -154,27 +155,26 @@
       }
     }
 
-  audio {
-  width: 260px;
-  max-width: 90%;
-  margin: 20px auto;
-  display: block;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  }
+    audio {
+    width: 260px;
+    max-width: 90%;
+    margin: 20px auto;
+    display: block;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    }
     
-.reproductor-personalizado {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
-  padding: 15px;
-  border-radius: 10px;
-  width: 50%;               /* <--- controla el ancho visual */
-  max-width: 500px;         /* <--- evita que sea demasiado grande */
-  margin: 30px auto;        /* <--- centrado horizontal */
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-}
-
+    .reproductor-personalizado {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    padding: 15px;
+    border-radius: 10px;
+    width: 50%;               /* <--- controla el ancho visual */
+    max-width: 500px;         /* <--- evita que sea demasiado grande */
+    margin: 30px auto;        /* <--- centrado horizontal */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  }
 .reproductor-personalizado audio {
   width: 100%;
 }
