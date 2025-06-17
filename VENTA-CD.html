@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<link href="https://static.thenounproject.com/png/26242-200.png" rel="shortcut icon"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Despertar Del ⛧ Averno</title>
-<style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Despertar Del ⛧ Averno</title>
+  <link href="https://static.thenounproject.com/png/26242-200.png" rel="shortcut icon"/>
+  <style>
     @font-face {
       font-family: 'BurzumGothic';
       src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
@@ -22,9 +21,9 @@
       padding: 20px;
     }
 
-    h1 {
+    h1, h2 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .catalogo {
@@ -32,6 +31,7 @@
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
+      margin-bottom: 40px;
     }
 
     .item {
@@ -61,27 +61,6 @@
       margin-bottom: 10px;
     }
 
-    .btn-whatsapp {
-      background-color: #000000;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-family: 'BurzumGothic', serif;
-      font-size: 14px;
-      text-decoration: none;
-      text-align: center;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-      width: 100%;
-    }
-
-    .btn-whatsapp:hover {
-      background-color: #ff0000;
-      color: white;
-    }
-
     .heart-icon {
       font-size: 24px;
       color: gray;
@@ -95,91 +74,7 @@
       color: red;
     }
 
-    .cart-button {
-      margin-top: 10px;
-      background-color: #444;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-family: 'BurzumGothic', serif;
-      font-size: 14px;
-    }
-
-    .cart-button:hover {
-      background-color: #ff0000;
-    }
-
-    .remove-button {
-      background-color: transparent;
-      color: #ff0000;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      margin-left: 10px;
-    }
-
-    #cart,
-    #wishlist {
-      margin-top: 40px;
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    @media (max-width: 600px) {
-      .item {
-        width: 100%;
-      }
-    }
-
-    .volver-container {
-      text-align: center;
-      margin: 40px 0;
-    }
-
-    .back-link {
-      font-family: 'BurzumGothic', serif;
-      font-size: 20px;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      display: inline-block;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-    }
-
-    .back-link:hover {
-      background-color: #ff0000;
-      color: white;
-    }
-
-    .nequi-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #6f0f19;
-      color: white;
-      font-family: 'BurzumGothic', serif;
-      padding: 12px 18px;
-      text-decoration: none;
-      font-size: 16px;
-      z-index: 999;
-      box-shadow: 0 0 10px red;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .nequi-btn:hover {
-      background-color: #ff0000;
-      color: white;
-    }
-
     .cantidad-label {
-      font-family: 'Arial', sans-serif;
       display: flex;
       align-items: center;
       margin-top: 8px;
@@ -195,185 +90,178 @@
       border-radius: 4px;
       background-color: #111;
       color: #fff;
-      font-family: inherit;
       font-size: 14px;
       transition: all 0.2s ease;
     }
 
-    .cantidad-input:focus {
-      border-color: #cc0000;
-      box-shadow: 0 0 5px #cc0000aa;
-      outline: none;
+    .cart-button, .remove-button {
+      margin-top: 10px;
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
     }
 
-    /* Contenedor de radio */
-    #radio-container {
-      max-width: 500px;
-      margin: 40px auto;
+    .cart-button:hover, .remove-button:hover {
+      background-color: #ff0000;
+    }
+
+    #wishlist, #cart {
+      margin-top: 40px;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .volver-container {
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin: 40px 0;
     }
 
-    #radio-container audio {
-      width: 300px;
-      background-color: #1e1e1e;
-      border-radius: 10px;
-      padding: 10px;
+    .back-link {
+      font-size: 20px;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
     }
 
-    /* Animación LED */
-    .led-marquee {
-      color: #ff0000;
-      font-family: monospace;
+    .back-link:hover {
+      background-color: #ff0000;
+    }
+
+    .nequi-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #6f0f19;
+      color: white;
+      padding: 12px 18px;
       font-size: 16px;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 100%;
-      margin-bottom: 10px;
-      position: relative;
-      height: 20px;
+      z-index: 999;
+      box-shadow: 0 0 10px red;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .led-marquee::before {
-      content: attr(data-text);
+    .nequi-btn:hover {
+      background-color: #ff0000;
+    }
+
+    /* FLYER EMERGENTE */
+    #flyer-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(255, 255, 255, 0.15);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #flyer-overlay img {
+      width: 50%;
+      max-width: 600px;
+      max-height: 90%;
+    }
+    #flyer-close {
       position: absolute;
-      white-space: nowrap;
-      animation: scroll-left 12s linear infinite;
+      top: 20px; right: 30px;
+      font-size: 30px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+      z-index: 10001;
+    }
+    #flyer-close:hover {
+      color: #ff0000;
     }
 
-    @keyframes scroll-left {
-      0% {
-        left: 100%;
-      }
-      100% {
-        left: -100%;
-      }
+    @media (max-width: 600px) {
+      .item { width: 100%; }
     }
-
-    /* Nuevos estilos para indicaciones y créditos */
-    .radio-hint {
-      font-size: 12px;
-      color: #bbb;
-      margin-top: 8px;
-      font-style: italic;
+    @media (max-width: 868px) {
+      #flyer-overlay img { width: 90vw; }
     }
-
-    .radio-credit {
-      font-size: 10px;
-      color: #888;
-      margin-top: 4px;
-    }
-  
-/* FLYER EMERGENTE */
-#flyer-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(255, 255, 255, 0.15);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#flyer-overlay img {
-  width: 50%;
-  height: auto;
-  max-width: 600px;
-  max-height: 90%;
-}
-#flyer-close {
-  position: absolute;
-  top: 20px; right: 30px;
-  font-size: 30px;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: color 0.2s;
-  z-index: 10001;
-}
-#flyer-close:hover {
-  color: #FF0000;
-}
-
-@media (max-width: 868px) {
-  #flyer-overlay img {
-    width: 90vw;
-    height: auto;
-  }
-}
-</style>
+  </style>
 </head>
 <body>
-<header>
-<h1>CATÁLOGO</h1>
-</header>   
-    
-<div id="flyer-overlay">
-<button id="flyer-close">𝕏</button>
-<img alt="Flyer Averno Store" src="https://i.postimg.cc/BZxWpzRv/AVERNO.png"/>
-</div>
 
-<div id="radio-container">
-<div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
-<audio controls="">
-<source src="https://stream.laut.fm/demonology" type="audio/mpeg"/>
-      Tu navegador no soporta reproducción de audio.
+  <header>
+    <h1>CATÁLOGO</h1>
+  </header>   
+    
+  <div id="flyer-overlay">
+    <button id="flyer-close">𝕏</button>
+    <img alt="Flyer Averno Store" src="https://i.postimg.cc/BZxWpzRv/AVERNO.png"/>
+  </div>
+
+  <div id="radio-container">
+    <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND…"></div>
+    <audio controls>
+      <source src="https://stream.laut.fm/demonology" type="audio/mpeg"/>
     </audio>
-    
-<p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
-<small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
-</div>
+    <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
+    <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
+  </div>
 
-<h2>BLACK METAL</h2>
-<div class="catalogo" id="catalogo-black"></div>
+  <h2>BLACK METAL</h2>
+  <div class="catalogo" id="catalogo-black"></div>
 
-<h2>THRASH METAL</h2>
-<div class="catalogo" id="catalogo-thrash"></div>
+  <h2>THRASH METAL</h2>
+  <div class="catalogo" id="catalogo-thrash"></div>
 
-<h2>HEAVY METAL</h2>
-    
-<div class="catalogo" id="catalogo-heavy"></div>    
-<div class="catalogo" id="catalogo-container"></div>
-<div id="wishlist">
-<h3>Lista de deseos</h3>
-<ul id="wishlist-items"></ul>
-<button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
-<button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
-</div>
-<div id="cart">
-<h3>Carrito de compras</h3>
-<ul id="cart-items"></ul>
-<button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
-<button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
-</div>
-<div class="volver-container">
-<a class="back-link" href="index.html">↑ VOLVER ↑</a>
-</div>
-<footer class="footer">
-<p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
-</footer>
-<a class="nequi-btn" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank" title="Pagar con Nequi">
-     WHATSAPP
+  <h2>HEAVY METAL</h2>
+  <div class="catalogo" id="catalogo-heavy"></div>
+
+  <div id="wishlist">
+    <h3>Lista de deseos</h3>
+    <ul id="wishlist-items"></ul>
+    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+  </div>
+
+  <div id="cart">
+    <h3>Carrito de compras</h3>
+    <ul id="cart-items"></ul>
+    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+  </div>
+
+  <div class="volver-container">
+    <a class="back-link" href="index.html">↑ VOLVER ↑</a>
+  </div>
+
+  <footer class="footer">
+    <p style="text-align:center">© DERECHOS DE AUTOR – AVERNO – 10/06/2025</p>
+  </footer>
+
+  <a class="nequi-btn" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank">
+    WHATSAPP
   </a>
-<script>
-    
-const productosBlackMetal = [
-  { nombre: "Dark Funeral", precio: 35000, imagen: "https://i.ibb.co/w7TZXRk/dark-funeral.jpg" },
-  { nombre: "Mayhem", precio: 40000, imagen: "https://i.ibb.co/5ntpF1h/mayhem.jpg" }
-];
 
-const productosThrashMetal = [
-  { nombre: "Kreator", precio: 30000, imagen: "https://i.ibb.co/vchGrBt/kreator.jpg" },
-  { nombre: "Sodom", precio: 32000, imagen: "https://i.ibb.co/JqZ0Pnv/sodom.jpg" }
-];
-
-const productosHeavyMetal = [
-  { nombre: "Iron Maiden", precio: 45000, imagen: "https://i.ibb.co/GVcbP9f/maiden.jpg" },
-  { nombre: "Judas Priest", precio: 42000, imagen: "https://i.ibb.co/4ZJLkzn/judas.jpg" }
-];
+  <script>
+    // Arrays de productos
+    const productosBlackMetal = [
+      { nombre: "Dark Funeral", precio: 35000, imagen: "https://i.ibb.co/w7TZXRk/dark-funeral.jpg" },
+      { nombre: "Mayhem",       precio: 40000, imagen: "https://i.ibb.co/5ntpF1h/mayhem.jpg" }
+    ];
+    const productosThrashMetal = [
+      { nombre: "Kreator", precio: 30000, imagen: "https://i.ibb.co/vchGrBt/kreator.jpg" },
+      { nombre: "Sodom",   precio: 32000, imagen: "https://i.ibb.co/JqZ0Pnv/sodom.jpg" }
+    ];
+    const productosHeavyMetal = [
+      { nombre: "Iron Maiden",  precio: 45000, imagen: "https://i.ibb.co/GVcbP9f/maiden.jpg" },
+      { nombre: "Judas Priest", precio: 42000, imagen: "https://i.ibb.co/4ZJLkzn/judas.jpg" }
+    ];
 
     let wishlistData = {};
     let cartData = {};
@@ -381,101 +269,68 @@ const productosHeavyMetal = [
     function crearItem(producto) {
       const item = document.createElement("div");
       item.className = "item";
-
       item.innerHTML = `
-        <span class="heart-icon"
-              onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">
-          ⛧
-        </span>
+        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio})">⛧</span>
         <img src="${producto.imagen}" alt="${producto.nombre}">
         <h3>${producto.nombre}</h3>
         <div class="precio">$${producto.precio.toLocaleString()}</div>
         <label class="cantidad-label">
           Cantidad:
-          <input type="number"
-                 min="1"
-                 value="1"
-                 class="cantidad-input"
+          <input type="number" min="1" value="1" class="cantidad-input"
                  onchange="actualizarCantidad('${producto.nombre}', this.value)">
         </label>
-        <button class="cart-button"
-                onclick="addToCart('${producto.nombre}', ${producto.precio})">
+        <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">
           Agregar al carrito
         </button>
       `;
       return item;
     }
 
-    function renderCatalogo() {
-      const container = document.getElementById("catalogo-container");
-      productos.forEach(producto => {
-        container.appendChild(crearItem(producto));
-      });
-    }
-
-    function toggleFavorite(element, nombre, precio) {
-      if (element.classList.contains("active")) {
-        element.classList.remove("active");
-        delete wishlistData[nombre];
+    function toggleFavorite(el, nombre, precio) {
+      el.classList.toggle("active");
+      if (el.classList.contains("active")) {
+        wishlistData[nombre] = { precio, cantidad: 1, element: el };
       } else {
-        element.classList.add("active");
-        wishlistData[nombre] = { precio: precio, cantidad: 1, element: element };
+        delete wishlistData[nombre];
       }
       renderWishlist();
     }
 
+    function addToCart(nombre, precio) {
+      const el = Array.from(document.querySelectorAll('.item'))
+        .find(x => x.querySelector('h3').textContent === nombre);
+      const cantidad = parseInt(el.querySelector('.cantidad-input').value) || 1;
+      cartData[nombre] = { precio, cantidad };
+      if (wishlistData[nombre]) wishlistData[nombre].cantidad = cantidad;
+      renderWishlist();
+      renderCarrito();
+    }
+
     function renderWishlist() {
-      const wishlist = document.getElementById("wishlist-items");
-      wishlist.innerHTML = "";
-      for (const nombre in wishlistData) {
-        const item = wishlistData[nombre];
-        const li = document.createElement("li");
-        li.innerHTML = `
-          ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
-          <button class="remove-button"
-                  onclick="eliminarDeWishlist('${nombre}')">
-            ✖
-          </button>
-        `;
-        wishlist.appendChild(li);
+      const ul = document.getElementById("wishlist-items");
+      ul.innerHTML = "";
+      for (let n in wishlistData) {
+        const w = wishlistData[n];
+        ul.innerHTML += `<li>${n} - $${w.precio.toLocaleString()} x${w.cantidad}
+          <button class="remove-button" onclick="eliminarDeWishlist('${n}')">✖</button>
+        </li>`;
       }
     }
 
     function eliminarDeWishlist(nombre) {
-      if (wishlistData[nombre]) {
-        wishlistData[nombre].element.classList.remove("active");
-        delete wishlistData[nombre];
-        renderWishlist();
-      }
-    }
-
-    function addToCart(nombre, precio) {  
-      const elemento = Array.from(document.querySelectorAll('.item'))
-        .find(el => el.querySelector('h3').textContent === nombre);
-      const cantidad = parseInt(elemento.querySelector('.cantidad-input').value) || 1;
-      cartData[nombre] = { precio: precio, cantidad: cantidad };
-
-      if (wishlistData[nombre]) {
-        wishlistData[nombre].cantidad = cantidad;
-        renderWishlist();
-      }
-      renderCarrito();
+      wishlistData[nombre].element.classList.remove("active");
+      delete wishlistData[nombre];
+      renderWishlist();
     }
 
     function renderCarrito() {
-      const carrito = document.getElementById("cart-items");
-      carrito.innerHTML = "";
-      for (const nombre in cartData) {
-        const item = cartData[nombre];
-        const li = document.createElement("li");
-        li.innerHTML = `
-          ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
-          <button class="remove-button"
-                  onclick="eliminarDelCarrito('${nombre}')">
-            ✖
-          </button>
-        `;
-        carrito.appendChild(li);
+      const ul = document.getElementById("cart-items");
+      ul.innerHTML = "";
+      for (let n in cartData) {
+        const c = cartData[n];
+        ul.innerHTML += `<li>${n} - $${c.precio.toLocaleString()} x${c.cantidad}
+          <button class="remove-button" onclick="eliminarDelCarrito('${n}')">✖</button>
+        </li>`;
       }
     }
 
@@ -485,91 +340,59 @@ const productosHeavyMetal = [
     }
 
     function moverWishlistACarrito() {
-      for (const nombre in wishlistData) {
-        const item = wishlistData[nombre];
-        cartData[nombre] = { precio: item.precio, cantidad: item.cantidad };
+      for (let n in wishlistData) {
+        cartData[n] = { precio: wishlistData[n].precio, cantidad: wishlistData[n].cantidad };
       }
       wishlistData = {};
-      document.querySelectorAll(".heart-icon.active")
-              .forEach(icon => icon.classList.remove("active"));
+      document.querySelectorAll(".heart-icon.active").forEach(i => i.classList.remove("active"));
       renderWishlist();
       renderCarrito();
     }
-    
-function vaciarWishlist() {
-  for (const nombre in wishlistData) {
-    if (wishlistData[nombre].element) {
-      wishlistData[nombre].element.classList.remove("active");
+
+    function vaciarWishlist() {
+      wishlistData = {};
+      renderWishlist();
     }
-  }
-  wishlistData = {};
-  renderWishlist();
-  reiniciarCantidades();
-}
 
-function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
-  reiniciarCantidades();
-}
-
-function reiniciarCantidades() {
-  const inputs = document.querySelectorAll(".cantidad-input");
-  inputs.forEach(input => {
-    input.value = 1;
-  });
-}
+    function vaciarCarrito() {
+      cartData = {};
+      renderCarrito();
+    }
 
     function comprarPorWhatsapp() {
-      if (Object.keys(cartData).length === 0) {
-        alert("El carrito está vacío.");
-        return;
+      if (!Object.keys(cartData).length) return alert("Carrito vacío");
+      let msg = "Hola, quiero comprar:%0A";
+      for (let n in cartData) {
+        const it = cartData[n];
+        msg += `- ${n} x${it.cantidad} = $${(it.precio*it.cantidad).toLocaleString()}%0A`;
       }
-      let mensaje = "Hola, quiero comprar los siguientes ítems:%0A";
-      for (const nombre in cartData) {
-        const item = cartData[nombre];
-        const subtotal = item.precio * item.cantidad;
-        mensaje += `- ${nombre} x${item.cantidad} = $${subtotal.toLocaleString()}%0A`;
-      }
-      const url = `https://wa.me/573154277973?text=${mensaje}`;
-      window.open(url, '_blank');
+      window.open(`https://wa.me/573154277973?text=${msg}`, "_blank");
     }
 
-    function actualizarCantidad(nombre, nuevaCantidad) {
-      const cant = parseInt(nuevaCantidad) || 1;
-      if (wishlistData[nombre]) {
-        wishlistData[nombre].cantidad = cant;
-        renderWishlist();
-      }
-      if (cartData[nombre]) {
-        cartData[nombre].cantidad = cant;
-        renderCarrito();
-      }
+    function actualizarCantidad(nombre, val) {
+      const c = parseInt(val)||1;
+      if (wishlistData[nombre]) wishlistData[nombre].cantidad = c;
+      if (cartData[nombre]) cartData[nombre].cantidad = c;
+      renderWishlist();
+      renderCarrito();
     }
 
-  // --- Nueva función para renderizar cualquier array de productos en cualquier contenedor ---
-  function renderCatalogoPorGenero(productos, contenedorID) {
-    const container = document.getElementById(contenedorID);
-    container.innerHTML = ""; // limpia antes de renderizar
-    productos.forEach(producto => {
-      container.appendChild(crearItem(producto));
-    });
-  }
+    function renderCatalogoPorGenero(productos, contenedorID) {
+      const ctn = document.getElementById(contenedorID);
+      ctn.innerHTML = "";
+      productos.forEach(p => ctn.appendChild(crearItem(p)));
+    }
 
-  // --- Mantén aquí tu array productosBlackMetal, productosThrashMetal y productosHeavyMetal ---
+    // Inicializa los tres catálogos
+    renderCatalogoPorGenero(productosBlackMetal, "catalogo-black");
+    renderCatalogoPorGenero(productosThrashMetal, "catalogo-thrash");
+    renderCatalogoPorGenero(productosHeavyMetal, "catalogo-heavy");
 
-  // Ahora llamamos a cada catálogo por separado:
-  renderCatalogoPorGenero(productosBlackMetal, "catalogo-black");
-  renderCatalogoPorGenero(productosThrashMetal, "catalogo-thrash");
-  renderCatalogoPorGenero(productosHeavyMetal, "catalogo-heavy");
-
-  </script>
-
-<script>
-  document.getElementById('flyer-close').onclick = function () {
-    document.getElementById('flyer-overlay').style.display = 'none';
-  };
-    
+    // Cerrar flyer
+    document.getElementById('flyer-close').onclick = () => {
+      document.getElementById('flyer-overlay').style.display = 'none';
+    };
+      
 </script>
 </body>
 </html>
