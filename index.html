@@ -198,6 +198,55 @@
   width: 260px;                  /* reproductor más pequeño */
   max-width: 90%;
   }    
+
+  .submenu {
+  position: relative;
+  display: inline-block;
+}
+
+.submenu-toggle {
+  cursor: pointer;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-bottom: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.submenu-toggle:hover {
+  border-bottom: 1px solid red;
+}
+
+.submenu-items {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  min-width: 160px;
+  padding: 8px 0;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  text-align: left;
+}
+
+.submenu-items a {
+  display: block;
+  padding: 8px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.submenu-items a:hover {
+  border-bottom: 1px solid red;
+}
+
+.submenu:hover .submenu-items {
+  display: block;
+}
+
   </style>
   </head>
   <body>
@@ -223,7 +272,21 @@
 
   <div class="secondary-nav fade-in">
     <a href="VENTA-CD.html" style="color: #C10202;">VENTA DE CD's</a>
-    <a href="MERCH.html" style="color: white;">MERCH</a>
+    
+    <div class="secondary-nav fade-in">
+  <a href="VENTA-CD.html" style="color: #C10202;">VENTA DE CD's</a>
+
+  <div class="submenu">
+    <span class="submenu-toggle" style="color: white;">MERCH ▾</span>
+    <div class="submenu-items">
+      <a href="MERCH.html" style="color: white;">HOMBRE</a>
+      <a href="#" style="color: #C10202;">MUJER</a> <!-- ← aquí irá el nuevo enlace -->
+    </div>
+  </div>
+
+  <a href="VENTA-LIBRO.html" style="color: #C10202;">VENTA DE LIBROS</a>
+  </div>
+
     <a href="VENTA-LIBRO.html" style="color: #C10202;">VENTA DE LIBROS</a>
   </div>
 
