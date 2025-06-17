@@ -169,15 +169,17 @@
       }
     }
 
-    audio {
-    width: 260px;
-    max-width: 90%;
-    margin: 20px auto;
-    display: block;
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
-    }
+  audio {
+  width: 260px;
+  max-width: 90%;
+  margin: 20px auto;
+  display: block;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  opacity: 0.85;               /* 👈 reduce la visibilidad del fondo blanco en Chrome */
+  filter: brightness(0.6);     /* 👈 oscurece visualmente los controles */
+  }
 
   .bloque-reproductor {
   width: 100%;                   /* ocupa todo el ancho de la pantalla */
