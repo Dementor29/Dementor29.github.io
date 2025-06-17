@@ -547,13 +547,22 @@ function reiniciarCantidades() {
       }
     }
 
-    
-    renderCatalogo(productosBlackMetal, "catalogo-black", false);
-    renderCatalogo(productosThrashMetal, "catalogo-thrash", false);    
-    renderCatalogo(productosHeavyMetal, "catalogo-heavy", false);
+  // --- Nueva función para renderizar cualquier array de productos en cualquier contenedor ---
+  function renderCatalogoPorGenero(productos, contenedorID) {
+    const container = document.getElementById(contenedorID);
+    container.innerHTML = ""; // limpia antes de renderizar
+    productos.forEach(producto => {
+      container.appendChild(crearItem(producto));
+    });
+  }
 
-    // Inicializa el catálogo al cargar la página
-    renderCatalogo();
+  // --- Mantén aquí tu array productosBlackMetal, productosThrashMetal y productosHeavyMetal ---
+
+  // Ahora llamamos a cada catálogo por separado:
+  renderCatalogoPorGenero(productosBlackMetal, "catalogo-black");
+  renderCatalogoPorGenero(productosThrashMetal, "catalogo-thrash");
+  renderCatalogoPorGenero(productosHeavyMetal, "catalogo-heavy");
+
   </script>
 
 <script>
