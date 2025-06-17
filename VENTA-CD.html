@@ -307,24 +307,35 @@
 </style>
 </head>
 <body>
+<header>
+<h1>CATÁLOGO</h1>
+</header>   
+    
 <div id="flyer-overlay">
 <button id="flyer-close">𝕏</button>
 <img alt="Flyer Averno Store" src="https://i.postimg.cc/BZxWpzRv/AVERNO.png"/>
 </div>
 
-<header>
-<h1>CATÁLOGO</h1>
-<p align="center">BLACK METAL</p>
-</header>
 <div id="radio-container">
 <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
 <audio controls="">
 <source src="https://stream.laut.fm/demonology" type="audio/mpeg"/>
       Tu navegador no soporta reproducción de audio.
     </audio>
+    
 <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
 <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
 </div>
+
+<h2>BLACK METAL</h2>
+<div class="catalogo" id="catalogo-black"></div>
+
+<h2>THRASH METAL</h2>
+<div class="catalogo" id="catalogo-thrash"></div>
+
+<h2>HEAVY METAL</h2>
+    
+<div class="catalogo" id="catalogo-heavy"></div>    
 <div class="catalogo" id="catalogo-container"></div>
 <div id="wishlist">
 <h3>Lista de deseos</h3>
@@ -348,23 +359,21 @@
      WHATSAPP
   </a>
 <script>
-    const productos = [
-      {
-        nombre: "DARKTHRONE",
-        precio: 25000,
-        imagen: "https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg"
-      },
-      {
-        nombre: "MORBID MACABRE",
-        precio: 30000,
-        imagen: "https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg"
-      },
-      {
-        nombre: "MASACRE",
-        precio: 28000,
-        imagen: "https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg"
-      }
-    ];
+    
+const productosBlackMetal = [
+  { nombre: "Dark Funeral", precio: 35000, imagen: "https://i.ibb.co/w7TZXRk/dark-funeral.jpg" },
+  { nombre: "Mayhem", precio: 40000, imagen: "https://i.ibb.co/5ntpF1h/mayhem.jpg" }
+];
+
+const productosThrashMetal = [
+  { nombre: "Kreator", precio: 30000, imagen: "https://i.ibb.co/vchGrBt/kreator.jpg" },
+  { nombre: "Sodom", precio: 32000, imagen: "https://i.ibb.co/JqZ0Pnv/sodom.jpg" }
+];
+
+const productosHeavyMetal = [
+  { nombre: "Iron Maiden", precio: 45000, imagen: "https://i.ibb.co/GVcbP9f/maiden.jpg" },
+  { nombre: "Judas Priest", precio: 42000, imagen: "https://i.ibb.co/4ZJLkzn/judas.jpg" }
+];
 
     let wishlistData = {};
     let cartData = {};
@@ -537,6 +546,12 @@ function reiniciarCantidades() {
         renderCarrito();
       }
     }
+
+    
+    renderCatalogo(productosBlackMetal, "catalogo-black", false);
+    renderCatalogo(productosThrashMetal, "catalogo-thrash", false);    
+    renderCatalogo(productosHeavyMetal, "catalogo-heavy", false);
+
     // Inicializa el catálogo al cargar la página
     renderCatalogo();
   </script>
