@@ -145,18 +145,20 @@
     }
 
     .nequi-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 10px;
-      max-width: 90vw;
-      background-color: #6f0f19;
-      color: white;
-      padding: 12px 18px;
-      font-size: 16px;
-      z-index: 999;
-      white-space: nowrap;
-      box-shadow: 0 0 10px red;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    background-color: #6f0f19;
+    color: white;
+    padding: 10px 14px;
+    font-size: 14px;
+    z-index: 999;
+    box-shadow: 0 0 10px red;
+    max-width: calc(100vw - 20px); /* ← evita que se desborde nunca */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 6px;
     }
 
     .nequi-btn:hover {
@@ -207,11 +209,14 @@
       #flyer-overlay img { width: 90vw; }
     }
 
-    @media (max-width: 600px) {
+   @media (max-width: 480px) {
   .nequi-btn {
-    font-size: 14px;
-    padding: 8px 12px;
-    right: 10px; }
+    right: 8px;
+    left: 8px;
+    width: auto;
+    text-align: center;
+    max-width: calc(100vw - 16px); /* margen a ambos lados */
+  }  
   }
 
 .led-marquee {
