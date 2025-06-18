@@ -7,6 +7,7 @@
 <title>Despertar Del ⛧ Averno</title>
     
 <style>
+    
   @font-face {
     font-family: 'BurzumGothic';
     src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
@@ -19,14 +20,12 @@
     overflow-x: hidden;
   }
 
-   body {
+  body {
     background-color: #000000;
     font-family: 'BurzumGothic', serif;
     color: white;
-    margin: 0 auto;
+    margin: 0;
     padding: 20px;
-    max-width: 100%;
-    overflow-x: hidden;
   }
 
   h1 {
@@ -34,18 +33,14 @@
     margin-bottom: 10px;
   }
 
-.catalogo {
+  .catalogo {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 20px;
-    margin-bottom: 40px;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+    justify-content: center;
   }
 
- .item {
+  .item {
     background-color: #1e1e1e;
     border-radius: 8px;
     padding: 10px;
@@ -298,9 +293,12 @@
   }
 
   @media (max-width: 600px) {
+    .catalogo {
+      padding: 0 10px;
+    }
     .item {
-      width: 90vw;
-      margin: 0 auto;
+      width: 220px;
+      max-width: 100%;
     }
 
     #flyer-overlay img {
@@ -310,14 +308,7 @@
       max-height: 100%;
     }
   }
-    
-@media (max-width: 600px) {
-  body {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
-    
+
 </style>
 </head>
 <body>
