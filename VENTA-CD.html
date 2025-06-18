@@ -7,6 +7,7 @@
   <link href="https://static.thenounproject.com/png/26242-200.png" rel="shortcut icon"/>
   
   <style>
+    
     @font-face {
       font-family: 'BurzumGothic';
       src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
@@ -195,17 +196,42 @@
   
   .led-marquee {
   font-family: 'BurzumGothic', serif;
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
-  margin: 10px 0;
-}
-    
+  color: red;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: scroll-left 15s linear infinite;
+  margin-bottom: 15px;
+  }
+
+  @keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+  }
+  
 .radio-credit {
-  font-size: 14px;
   font-family: 'BurzumGothic', serif;
-  display: block;
-  margin-top: 10px;
+  font-size: 16px;  /* Aumenta el tamaño aquí si deseas más */
   text-align: center;
+  margin-top: 10px;
+  display: block;
+}
+
+.radio-hint {
+  font-size: 16px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#radio-container {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 </style>
@@ -222,13 +248,14 @@
   </div>
 
   <div id="radio-container">
-    <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND…"></div>
-    <audio controls>
-      <source src="https://stream.laut.fm/demonology" type="audio/mpeg"/>
-    </audio>
-    <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
-    <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
-
+    
+  <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND…">TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND…</div>
+  <audio controls>
+    <source src="https://stream.laut.fm/demonology" type="audio/mpeg"/>
+  </audio>
+  <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
+  <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
+    
   </div>
 
   <h2>BLACK METAL</h2>
