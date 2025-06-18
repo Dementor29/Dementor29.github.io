@@ -203,12 +203,13 @@
   width: 500px;              /* ⬅ Cambia el ancho aquí */
   margin: 0 auto 20px auto;  /* ⬅ Centra el bloque */
   position: relative;
+  margin-bottom: 20px;
 }
 
 .led-marquee::before {
   content: attr(data-text);
   display: inline-block;
-  animation: scroll-left 10s linear infinite;
+  animation: scroll-left 25s linear infinite;
 }
 
 @keyframes scroll-left {
@@ -242,12 +243,13 @@
 
 #radio-container {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
     
 h1 {
+  font-size: 40px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px; /* ⬅ Aquí defines más espacio debajo del título */
 }
 
 </style>
