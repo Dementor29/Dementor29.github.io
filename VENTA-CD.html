@@ -145,40 +145,32 @@
     }
 
     .nequi-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 10px;
-    background-color: #6f0f19;
-    color: white;
-    padding: 10px 14px;
-    font-size: 14px;
-    z-index: 999;
-    box-shadow: 0 0 10px red;
-    max-width: calc(100vw - 20px); /* ← evita que se desborde nunca */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    border-radius: 6px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #6f0f19;
+      color: white;
+      padding: 12px 18px;
+      font-size: 16px;
+      z-index: 999;
+      box-shadow: 0 0 10px red;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .nequi-btn:hover {
       background-color: #ff0000;
     }
-
     /* FLYER EMERGENTE */
-    #flyer-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.15);
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* 💡 Esto evita desbordes por elementos internos */
+      #flyer-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(255, 255, 255, 0.15);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    
     #flyer-overlay img {
       width: 50%;
       max-width: 600px;
