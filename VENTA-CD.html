@@ -194,40 +194,51 @@
       #flyer-overlay img { width: 90vw; }
     }
   
-  .led-marquee {
+.led-marquee {
   font-family: 'BurzumGothic', serif;
-  font-size: 22px;
-  text-align: center;
+  font-size: 18px;  /* Aquí puedes aumentar el tamaño */
   color: red;
   white-space: nowrap;
   overflow: hidden;
-  animation: scroll-left 15s linear infinite;
-  margin-bottom: 15px;
-  }
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  @keyframes scroll-left {
+.led-marquee::before {
+  content: attr(data-text);
+  display: inline-block;
+  animation: scroll-left 20s linear infinite;
+}
+
+@keyframes scroll-left {
   0% {
     transform: translateX(100%);
   }
   100% {
     transform: translateX(-100%);
   }
-  }
+}
   
-.radio-credit {
-  font-family: 'BurzumGothic', serif;
-  font-size: 16px;  /* Aumenta el tamaño aquí si deseas más */
-  text-align: center;
-  margin-top: 10px;
-  display: block;
+/* Estilo para el texto "Presiona ▶ para escuchar..." */
+.radio-hint {
+  font-family: 'BurzumGothic', serif;     /* Usamos la misma tipografía de la web */
+  font-size: 20px;                        /* Puedes subir este valor a 18px, 20px, etc. */
+  color: #cccccc;                         /* Gris claro como en tu diseño original */
+  font-style: italic;                     /* Estilo cursiva */
+  text-align: center;                     /* Centrado horizontalmente */
+  margin-bottom: 10px;                    /* Espacio inferior */
 }
 
-.radio-hint {
-  font-size: 16px;
-  font-style: italic;
+/* Estilo para el texto de créditos (small) */
+.radio-credit {
+  font-family: 'BurzumGothic', serif;
+  font-size: 18px;                        /* Puedes subirlo a 16px o más si deseas */
+  color: #999999;                         /* Gris un poco más oscuro que el hint */
   text-align: center;
-  margin-bottom: 10px;
+  display: block;
+  margin-top: 8px;
 }
+
 
 #radio-container {
   text-align: center;
@@ -249,13 +260,14 @@
 
   <div id="radio-container">
     
-  <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND…">TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND…</div>
+  <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
   <audio controls>
     <source src="https://stream.laut.fm/demonology" type="audio/mpeg"/>
   </audio>
+    
   <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
   <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
-    
+      
   </div>
 
   <h2>BLACK METAL</h2>
@@ -296,16 +308,18 @@
   <script>
     // Arrays de productos
     const productosBlackMetal = [
-      { nombre: "Dark Funeral", precio: 35000, imagen: "https://i.ibb.co/w7TZXRk/dark-funeral.jpg" },
-      { nombre: "Mayhem",       precio: 40000, imagen: "https://i.ibb.co/5ntpF1h/mayhem.jpg" }
+      { nombre: "DARKTHRONE", precio: 25000, imagen: "https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg" },
+      { nombre: "MORBID MACABRE", precio: 30000, imagen: "https://i.ibb.co/mVR8MwP6/495292472-657190110631029-1117194222187131368-n.jpg" },
+      { nombre: "MASACRE", precio: 35000, imagen: "https://i.ibb.co/ynMtnmZP/503859078-657190037297703-3880320405636335216-n.jpg" }
     ];
     const productosThrashMetal = [
-      { nombre: "Kreator", precio: 30000, imagen: "https://i.ibb.co/vchGrBt/kreator.jpg" },
-      { nombre: "Sodom",   precio: 32000, imagen: "https://i.ibb.co/JqZ0Pnv/sodom.jpg" }
+      { nombre: "DIRGES", precio: 50000, imagen: "https://img02.shop-pro.jp/PA01171/129/product/180594579.jpg?cmsp_timestamp=20240422194600" },
+      { nombre: "SOBIBOR",   precio: 32000, imagen: "https://f4.bcbits.com/img/0031203874_71.jpg" },
+      { nombre: "SLAYER",   precio: 32000, imagen: "https://www.afm-records.com/cdn/shop/files/shownomercy-cd-157902_2950b946-c2e9-4bc4-9113-8061b6678ae8_1200x1200_crop_center.jpg?v=1741621161" }
     ];
     const productosHeavyMetal = [
-      { nombre: "Iron Maiden",  precio: 45000, imagen: "https://i.ibb.co/GVcbP9f/maiden.jpg" },
-      { nombre: "Judas Priest", precio: 42000, imagen: "https://i.ibb.co/4ZJLkzn/judas.jpg" }
+      { nombre: "JUDAS PRIEST",  precio: 45000, imagen: "https://c8.alamy.com/comp/HED8B5/judas-priest-british-steel-cd-HED8B5.jpg" },
+      { nombre: "IRON MAIDEN", precio: 42000, imagen: "https://circulomusical.com/cdn/shop/files/724349691605.webp?v=1728167016 }
     ];
 
     let wishlistData = {};
