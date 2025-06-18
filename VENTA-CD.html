@@ -416,18 +416,32 @@ h1 {
       renderWishlist();
       renderCarrito();
     }
+    
+    function reiniciarUIProductos() {
+  // 🔴 Quita corazones activos
+    document.querySelectorAll(".heart-icon.active").forEach(icon => {
+    icon.classList.remove("active");
+    });
 
-    function vaciarWishlist() {
-      wishlistData = {};
-      renderWishlist();
+  // 🔁 Restablece cantidad a 1 en todos los productos
+    document.querySelectorAll(".cantidad-input").forEach(input => {
+    input.value = 1;
+    });
     }
+    
+  function vaciarWishlist() {
+  wishlistData = {};
+  reiniciarUIProductos();  // ⬅ Llama la nueva función
+  renderWishlist();
+  }
 
-    function vaciarCarrito() {
-      cartData = {};
-      renderCarrito();
-    }
-
-    function comprarPorWhatsapp() {
+  function vaciarCarrito() {
+  cartData = {};
+  reiniciarUIProductos();  // ⬅ Llama la nueva función
+  renderCarrito();
+  }
+    
+  function comprarPorWhatsapp() {
       if (!Object.keys(cartData).length) return alert("Carrito vacío");
       let msg = "Hola, quiero comprar:%0A";
       for (let n in cartData) {
