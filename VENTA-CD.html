@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Despertar Del ⛧ Averno</title>
   <link href="https://static.thenounproject.com/png/26242-200.png" rel="shortcut icon"/>
-  
+
   <style>
-    
     @font-face {
       font-family: 'BurzumGothic';
       src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
       font-weight: normal;
       font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -21,7 +24,7 @@
       color: white;
       margin: 0;
       padding: 20px;
-      overflow-x: hidden; 
+      overflow-x: hidden;
     }
 
     h1, h2 {
@@ -29,28 +32,33 @@
       margin-bottom: 20px;
     }
 
+    h2 {
+      color: #C10202;
+      font-family: 'BurzumGothic', serif;
+    }
+
     .catalogo {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    margin-bottom: 40px;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;  /* 💡 previene scroll lateral */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
     .item {
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    padding: 10px;
-    width: calc(100% - 20px);  /* ← ajusta el padding y borde */
-    max-width: 220px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      padding: 10px;
+      width: calc(100% - 20px);
+      max-width: 220px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
     }
 
     .item img {
@@ -154,31 +162,44 @@
       font-size: 16px;
       z-index: 999;
       box-shadow: 0 0 10px red;
+      max-width: calc(100vw - 20px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-radius: 6px;
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .nequi-btn:hover {
       background-color: #ff0000;
     }
-    /* FLYER EMERGENTE */
-      #flyer-overlay {
+/* FLYER EMERGENTE */
+
+    #flyer-overlay {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background: rgba(255, 255, 255, 0.15);
       z-index: 10000;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
+
     #flyer-overlay img {
-      width: 50%;
+      width: 90vw;
       max-width: 600px;
       max-height: 90%;
+      object-fit: contain;
     }
+
     #flyer-close {
       position: absolute;
-      top: 20px; right: 30px;
+      top: 20px;
+      right: 30px;
       font-size: 30px;
       color: white;
       background: none;
@@ -187,87 +208,90 @@
       transition: color 0.2s;
       z-index: 10001;
     }
+
     #flyer-close:hover {
       color: #ff0000;
     }
 
-    @media (max-width: 600px) {
-    .item {
-    width: 100%;
-    max-width: 100%; }
+    .led-marquee {
+      font-family: 'BurzumGothic', serif;
+      font-size: 18px;
+      color: red;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 500px;
+      margin: 0 auto 20px auto;
+      position: relative;
+      margin-bottom: 20px;
     }
-    
+
+    .led-marquee::before {
+      content: attr(data-text);
+      display: inline-block;
+      animation: scroll-left 25s linear infinite;
     }
-    @media (max-width: 868px) {
-      #flyer-overlay img { width: 90vw; }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
     }
-    
-.led-marquee {
-  font-family: 'BurzumGothic', serif;
-  font-size: 18px;
-  color: red;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 500px;              /* ⬅ Cambia el ancho aquí */
-  margin: 0 auto 20px auto;  /* ⬅ Centra el bloque */
-  position: relative;
-  margin-bottom: 20px;
-}
+/* Estilo para el texto \"Presiona ▶ para escuchar...\" */
 
-.led-marquee::before {
-  content: attr(data-text);
-  display: inline-block;
-  animation: scroll-left 25s linear infinite;
-}
-
-@keyframes scroll-left {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-/* Estilo para el texto "Presiona ▶ para escuchar..." */
-.radio-hint {
-  font-family: 'BurzumGothic', serif;     /* Usamos la misma tipografía de la web */
-  font-size: 16px;                        /* Puedes subir este valor a 18px, 20px, etc. */
-  color: #cccccc;                         /* Gris claro como en tu diseño original */
-  font-style: italic;                     /* Estilo cursiva */
-  text-align: center;                     /* Centrado horizontalmente */
-  margin-bottom: 10px;                    /* Espacio inferior */
-}
-
+    .radio-hint {
+      font-family: 'BurzumGothic', serif;
+      font-size: 16px;
+      color: #cccccc;
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 10px;
+    }
 /* Estilo para el texto de créditos (small) */
-.radio-credit {
-  font-family: 'BurzumGothic', serif;
-  font-size: 14px;                        /* Puedes subirlo a 16px o más si deseas */
-  color: #999999;                         /* Gris un poco más oscuro que el hint */
-  text-align: center;
-  display: block;
-  margin-top: 8px;
-}
 
+    .radio-credit {
+      font-family: 'BurzumGothic', serif;
+      font-size: 14px;
+      color: #999999;
+      text-align: center;
+      display: block;
+      margin-top: 8px;
+    }
 
-#radio-container {
-  text-align: center;
-  margin-bottom: 50px;
-}
-    
-h1 {
-  font-family: 'BurzumGothic', serif;  /* ⬅ Aplica la fuente */
-  font-size: 40px;                     /* Tamaño grande como pediste */
-  text-align: center;
-  margin-bottom: 40px;                 /* Espacio debajo del título */
-}
-    
-h2 {
-  color: #C10202;        /* Rojo sangre */
-  text-align: center;    /* Ya lo tienes, pero por si acaso */
-  margin-bottom: 20px;
-  font-family: 'BurzumGothic', serif;
-}
+    #radio-container {
+      text-align: center;
+      margin-bottom: 50px;
+    }
 
+    h1 {
+      font-family: 'BurzumGothic', serif;
+      font-size: 40px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .item {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .nequi-btn {
+        font-size: 14px;
+        padding: 8px 12px;
+        right: 10px;
+        left: auto;
+      }
+    }
+
+    @media (max-width: 868px) {
+      #flyer-overlay img {
+        width: 90vw;
+      }
+    }
+  
 </style>
 </head>
 <body>
