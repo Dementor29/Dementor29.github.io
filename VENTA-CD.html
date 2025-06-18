@@ -193,21 +193,22 @@
     @media (max-width: 868px) {
       #flyer-overlay img { width: 90vw; }
     }
-  
+    
 .led-marquee {
   font-family: 'BurzumGothic', serif;
-  font-size: 15px;  /* Aquí puedes aumentar el tamaño */
+  font-size: 22px;
   color: red;
   white-space: nowrap;
   overflow: hidden;
-  text-align: center;
-  margin-bottom: 20px;
+  width: 340px;              /* ⬅ Cambia el ancho aquí */
+  margin: 0 auto 20px auto;  /* ⬅ Centra el bloque */
+  position: relative;
 }
 
 .led-marquee::before {
   content: attr(data-text);
   display: inline-block;
-  animation: scroll-left 20s linear infinite;
+  animation: scroll-left 12s linear infinite;
 }
 
 @keyframes scroll-left {
@@ -218,7 +219,6 @@
     transform: translateX(-100%);
   }
 }
-  
 /* Estilo para el texto "Presiona ▶ para escuchar..." */
 .radio-hint {
   font-family: 'BurzumGothic', serif;     /* Usamos la misma tipografía de la web */
