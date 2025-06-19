@@ -206,21 +206,40 @@
   #flyer-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.50); 
+    background: #000000;
     z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     image-rendering: auto;
+
+    box-shadow:
+    0 0 10px #ffffff,
+    0 0 20px #ffffff,
+    0 0 40px #ffffff;
+      
   }
 
-  #flyer-overlay img {
-    width: 90vw;
-    max-width: 600px;
-    max-height: 90vh;
-    object-fit: contain;
+  @keyframes parpadeo-led {
+  0%, 100% {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
   }
+  50% {
+    box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 10px #fff;
+  }
+}
+
+#flyer-overlay img {
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+
+  animation: parpadeo-led 2.5s infinite;
+}
 
   #flyer-close {
     position: absolute;
