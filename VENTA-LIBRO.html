@@ -14,6 +14,28 @@
     font-weight: normal;
     font-style: normal;
   }
+    
+:root {
+  --volver-bg: #990000;
+  --volver-color: #ffffff;
+  --volver-hover-bg: #770000;
+}
+
+.volver-btn {
+  background-color: var(--volver-bg);
+  color: var(--volver-color);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1em;
+  display: inline-block;
+}
+.volver-btn:hover {
+  background-color: var(--volver-hover-bg);
+}
 
   html, body {
     max-width: 100%;
@@ -304,28 +326,6 @@
       width: 220px;
       max-width: 100%;
     }
- 
-:root {
-  --volver-bg: #990000;
-  --volver-color: #ffffff;
-  --volver-hover-bg: #770000;
-}
-
-.volver-btn {
-  background-color: var(--volver-bg);
-  color: var(--volver-color);
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 1em;
-}
-
-.volver-btn:hover {
-  background-color: var(--volver-hover-bg);
-}
       
 @media (max-width: 868px) {
   #flyer-overlay img {
