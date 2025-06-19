@@ -205,40 +205,59 @@
     }
 
   /* FLYER EMERGENTE */
-  #flyer-overlay {
+#flyer-overlay {
   position: fixed;
-  inset: 0; /* esto reemplaza top: 0; left: 0; width y height */
-  background: rgba(255, 255, 255, 0.03);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* fondo transparente */
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
-  #flyer-overlay img {
-  width: 90vw;
-  max-width: 600px;
-  max-height: 90vh;
+#flyer-overlay img {
+  width: auto;
+  height: auto;
+  max-width: 75vw;
+  max-height: 80vh;
   object-fit: contain;
-  }
+  animation: parpadeo-led 2.5s infinite;
+  border-radius: 0;
+}
 
-  #flyer-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 30px;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color 0.2s;
-    z-index: 10001;
+@keyframes parpadeo-led {
+  0%, 100% {
+    box-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #fff;
   }
+  50% {
+    box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff;
+  }
+}
 
-  #flyer-close:hover {
-    color: #ff0000;
-  }
+#flyer-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 22px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+#flyer-close:hover {
+  color: #ff0000;
+}
+
+.flyer-hint {
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  font-size: 13px;
+  color: #ccc;
+  font-family: Arial, sans-serif;
+}
 
   .led-marquee {
     font-family: 'BurzumGothic', serif;
@@ -322,9 +341,10 @@
   </header>   
     
   <div id="flyer-overlay">
-    <button id="flyer-close">𝕏</button>
-    <img alt="Flyer Averno Store" src="https://i.postimg.cc/BZxWpzRv/AVERNO.png"/>
-  </div>
+  <button id="flyer-close" title="Cerrar">✖</button>
+  <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
+  <img src="bg.png" alt="Flyer Averno" />
+</div>
 
   <div id="radio-container">
     
@@ -532,9 +552,9 @@
 
     // Cerrar flyer
     document.getElementById('flyer-close').onclick = () => {
-      document.getElementById('flyer-overlay').style.display = 'none';
+    document.getElementById('flyer-overlay').style.display = 'none';
     };
-      
+    
 </script>
 </body>
 </html>
