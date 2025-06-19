@@ -206,7 +206,7 @@
   #flyer-overlay {
     position: fixed;
     inset: 0;
-    background: #000000;
+    background: rgba(0, 0, 0, 0.85); /* negro translúcido */
     z-index: 10000;
     display: flex;
     align-items: center;
@@ -223,10 +223,10 @@
 
   @keyframes parpadeo-led {
   0%, 100% {
-    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+    box-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #fff;
   }
   50% {
-    box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 10px #fff;
+    box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff;
   }
 }
 
