@@ -206,7 +206,7 @@
   #flyer-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.2); /* negro translúcido */
+    background: rgba(0, 0, 0, 0.1); /* negro translúcido */
     z-index: 10000;
     display: flex;
     align-items: center;
@@ -233,14 +233,13 @@
 #flyer-overlay img {
   width: auto;
   height: auto;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 75vw;   /* antes 90vw */
+  max-height: 80vh;  /* antes 90vh */
   object-fit: contain;
   border-radius: 8px;
-
   animation: parpadeo-led 2.5s infinite;
 }
-
+    
   #flyer-close {
     position: absolute;
     top: 20px;
