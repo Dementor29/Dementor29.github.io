@@ -1,364 +1,244 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
-	<meta charset="UTF-8"/>
-  
-	<meta name="description" content="satanismo"/>
-	<meta name="Keywords" content= "juegos, videos, imagenes, entretenimiento, youtube, video juegos, celular, pc, computador, online, league of legends, free fire, mobile, valhalla krigere, valhalla, krigere"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Autobiografía de Juan Camilo Heredia Gallego - Filosofía, satanismo y crecimiento personal">
+  <title>Despertar del ⛧ Averno</title>
+  <link rel="icon" href="https://static.thenounproject.com/png/26242-200.png">
+  <style>
 
-
- <title>Despertar Del ⛧ Averno</title>
-
-</head>
-
-<body>
-<body bgcolor="black"/>
-
-<style>
-	
-  .carousel-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  }
-
-  .carousel-container {
-    position: relative;
-    max-width: 1400px;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 12px;
-  }
-
-  .carousel {
-    display: flex;
-    transition: transform 0.4s ease-in-out;
-  }
-
-  .carousel a {
-    flex: 0 0 33.333%; /* Muestra 3 imágenes por vez */
-    box-sizing: border-box;
-    padding: 5px;
-  }
-
-  .carousel img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-  }
-
-  .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.4);
-    color:#ffffff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    z-index: 1;
-    border-radius: 50%;
-  }
-
-  .carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-
-  .prev {
-    left: 10px;
-  }
-
-  .next {
-    right: 10px;
-  }
-
-  @media (max-width: 768px) {
-    .carousel a {
-      flex: 0 0 100%; /* 1 imagen por vez en móvil */
+    a, a:visited, a:link, a:active {
+      color: var(--text-color) !important;
+      text-decoration: none !important;
     }
+    a:hover {
+      text-decoration: underline !important;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Fuente Burzum con @font-face */
+    @font-face {
+      font-family: 'BurzumGothic';
+      src: url('fonts/BurzumGothic.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+   :root {
+      --bg-color: #000000;
+      --text-color: #ffffff;
+      --highlight: #ff4d4d;
+      --toggle-bg: #ffffff;    /* botón blanco en modo por defecto */
+      --toggle-color: #000000; /* texto negro en modo por defecto */
+      --title-color: #e0e0e0;   /* títulos gris claro en modo por defecto */
+      --volver-bg: #990000;      /* rojo */
+      --volver-color: #ffffff;   /* letras blancas */
+      --volver-hover-bg: #770000;/* rojo más oscuro al hover */
+      }
+
+    body.light-mode {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --highlight: #b30000;
+      --toggle-bg: #000000;    /* botón negro en modo claro */
+      --toggle-color: #ffffff; /* texto blanco en modo claro */
+      --title-color: #4f4f4f;  /* títulos gris oscuro en modo claro */
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      text-align: center;
+      padding: 1em;
+    }
+    h1, h2 {
+      text-align: center;
+      color: var(--title-color);
+      margin-top: 1em;
+      font-family: 'BurzumGothic', serif;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    .gallery {
+      display: flex;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+    .gallery-track {
+      display: flex;
+      animation: scroll 40s linear infinite alternate;
+    }
+    .gallery-item {
+      flex: 0 0 auto;
+      margin-right: 10px;
+    }
+    .gallery-item img {
+      width: 280px;
+      height: auto;
+      border-radius: 8px;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .mode-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      background-color: var(--toggle-bg);
+      color:            var(--toggle-color);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .volver-btn {
+    background-color: var(--volver-bg);
+    color:            var(--volver-color);
+    border:           none;
+    padding:          10px 20px;
+    font-size:        1em;
+    border-radius:    4px;
+    cursor:           pointer;
+    transition:       background-color 0.3s ease;
+    margin-top:       1em;
+    }
+  .volver-btn:hover {
+  background-color: var(--volver-hover-bg);
   }
 
-.carousel img {
-  display: block;
-}
-	
-.float{
-  position:fixed;
-  width:60px;
-  height:60px;
-  bottom:40px;
-  right:40px;
-  background-color:#25d366;
-  color:#fff;
-  border-radius:50px;
-  text-align:center;
-  font-size:30px;
-  box-shadow: 2px 2px 3px #999;
-  z-index:100;
-}
-.float:hover {
-  text-decoration: none;
-  color: #25d366;
-  background-color:#fff;
-}
+    a { color: var(--text-color); text-decoration: underline; }
+  </style>
+</head>
+<body>
+<button class="mode-toggle" onclick="toggleMode()">MODO 🌙 LECTURA</button>
+<header>
+  <h1>AUTOBIOGRAFIA</h1>
+</header>
 
-.my-float{
-  margin-top:16px;
-}
-
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-  color:#ffffff;
-}
-
-tr:nth-child(even) {
-  
-}
-header {
-  padding: 8px;
-  text-align: center;
-  font-size: 18px;
-  color:#ffffff;
-}
-*{
- box-sizing: border-box;
-}
-.column{
-  float: left;
-  width: 33.33%;
-  padding: 5px;
-}
-
-footer {
-  
-  padding: 00px;
-  text-align: center;
-  font-size: 20px;
-  color:#ffffff;
-}
-article {
-
-color:#ffffff;
-
-}
-
-
-a {
-  text-decoration: none;
-}
-
-.center-text {
-  text-align: center;
-  font-size: 120%;
-  color:#ffffff;
-  margin-top: 40px;
-}
-
-.volver-link {
-  display: block;
-  text-align: center;
-  font-size: 120%;
-  margin-bottom: 40px;
-}
-
-.volver-link a {
-  color:#ffffff;
-}
-
-</style>
-<font color="#C10202"/>	
-
-<div class="carousel-wrapper">
-  <div class="carousel-container">
-    <button class="carousel-button prev" onclick="moveSlide(-1)">&#10094;</button>
-    <div class="carousel" id="carousel">
-      <a href="#"><img src="https://i.ibb.co/7dq7w8Gr/Whats-App-Image-2025-06-08-at-7-50-42-PM.jpg" alt="Imagen 1"></a>
-      <a href="#"><img src="https://i.ibb.co/gbP5NLZ1/Whats-App-Image-2025-06-08-at-7-50-45-PM.jpg" alt="Imagen 2"></a>
-      <a href="#"><img src="https://i.ibb.co/TBGMGBbR/Whats-App-Image-2025-06-08-at-7-47-37-PM.jpg" alt="Imagen 5"></a>
-      <a href="#"><img src="https://i.ibb.co/zhQ6M9zW/Whats-App-Image-2025-06-08-at-7-50-55-PM.jpg" alt="Imagen 4"></a>
-      
+<div class="container">
+  <div class="gallery">
+    <div class="gallery-track">
+      <div class="gallery-item"><img src="https://i.ibb.co/7dq7w8Gr/Whats-App-Image-2025-06-08-at-7-50-42-PM.jpg" alt="Imagen 1"></div>
+      <div class="gallery-item"><img src="https://i.ibb.co/gbP5NLZ1/Whats-App-Image-2025-06-08-at-7-50-45-PM.jpg" alt="Imagen 2"></div>
+      <div class="gallery-item"><img src="https://i.ibb.co/TBGMGBbR/Whats-App-Image-2025-06-08-at-7-47-37-PM.jpg" alt="Imagen 3"></div>
+      <div class="gallery-item"><img src="https://i.ibb.co/zhQ6M9zW/Whats-App-Image-2025-06-08-at-7-50-55-PM.jpg" alt="Imagen 4"></div>
+      <!-- Repetir para loop -->
+      <div class="gallery-item"><img src="https://i.ibb.co/7dq7w8Gr/Whats-App-Image-2025-06-08-at-7-50-42-PM.jpg" alt="Imagen 1"></div>
+      <div class="gallery-item"><img src="https://i.ibb.co/gbP5NLZ1/Whats-App-Image-2025-06-08-at-7-50-45-PM.jpg" alt="Imagen 2"></div>
     </div>
-    <button class="carousel-button next" onclick="moveSlide(1)">&#10095;</button>
   </div>
-</div>
-	
-<script>
-  let currentIndex = 0;
-  const carousel = document.getElementById("carousel");
-  const totalSlides = carousel.children.length;
-  const slidesToShow = window.innerWidth <= 768 ? 1 : 3;
 
-  function updateTransform() {
-    const slideWidthPercent = 100 / slidesToShow;
-    carousel.style.transform = `translateX(-${currentIndex * slideWidthPercent}%)`;
-  }
+  <!-- Secciones concentradas en 3 bloques -->
+  <section id="origen">
+    <h2>NACIMIENTO Y FORMACION</h2>
+    <p>Mi nombre es <span style="color: var(--highlight);">Juan Camilo Heredia Gallego</span>, nacido el <time style="color: var(--highlight);">29 de mayo de 1997</time> en Cali, Colombia. Crecí en un entorno humilde donde aprendí el valor del esfuerzo y la familia. A la edad de 12 años, la pérdida de mi padre por un <span style="color: var(--highlight);">sarcoma gástrico</span> me enfrentó a la fragilidad de la vida. Pese a la adversidad, completé estudios de primaria y secundaria, profundicé en aplicaciones móviles e inglés, y hoy curso Ingeniería en Sistemas, complementando con MySQL. Mi pasión por la <span style="color: var(--highlight);">tecnología</span>, los <span style="color: var(--highlight);">videojuegos</span> y la <span style="color: var(--highlight);">música metal</span> se fusiona con mi curiosidad por filosofías alternas.</p>
+  </section>
 
-  function moveSlide(direction) {
-    const maxIndex = Math.ceil(totalSlides / slidesToShow) - 1;
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = maxIndex;
-    if (currentIndex > maxIndex) currentIndex = 0;
-    updateTransform();
-  }
+  <section id="camino">
+    <h2>HISTORIA Y FILOSOFIA </h2>
+    <p>La muerte de mi padre desató preguntas profundas: ¿por qué el sufrimiento? ¿quién controla el destino? Mi búsqueda me llevó a la música de <cite style="color: var(--highlight);">Marilyn Manson</cite> y al <span style="color: var(--highlight);">satanismo</span> como vía de <span style="color: var(--highlight);">autodescubrimiento</span>. No es una adoración oscura, sino un rechazo al dogma y un llamado a la libertad interior. Satán simboliza rebelión, empoderamiento y conciencia. En este proceso, cuestioné la injusticia divina, la imposición de creencias y hallé en la filosofía satánica un camino de reflexión crítica y autoafirmación.</p>
 
-  window.addEventListener("resize", () => {
-    currentIndex = 0;
-    updateTransform();
-  });
+  <p>Aprovecho para tocar otros temas que alimentaron más mis preguntas.</p>
+  </section>
 
-  updateTransform();
-</script>
+  <p >
+  • ¿Por qué gente mala vive y gente buena muere todo el tiempo?
+  </p>
+  <p>
+  • ¿Por qué dejan en manos de su Dios el control de todo?
+  </p>
+  <p>
+  • ¿Por qué su Dios permite que haya un desbalance brutal e incoherente en este mundo?
+  </p>
+  <p>
+  • ¿Por qué sus creyentes y predicadores no aplican sus propios principios y mandamientos?
+  </p>
+  <p>
+  • ¿Por qué se les es necesario obligar y restregar en cara prácticamente a las personas sus creencias y pensamientos?
+  </p>
+  <p>
+  • ¿Por qué en algún momento de la historia como las cruzadas y quema de brujas, tuvieron que acudir a la muerte para hacer sumisión sobre otras creencias y culturas diferente a la de ellos? 
+  </p>
+  <p>
+  • ¿Por qué obligar a los demás a doctrinar su fe y sus creencias y no respetar el libre albedrio y pensar de los demás?
+  </p>
+  <p>
+  • ¿Por qué abusar de su poder y de las personas que creen en ellos?
+  </p>
+  <p>
+  • ¿Por qué defienden tanto la frase:"Dios sabe cómo hace sus cosas", justificando enfermedades, muertes, pobreza e incluso hasta defendiendo criminales y actos atroces de política y corrupción.
+  </p>
+  <p>
+  • ¿Por qué un criminal ya sea violador o cualquier otro tipo, es perdonado por la iglesia antes de morir por condena o cualquier tipo de muerte que tenga, solo por el hecho de que se es arrepentido de todo lo que hizo y sus pecados y confesarlos ante Dios? No tiene sentido.
+  </p>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Mi nombre es <span style="color:#ff4d4d;">Juan Camilo Heredia Gallego</span> nací el <time style="color:#ff4d4d;">29/05/1997 </time> Colombia, del departamento del <span style="color:#ff4d4d;">Valle del Cauca</span> en la ciudad de <span style="color:#ff4d4d;">Cali</span>. Vivo actualmente solo, mis padres son <span style="color:#ff4d4d;">Martha Cecilia Gallego Solarte</span> y <span style="color:#ff4d4d;">Gustavo Adolfo Heredia Hernández</span>. Mis padres siempre fueron muy humildes y gracias a ellos les debo mucho por brindarme una educación ejemplar, tanto en estudios como en crianza, valores y modales, gracias a ellos soy lo que soy hoy en día considerándome una persona que no le hace daño a nadie y que perfectamente distingue lo bueno de lo malo y tiene claro lo que quiere para su vida, mi padre murió a mis 12 años más exactamente el <time style="color:#ff4d4d;">11/11/2015</time> por cáncer de estómago (<span style="color:#ff4d4d;">sarcoma</span>), mi mamá en el año 2022 decidió irse para España a buscar un mejor futuro.
-</span></p>
+  <section id="vision">
+    <h2>VISION Y LEGADO</h2>
+    <p>Tras estudiar textos como <cite style="color: var(--highlight);">"Magia Vampírica" de Michael W. Ford</cite>, comprendí conceptos como <span style="color: var(--highlight);">Lilith</span> y el <span style="color: var(--highlight);">plano astral</span>. Este trayecto me enseñó la importancia de la <span style="color: var(--highlight);">autoedificación</span>, el respeto por la vida y la evolución constante. Mi visión abraza la liberación personal y el pensamiento crítico: no insistir en dogmas, sino fomentar el diálogo y la investigación. Así, invito a quienes me lean a cuestionar todo, a trascender la esfera convencional y a forjar su propio legado.</p>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Terminé mis estudios básicos de primaria y secundaria, hice un curso corto de aplicativos móviles y un curso de inglés básico de manera virtual, hasta la fecha curso 6 semestre de ingeniería en sistemas y de igual forma entré a un curso complementario de bases de datos con MySQL. Siempre me ha gustado aprender cosas nuevas y el tema de la tecnología, sistemas y programación es algo que desde niño me ha fascinado, además de los videojuegos y la música rock-metal con todos sus géneros y subgéneros, obviamente el ocultismo, satanismo, demonología y diferentes tipos de filosofías humanas, grandes religiones paganas y admiración por la sangre y las imágenes macabras y sexuales, me considero fetichista sexualmente insaciable y con una obsesión por siempre ser diferente a los demás.
-</span></p>
+    <p><strong>RECURSOS:</strong></p>
 
-<h3 align="center">¿CÓMO EMPEZÓ MI CAMINO AL SATANISMO?</h3>
+   <cite>
+  <li>
+    <a href="https://www.youtube.com/watch?v=XPC-F1p-0_Y&t=44s">Matías De Stefano - Un Paso En la apertura De La Consciencia. </a>
+  </li>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Estamos de acuerdo que cuando nacemos todos estamos sumergidos o adentro de un <span style="color:#ff4d4d;">averno</span> sin fin, no tenemos el control de nuestros momentos y recuerdos y mucho menos somos partidarios de nuestras propias decisiones, es claro que hasta cierta edad del ser humano, muchas personas influyen o deciden por nosotros y es algo normal e inevitable, lo que quiero expresar es que nos han querido inculcar religiones y creencias desde pequeños y no debería ser así. como ya antes mencioné a mis padres ellos eran creyentes católicos y como muchas personas fui bautizado y criado bajo sus creencias y bajo las creencias de la sociedad que nos rodea, pero cuando ya somos capaces de pensar por sí mismos y tomar nuestras propias decisiones es cuando podemos elegir bien sabe en que creer o en que ideales aferrarnos para nuestra fe o para nuestro crecimiento ya sea <span style="color:#ff4d4d;">espiritual</span> y <span style="color:#ff4d4d;"> personal</span>. 
-</span></p>
+  <li>
+    <a href="https://www.churchofsatan.com/">La Biblia Satánica - Antón Szandor Lavey.
+    </a>
+  </li>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-El ser humano siempre ha tenido la necesidad de creer en algún ser supremo y superior a él, donde le explique y de respuestas a todas sus preguntas existenciales que se le presenten en su vida o en vidas pasadas, tener fe para lograr esperanza en su entorno y tomar fuerzas para entender por qué y el ahora. Retomando el tema anterior mi camino hacia el satanismo empezó con el <span style="color:#ff4d4d;">despertar</span> de ese <span style="color:#ff4d4d;">averno</span> en el cual estaba inmerso, donde para mi representa toda la manipulación humana que fui objetivo de sus creencias. cuando logro salir me doy cuenta de muchas cosas que por obvias razones ayudan a despertar mi conciencia.
-</span></p>
+  <li>
+    <a href="https://www.youtube.com/watch?v=IHzSIniGQqU&t=44s">Magnus Mefisto – ¿Qué Es El Satanismo?.
+    </a>
+  </li>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Todo empieza con la muerte de mi padre es la razón que más me acuerdo del inicio de todo, donde te preguntas <span style="color:#ff4d4d;">¿Por qué?</span>, porque mi padre a tan solo la etapa de los 40 muere de esa forma tan repentina y rápida, porque el cáncer llega silencioso y lento pero te lleva rápido y con mucho estruendo, donde mi familia día a día y noche tras noche empieza a Orar y pedir por su salud, te preguntas porque a una persona joven a su edad humilde buen padre y trabajador  le pasa algo así y no solo eso te preguntas personalmente porque a mí me pasa esto y aunque solo era un niño y no sabía que pasaba, te llega afectar de tal manera que repercute en tu vida para siempre, relacionando su muerte aprovecho para tocar otros temas que alimentaron más mis preguntas.
-</span></p>
+  <li>
+    <a href="https://www.facebook.com/LuciferianMichaelWFord/">La Biblia del Adversario – Michael W Ford.
+    </a>
+  </li>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué gente mala vive y gente buena muere todo el tiempo?
-</span></p>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué dejan en manos de su Dios el control de todo?
-</span></p>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué su Dios permite que haya un desbalance brutal e incoherente en este mundo?
-</span></p>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué sus creyentes y predicadores no aplican sus propios principios y mandamientos?
-</span></p>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué se les es necesario obligar y restregar en cara prácticamente a las personas sus creencias y pensamientos?
-</span></p>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué en algún momento de la historia como las cruzadas y quema de brujas, tuvieron que acudir a la muerte para hacer sumisión sobre otras creencias y culturas diferente a la de ellos? 
-</span></p>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué obligar a los demás a doctrinar su fe y sus creencias y no respetar el libre albedrio y pensar de los demás?
-</span></p>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué abusar de su poder y de las personas que creen en ellos?
-</span></p>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué defienden tanto la frase:"<span style="color:#ff4d4d;">Dios sabe cómo hace sus cosas</span>", justificando enfermedades, muertes, pobreza e incluso hasta defendiendo criminales y actos atroces de política y corrupción.
-</span></p>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-• ¿Por qué un criminal ya sea violador o cualquier otro tipo, es perdonado por la iglesia antes de morir por condena o cualquier tipo de muerte que tenga, solo por el hecho de que se es arrepentido de todo lo que hizo y sus pecados y confesarlos ante Dios? No tiene sentido.
-</span></p>
+  <li>
+    <a href="https://www.amazon.com.mx/s?k=crowley+tarot&…">Tarot Thoth - Aleister Crowley.
+    </a>
+  </li>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Estas y muchas más preguntas surgían a medida que iba creciendo y viendo el mundo con mis propios ojos, en ese entonces y con la edad de 14 años empecé a refugiarme en la música, me acuerdo de que en casa de mi sobrino y de sus padres en algún computador pequeño me sentaba a buscar en internet canciones que antes por encima había escuchado, conocí una de mis muchas inspiraciones  <cite style="color:#ff4d4d;">  Marilyn Manson</cite>. 
-</span></p>
+  <li>
+    <a href="https://www.youtube.com/@ElDoQmentalista">El Doqmentalist.
+    </a>
+  </li>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Comencé adentrarme de lleno en la música escuchando <span style="color:#ff4d4d;">rock</span> y <span style="color:#ff4d4d;">metal</span> donde hasta la actualidad ya he recorrido y pasado por todos sus géneros y subgéneros, llenos de historias, documentales y evoluciones, fui adoptando lo que para muchos fue una personalidad <span style="color:#ff4d4d;">rebelde</span> y <span style="color:red">antisocial</span>, era para mí un escape de la realidad era simplemente un refugio de mis placeres y pensamientos que la sociedad no acepta por hipocresía e ignorancia, siempre fui una persona tímida en lo que expresar emociones se trata, pero siempre tuve esa fascinación por las imágenes oscuras, por ser el chico malo y destacar entre los demás y es que claro ¿<span style="color:#ff4d4d;">por qué ser igual a los demás</span>? cuando puedes ser quien quieras ser y sin que nadie te obligue hacer alguien que no quieres, cabe mencionar que en términos de pareja muchos de nosotros muchas veces cometemos el error de abandonar lo que somos y nuestra esencia por esa persona y es algo que evidentemente no podemos hacer, ni por términos de pareja o amistades e incluso familia podemos abandonar o dejar de ser lo que somos ni lo que pensamos y así mismo ellos deberían respetar ese pensamiento.
-</span></p>
+  <li>
+    <a href="https://www.youtube.com/@LaCasaGnostica">La Casa Gnóstica
+    </a>
+  </li>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-A medida que fui creciendo y terminando la juventud para empezar la adultes, empecé a generar dinero y en algún momento quise darle más poder a esta filosofía, ojeando por páginas y páginas encontré una editorial reconocida y de confianza donde pude conseguir mi primer libro de ocultismo <cite style="color:#ff4d4d;">“*Magia Vampiryca*, Michael W. Ford</cite>, En resumen nos habla de cómo los vampiros no son como los pintan en la televisión o en el cine y existe algo llamado el <span style="color:#ff4d4d;">plano astral</span>, realmente los vampiros y lo que plantea el autor es que son personas e incluso seres que se alimentan de tu energía, miedo, dolor etc., estos seres o incluso tú mismo lo puedes hacer y se encuentran en este plano, viajan libre mente tomando formas para acechar en la noche o a la hora que convengan, para no alargarme mucho también toca el tema de <span style="color:#ff4d4d;">Lilith</span> como la madre de los vampiros y quien en muchos escritos fue la primera mujer de Adán, quien fue expulsada por Dios al rebelarse ante Adán y sus órdenes, pues fue para muchos la primera mujer en defender sus derechos y elegir su propio camino que no sea al lado de alguien "<span style="color:#ff4d4d;">superior a ella</span>”. 
-</span></p>
-
-<h3 align="center">¿COMO FUE MI experiencia?</h3>
-
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Esto para mí fue plenamente satisfactorio porque por fin había encontrado algo que me guiara y tomara en orden muchos de mis pensamientos, así que personalmente con esta adquisición empezó el efecto que muchos experimentan cuando se hacen su primer tatuaje, siempre quieres más y no has de parar.
-</span></p>
-
-<h3 align="center">LIBROS ⛧ CARTAS ⛧ VIDEOS</h3>
-
-<cite><li style="font-size:110%"><a href="https://www.youtube.com/watch?v=XPC-F1p-0_Y&t=44s"><span style="color:white">Matías De Stefano - Un Paso En la apertura De La Consciencia.</span></a></li>
-<li style="font-size:110%"><a href="https://www.churchofsatan.com/"><span style="color:white">La Biblia Satánica - Antón Szandor Lavey.</span></a></li> 
-<li style="font-size:110%"><a href="https://www.youtube.com/watch?v=IHzSIniGQqU&t=44s"><span style="color:white">Magnus Mefisto – ¿Qué Es El Satanismo?.</span></a></li> 
-<li style="font-size:110%"><a href="https://www.facebook.com/LuciferianMichaelWFord/"><span style="color:white">La Biblia del Adversario – Michael W Ford.</span></a></li> 
-<li style="font-size:110%"><a href="https://www.amazon.com.mx/s?k=crowley+tarot&adgrpid=1168781287571485&hvadid=73048903586859&hvbmt=bb&hvdev=c&hvlocphy=43&hvnetw=s&hvqmt=b&hvtargid=kwd-73049207013478%3Aloc-43&hydadcr=26976_10203047&tag=msndeskstdmx-20&ref=pd_sl_7afnlfj147_b"><span style="color:white">Tarot Thoth - Aleister Crowley.</span></a></li> 
-<li style="font-size:110%"><a href="https://www.youtube.com/@ElDoQmentalista"><span style="color:white">El Doqmentalist.</span></a></li> 
-<li style="font-size:110%"><a href="https://www.youtube.com/@LaCasaGnostica"><span style="color:white">La Casa Gnóstica</span></a></li> 
 </cite>
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Luego vinieron todas estas obras e investigaciones propias que me llevaban de un lado a otro alimentando este sendero que obviamente estaba dispuesto a seguir.
-</span></p>
+</section>
 
-<h3 align="center">¿QUÉ ES EL SATANISMO?</h3>
+<footer>
+  <button class="volver-btn" onclick="location.href='index.html'">
+  VOLVER
+</button>
+</footer>
 
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Bueno ahora les comparto todo aquello que eh aprendido y la filosofía por la cual los trajo aquí y yo eh adoptado como mi <span style="color:#ff4d4d;">forma de vida</span>, al fin y al cabo eso es para nosotros el satanismo una <span style="color:#ff4d4d;">filosofía de vida</span>, pero para poder responder esta pregunta tenemos que adentrarnos por el principio y su significado.
-</span></p>
-
-
-<p style="font-size:110%;"><span style="color:#ffffff;">
-// <span style="color:#ff4d4d;">¿Qué significa Satanás?</span> // Satán Significa: <span style="color:#ff4d4d;">Adversario</span>/<span style="color:#ff4d4d;">Enemigo</span>. 
-Esto si se ponen a pensar tiene muchísimo sentido, pero quien fue ¿<span style="color:#ff4d4d;">Satanás</span>?,
-Ya sea en la biblia o por medios que tu hayas escuchado o conozcas, es fácil saberlo pues fue un <span style="color:#ff4d4d;">Ángel</span> que no estaba de acuerdo con el mando de Dios en el cielo, él quería ser algo más incluso su ambición de superación lo condeno y eso hizo que Dios se diera cuenta de esto y automáticamente se convirtiera en <span style="color:#ff4d4d;">enemigo</span> de él, donde lo expulsa de los reinos para condenarlo a gobernar en el <span style="color:#ff4d4d;">infierno</span> junto a aquellos que se unan a él y se alcen ante Dios. Ahora bien ¿<span style="color:#ff4d4d;">quiénes fueron los primeros satanistas en la tierra</span>?, sin irnos muy lejos en épocas de conquista donde el <span style="color:#ff4d4d;">cristianismo</span> descubría nuevos terrenos y religiones encontrándose con diferentes culturas y creencias, vieron o apodaron a estos mismos como paganos, que luego más adelante en otra época se adoptaría o cambiaria por un término más fuerte como lo seria satánicos y te preguntaras ¿<span style="color:#ff4d4d;">Por qué los veían o apodaban con ese término</span>? Simple porque estaban en contra de la iglesia, con el solo hecho de no compartir su religión cristiana o católica, los convertía automáticamente en enemigos, los convertía automáticamente en satánicos, donde si avanzamos un poco más nos encontramos con los siguientes satánicos de la historia, ¿<span style="color:#ff4d4d;">Quiénes fueron</span>? Todos aquellos <span style="color:#ff4d4d;">científicos</span>, <span style="color:#ff4d4d;">físicos</span>, <span style="color:#ff4d4d;">filósofos</span>, <span style="color:#ff4d4d;">inventores</span>, fueron señalados de satanismo simplemente por tener ideas diferentes y descubrimientos que para la iglesia no debían explicar lo que ellos ya sabían ante Dios, muchos fueron destinados a la <span style="color:#ff4d4d;">hoguera</span> y muchos otros preferían callarse o pedir disculpas para perdonar sus vidas y es aquí donde aprovecho y vamos a hablar sobre las <span style="color:#ff4d4d;">brujas</span>.
-</span></p>
-
-<p style="font-size:110%;"><span style="color:#ffffff;">
-¿<span style="color:#ff4d4d;">Quiénes fueron las primeras brujas</span>? La <span style="color:#ff4d4d;">Magia</span> y <span style="color:#ff4d4d;">Brujería</span> es símbolo de <span style="color:#ff4d4d;">conocimiento</span>, las primeras brujas fueron aquellas mujeres que en su tiempo no se les permitía estudiar, pensar ni hacer algo por ellas mismas, porque no se les daba importancia y era el hombre quien si tenía derecho a trabajar, estudiar y salir adelante, entonces las primeras brujas fueron quienes se <span style="color:#ff4d4d;">revelaron</span> ante este <span style="color:#ff4d4d;">sistema</span> y fueron adquiriendo conocimiento y obviamente conocimiento <span style="color:#ff4d4d;">oculto</span> y al tener una relación con lo que mencionamos anteriormente estamos hablando de lo mismo, pero al ser mujeres trascendió a algo mucho peor, porque las determinaban como brujas y simplemente por su género y demostrase inconforme por el patriarcado las llevo a la hoguera junto con sus conocimientos e ideales de liberación ante la supresión e ignorancia de los hombres.
-</span></p>
-
-<h3 align="center">CONCLUSIÓN</h3>
-
-<p style="font-size:110%;"><span style="color:#ffffff;">
-que concluimos de este breve paso por el tiempo. Si no compartes la misma fe y creencia que ellos, si no estas con ellos, si no sigues sus reglas y su forma de vida, te conviertes automáticamente en satánico, porque pasas hacer <span style="color:#ff4d4d;">enemigo de la iglesia y adversario de su Dios</span>, así que déjame decirte algo si de pronto no crees o conoces a alguien que no cree en <span style="color:#ff4d4d;">satanás</span> o <span style="color:#ff4d4d;">lucifer</span> pero que a lo mejor va en contra de la iglesia y de sus principios antimorales o no aceptas su religión como tal, automáticamente ya haces parte de nosotros, ya haces parte del satanismo.
-</span></p>
-
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Ahora bien nosotros que seguimos esta <span style="color:#ff4d4d;">filosofía</span> tenemos claro ciertas cosas que por este medio quiero tocar las más importantes de todas, por ejemplo ser satánico no es <span style="color:#ff4d4d;">símbolo de sacrificio y derramamiento de sangre</span>, por lo contrario <span style="color:#ff4d4d;">cuidamos de otros seres vivos y no les haríamos ningún mal y ningún daño</span>, este pensamiento sobre el satanista es adecuado por hechos que <span style="color:#ff4d4d;">fanáticos</span> en algún momento hicieron y que los medios y noticias hacen de esto un eco en el mundo y que esa información se transmitió de generación en generación. Además los <span style="color:#ff4d4d;">sacrificios humanos o de animales</span> son pasados de moda porque se deben quedar atrás junto a la historia, donde eran practica de culturas como los <span style="color:#ff4d4d;"> Mayas</span>, los <span style="color:#ff4d4d;">Vikingos</span>, Los <span style="color:#ff4d4d;">Griegos</span> etc., claro a lo mejor siguen y seguirán existiendo personas que siguen en la prehistoria y que para ampliar o efectuar sus <span style="color:#ff4d4d;">rituales</span> o propósitos piensan que es necesario hacer esto, porque no todos somos iguales y siempre va a haber alguien que piense de esa manera y no hay nada que hacer al respecto y es como todo, si algo que para la gente es "<span style="color:#ff4d4d;">malo o no les gusta</span>” si ven una noticia o algo que alimente esa idea pues no los va hacer cambiar de opinión, pero desde ya quiero que quede claro que nosotros no hacemos eso y que más bien fueron épocas antiguas que por obvias razones de evolución y trascender del ser humano los llevo hacer eso y que en la actualidad simplemente algunos fanáticos se obsesionaron y quisieron llevar el satanismo a otro <span style="color:#ff4d4d;">nivel</span>. 
-</span></p>
-
-
-<p style="font-size:110%;"><span style="color:#ffffff;">
-<span style="color:#ff4d4d;">Los satanistas no vemos a lucifer o satanás como un Dios</span>, nosotros a diferencia de la religión vemos a satanás como un <span style="color:#ff4d4d;">símbolo</span>, mientras <span style="color:#ff4d4d;">la religión se contradice</span> porque <span style="color:#ff4d4d;">adoran imágenes y símbolos</span> que en la biblia y en otras menciones dicen que no deberían hacer, pues lo hacen. Nosotros si podemos adorar o admirar a satanás no como un Dios si no como un símbolo de <span style="color:#ff4d4d;">auto edificación</span> y <span style="color:#ff4d4d;">superación</span>, Por eso tenemos <span style="color:#ff4d4d;">altares</span>, <span style="color:#ff4d4d;">estatuillas</span>, <span style="color:#ff4d4d;">sigilos</span>, <span style="color:#ff4d4d;">símbolos</span>, <span style="color:#ff4d4d;">mantos</span>, <span style="color:#ff4d4d;">capas</span> etc., porque hace parte de nuestra filosofía y nos ayuda a identificarnos e intensificar nuestro camino, así mismo hay muchos <span style="color:#ff4d4d;">tipos de satanismo</span>, pero el que yo adopto y muchos concuerdan hoy en día se centra en la <span style="color:#ff4d4d;">auto edificación</span> y un poco del <span style="color:#ff4d4d;">egocentrismo</span>, donde eres y <span style="color:#ff4d4d;">somos nuestro propio Dios</span> y nos enfocamos en nuestro crecimiento dentro de un término ya sea social o personal e incluso espiritual, es nuestra verdadera naturaleza y te invito a conocer los <span style="color:#ff4d4d;">mandamientos satánicos</span> que alimentan mucho más esta forma de vida. 
-</span></p>
-
-<h2 align="center">FIN</h2>
-
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Si quieres ser parte de esta forma de vida y encontrarte contigo mismo, trabajar en tu yo interno y aclarar muchas dudas que nos fueron impuestas desde que pequeños, junto a falsas aclaraciones y acusaciones sobre lo que es el satanismo y nos vendían una idea muy equivocada de ello, te invito y eres bienvenido aquí no obligamos a nadie e incluso a mí nadie me obligo, yo mismo elegí este camino y eso es lo más satisfactorio que uno puede hacer, seguir sus propias ideas, pensamientos, anhelos y sueños no dejar que nadie maneje tu vida ni mucho menos tus creencias.
-</span></p>
-
-<p style="font-size:110%;"><span style="color:#ffffff;">
-Dejo plasmado en esta página distintos <span style="color:#ff4d4d;">medios</span> de <span style="color:#ff4d4d;">contacto</span>, el objetivo de este proyecto es que podamos <span style="color:#ff4d4d;">debatir</span> y <span style="color:#ff4d4d;">aclarar ideas</span> entre todos, que podamos juntos quitarnos el <span style="color:#ff4d4d;">vendaje</span> que llevamos puestos, tratare de responder las preguntas que puedan tener y aunque no se mucho porque aún soy ignorante y sigo en mis investigaciones y descubrimientos lo hare con gusto, pero este tema está muy claro y es una información bien estructurada y valida por muchos medios, nunca se termina de aprender y de alimentar nuestra conciencia, <span style="color:#ff4d4d;">no te quedes con lo que te cuenten y te digan</span>, <span style="color:#ff4d4d;">investiga</span>, <span style="color:#ff4d4d;">indaga</span>, <span style="color:#ff4d4d;">pregúntate</span> y <span style="color:#ff4d4d;">cuestiona</span>.
-</span></p>
-
-
-<p class="center-text">
-  - Muchas gracias. <span style="color:#ff4d4d;">⛧</span>
-</p>
-
-<div class="volver-link">
-  <a href="index.html">↑-VOLVER-↑</a>
-</div>
-
- 
-
+<script>
+  function toggleMode() { document.body.classList.toggle("light-mode"); }
+</script>
 </body>
 </html>
