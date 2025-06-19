@@ -155,33 +155,56 @@
     /* FLYER EMERGENTE */
 #flyer-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(255, 255, 255, 0.03);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.50); /* fondo transparente */
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #flyer-overlay img {
-  width: 50%;
+  width: auto;
   height: auto;
-  max-width: 600px;
-  max-height: 90%;
+  max-width: 75vw;
+  max-height: 80vh;
+  object-fit: contain;
+  animation: parpadeo-led 2.5s infinite;
+  border-radius: 0;
 }
+
+@keyframes parpadeo-led {
+  0%, 100% {
+    box-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #fff;
+  }
+  50% {
+    box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff;
+  }
+}
+
 #flyer-close {
   position: absolute;
-  top: 20px; right: 30px;
-  font-size: 30px;
+  top: 20px;
+  right: 30px;
+  font-size: 22px;
   color: white;
   background: none;
   border: none;
   cursor: pointer;
-  transition: color 0.2s;
   z-index: 10001;
 }
+
 #flyer-close:hover {
   color: #ff0000;
+}
+
+.flyer-hint {
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  font-size: 13px;
+  color: #ccc;
+  font-family: Arial, sans-serif;
 }
     
 @media (max-width: 868px) {
@@ -221,8 +244,9 @@ h2 {
 <body>
   
   <div id="flyer-overlay">
-    <button id="flyer-close">𝕏</button>
-    <img src="https://i.postimg.cc/BZxWpzRv/AVERNO.png" alt="Flyer Averno Store">
+  <button id="flyer-close" title="Cerrar">✖</button>
+  <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
+  <img src="https://i.postimg.cc/BZxWpzRv/AVERNO.png" alt="Flyer Averno" />
   </div>
   
   <header>
@@ -466,7 +490,7 @@ function crearItem(producto, esRopa = true) {
     renderCatalogo(productosAccesorios, "catalogo-accesorios", false);
     renderWishlist();
     document.getElementById('flyer-close').onclick = function () {
-      document.getElementById('flyer-overlay').style.display = 'none';
+    document.getElementById('flyer-overlay').style.display = 'none';
     };
     
 </script>
