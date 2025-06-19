@@ -204,43 +204,49 @@
   }
 
   #flyer-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.50); /* negro translúcido */
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    image-rendering: auto;
-  }
+  position: fixed;
+  inset: 0;
+  background: #000000; /* fondo transparente */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #flyer-overlay img {
   width: auto;
   height: auto;
-  max-width: 70vw;   /* antes 90vw */
-  max-height: 75vh;  /* antes 90vh */
+  max-width: 75vw;
+  max-height: 80vh;
   object-fit: contain;
-  border-radius: 0px; /* acomodar el borde */
   animation: parpadeo-led 2.5s infinite;
+  border-radius: 0;
 }
     
-  #flyer-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 26px;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color 0.2s;
-    z-index: 10001;
-  }
+#flyer-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 22px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+}
 
-  #flyer-close:hover {
-    color: #ff0000;
-  }
+#flyer-close:hover {
+  color: #ff0000;
+}
+
+.flyer-hint {
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  font-size: 13px;
+  color: #ccc;
+  font-family: Arial, sans-serif;
+}
 
   .modal {
     position: fixed;
