@@ -184,22 +184,7 @@ flag-wrapper {
   background-color: #C10202;
   color: #fff;
   box-shadow: 0 0 12px #C10202;
-}
-
-   /* Responsive */
-@media (max-width: 768px) {
-  
-  .nosotros { grid-template-columns: 1fr; }
-  .nosotros-text { padding: 0 1rem; }
-  footer#contacto { flex-direction: column; align-items: flex-start; }
-  footer#contacto div p {
-    font-size: 0.85rem; /* más pequeño */
-  }
-   footer#contacto i {
-    font-size: 1rem; /* íconos ligeramente más pequeños */
-  }
-    }
-    
+}    
   .boton-contenedor {
   text-align: center;
   margin-top: 2.5rem;
@@ -210,7 +195,7 @@ flag-wrapper {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1500;
+  z-index: 3000;
   display: flex;
   gap: 10px;
 }
@@ -242,9 +227,22 @@ flag-wrapper {
 
   .nosotros-text {
     padding: 0 1rem;
-    font-size: 1.5rem; /* antes 3rem *
+    font-size: 1.5rem; /* antes 3rem */
   }
 }
+
+@media (max-width: 768px) {
+  
+  .nosotros { grid-template-columns: 1fr; }
+  .nosotros-text { padding: 0 1rem; }
+  footer#contacto { flex-direction: column; align-items: flex-start; }
+  footer#contacto div p {
+    font-size: 0.85rem; /* más pequeño */
+  }
+   footer#contacto i {
+    font-size: 1rem; /* íconos ligeramente más pequeños */
+  }
+    }
     
 </style>
 </head>
