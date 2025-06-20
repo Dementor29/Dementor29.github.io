@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Despertar Del ⛧ Averno</title>
   <link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
+  
   <style>
     
     :root {
@@ -144,25 +146,33 @@
       background-color: #ff0000;
     }
     
-  .nequi-btn {
+.nequi-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background: none;
-  color: white; /* blanco normal */
-  font-size: 60px;
-  z-index: 999;
-  text-decoration: none;
-  padding: 14px;
+  padding: 10px;
   border-radius: 50%;
-  text-shadow: 0 0 6px rgba(255,255,255,0.4);
-  transition: color 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+  transition: color 0.3s ease, background 0.3s ease;
+  z-index: 999;
 }
-    
+
+.nequi-btn i {
+  font-size: 4rem;              /* grande y vectorial */
+  color: white;                 /* blanco por defecto */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .nequi-btn:hover {
-  color: #C10202; /* rojo igual al de los títulos */
-  background-color: rgba(0, 0, 0, 0.3); /* opcional para dar efecto al pasar */
+  background-color: rgba(0,0,0,0.3);
 }
+
+.nequi-btn:hover i {
+  color: #C10202;               /* tu rojo de títulos */
+}
+
 
     /* FLYER EMERGENTE */
 #flyer-overlay {
@@ -297,7 +307,8 @@ h2 {
     <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
   </footer>
 
-  <a class="nequi-btn" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank">
+  <a class="nequi-btn" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P"
+   target="_blank">
   <i class="fab fa-whatsapp"></i>
   </a>
 
