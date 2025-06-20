@@ -189,22 +189,25 @@
     background-color: #ff0000;
   }
 
-  .nequi-btn {
+ .nequi-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: none;
+  background: rgba(0, 0, 0, 0.7);
   color: red;
-  font-size: 38px;
+  font-size: 52px;
   z-index: 999;
   text-decoration: none;
-  text-shadow: 0 0 10px red;
+  padding: 14px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px red;
+  transition: background-color 0.3s ease;
 }
 
 .nequi-btn:hover {
+  background-color: rgba(255, 0, 0, 0.1);
   color: #ff4d4d;
 }
-
   /* FLYER EMERGENTE */
 #flyer-overlay {
   position: fixed;
@@ -301,15 +304,14 @@
   }
 
   @media (max-width: 600px) {
-    .nequi-btn {
-      font-size: 14px;
-      padding: 8px 12px;
-      right: 10px;
-      left: auto;
-      max-width: calc(100vw - 20px);
-    }
+  .nequi-btn {
+    font-size: 42px;
+    padding: 12px;
+    right: 15px;
+    bottom: 15px;
   }
-
+}
+    
   @media (max-width: 868px) {
     #flyer-overlay img {
       width: 90vw;
