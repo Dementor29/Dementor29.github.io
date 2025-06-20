@@ -188,25 +188,25 @@
   .back-link:hover {
     background-color: #ff0000;
   }
-
- .nequi-btn {
+    
+.nequi-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  color: red;
+  background: none;
+  color: white; /* blanco normal */
   font-size: 52px;
   z-index: 999;
   text-decoration: none;
   padding: 14px;
   border-radius: 50%;
-  box-shadow: 0 0 10px red;
-  transition: background-color 0.3s ease;
+  text-shadow: 0 0 6px rgba(255,255,255,0.4);
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .nequi-btn:hover {
-  background-color: rgba(255, 0, 0, 0.1);
-  color: #ff4d4d;
+  color: #C10202; /* rojo igual al de los títulos */
+  background-color: rgba(0, 0, 0, 0.3); /* opcional para dar efecto al pasar */
 }
   /* FLYER EMERGENTE */
 #flyer-overlay {
