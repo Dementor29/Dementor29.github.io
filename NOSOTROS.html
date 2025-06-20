@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Despertar del Averno</title>
+  <title>Despertar Del ⛧ Averno</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
   <style>
@@ -63,9 +63,9 @@
     .hero p  { font-size: 1.3rem; max-width: 700px; margin: 0 auto; }
 
     /* NOSOTROS */
-    .nosotros { background: #000; color: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; padding: 4rem 0; }
+    .nosotros { background: #000; color: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: center; padding: 4rem 0; }
     .nosotros img { width: 70%; height: auto; object-fit: cover; border-radius: 8px; }
-    .nosotros-text { padding: 0 2rem; }
+    .nosotros-text { padding: 0 1rem; }
     .nosotros-text h2 { font-size: 2.2rem; color: #C10202; margin-bottom: 1rem; }
     .nosotros-text p  { margin-bottom: 1rem; color: #ccc; font-size: 1rem; }
 
@@ -155,10 +155,10 @@
     }
     
   window.onload = () => {
-  showLangSelector();
+  showLangSelector();                     // siempre abrimos el panel
   const lang = localStorage.getItem('lang');
-  if (lang) setLang(lang);
-  };
+  if (lang) setLang(lang);                // después aplicamos idioma guardado
+};
     
 </script>
 </body>
