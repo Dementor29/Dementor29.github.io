@@ -102,7 +102,7 @@
       border-top: 3px solid #C10202;
       animation: pulseFooter 4s ease-in-out infinite;
     }
-    footer#contacto div p { margin-bottom: 0.75rem; font-size: 1rem; }
+    footer#contacto div p { margin-bottom: 0.75rem; font-size: 1-2rem; }
     footer#contacto i   { margin-right: 0.5rem; color: #C10202; font-size: 1.1rem; }
 
 flag-wrapper {
@@ -188,13 +188,39 @@ flag-wrapper {
   footer#contacto { flex-direction: column; align-items: flex-start; }
     }
     
+  .boton-contenedor {
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-bottom: 3rem; /* Aumenta este valor si quieres aún más espacio debajo */
+  }
+    
+  #langToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1500;
+  display: flex;
+  gap: 10px;
+}
+
+#langToggle img {
+  width: 28px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#langToggle img:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
 </style>
 </head>
 <body>
   
   <div id="langOverlay">
   <div class="options">
-    <p style="margin-bottom: 0.5rem; font-size: 1.1rem;">Selecciona tu idioma / Select your language</p>
     <div class="banderas-container">
       <div class="flag-opcion">
         <img src="https://flagcdn.com/co.svg" alt="Español" onclick="setLang('es')">
@@ -208,6 +234,10 @@ flag-wrapper {
   </div>
 </div>
 
+<div id="langToggle">
+  <img src="https://flagcdn.com/co.svg" alt="Español" title="Cambiar a Español" onclick="setLang('es')">
+  <img src="https://flagcdn.com/gb.svg" alt="English" title="Switch to English" onclick="setLang('en')">
+</div>
 
   <header class="hero" data-aos="fade-down">
     <div class="container">
@@ -220,13 +250,15 @@ flag-wrapper {
   <section class="nosotros" data-aos="fade-up" data-aos-delay="200">
     <img src="bg.png" alt="Tienda Averno Store">
     <div class="nosotros-text">
+      
       <h2 id="who">UN PROYECTO DIGNO DEL SENDERO DE LA MANO IZQUIERDAr</h2>
       <p id="desc1">Detrás de cada diseño, hay una sola persona entregando su visión: Moda oscura, Espíritu metalero y Productos que hablan de tu identidad Unica.</p>
       <p id="desc2">Con atención personalizada, Traigo a tu armario desde diseños exclusivos hasta libros y accesorios, todo pensado para fanáticos del ROCK y el METAL.</p>
-      <div style="text-align:center;">
+      
+      <div style="text-align:center; class="boton-contenedor">
       <a href="index.html" class="volver-boton">DESPERTAR DEL AVERNO</a>
-    </div>
-    </div>
+      </div>
+      </div>
   </section>
   
   <div class="separator" data-aos="zoom-in" data-aos-delay="400"></div>
