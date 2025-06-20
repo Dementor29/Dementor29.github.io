@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Despertar Del ⛧ Averno</title>
   <link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
-  
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
+
   <style>
     :root {
   --volver-bg: #990000;
@@ -136,22 +139,34 @@
     .back-link:hover {
       background-color: #ff0000;
     }
-    .nequi-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #6f0f19;
-      color: white;
-      font-family: 'BurzumGothic', serif;
-      padding: 12px 18px;
-      text-decoration: none;
-      font-size: 16px;
-      z-index: 999;
-      box-shadow: 0 0 10px red;
-    }
-    .nequi-btn:hover {
-      background-color: #ff0000;
-    }
+    
+.nequi-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: none;
+  padding: 10px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: color 0.3s ease, background 0.3s ease;
+  z-index: 999;
+}
+
+.nequi-btn i {
+  font-size: 4rem;              /* grande y vectorial */
+  color: white;                 /* blanco por defecto */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nequi-btn:hover {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.nequi-btn:hover i {
+  color: #C10202;               /* tu rojo de títulos */
+}
+
     /* FLYER EMERGENTE */
 #flyer-overlay {
   position: fixed;
@@ -279,7 +294,10 @@ font-family: 'BurzumGothic', serif;
     <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
   </footer>
 
-  <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank">WHATSAPP</a>
+  <a class="nequi-btn" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P"
+   target="_blank" title="Unirse por WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  </a>
 
   <script>
     const productosRopa = [
