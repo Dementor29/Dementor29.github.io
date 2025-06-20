@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Despertar Del ⛧ Averno</title>
   <link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     
     :root {
@@ -141,22 +143,27 @@
     .back-link:hover {
       background-color: #ff0000;
     }
-    .nequi-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #6f0f19;
-      color: white;
-      font-family: 'BurzumGothic', serif;
-      padding: 12px 18px;
-      text-decoration: none;
-      font-size: 16px;
-      z-index: 999;
-      box-shadow: 0 0 10px red;
-    }
-    .nequi-btn:hover {
-      background-color: #ff0000;
-    }
+    
+  .nequi-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: none;
+  color: white; /* blanco normal */
+  font-size: 52px;
+  z-index: 999;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 50%;
+  text-shadow: 0 0 6px rgba(255,255,255,0.4);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+    
+.nequi-btn:hover {
+  color: #C10202; /* rojo igual al de los títulos */
+  background-color: rgba(0, 0, 0, 0.3); /* opcional para dar efecto al pasar */
+}
+
     /* FLYER EMERGENTE */
 #flyer-overlay {
   position: fixed;
@@ -290,7 +297,9 @@ h2 {
     <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 10/06/2025</p>
   </footer>
 
-  <a href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" class="nequi-btn" target="_blank">WHATSAPP</a>
+  <a class="nequi-btn" href="https://chat.whatsapp.com/Fl4M8fWdI0S3CA6sVkgH8P" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+  </a>
 
   <script>
     const productosRopa = [
