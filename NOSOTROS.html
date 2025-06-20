@@ -154,27 +154,30 @@ flag-wrapper {
   transform: scale(1.1);
 }
 
-.volver-boton {
-  display: inline-block;
+.volver-container {
+  text-align: center;
   margin-top: 1.5rem;
-  padding: 0.75rem 1.8rem;
-  font-size: 1.1rem;
-  font-family: 'BurzumGothic', serif;
+}
+
+.volver-btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
   color: #000;
   background-color: #fff;
-  border: 2px solid #fff;
+  border: 2px solid #000;
   border-radius: 6px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
 
-.volver-boton:hover {
+.volver-btn:hover {
   background-color: #C10202;
   color: #fff;
-  box-shadow: 0 0 14px rgba(255,255,255,0.9);
+  border-color: #C10202;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
 }
-
    /* Responsive */
 @media (max-width: 768px) {
   .nosotros { grid-template-columns: 1fr; }
@@ -217,10 +220,9 @@ flag-wrapper {
       <h2 id="who">UN PROYECTO DIGNO DEL SENDERO DE LA MANO IZQUIERDAr</h2>
       <p id="desc1">Detrás de cada diseño, hay una sola persona entregando su visión: Moda oscura, Espíritu metalero y Productos que hablan de tu identidad Unica.</p>
       <p id="desc2">Con atención personalizada, Traigo a tu armario desde diseños exclusivos hasta libros y accesorios, todo pensado para fanáticos del ROCK y el METAL.</p>
+      <a href="index.html" class="volver-boton">DESPERTAR DEL AVERNO</a>
     </div>
   </section>
-  
-    <a href="index.html" class="volver-boton">DESPERTAR DEL AVERNO</a>
   
   <div class="separator" data-aos="zoom-in" data-aos-delay="400"></div>
 
