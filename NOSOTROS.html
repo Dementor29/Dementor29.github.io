@@ -1,184 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Despertar Del Averno - Archivos Multimedia"/>
-  <meta name="keywords" content="satanismo, ocultismo, multimedia, videos, imagenes, entretenimiento"/>
-
-  <title>Despertar Del ⛧ Averno - Archivos Multimedia</title>
-
-  <!-- AOS CSS for scroll animations -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
-  <!-- Font Awesome for any icons (optional) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Averno Store - Nosotros</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
   <style>
-    /* Global resets and base styles */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #000;
-      color: #fff;
-      font-family: 'BurzumGothic', serif;
-      line-height: 1.6;
-    }
+    /* Fuentes */
+    @font-face { font-family: 'BurzumGothic'; src: url('fonts/BurzumGothic.woff') format('woff'); }
+    body { font-family: 'BurzumGothic', serif; line-height: 1.6; background: #faf8f3; color: #000; margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* Header */
-    .media-header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: radial-gradient(circle at top, #111 0%, #000 80%);
-    }
-    .titulo-burzum {
-      font-size: 2rem; /* título un poco más pequeño */
-      position: relative;
-      display: inline-block;
-    }
-    .pentagrama {
-      color: #C10202;
-      margin-left: 0.5rem;
-      font-size: 2rem;
-      vertical-align: middle;
-    }
-
-    /* Grid layouts */
-    .galeria-imagenes,
-    .galeria-videos {
-      display: grid;
-      gap: 1rem;
-      padding: 1rem;
-    }
-    @media (min-width: 600px) {
-      .galeria-imagenes { grid-template-columns: repeat(2, 1fr); }
-      .galeria-videos  { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 599px) {
-      .galeria-imagenes,
-      .galeria-videos { grid-template-columns: 1fr; }
-    }
-
-    /* Media cards */
-    .media-card {
-      background: #1a1a1a;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.7);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-    }
-    .media-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 0 20px rgba(193,2,2,0.8);
-    }
-    .media-card::before {
-      content: "";
-      position: absolute;
+    /* Language selector overlay */
+    #langOverlay {
+      position: fixed;
       inset: 0;
-      background: linear-gradient(135deg, transparent 40%, rgba(0,0,0,0.5));
-      pointer-events: none;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
     }
-    .media-card img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-	  
-    .media-card iframe {
-     width: 80%;
-     max-width: 400px;
-     aspect-ratio: 16/9;
-     border: none;
-     display: block;
-     margin: 0 auto;
-     background-color: transparent;
-     }
-	  
-    .media-card figcaption,
-    .media-card .caption {
-      padding: 0.5rem;
-      background: #000;
+    #langOverlay.active { display: flex; }
+    #langOverlay .options {
+      background: rgba(255,255,255,0.9);
+      padding: 2rem;
+      border-radius: 8px;
       text-align: center;
-      font-size: 0.9rem;
+      backdrop-filter: blur(4px);
     }
-    .media-card a.video-link {
-      display: block;
-      text-align: center;
-      padding: 0.5rem;
-      color: #C10202;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s ease;
-    }
-    .media-card a.video-link:hover {
-      color: #fff;
-    }
+    #langOverlay img { width: 48px; margin: 0 1rem; cursor: pointer; transition: transform 0.3s; }
+    #langOverlay img:hover { transform: scale(1.1); }
 
-    /* Footer */
-    .media-footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #000;
-      font-size: 0.9rem;
+    /* Language toggle in corner */
+    #langToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      gap: 8px;
     }
-    .media-footer a {
-      color: #C10202;
-      text-decoration: none;
+    #langToggle img {
+      width: 24px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s, transform 0.3s;
     }
-    .volver-link {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 1.1rem;
+    #langToggle img:hover { opacity: 1; transform: scale(1.2); }
+
+    /* Separator */
+    .separator { width: 100%; height: 4px; background: #C10202; margin: 0; }
+
+    /* Container general */
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+    /* HERO */
+    .hero { background: #ffffff; color: #000; text-align: center; padding: 4rem 0; }
+    .hero h1 { font-size: 3rem; color: #C10202; margin-bottom: 1rem; }
+    .hero p  { font-size: 1.3rem; max-width: 700px; margin: 0 auto; }
+
+    /* NOSOTROS */
+    .nosotros { background: #000; color: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; padding: 4rem 0; }
+    .nosotros img { width: 100%; height: auto; object-fit: cover; border-radius: 8px; }
+    .nosotros-text { padding: 0 2rem; }
+    .nosotros-text h2 { font-size: 2.2rem; color: #C10202; margin-bottom: 1rem; }
+    .nosotros-text p  { margin-bottom: 1rem; color: #ccc; font-size: 1rem; }
+
+    /* FOOTER CONTACTO con efecto pulsante */
+    @keyframes pulseFooter {
+      0%,100% { box-shadow: 0 -5px 15px rgba(193,2,2,0.2); }
+      50% { box-shadow: 0 -5px 25px rgba(193,2,2,0.5); }
+    }
+    footer#contacto {
+      background: #ffffff;
+      color: #000;
+      padding: 2.5rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+      text-align: left;
+      border-top: 3px solid #C10202;
+      animation: pulseFooter 4s ease-in-out infinite;
+    }
+    footer#contacto div p { margin-bottom: 0.75rem; font-size: 1rem; }
+    footer#contacto i   { margin-right: 0.5rem; color: #C10202; font-size: 1.1rem; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nosotros { grid-template-columns: 1fr; }
+      .nosotros-text { padding: 0 1rem; }
+      footer#contacto { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
-
 <body>
-  <!-- Header -->
-  <header class="media-header">
-    <h1 class="titulo-burzum" data-aos="fade-down">
-      ARCHIVOS MULTIMEDIA <span class="pentagrama">⛧</span>
-    </h1>
+  <div id="langToggle">
+    <img src="https://flagcdn.com/co.svg" alt="Colombia" title="Español" onclick="showLangSelector()">
+    <img src="https://flagcdn.com/gb.svg" alt="English" title="English" onclick="showLangSelector()">
+  </div>
+  <div id="langOverlay">
+    <div class="options">
+      <p style="margin-bottom:1rem">Select Language / Selecciona Idioma</p>
+      <img src="https://flagcdn.com/co.svg" alt="Español" onclick="setLang('es')">
+      <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLang('en')">
+    </div>
+  </div>
+
+  <header class="hero" data-aos="fade-down">
+    <div class="container">
+      <h1 id="title">Descubre tu Estilo Único en Averno Store</h1>
+      <p id="subtitle">Soy el creador detrás de Averno Store, ofreciendo merch exclusivo de rock y metal: búzos, accesorios, libros y mucho más para quienes buscan destacarse.</p>
+    </div>
   </header>
+  <div class="separator" data-aos="zoom-in"></div>
 
-  <!-- Image Gallery -->
-  <section class="galeria-imagenes">
-    <figure class="media-card" data-aos="fade-up">
-      <img src="https://i.ibb.co/KjTHTLL/326678976-867051874576461-6343466547733363736-n.jpg" alt="Flyer Ritual" />
-      <figcaption>Flyer Ritual</figcaption>
-    </figure>
-  </section>
-
-  <!-- Video Gallery -->
-  <section class="galeria-videos">
-    <div class="media-card" data-aos="fade-up">
-      <iframe src="https://www.youtube.com/embed/tP7-X3ddpL8" title="Magnus Mefisto - Ritual I" allowfullscreen></iframe>
-      <div class="caption">Magnus Mefisto - Ritual I</div>
-      <a class="video-link" href="https://www.youtube.com/watch?v=tP7-X3ddpL8" target="_blank">Ver en YouTube</a>
-    </div>
-    <div class="media-card" data-aos="fade-up" data-aos-delay="100">
-      <iframe src="https://www.youtube.com/embed/OKgMXrFz_gM" title="Magnus Mefisto - Ritual II" allowfullscreen></iframe>
-      <div class="caption">Magnus Mefisto - Ritual II</div>
-      <a class="video-link" href="https://www.youtube.com/watch?v=OKgMXrFz_gM" target="_blank">Ver en YouTube</a>
-    </div>
-    <div class="media-card" data-aos="fade-up" data-aos-delay="200">
-      <iframe src="https://www.youtube.com/embed/IHzSIniGQqU" title="Magnus Mefisto - Ritual III" allowfullscreen></iframe>
-      <div class="caption">Magnus Mefisto - Ritual III</div>
-      <a class="video-link" href="https://www.youtube.com/watch?v=IHzSIniGQqU" target="_blank">Ver en YouTube</a>
+  <section class="nosotros" data-aos="fade-up" data-aos-delay="200">
+    <img src="https://i.ibb.co/KjTHTLL/326678976-867051874576461-6343466547733363736-n.jpg" alt="Tienda Averno Store">
+    <div class="nosotros-text">
+      <h2 id="who">Un Proyecto Humano, Pasión Singular</h2>
+      <p id="desc1">Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.</p>
+      <p id="desc2">Con atención personalizada, traigo a tu armario desde diseños exclusivos hasta libros y accesorios, todo pensado para fanáticos del rock y el metal.</p>
     </div>
   </section>
+  <div class="separator" data-aos="zoom-in" data-aos-delay="400"></div>
 
-  <!-- Footer -->
-  <footer class="media-footer">
-    <p>CREDITO: <a href="https://www.youtube.com/@magnusmefisto/featured" target="_blank">@magnusmefisto</a></p>
-    <a class="volver-link" href="index.html" data-aos="fade-up" data-aos-delay="300">↑ INICIO ↑</a>
+  <footer id="contacto" data-aos="fade-up" data-aos-delay="600">
+    <div><p><i class="fas fa-envelope"></i><strong> Correo:</strong> despertar@averno.co</p><p><i class="fab fa-instagram"></i><strong> Instagram:</strong> @despertar_del_averno</p></div>
+    <div><p><i class="fas fa-phone"></i><strong> Teléfono:</strong> +57 315 427 7973</p><p><i class="fab fa-whatsapp"></i><strong> WhatsApp:</strong> +57 315 427 7973</p></div>
+    <div><p><i class="fas fa-map-marker-alt"></i><strong> Dirección:</strong> Palmira - Valle del Cauca</p><p><i class="fas fa-copyright"></i> 2025 Despertar del Averno</p></div>
   </footer>
 
-  <!-- AOS JS for animations -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
-	  
-</script>
+    function showLangSelector() { document.getElementById('langOverlay').classList.add('active'); }
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang;
+      const texts = {
+        en: { title: 'Discover Your Unique Style at Averno Store', subtitle: 'I am the creator behind Averno Store, offering exclusive rock & metal merch: hoodies, accessories, books and more for those who stand out.', who: 'A One-Person Passion Project', desc1: 'Every design stems from a single visionary mind: dark fashion, metal spirit, products that echo your individuality.', desc2: 'From custom graphics to rare books and accessories, I cater directly to rock and metal enthusiasts.' },
+        es: { title: 'Descubre tu Estilo Único en Averno Store', subtitle: 'Soy el creador detrás de Averno Store, ofreciendo merch exclusivo de rock y metal: búzos, accesorios, libros y mucho más para quienes buscan destacarse.', who: 'Un Proyecto Humano, Pasión Singular', desc1: 'Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.', desc2: 'Con atención personalizada, traigo a tu armario desde diseños exclusivos hasta libros y accesorios, todo pensado para fanáticos del rock y el metal.' }
+      };
+      const t = texts[lang];
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('subtitle').textContent = t.subtitle;
+      document.getElementById('who').textContent = t.who;
+      document.getElementById('desc1').textContent = t.desc1;
+      document.getElementById('desc2').textContent = t.desc2;
+      document.getElementById('langOverlay').classList.remove('active');
+    }
+    window.onload = () => { const lang = localStorage.getItem('lang'); if (lang) setLang(lang); else showLangSelector(); };
+  </script>
 </body>
 </html>
