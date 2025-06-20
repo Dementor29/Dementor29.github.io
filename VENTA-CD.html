@@ -321,12 +321,15 @@
   }
 }
     
-  @media (max-width: 868px) {
-    #flyer-overlay img {
-      width: 90vw;
-      height: auto;
-    }
+@media (max-width: 600px) {
+  /* En móviles más pequeños, aprovechamos casi todo el ancho/alto */
+  #flyer-overlay img {
+    width: 95vw;       /* casi todo el ancho de la pantalla */
+    height: auto;      /* mantiene proporción */
+    max-width: 95vw;   /* evita que exceda ese ancho */
+    max-height: 95vh;  /* evita que exceda la altura visible */
   }
+}
     
  @media (max-width: 600px) {
   body {
