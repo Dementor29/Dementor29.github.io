@@ -1,90 +1,179 @@
-<!DOCTYPE hmtl>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
-	<meta charset="UF-8"/>
-  <meta charset="iso-8559-1"/>
-	<meta name="description" content="satanismo"/>
-	<meta name="Keywords" content= "juegos, videos, imagenes, entretenimiento, youtube, video juegos, celular, pc, computador, online, league of legends, free fire, mobile, valhalla krigere, valhalla, krigere"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title>Despertar Del ⛧ Averno</title>
-<style>
-	 
-.titulo-burzum {
-  font-family: 'BurzumGothic', serif;
-  /* opcional: ajusta tamaño o márgenes */
-  font-size: 2rem;
-  text-align: center;
-}
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Despertar Del Averno - Archivos Multimedia"/>
+  <meta name="keywords" content="satanismo, ocultismo, multimedia, videos, imagenes, entretenimiento"/>
 
-  .video-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
+  <title>Despertar Del ⛧ Averno - Archivos Multimedia</title>
 
-  .video-container iframe {
-    flex: 1 1 271px; /* crecer, encoger, base mínima */
-    max-width: 271px;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    border: none;
-  }
+  <!-- AOS CSS for scroll animations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
+  <!-- Font Awesome for any icons (optional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
 
-  /* Ajuste para pantallas pequeñas */
-  @media (max-width: 100px) {
-    .video-container iframe {
-      flex: 1 1 100%;
-      max-width: 100%;
+  <style>
+    /* Global resets and base styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'BurzumGothic', serif;
+      line-height: 1.6;
     }
-  }
 
-.volver-link {
-  display: block;
-  text-align: center;
-  font-size: 120%;
-  margin-bottom: 40px;
-}
+    /* Header */
+    .media-header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: radial-gradient(circle at top, #111 0%, #000 80%);
+    }
+    .titulo-burzum {
+      font-size: 2rem; /* título un poco más pequeño */
+      position: relative;
+      display: inline-block;
+    }
+    .pentagrama {
+      color: #C10202;
+      margin-left: 0.5rem;
+      font-size: 2rem;
+      vertical-align: middle;
+    }
 
-.volver-link a {
-  color: #ffffff;
-  text-decoration: none;
-}
-	
-</style>
+    /* Grid layouts */
+    .galeria-imagenes,
+    .galeria-videos {
+      display: grid;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    @media (min-width: 600px) {
+      .galeria-imagenes { grid-template-columns: repeat(2, 1fr); }
+      .galeria-videos  { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 599px) {
+      .galeria-imagenes,
+      .galeria-videos { grid-template-columns: 1fr; }
+    }
+
+    /* Media cards */
+    .media-card {
+      background: #1a1a1a;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.7);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .media-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 0 20px rgba(193,2,2,0.8);
+    }
+    .media-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(0,0,0,0.5));
+      pointer-events: none;
+    }
+    .media-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .media-card iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      display: block;
+    }
+    .media-card figcaption,
+    .media-card .caption {
+      padding: 0.5rem;
+      background: #000;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .media-card a.video-link {
+      display: block;
+      text-align: center;
+      padding: 0.5rem;
+      color: #C10202;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    .media-card a.video-link:hover {
+      color: #fff;
+    }
+
+    /* Footer */
+    .media-footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #000;
+      font-size: 0.9rem;
+    }
+    .media-footer a {
+      color: #C10202;
+      text-decoration: none;
+    }
+    .volver-link {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+  </style>
 </head>
 
 <body>
-<body bgcolor="black"/>
-	
-<h1 align="center"></h1>
-<h1 class="titulo-burzum"><span style="color:white;">ARCHIVOS MULTIMEDIA</span></h1>
-<h1 align="center"<span style="color:red;">⛧</span></h1> 
+  <!-- Header -->
+  <header class="media-header">
+    <h1 class="titulo-burzum" data-aos="fade-down">
+      ARCHIVOS MULTIMEDIA <span class="pentagrama">⛧</span>
+    </h1>
+  </header>
 
-<div 
- <h1 align="center"></h1>
+  <!-- Image Gallery -->
+  <section class="galeria-imagenes">
+    <figure class="media-card" data-aos="fade-up">
+      <img src="https://i.ibb.co/KjTHTLL/326678976-867051874576461-6343466547733363736-n.jpg" alt="Flyer Ritual" />
+      <figcaption>Flyer Ritual</figcaption>
+    </figure>
+  </section>
 
- <img src="https://i.ibb.co/KjTHTLL/326678976-867051874576461-6343466547733363736-n.jpg" alt="326678976-867051874576461-6343466547733363736-n"alt="despertardelaverno"style="width:58%">
+  <!-- Video Gallery -->
+  <section class="galeria-videos">
+    <div class="media-card" data-aos="fade-up">
+      <iframe src="https://www.youtube.com/embed/tP7-X3ddpL8" title="Magnus Mefisto - Ritual I" allowfullscreen></iframe>
+      <div class="caption">Magnus Mefisto - Ritual I</div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=tP7-X3ddpL8" target="_blank">Ver en YouTube</a>
+    </div>
+    <div class="media-card" data-aos="fade-up" data-aos-delay="100">
+      <iframe src="https://www.youtube.com/embed/OKgMXrFz_gM" title="Magnus Mefisto - Ritual II" allowfullscreen></iframe>
+      <div class="caption">Magnus Mefisto - Ritual II</div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=OKgMXrFz_gM" target="_blank">Ver en YouTube</a>
+    </div>
+    <div class="media-card" data-aos="fade-up" data-aos-delay="200">
+      <iframe src="https://www.youtube.com/embed/IHzSIniGQqU" title="Magnus Mefisto - Ritual III" allowfullscreen></iframe>
+      <div class="caption">Magnus Mefisto - Ritual III</div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=IHzSIniGQqU" target="_blank">Ver en YouTube</a>
+    </div>
+  </section>
 
-</div>
- 
+  <!-- Footer -->
+  <footer class="media-footer">
+    <p>CREDITO: <a href="https://www.youtube.com/@magnusmefisto/featured" target="_blank">@magnusmefisto</a></p>
+    <a class="volver-link" href="index.html" data-aos="fade-up" data-aos-delay="300">↑ INICIO ↑</a>
+  </footer>
 
-  <div class="video-container">
-  <iframe src="https://www.youtube.com/embed/tP7-X3ddpL8" title="YouTube video player" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/OKgMXrFz_gM?controls=0" title="YouTube video player" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/IHzSIniGQqU?controls=0" title="YouTube video player" allowfullscreen></iframe>
-</div>
-	
-<p2><span style="color:white;">CREDITO :</p2>
-
-<nav>
-<li style="font-size:17px"><a href="https://www.youtube.com/@magnusmefisto/featured"><span style="color:red;">@magnusmefisto</span></a></li>
-</nav>
-  
- <div class="volver-link">
-  <a href="index.html">↑-INICIO-↑</a>
-</div>
-  
+  <!-- AOS JS for animations -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+	  
+</script>
 </body>
 </html>
