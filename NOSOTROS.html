@@ -187,12 +187,21 @@ flag-wrapper {
 <body>
   
   <div id="langOverlay">
-    <div class="options">
-      <p style="margin-bottom:1rem">Select Language / Selecciona Idioma</p>
-      <img src="https://flagcdn.com/co.svg" alt="Español" onclick="setLang('es')">
-      <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLang('en')">
+  <div class="options">
+    <p style="margin-bottom: 0.5rem; font-size: 1.1rem;">Selecciona tu idioma / Select your language</p>
+    <div class="banderas-container">
+      <div class="flag-opcion">
+        <img src="https://flagcdn.com/co.svg" alt="Español" onclick="setLang('es')">
+        <p>Español (Colombia)</p>
+      </div>
+      <div class="flag-opcion">
+        <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLang('en')">
+        <p>English (UK)</p>
+      </div>
     </div>
   </div>
+</div>
+
 
   <header class="hero" data-aos="fade-down">
     <div class="container">
@@ -209,10 +218,10 @@ flag-wrapper {
       <p id="desc1">Detrás de cada diseño, hay una sola persona entregando su visión: Moda oscura, Espíritu metalero y Productos que hablan de tu identidad Unica.</p>
       <p id="desc2">Con atención personalizada, Traigo a tu armario desde diseños exclusivos hasta libros y accesorios, todo pensado para fanáticos del ROCK y el METAL.</p>
     </div>
-
-  <a href="index.html" class="volver-boton">DESPERTAR DEL AVERNO</a>
-
   </section>
+  
+    <a href="index.html" class="volver-boton">DESPERTAR DEL AVERNO</a>
+  
   <div class="separator" data-aos="zoom-in" data-aos-delay="400"></div>
 
   <footer id="contacto" data-aos="fade-up" data-aos-delay="600">
@@ -229,8 +238,8 @@ flag-wrapper {
       localStorage.setItem('lang', lang);
       document.documentElement.lang = lang;
       const texts = {
-        en: { title: 'Discover Your Unique Style at Averno Store', subtitle: 'I am the creator behind Averno Store, offering exclusive rock & metal merch: hoodies, accessories, books and more for those who stand out.', who: 'A One-Person Passion Project', desc1: 'Every design stems from a single visionary mind: dark fashion, metal spirit, products that echo your individuality.', desc2: 'From custom graphics to rare books and accessories, I cater directly to rock and metal enthusiasts.' },
-        es: { title: 'Descubre tu Estilo Único en Averno Store', subtitle: 'Soy el creador detrás de Averno Store, ofreciendo merch exclusivo de rock y metal: búzos, accesorios, libros y mucho más para quienes buscan destacarse.', who: 'Un Proyecto Humano, Pasión Singular', desc1: 'Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.', desc2: 'Con atención personalizada, traigo a tu armario desde diseños exclusivos hasta libros y accesorios, todo pensado para fanáticos del rock y el metal.' }
+        en: { title: 'AVERNO STORE', subtitle: 'I am the creator behind Averno Store, offering exclusive rock & metal merch: hoodies, accessories, books and more for those who stand out.', who: 'A One-Person Passion Project', desc1: 'Every design stems from a single visionary mind: dark fashion, metal spirit, products that echo your individuality.', desc2: 'From custom graphics to rare books and accessories, I cater directly to rock and metal enthusiasts.' },
+        es: { title: 'AVERNO STORE', subtitle: 'Soy el creador detrás de Averno Store, ofreciendo merch exclusivo de rock y metal: búzos, accesorios, libros y mucho más para quienes buscan destacarse.', who: 'Un Proyecto Humano, Pasión Singular', desc1: 'Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.', desc2: 'Con atención personalizada, traigo a tu armario desde diseños exclusivos hasta libros y accesorios, todo pensado para fanáticos del rock y el metal.' }
       };
       const t = texts[lang];
       document.getElementById('title').textContent = t.title;
@@ -240,11 +249,13 @@ flag-wrapper {
       document.getElementById('desc2').textContent = t.desc2;
       document.getElementById('langOverlay').classList.remove('active');
     }
-    window.onload = () => {
-      showLangSelector();                     // siempre abrimos el panel
-      const lang = localStorage.getItem('lang');
-      if (lang) setLang(lang);                // después aplicamos idioma guardado
-    };
-  </script>
+
+  window.onload = () => {
+  showLangSelector();
+  const lang = localStorage.getItem('lang');
+  if (lang && lang !== 'es') setLang(lang);
+  };
+    
+</script>
 </body>
 </html>
