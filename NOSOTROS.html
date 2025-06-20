@@ -105,7 +105,11 @@
     }
     footer#contacto div p { margin-bottom: 0.75rem; font-size: 1.2rem; }
     footer#contacto i   { margin-right: 0.5rem; color: #C10202; font-size: 1.1rem; }
-
+   
+    p {
+  font-size: 1.2rem;
+  }
+    
 flag-wrapper {
     position: relative;
     display: inline-block;
@@ -215,11 +219,7 @@ flag-wrapper {
   opacity: 1;
   transform: scale(1.2);
 }
-    
-p {
-  font-size: 1.2rem;
-}
-
+  
 </style>
 </head>
 <body>
@@ -247,10 +247,7 @@ p {
   <header class="hero" data-aos="fade-down">
     <div class="container">
       <h1 id="title">AVERNO STORE</h1>
-      <p id="subtitle">Bienvenidos a Averno Store. Soy el creador de este espacio, una manifestación tangible de lo que habita en las sombras de la música, el pensamiento y la estética. Averno Store nace con una intención clara: ofrecer más que productos, ofrecer símbolos. Aquí, cada prenda, cada libro, cada disco, ha sido seleccionado para resonar con quienes se atreven a caminar fuera del rebaño.
-    Este proyecto es el eco de una visión que abraza lo oscuro, lo auténtico, lo marginal. Merchandising exclusivo de rock y metal, libros que despiertan, CDs difíciles de encontrar y más, reunidos para quienes no temen destacar en un mundo uniforme.
-    Nada aquí es casual. Todo tiene propósito. Te invito a explorar, a descubrir y a llevar contigo algo más que un objeto: una declaración de identidad. Juan Camilo Heredia
-    (Averno)</p>
+      <p id="subtitle">Bienvenidos a Averno Store. Soy el creador de este espacio, una manifestación tangible de lo que habita en las sombras de la música, el pensamiento y la estética. Averno Store nace con una intención clara: ofrecer más que productos, ofrecer símbolos. Aquí, cada prenda, cada libro, cada disco, ha sido seleccionado para resonar con quienes se atreven a caminar fuera del rebaño. Este proyecto es el eco de una visión que abraza lo oscuro, lo auténtico, lo marginal. Merchandising exclusivo de rock y metal, libros que despiertan, CDs difíciles de encontrar y más, reunidos para quienes no temen destacar en un mundo uniforme. Nada aquí es casual. Todo tiene propósito. Te invito a explorar, a descubrir y a llevar contigo algo más que un objeto: una declaración de identidad. Juan Camilo Heredia (Averno)</p>
     </div>
   </header>
   <div class="separator" data-aos="zoom-in"></div>
@@ -282,20 +279,32 @@ p {
     AOS.init({ duration: 800, once: true });
     function showLangSelector() { document.getElementById('langOverlay').classList.add('active'); }
     function setLang(lang) {
-      localStorage.setItem('lang', lang);
-      document.documentElement.lang = lang;
-      const texts = {
-        en: { title: 'AVERNO STORE', subtitle: 'I am the creator behind Averno Store, offering exclusive rock & metal merch: hoodies, accessories, books and more for those who stand out.', who: 'A One-Person Passion Project', desc1: 'Every design stems from a single visionary mind: dark fashion, metal spirit, products that echo your individuality.', desc2: 'From custom graphics to rare books and accessories, I cater directly to rock and metal enthusiasts.' },
-        es: { title: 'AVERNO STORE', subtitle: 'Soy el creador detrás de Averno Store, ofreciendo merch exclusivo de rock y metal: búzos, accesorios, libros y mucho más para quienes buscan destacarse.', who: 'Un Proyecto Humano, Pasión Singular', desc1: 'Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.', desc2: 'Con atención personalizada, traigo a tu armario desde diseños exclusivos hasta libros y accesorios, todo pensado para fanáticos del rock y el metal.' }
-      };
-      const t = texts[lang];
-      document.getElementById('title').textContent = t.title;
-      document.getElementById('subtitle').textContent = t.subtitle;
-      document.getElementById('who').textContent = t.who;
-      document.getElementById('desc1').textContent = t.desc1;
-      document.getElementById('desc2').textContent = t.desc2;
-      document.getElementById('langOverlay').classList.remove('active');
+      
+  if (lang === 'es') {
+    document.getElementById('langOverlay').classList.remove('active');
+    return;
+  }
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+
+  const texts = {
+    en: {
+      title: 'AVERNO STORE',
+      subtitle: "Welcome to Averno Store. I am the creator of this space — a tangible manifestation of what dwells in the shadows of music, thought, and aesthetic. Averno Store was born with a clear intention: to offer more than products — to offer symbols. Each garment, each book, each album is selected to resonate with those who dare to walk outside the flock. This project echoes a vision that embraces darkness, authenticity, and the marginal. Exclusive rock and metal merchandise, awakening books, hard-to-find CDs and more, brought together for those unafraid to stand out in a uniform world. Nothing here is random. Everything has purpose. I invite you to explore, discover, and take with you more than an object: a declaration of identity. Juan Camilo Heredia (Averno)",
+      who: 'AVERNO PROJECT',
+      desc1: 'Behind every design is one person sharing a vision: dark fashion, metal spirit, and products that speak your unique identity.',
+      desc2: 'With personalized attention, I bring to your wardrobe exclusive designs, books, and accessories — all for true rock and metal fans.'
     }
+  };
+
+  const t = texts[lang];
+  document.getElementById('title').textContent = t.title;
+  document.getElementById('subtitle').textContent = t.subtitle;
+  document.getElementById('who').textContent = t.who;
+  document.getElementById('desc1').textContent = t.desc1;
+  document.getElementById('desc2').textContent = t.desc2;
+  document.getElementById('langOverlay').classList.remove('active');
+}
 
   window.onload = () => {
   showLangSelector();
@@ -303,6 +312,14 @@ p {
   if (lang && lang !== 'es') setLang(lang);
   };
     
+  
+  // Detecta clic fuera de .options para cerrar el panel de idioma
+  document.getElementById('langOverlay').addEventListener('click', function(e) {
+    if (!e.target.closest('.options')) {
+      this.classList.remove('active');
+    }
+  });
+
 </script>
 </body>
 </html>
