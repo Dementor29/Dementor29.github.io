@@ -17,7 +17,23 @@
     /* LANGUAGE OVERLAY */
     #langOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); display: none; justify-content: center; align-items: center; z-index: 2000; pointer-events: none; }
     #langOverlay.active { display: flex; pointer-events: all; }
-    #langOverlay .options { background: rgba(247,239,228,0.1); padding: 1.5rem; border-radius: 8px; text-align: center; backdrop-filter: blur(4px); margin: 0 1rem; margin-top: 40px;  width: auto; max-width: 200px; flex-direction: column; align-items: center;  justify-content: center; gap: 0.5rem; }
+    #langOverlay .options {
+    background: rgba(0, 0, 0, 0.3);        /* Más oscuro, más contraste */
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    backdrop-filter: blur(6px);           /* Más suavizado */
+    margin: 40px 1rem 0;
+    max-width: 280px;
+    width: 100%;
+  
+    display: flex;                        /* IMPORTANTE: activa flex */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;  
+    }
+
     #langOverlay img { width: 48px; margin: 0 1rem; cursor: pointer; transition: transform 0.3s; }
     #langOverlay img:hover { transform: scale(1.1); }
 
@@ -31,8 +47,8 @@
 
     /* HERO */
     .hero { background: #fff; color: #000; text-align: center; padding: 4rem 0; }
-    .hero h1 { font-size: 3rem; color: #C10202; margin-bottom: 1rem; }
-    .hero h2 { font-size: 3rem; color: #C10202; margin-bottom: 1rem; }
+    .hero h1 { font-size: 3rem; color: #f2f2f2; margin-bottom: 1rem; }
+    .hero h2 { font-size: 3rem; color: #f2f2f2; margin-bottom: 1rem; }
     .hero p { font-size: 1.3rem; max-width: 1000px; margin: 0 auto; text-align: justify; }
 
     /* NOSOTROS */
@@ -46,13 +62,11 @@
     .volver-boton:hover { background: #C10202; color: #fff; box-shadow: 0 0 12px #C10202; }
     .banderas-container {
     display: flex;
-    flex-direction: row;      /* fuerza fila horizontal */
-    justify-content: center;  /* centra en el eje X */
-    align-items: center;      /* alinea en el eje Y */
-    gap: 1.5rem;              /* separación entre cada opción */
-    margin: 1rem 0;  
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
     }
-    
     /* FOOTER */
     @keyframes pulseFooter { 0%,100% { box-shadow: 0 -5px 10px rgba(193,2,2,0.1); } 50% { box-shadow: 0 -5px 20px rgba(193,2,2,0.4); } }
     footer#contacto { background: #fff; color: #000; padding: 2.5rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left; border-top: 3px solid #C10202; animation: pulseFooter 10s ease-in-out infinite; will-change: box-shadow; }
