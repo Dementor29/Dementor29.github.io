@@ -17,7 +17,7 @@
     /* LANGUAGE OVERLAY */
     #langOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); display: none; justify-content: center; align-items: center; z-index: 2000; pointer-events: none; }
     #langOverlay.active { display: flex; pointer-events: all; }
-    #langOverlay .options { background: rgba(247,239,228,0.1); padding: 1.5rem; border-radius: 8px; text-align: center; backdrop-filter: blur(4px); margin: 0 1rem; margin-top: 40px;  width: 90%;/* ocupa más del ancho disponible */ max-width: 400px; }
+    #langOverlay .options { background: rgba(247,239,228,0.15); padding: 1.5rem; border-radius: 8px; text-align: center; backdrop-filter: blur(4px); margin: 0 1rem; margin-top: 40px;  width: auto;/* ocupa más del ancho disponible */ max-width: 300px; }
     #langOverlay img { width: 48px; margin: 0 1rem; cursor: pointer; transition: transform 0.3s; }
     #langOverlay img:hover { transform: scale(1.1); }
 
@@ -44,7 +44,7 @@
     .boton-contenedor { text-align: center; margin-top: 2.5rem; margin-bottom: 3rem; }
     .volver-boton { display: inline-block; background: #fff; color: #000; font-family: 'BurzumGothic', serif; font-size: 1.4rem; padding: 0.5rem 1.5rem; border: none; border-radius: 4px; box-shadow: 0 0 8px rgba(0,0,0,0.2); transition: all 0.3s; }
     .volver-boton:hover { background: #C10202; color: #fff; box-shadow: 0 0 12px #C10202; }
-    .banderas-container { display: flex; flex-direction: row; /* explícito: fila */ justify-content: center; align-items: center;    /* alinea verticalmente */ gap: 2rem;/* espacio entre banderas */ margin: 1rem 0;         /* coloca margen arriba y abajo */ padding: 0 1rem; }
+    .banderas-container { display: flex; flex-direction: row; /* explícito: fila */ justify-content: center; align-items: center;    /* alinea verticalmente */ gap: 1.5rem;/* espacio entre banderas */ margin: 1rem 0;         /* coloca margen arriba y abajo */ padding: 0 1rem; }
 
     /* FOOTER */
     @keyframes pulseFooter { 0%,100% { box-shadow: 0 -5px 10px rgba(193,2,2,0.1); } 50% { box-shadow: 0 -5px 20px rgba(193,2,2,0.4); } }
