@@ -324,10 +324,11 @@ font-family: 'BurzumGothic', serif;
     let wishlistData = {};
     let cartData = {};
     
- function crearItem(producto, esRopa = true) {
+  function crearItem(producto, esRopa = true, idx = 0) {
   const item = document.createElement("div");
   item.className = "item";
-  const id = producto.nombre.replace(/\s+/g, "_");
+  const baseId = producto.nombre.replace(/\s+/g, "_");
+  const id = `${baseId}_${idx}`;  // ID único para cada item
 
   let tallaSelect = esRopa ? `
     <label class="cantidad-label">Talla:
@@ -349,7 +350,7 @@ font-family: 'BurzumGothic', serif;
       <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
     </label>
     ${tallaSelect}
-    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
+    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa}, '${id}')">Agregar al carrito</button>
   `;
 
   // Aquí agregamos el listener que borra el error al cambiar la talla:
@@ -367,11 +368,10 @@ font-family: 'BurzumGothic', serif;
     }
 
     function renderCatalogo(productos, contenedorId, esRopa) {
-      const cont = document.getElementById(contenedorId);
-      cont.innerHTML = "";
-      productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
+    const cont = document.getElementById(contenedorId);
+    cont.innerHTML = "";
+    productos.forEach((p, idx) => cont.appendChild(crearItem(p, esRopa, idx)));
     }
-
     function toggleFavorite(el, nombre, precio, esRopa) {
       el.classList.toggle("active");
       if (wishlistData[nombre]) delete wishlistData[nombre];
@@ -412,26 +412,25 @@ font-family: 'BurzumGothic', serif;
       renderWishlist();
     }
 
-  function addToCart(nombre, precio, esRopa) {
-  const id = nombre.replace(/\s+/g, "_");
+  function addToCart(nombre, precio, esRopa, id) {
   const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
   let talla = "";
 
- if (esRopa) {
+  if (esRopa) {
     talla = document.getElementById(`talla-${id}`).value;
     const errorEl = document.getElementById(`error-${id}`);
-    if (!talla) {
-      if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
-      return;
-    } else {
-      if (errorEl) errorEl.textContent = "";
-    }
+  if (!talla) {
+  if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+  return;
+  } else {
+  if (errorEl) errorEl.textContent = "";
+  }
   }
 
-  cartData[nombre] = { precio, cantidad, talla };
+  cartData[`${nombre}_${id}`] = { precio, cantidad, talla };
   renderCarrito();
-}
-
+  }
+    
     function moverWishlistACarrito() {
     for (let nombre in wishlistData) {
     const producto = wishlistData[nombre];
