@@ -293,40 +293,38 @@
 #bandera-play {
   position: fixed;
   top: 20px;
-  left: 0;
-  background: #C10202;
-  color: white;
-  padding: 8px 16px;
-  font-size: 14px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffcccc;
+  padding: 12px 18px;
   font-family: 'BurzumGothic', serif;
+  font-size: 14px;
+  border: 1px solid #C10202;
+  border-left: 4px solid #C10202;
+  border-radius: 6px;
+  z-index: 9999;
   cursor: pointer;
-  z-index: 10000;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-  animation: latido 2s infinite;
-  text-align: center;
+  animation: parpadeoSuave 2s infinite;
+  box-shadow: 0 0 10px rgba(193, 2, 2, 0.3);
+  transition: transform 0.3s ease;
 }
 
-#bandera-play span {
-  font-size: 11px;
-  color: #ffdada;
-  display: block;
-  margin-top: 2px;
+#bandera-play:hover {
+  transform: scale(1.05);
+  background: rgba(0, 0, 0, 0.8);
 }
 
-@keyframes latido {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
+@keyframes parpadeoSuave {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
 
   </style>
   </head>
   <body>
     
-  <div id="bandera-play" onclick="scrollToReproductor()">
-  🔊 Da Play<br><span>Transmisión en vivo</span>
+   <div id="bandera-play" onclick="scrollToReproductor()">
+  ▶ Presiona <strong>PLAY</strong> para escuchar la transmisión en vivo
   </div>
 
   <header class="fade-in">
@@ -403,16 +401,17 @@
   
 </footer>  
 <script>
+  
   function scrollToReproductor() {
     const reproductor = document.querySelector('.bloque-reproductor');
     if (reproductor) {
       window.scrollTo({
-        top: reproductor.offsetTop - 40,
+        top: reproductor.offsetTop - 60,
         behavior: 'smooth'
       });
     }
   }
   
-</script> 
+</script>
 </body>
 </html>
