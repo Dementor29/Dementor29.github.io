@@ -324,43 +324,42 @@ font-family: 'BurzumGothic', serif;
     let wishlistData = {};
     let cartData = {};
     
-  function crearItem(producto, esRopa = true, idx) {
+ function crearItem(producto, esRopa = true) {
   const item = document.createElement("div");
   item.className = "item";
-
-  const baseId = producto.nombre.replace(/\s+/g, "_");
-  const id = `${baseId}_${idx}`;
+  const id = producto.nombre.replace(/\s+/g, "_");
 
   let tallaSelect = esRopa ? `
     <label class="cantidad-label">Talla:
       <select class="cantidad-input" id="talla-${id}">
         <option value="">Elige talla</option>
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
+        <option value="S">S</option><option value="M">M</option>
+        <option value="L">L</option><option value="XL">XL</option>
       </select>
     </label>
     <span id="error-${id}" class="error-msg"></span>
   ` : "";
 
   item.innerHTML = `
-    <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})">⛧</span>
+    <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
     <img src="${producto.imagen}" alt="${producto.nombre}">
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
-    <label class="cantidad-label">Cantidad:
+    <label class="cantidad-label">Cant:
       <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
     </label>
     ${tallaSelect}
-    <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio},${esRopa},'${id}')">Agregar al carrito</button>
+    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
   `;
 
-    if (esRopa) {
+  // Aquí agregamos el listener que borra el error al cambiar la talla:
+  if (esRopa) {
     const select = item.querySelector(`#talla-${id}`);
     const errorSpan = item.querySelector(`#error-${id}`);
     select.addEventListener('change', () => {
-    if (select.value) errorSpan.textContent = '';
+      if (select.value) {
+        errorSpan.textContent = "";
+      }
     });
     }
 
@@ -413,22 +412,25 @@ font-family: 'BurzumGothic', serif;
       renderWishlist();
     }
 
-    function addToCart(nombre, precio, esRopa, id) {
-    const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || '1');
-    let talla = '';
-    if (esRopa) {
+  function addToCart(nombre, precio, esRopa) {
+  const id = nombre.replace(/\s+/g, "_");
+  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
+  let talla = "";
+
+  if (esRopa) {
     talla = document.getElementById(`talla-${id}`).value;
     const errorEl = document.getElementById(`error-${id}`);
     if (!talla) {
-      errorEl.textContent = 'POR FAVOR SELECCIONA ⛧ UNA TALLA.';
+      if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
       return;
     } else {
-      errorEl.textContent = '';
+      if (errorEl) errorEl.textContent = "";
     }
-    }
-    cartData[`${nombre}_${id}`] = { precio, cantidad, talla };
-    renderCarrito();
-    }
+  }
+
+  cartData[nombre] = { precio, cantidad, talla };
+  renderCarrito();
+}
 
     function moverWishlistACarrito() {
     for (let nombre in wishlistData) {
