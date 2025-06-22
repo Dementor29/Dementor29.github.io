@@ -324,11 +324,15 @@ font-family: 'BurzumGothic', serif;
     let wishlistData = {};
     let cartData = {};
 
-function crearItem(producto, esRopa = true) {
+  function crearItem(producto, esRopa = true, idx)  {
   const item = document.createElement("div");
+  const baseId = producto.nombre.replace(/\s+/g, "_"); 
   item.className = "item";
   const id = producto.nombre.replace(/\s+/g, "_");
-
+  <select id="talla-${id}"> … </select>
+  <span id="error-${id}" class="error-msg"></span>
+  onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa}, '${id}')"
+    
   let tallaSelect = esRopa ? `
     <label class="cantidad-label">Talla:
       <select class="cantidad-input" id="talla-${id}">
@@ -369,7 +373,8 @@ function crearItem(producto, esRopa = true) {
     function renderCatalogo(productos, contenedorId, esRopa) {
       const cont = document.getElementById(contenedorId);
       cont.innerHTML = "";
-      productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
+      productos.forEach((p,i) => cont.appendChild(crearItem(p, esRopa, i)));
+       
     }
 
     function toggleFavorite(el, nombre, precio, esRopa) {
@@ -412,20 +417,16 @@ function crearItem(producto, esRopa = true) {
       renderWishlist();
     }
 
- function addToCart(nombre, precio, esRopa) {
+  function addToCart(nombre, precio, esRopa, id) {
+  const select = document.getElementById(`talla-${id}`);  
+  const error  = document.getElementById(`error-${id}`);
   const id = nombre.replace(/\s+/g, "_");
   const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
   let talla = "";
-
-  if (esRopa) {
-    talla = document.getElementById(`talla-${id}`).value;
-    const errorEl = document.getElementById(`error-${id}`);
-    if (!talla) {
-      if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
-      return;
-    } else {
-      if (errorEl) errorEl.textContent = "";
-    }
+  if (esRopa && !select.value) {
+    error.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+    return;
+  }
   }
 
   cartData[nombre] = { precio, cantidad, talla };
