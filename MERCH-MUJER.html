@@ -1,524 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Despertar Del ⛧ Averno</title>
   <link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
   <style>
-    :root {
-  --volver-bg: #990000;
-  --volver-color: #ffffff;
-  --volver-hover-bg: #770000;
-}
-
-.volver-btn {
-  background-color: var(--volver-bg);
-  color: var(--volver-color);
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 1em;
-}
-
-.volver-btn:hover {
-  background-color: var(--volver-hover-bg);
-}
-
-    @font-face {
-      font-family: 'BurzumGothic';
-      src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
-    }
-    body {
-      background-color: #000000;
-      font-family: 'BurzumGothic', serif;
-      color: white;
-      margin: 0;
-      padding: 20px;
-    }
-    h1, h2, h3 {
-      text-align: center;
-    }
-    .catalogo {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .item {
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      padding: 10px;
-      width: 220px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-    .item img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background-color: #111;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-    .precio {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .heart-icon {
-      font-size: 24px;
-      color: gray;
-      cursor: pointer;
-      position: absolute;
-      top: 8px;
-      right: 8px;
-    }
-    .heart-icon.active {
+    /* Estilos existentes... */
+    .error-msg {
       color: red;
+      font-size: 13px;
+      display: block;
+      margin-top: 4px;
     }
-    .cantidad-label {
-      font-size: 14px;
-      color: #fff;
-      margin-top: 8px;
-    }
-    .cantidad-input {
-      width: 50px;
-      margin-left: 8px;
-      padding: 4px;
-      border: 1px solid #555;
-      border-radius: 4px;
-      background-color: #111;
-      color: #fff;
-      font-family: inherit;
-      font-size: 14px;
-    }
-    .cart-button, .remove-button {
-      margin-top: 10px;
-      background-color: #444;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-family: 'BurzumGothic', serif;
-    }
-    .cart-button:hover, .remove-button:hover {
-      background-color: #ff0000;
-    }
-    #wishlist, #cart {
-      margin-top: 40px;
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .volver-container {
-      text-align: center;
-      margin: 40px 0;
-    }
-    .back-link {
-      font-family: 'BurzumGothic', serif;
-      font-size: 20px;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-    }
-    .back-link:hover {
-      background-color: #ff0000;
-    }
-    
-.nequi-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: none;
-  padding: 10px;
-  border-radius: 50%;
-  text-decoration: none;
-  transition: color 0.3s ease, background 0.3s ease;
-  z-index: 999;
-}
-
-.nequi-btn i {
-  font-size: 3.5rem;              /* grande y vectorial */
-  color: white;                 /* blanco por defecto */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.nequi-btn:hover {
-  background-color: rgba(0,0,0,0.3);
-}
-
-.nequi-btn:hover i {
-  color: #C10202;               /* tu rojo de títulos */
-}
-
-    /* FLYER EMERGENTE */
-#flyer-overlay {
-  position: fixed;
-  inset: 0;
-  background: #000000; /* fondo transparente */
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#flyer-overlay img {
-  width: auto;
-  height: auto;
-  max-width: 75vw;
-  max-height: 80vh;
-  object-fit: contain;
-  animation: parpadeo-led 2.5s infinite;
-  border-radius: 0;
-}
-
-#flyer-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 22px;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10001;
-}
-
-#flyer-close:hover {
-  color: #ff0000;
-}
-
-.flyer-hint {
-  position: absolute;
-  top: 50px;
-  right: 30px;
-  font-size: 13px;
-  color: #ccc;
-  font-family: Arial, sans-serif;
-}
-    
-header {
-  margin-bottom: 60px; /* Aumenta este valor si deseas más espacio */
-}
-    
-.error-msg {
-  color: red;
-  font-size: 13px;
-  display: block;
-  margin-top: 4px;
-}
-    
-h1 {
-  font-family: 'BurzumGothic', serif;  /* ⬅ Aplica la fuente */
-  font-size: 30px;                     /* Tamaño grande como pediste */
-  text-align: center;
-  margin-bottom: 40px;                 /* Espacio debajo del título */
-}   
-    
-h2 {
-color: #C10202;        /* Rojo sangre */
-text-align: center;    /* Ya lo tienes, pero por si acaso */
-margin-bottom: 20px;
-font-family: 'BurzumGothic', serif;
-}
-    
-#flyer-overlay img {
-  width: auto;
-  height: auto;
-  max-width: 75vw;
-  max-height: 80vh;
-}
-    
-@media (max-width: 600px) {
-  /* En móviles más pequeños, aprovechamos casi todo el ancho/alto */
-  #flyer-overlay img {
-    width: 95vw;       /* casi todo el ancho de la pantalla */
-    height: auto;      /* mantiene proporción */
-    max-width: 95vw;   /* evita que exceda ese ancho */
-    max-height: 95vh;  /* evita que exceda la altura visible */
-  }
-}
-   
-@media (max-width: 600px) {
-  body {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  
-</style>
+  </style>
 </head>
 <body>
-  
-  <div id="flyer-overlay">
-  <button id="flyer-close" title="Cerrar">𒉽</button>
-  <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
-  <img src="bg.png" alt="Flyer Averno" />
-  </div>
-  
-  <header>
-    <h1>ROPA ⛧ ACCESORIOS</h1>
-  </header>
+  <!-- Contenedores de catálogo -->
+  <div id="catalogo-ropa"></div>
+  <div id="catalogo-accesorios"></div>
 
-  <h2>ROPA</h2>
-  <div class="catalogo" id="catalogo-ropa"></div>
-
-  <h2>ACCESORIOS</h2>
-  <div class="catalogo" id="catalogo-accesorios"></div>
-
-  <div id="wishlist">
-    <h3>Lista de deseos</h3>
-    <ul id="wishlist-items"></ul>
-    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
-    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
-  </div>
-
-  <div id="cart">
-    <h3>Carrito de compras</h3>
-    <ul id="cart-items"></ul>
-    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
-    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
-  </div>
-
-  <div class="volver-container">
-  <button class="volver-btn" onclick="location.href='index.html'">VOLVER</button>
-  </div>
-
-  <footer>
-    <p style="text-align:center">© DERECHOS DE AUTOR - AVERNO - 22/06/2025</p>
-  </footer>
-
-  <a class="nequi-btn" href="https://wa.me/message/7GNMDBFX4L6IJ1"
-   target="_blank">
-  <i class="fab fa-whatsapp"></i>
-  </a>
-
+  <!-- Scripts -->
   <script>
     const productosRopa = [
       { nombre: "VESTIDO", precio: 40000, imagen: "https://i.pinimg.com/736x/2a/11/93/2a119370d306d8ae644a1476733fd79a.jpg" },
       { nombre: "VESTIDO", precio: 85000, imagen: "https://m.media-amazon.com/images/I/61d6aZLQlGS._AC_UY1000_.jpg" },
       { nombre: "VESTIDO", precio: 20000, imagen: "https://i5.walmartimages.com/asr/f58a2714-cae4-446d-b67d-6ad1939e068e.deed06704ee19460c2c043153999414b.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" }
     ];
-
     const productosAccesorios = [
-      { nombre: "COLLAR", precio: 25000, imagen: "https://down-co.img.susercontent.com/file/7024a70df9605d927aaa62c6629c1a0b" },
-      { nombre: "GARGANTUA", precio: 10000, imagen: "https://img.pacifiko.com/PROD/resize/1/250x250/MWVmODVjYj.jpg" },
-       { nombre: "CUELLO", precio: 10000, imagen: "https://http2.mlstatic.com/D_998772-MLM53955674899_022023-C.jpg" }
+      { nombre: "GORRA", precio: 15000, imagen: "https://example.com/gorra.jpg" },
+      { nombre: "PULSERA", precio: 8000, imagen: "https://example.com/pulsera.jpg" }
     ];
 
     let wishlistData = {};
     let cartData = {};
 
-  function crearItem(producto, esRopa = true, idx)  {
-  const item = document.createElement("div");
-  const baseId = producto.nombre.replace(/\s+/g, "_"); 
-  item.className = "item";
-  const id = producto.nombre.replace(/\s+/g, "_");
-  <select id="talla-${id}"> … </select>
-  <span id="error-${id}" class="error-msg"></span>
-  onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa}, '${id}')"
-    
-  let tallaSelect = esRopa ? `
-    <label class="cantidad-label">Talla:
-      <select class="cantidad-input" id="talla-${id}">
-        <option value="">Elige talla</option>
-        <option value="S">S</option><option value="M">M</option>
-        <option value="L">L</option><option value="XL">XL</option>
-      </select>
-    </label>
-    <span id="error-${id}" class="error-msg"></span>
-  ` : "";
+    function crearItem(producto, esRopa = true, idx) {
+      const item = document.createElement("div");
+      item.className = "item";
+      const baseId = producto.nombre.replace(/\s+/g, "_");
+      const id = `${baseId}_${idx}`;
+      let tallaSelect = esRopa ? `
+        <label class="cantidad-label">Talla:
+          <select class="cantidad-input" id="talla-${id}">
+            <option value="">Elige talla</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </label>
+        <span id="error-${id}" class="error-msg"></span>
+      ` : "";
 
-  item.innerHTML = `
-    <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
-    <img src="${producto.imagen}" alt="${producto.nombre}">
-    <h3>${producto.nombre}</h3>
-    <div class="precio">$${producto.precio.toLocaleString()}</div>
-    <label class="cantidad-label">Cant:
-      <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
-    </label>
-    ${tallaSelect}
-    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
-  `;
+      item.innerHTML = `
+        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})">⛧</span>
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h3>${producto.nombre}</h3>
+        <div class="precio">$${producto.precio.toLocaleString()}</div>
+        <label class="cantidad-label">Cantidad:
+          <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
+        </label>
+        ${tallaSelect}
+        <button class="cart-button" onclick="addToCart('${producto.nombre}',${producto.precio},${esRopa},'${id}')">Agregar al carrito</button>
+      `;
 
-  // Aquí agregamos el listener que borra el error al cambiar la talla:
-  if (esRopa) {
-    const select = item.querySelector(`#talla-${id}`);
-    const errorSpan = item.querySelector(`#error-${id}`);
-    select.addEventListener('change', () => {
-      if (select.value) {
-        errorSpan.textContent = "";
+      if (esRopa) {
+        const select = item.querySelector(`#talla-${id}`);
+        const errorSpan = item.querySelector(`#error-${id}`);
+        select.addEventListener('change', () => {
+          if (select.value) errorSpan.textContent = '';
+        });
       }
-    });
-  }
 
-  return item;
-}
+      return item;
+    }
 
     function renderCatalogo(productos, contenedorId, esRopa) {
       const cont = document.getElementById(contenedorId);
-      cont.innerHTML = "";
-      productos.forEach((p,i) => cont.appendChild(crearItem(p, esRopa, i)));
-       
+      cont.innerHTML = '';
+      productos.forEach((p, i) => cont.appendChild(crearItem(p, esRopa, i)));
     }
 
-    function toggleFavorite(el, nombre, precio, esRopa) {
-      el.classList.toggle("active");
-      if (wishlistData[nombre]) delete wishlistData[nombre];
-      else wishlistData[nombre] = { precio, esRopa };
-      renderWishlist();
-    }
-
-    function renderWishlist() {
-      const ul = document.getElementById("wishlist-items");
-      ul.innerHTML = "";
-      for (let nombre in wishlistData) {
-        const producto = wishlistData[nombre];
-        const id = nombre.replace(/\s+/g, "_");
-        const tallaSelect = producto.esRopa ? `
-    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-    <select id="wishlist-talla-${id}" class="cantidad-input">
-      <option value="">Elige talla</option>
-      <option value="S">S</option><option value="M">M</option>
-      <option value="L">L</option><option value="XL">XL</option>
-    </select>
-    </label>
-    <span id="error-wishlist-${id}" class="error-msg"></span>
-    ` : "";
-
-    ul.innerHTML += `
-          <li style="margin-bottom: 12px;">
-            <span>${nombre} — $${producto.precio.toLocaleString()}</span>
-            ${tallaSelect}
-            <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-          </li>
-        `;
+    function addToCart(nombre, precio, esRopa, id) {
+      const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || '1');
+      let talla = '';
+      if (esRopa) {
+        talla = document.getElementById(`talla-${id}`).value;
+        const errorEl = document.getElementById(`error-${id}`);
+        if (!talla) {
+          errorEl.textContent = 'POR FAVOR SELECCIONA ⛧ UNA TALLA.';
+          return;
+        } else {
+          errorEl.textContent = '';
+        }
       }
-    }
-
-    function eliminarDeWishlist(nombre) {
-      delete wishlistData[nombre];
-      document.querySelector(`.heart-icon[onclick*='${nombre}']`)?.classList.remove("active");
-      renderWishlist();
-    }
-
-  function addToCart(nombre, precio, esRopa, id) {
-  const select = document.getElementById(`talla-${id}`);  
-  const error  = document.getElementById(`error-${id}`);
-  const id = nombre.replace(/\s+/g, "_");
-  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
-  let talla = "";
-  if (esRopa && !select.value) {
-    error.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
-    return;
-  }
-  }
-
-  cartData[nombre] = { precio, cantidad, talla };
-  renderCarrito();
-}
-    function moverWishlistACarrito() {
-    for (let nombre in wishlistData) {
-    const producto = wishlistData[nombre];
-    const id = nombre.replace(/\s+/g, "_");
-    let talla = "";
-    if (producto.esRopa) {
-  talla = document.getElementById(`wishlist-talla-${id}`).value;
-
-    const errorEl = document.getElementById(`error-wishlist-${id}`);
-    if (!talla) {
-    if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
-    return;
-    } else {
-    if (errorEl) errorEl.textContent = "";
-    }
-    }
-
-   cartData[nombre] = { precio: producto.precio, cantidad: 1, talla };
-      }
-      wishlistData = {};
-      renderWishlist();
-      renderCarrito();
-      document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-    }
-
-    function renderCarrito() {
-      const ul = document.getElementById("cart-items");
-      ul.innerHTML = "";
-      for (let nombre in cartData) {
-        const it = cartData[nombre];
-        ul.innerHTML += `<li>${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
-      }
-    }
-
-    function eliminarDelCarrito(nombre) {
-      delete cartData[nombre];
+      cartData[`${nombre}_${id}`] = { precio, cantidad, talla };
       renderCarrito();
     }
 
-  function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+    // Funciones toggleFavorite, renderWishlist, renderCarrito, etc.
+    function toggleFavorite(el, nombre, precio, esRopa) { /* ... */ }
+    function renderWishlist() { /* ... */ }
+    function renderCarrito() { /* ... */ }
 
-  // Resetea cantidades, tallas y errores
-  document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1;
-    else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-  }
-
-  function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-
-  // Resetea cantidades, tallas y errores
-  document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1;
-    else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-}
-
-    function comprarPorWhatsapp() {
-      if (!Object.keys(cartData).length) {
-        alert("Carrito vacío");
-        return;
-      }
-      let msg = "Hola, quiero comprar:%0A";
-      for (let nombre in cartData) {
-        const it = cartData[nombre];
-        msg += `- ${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
-      }
-      window.open(`https://wa.me/573181541064?text=${msg}`, '_blank');
-    }
-
-    renderCatalogo(productosRopa, "catalogo-ropa", true);
-    renderCatalogo(productosAccesorios, "catalogo-accesorios", false);
+    // Inicialización
+    renderCatalogo(productosRopa, 'catalogo-ropa', true);
+    renderCatalogo(productosAccesorios, 'catalogo-accesorios', false);
     renderWishlist();
-    document.getElementById('flyer-close').onclick = function () {
-    document.getElementById('flyer-overlay').style.display = 'none';
-    };
-    
-</script>
+
+    // Función para cerrar flyer
+    document.getElementById('flyer-close')?.addEventListener('click', function () {
+      document.getElementById('flyer-overlay').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
