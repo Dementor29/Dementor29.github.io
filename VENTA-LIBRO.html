@@ -564,10 +564,10 @@ function comprarPorWhatsapp() {
     const item = cartData[nombre];
     const subtotal = item.precio * item.cantidad;
     mensaje += `- ${nombre} x${item.cantidad} = $${subtotal.toLocaleString()}%0A`;
-  
+  }
   const url = `https://wa.me/message/7GNMDBFX4L6IJ1?text=${mensaje}`;
   window.open(url, '_blank');
-}
+  }
 
 function actualizarCantidad(nombre, nuevaCantidad) {
   const cant = parseInt(nuevaCantidad) || 1;
