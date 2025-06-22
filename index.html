@@ -172,10 +172,26 @@
         transform: translateY(0);
       }
     }
+    
+    .led-marquee {
+    font-family: 'BurzumGothic', serif;
+    font-size: 18px;
+    color: red;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 500px;
+    margin: 0 auto 20px auto;
+    position: relative;
+  }
 
+  .led-marquee::before {
+    content: attr(data-text);
+    display: inline-block;
+    animation: scroll-left 25s linear infinite;
+  }
    .radio-hint {
     font-family: 'BurzumGothic', serif;
-    font-size: 16px;
+    font-size: 20px;
     color: #cccccc;
     font-style: italic;
     text-align: center;
@@ -184,7 +200,7 @@
 
   .radio-credit {
     font-family: 'BurzumGothic', serif;
-    font-size: 14px;
+    font-size: 18px;
     color: #999999;
     text-align: center;
     display: block;
