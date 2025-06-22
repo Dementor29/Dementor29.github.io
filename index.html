@@ -59,6 +59,7 @@
     header h1 {
       font-size: 36px;
       color: #cc0000;
+      margin-top: 60px;
     }
 
     header p {
@@ -311,15 +312,17 @@
 }
 
 #bandera-play:hover {
-  transform: scale(1.05);
+  animation: sacudir 0.4s;
   background: rgba(0, 0, 0, 0.5);
 }
 
-@keyframes parpadeoSuave {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+@keyframes sacudir {
+  0%   { transform: translateX(-50%) rotate(0deg); }
+  25%  { transform: translateX(-50%) rotate(2deg); }
+  50%  { transform: translateX(-50%) rotate(-2deg); }
+  75%  { transform: translateX(-50%) rotate(1deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
 }
-
   </style>
   </head>
   <body>
