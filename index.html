@@ -187,7 +187,7 @@
   .led-marquee::before {
     content: attr(data-text);
     display: inline-block;
-    animation: scroll-left 25s linear infinite;
+    animation: scroll-left 30s linear infinite;
   }
     @keyframes scroll-left {
     0% {
@@ -222,7 +222,7 @@
 
  .bloque-reproductor {
   width: 100%;
-  padding: 20px 0;
+  padding: 15px 0;
   background: transparent;
   text-align: center;
   margin-top: 10px;
@@ -289,11 +289,46 @@
 .submenu:hover .submenu-items {
   display: block;
 }
+    
+#bandera-play {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  background: #C10202;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-family: 'BurzumGothic', serif;
+  cursor: pointer;
+  z-index: 10000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  animation: latido 2s infinite;
+  text-align: center;
+}
+
+#bandera-play span {
+  font-size: 11px;
+  color: #ffdada;
+  display: block;
+  margin-top: 2px;
+}
+
+@keyframes latido {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
 
   </style>
   </head>
   <body>
-  
+    
+  <div id="bandera-play" onclick="scrollToReproductor()">
+  🔊 Da Play<br><span>Transmisión en vivo</span>
+  </div>
+
   <header class="fade-in">
     <h1>DESPERTAR DEL AVERNO</h1>
     <p>SATANISMO - LUCIFERINO</p>
@@ -352,7 +387,6 @@
     <p>Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.</p>
     <div class="ver-mas"><a href="NOSOTROS.html">Ver más</a></div>
   </section>
-
  <footer id="contacto" class="fade-in" style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; text-align: left; gap: 20px;">
   <div>
     <p><i class="fas fa-envelope" style="color: #cc0000;"></i> <strong>Correo:</strong> averno_store@despertardelaverno.com</p>
@@ -366,7 +400,19 @@
     <p><i class="fas fa-map-marker-alt" style="color: #cc0000;"></i> <strong>Dirección:</strong> Palmira - Valle del Cauca</p>
     <p><i class="fas fa-copyright" style="color: #cc0000;"></i> 2025 Despertar del Averno</p>
   </div>
-   
-</footer>
+  
+</footer>  
+<script>
+  function scrollToReproductor() {
+    const reproductor = document.querySelector('.bloque-reproductor');
+    if (reproductor) {
+      window.scrollTo({
+        top: reproductor.offsetTop - 40,
+        behavior: 'smooth'
+      });
+    }
+  }
+  
+</script> 
 </body>
 </html>
