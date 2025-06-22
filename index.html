@@ -173,31 +173,49 @@
       }
     }
 
-  audio {
-  width: 260px;
-  max-width: 90%;
-  margin: 20px auto;
-  display: block;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  opacity: 0.85;               /* 👈 reduce la visibilidad del fondo blanco en Chrome */
-  filter: brightness(0.6);     /* 👈 oscurece visualmente los controles */
+   .radio-hint {
+    font-family: 'BurzumGothic', serif;
+    font-size: 16px;
+    color: #cccccc;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 10px;
   }
 
-  .bloque-reproductor {
-  width: 100%;                   /* ocupa todo el ancho de la pantalla */
-  padding: 30px 0;               /* solo padding vertical */
-  background: transparent;       /* sin fondo adicional */
-  text-align: center;
-  margin-top: 10px;              /* centra el reproductor */
-  margin-bottom: 10px;           /* separación hacia la siguiente sección */
+  .radio-credit {
+    font-family: 'BurzumGothic', serif;
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    display: block;
+    margin-top: 8px;
   }
-    
-  .bloque-reproductor audio {
-  width: 260px;                  /* reproductor más pequeño */
-  max-width: 90%;
-  }    
+
+  #radio-container {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+ .bloque-reproductor {
+  width: 100%;
+  padding: 30px 0;
+  background: transparent;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.bloque-reproductor audio {
+  width: 90%;        /* ocupa todo el contenedor */
+  max-width: 300px;   /* mínimo 400–500px para que aparezca el control de volumen */
+  display: block;
+  margin: 20px auto;
+  background: transparent;
+  filter: brightness(0.6);
+  padding: 0;
+  border-radius: 0;
+  opacity: 0.85;
+} 
 
   .submenu {
   position: relative;
@@ -257,11 +275,16 @@
     <p>SATANISMO - LUCIFERINO</p>
   </header>
 
-  <div class="bloque-reproductor fade-in">
+  <div class="bloque-reproductor">
+  <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
+
   <audio controls>
-    <source src="AHRIMAN - Funeral Transilvano.mp3" type="audio/mp3">
+    <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
   </audio>
-</div>
+
+  <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
+  <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
+  </div>
   
   <nav class="fade-in">
     <a href="#intro" style="color: #C10202;">INTRODUCCIÓN</a>
