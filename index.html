@@ -57,7 +57,7 @@
     }
 
     header h1 {
-      font-size: 36px;
+      font-size: 50px;
       color: #cc0000;
       margin-top: 40px;
     }
@@ -174,30 +174,6 @@
       }
     }
     
-    .led-marquee {
-    font-family: 'BurzumGothic', serif;
-    font-size: 18px;
-    color: white;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 500px;
-    margin: 0 auto 20px auto;
-    position: relative;
-  }
-
-  .led-marquee::before {
-    content: attr(data-text);
-    display: inline-block;
-    animation: scroll-left 30s linear infinite;
-  }
-    @keyframes scroll-left {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
    .radio-hint {
     font-family: 'BurzumGothic', serif;
     font-size: 20px;
@@ -293,7 +269,7 @@
     
 #bandera-play {
   position: fixed;
-  top: 15px;
+  top: 30px;
   left: 50%;
   background: rgba(0, 0, 0, 0.80);
   color: white;
@@ -335,15 +311,10 @@
     <h1>DESPERTAR DEL AVERNO</h1>
     <p>SATANISMO - LUCIFERINO</p>
   </header>
-
-  <div class="bloque-reproductor">
-  <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
     
   <audio id="reproductor" controls>
   <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
   </audio>
-
-  </div>
     
   <nav class="fade-in">
     <a href="#intro" style="color: #C10202;">INTRODUCCIÓN</a>
