@@ -311,7 +311,7 @@
 
 #bandera-play:hover {
   transform: scale(1.05);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 @keyframes parpadeoSuave {
@@ -323,10 +323,10 @@
   </head>
   <body>
     
-   <div id="bandera-play" onclick="scrollToReproductor()">
-  ▶ Presiona <strong>PLAY</strong> para escuchar la transmisión en vivo
-  </div>
-
+   <div class="banderin" onclick="document.getElementById('reproductor').play()">
+  <i class="fas fa-play"></i> Presiona ▶ para escuchar la radio
+   </div>
+    
   <header class="fade-in">
     <h1>DESPERTAR DEL AVERNO</h1>
     <p>SATANISMO - LUCIFERINO</p>
