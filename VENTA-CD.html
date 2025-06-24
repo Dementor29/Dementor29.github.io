@@ -299,7 +299,7 @@
 
   .radio-hint {
     font-family: 'BurzumGothic', serif;
-    font-size: 16px;
+    font-size: 14px;
     color: #cccccc;
     font-style: italic;
     text-align: center;
@@ -308,7 +308,7 @@
 
   .radio-credit {
     font-family: 'BurzumGothic', serif;
-    font-size: 14px;
+    font-size: 12px;
     color: #999999;
     text-align: center;
     display: block;
@@ -342,14 +342,17 @@
 }
     
 footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 2rem 1rem;
+  margin: 0;              /* elimina márgenes exteriores */
+  padding: 2rem 1rem;     /* conserva algo de padding interior */
+  width: 100vw;           /* asegúrate de que ocupe toda la ventana */
+  box-sizing: border-box; /* incluye padding dentro del ancho */
   background: #000;
   color: #ccc;
-  gap: 2rem;                /* separación entre columnas */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  border-top: 1px solid #444;  /* línea divisoria en la parte superior */
 }
 
 footer div {
