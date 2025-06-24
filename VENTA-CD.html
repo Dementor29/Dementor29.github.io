@@ -1,4 +1,434 @@
-<script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Despertar Del ⛧ Averno</title>
+  <link href="https://static.thenounproject.com/png/26242-200.png" rel="shortcut icon"/>
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
+
+  <style>
+    
+  :root {
+  --volver-bg: #990000;
+  --volver-color: #ffffff;
+  --volver-hover-bg: #770000;
+}
+
+.volver-btn {
+  background-color: var(--volver-bg);
+  color: var(--volver-color);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1em;
+}
+
+.volver-btn:hover {
+  background-color: var(--volver-hover-bg);
+}
+
+  html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  }
+
+  @font-face {
+    font-family: 'BurzumGothic';
+    src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #000000;
+    font-family: 'BurzumGothic', serif;
+    color: white;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'BurzumGothic', serif;
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    color: #C10202;
+    font-family: 'BurzumGothic', serif;
+    margin-bottom: 30px;
+    margin-top: 60px;
+  }
+
+  .catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .item {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 10px;
+    width: 220px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .item img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background-color: #111;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  .precio {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .heart-icon {
+    font-size: 24px;
+    color: gray;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  .heart-icon.active {
+    color: red;
+  }
+
+  .cantidad-label {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .cantidad-input {
+    width: 50px;
+    margin-left: 8px;
+    padding: 4px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #111;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .cart-button, .remove-button {
+    margin-top: 10px;
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .cart-button:hover, .remove-button:hover {
+    background-color: #ff0000;
+  }
+
+  #wishlist, #cart {
+    margin-top: 40px;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .volver-container {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .back-link {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .back-link:hover {
+    background-color: #ff0000;
+  }
+    
+.nequi-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: none;
+  padding: 10px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: color 0.3s ease, background 0.3s ease;
+  z-index: 999;
+}
+
+.nequi-btn i {
+  font-size: 3.5rem;              /* grande y vectorial */
+  color: white;                 /* blanco por defecto */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nequi-btn:hover {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.nequi-btn:hover i {
+  color: #C10202;               /* tu rojo de títulos */
+}
+
+  /* FLYER EMERGENTE */
+#flyer-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000; /* fondo transparente */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#flyer-overlay img {
+  width: auto;
+  height: auto;
+  max-width: 75vw;
+  max-height: 80vh;
+  object-fit: contain;
+  animation: parpadeo-led 2.5s infinite;
+  border-radius: 0;
+}
+
+#flyer-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 22px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+#flyer-close:hover {
+  color: #ff0000;
+}
+    
+#flyer-overlay img {
+  width: auto;
+  height: auto;
+  max-width: 75vw;
+  max-height: 80vh;
+}
+
+.flyer-hint {
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  font-size: 13px;
+  color: #ccc;
+  font-family: Arial, sans-serif;
+}
+
+  .led-marquee {
+    font-family: 'BurzumGothic', serif;
+    font-size: 18px;
+    color: red;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 500px;
+    margin: 0 auto 20px auto;
+    position: relative;
+  }
+
+  .led-marquee::before {
+    content: attr(data-text);
+    display: inline-block;
+    animation: scroll-left 25s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .radio-hint {
+    font-family: 'BurzumGothic', serif;
+    font-size: 16px;
+    color: #cccccc;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .radio-credit {
+    font-family: 'BurzumGothic', serif;
+    font-size: 14px;
+    color: #999999;
+    text-align: center;
+    display: block;
+    margin-top: 8px;
+  }
+
+  #radio-container {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+ .bloque-reproductor {
+  width: 100%;
+  padding: 30px 0;
+  background: transparent;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.bloque-reproductor audio {
+  width: 90%;        /* ocupa todo el contenedor */
+  max-width: 300px;   /* mínimo 400–500px para que aparezca el control de volumen */
+  display: block;
+  margin: 20px auto;
+  background: transparent;
+  filter: brightness(0.6);
+  padding: 0;
+  border-radius: 0;
+  opacity: 0.85;
+}
+    
+@media (max-width: 600px) {
+  .nequi-btn {
+    font-size: 42px;
+    padding: 12px;
+    right: 15px;
+    bottom: 15px;
+  }
+}
+    
+@media (max-width: 600px) {
+  /* En móviles más pequeños, aprovechamos casi todo el ancho/alto */
+  #flyer-overlay img {
+    width: 95vw;       /* casi todo el ancho de la pantalla */
+    height: auto;      /* mantiene proporción */
+    max-width: 95vw;   /* evita que exceda ese ancho */
+    max-height: 95vh;  /* evita que exceda la altura visible */
+  }
+}
+    
+ @media (max-width: 600px) {
+  body {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>CATÁLOGO</h1>
+  </header>   
+    
+  <div id="flyer-overlay">
+  <button id="flyer-close" title="Cerrar">𒉽</button>
+  <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
+  <img src="bg.png" alt="Flyer Averno" />
+</div>
+
+  <div class="bloque-reproductor">
+  <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
+
+  <audio controls>
+    <source src="https://stream.laut.fm/demonology" type="audio/mpeg">
+  </audio>
+
+  <p class="radio-hint">Presiona ▶ para escuchar nuestra transmisión en vivo</p>
+  <small class="radio-credit">Fuente: Black Metal Underground. Derechos de autor Laut.fm</small>
+  </div>
+
+
+  <h2>BLACK METAL</h2>
+  <div class="catalogo" id="catalogo-black"></div>
+
+  <h2>THRASH METAL</h2>
+  <div class="catalogo" id="catalogo-thrash"></div>
+
+  <h2>HEAVY METAL</h2>
+  <div class="catalogo" id="catalogo-heavy"></div>
+
+  <div id="wishlist">
+    <h3>Lista de deseos</h3>
+    <ul id="wishlist-items"></ul>
+    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+  </div>
+
+  <div id="cart">
+    <h3>Carrito de compras</h3>
+    <ul id="cart-items"></ul>
+    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+  </div>
+
+  <div class="volver-container">
+  <button class="volver-btn" onclick="location.href='index.html'">VOLVER</button>
+  </div>
+
+  <footer class="footer">
+    <p style="text-align:center">© DERECHOS DE AUTOR – AVERNO – 22/06/2025</p>
+  </footer>
+  
+<a class="nequi-btn" href="https://wa.me/message/7GNMDBFX4L6IJ1"
+   target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+  <script>
     // Arrays de productos
     const productosBlackMetal = [
       { nombre: "DARKTHRONE", precio: 25000, imagen: "https://i.ibb.co/hxsDYhLw/496941007-653499041000136-3418095848827089151-n.jpg" },
