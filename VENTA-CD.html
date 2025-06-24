@@ -82,16 +82,19 @@
     margin-top: 60px;
   }
 
-  .catalogo {
+.catalogo {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 25px;
   padding: 20px;
-  justify-items: center;
-  }
+  justify-content: center;       /* ← centra el grid horizontalmente */
+  justify-items: center;         /* ← centra cada ítem dentro del grid */
+  max-width: 1200px;
+  margin: 0 auto;                /* ← centra el catálogo completo */
+}
 
 .item {
-  background-color: #111;
+  background-color: #000;         /* ← negro puro */
   padding: 15px;
   border-radius: 6px;
   width: 100%;
@@ -100,6 +103,7 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
   transition: transform 0.2s ease;
 }
+
 .item:hover {
   transform: scale(1.02);
 }
@@ -113,7 +117,7 @@
 }
 
 .item h3 {
-  color: #e1b97c; /* Color dorado gótico */
+  color: #C10202; /* Color */
   font-size: 15px;
   margin: 10px 0 4px;
   line-height: 1.4;
@@ -125,7 +129,7 @@
   color: #ccc;
   font-size: 14px;
   font-family: 'BurzumGothic', serif;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
   .heart-icon {
     font-size: 24px;
@@ -162,7 +166,7 @@
 
   .cart-button, .remove-button {
     margin-top: 10px;
-    background-color: #444;
+    background-color: #111;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -172,7 +176,7 @@
   }
 
   .cart-button:hover, .remove-button:hover {
-    background-color: #ff0000;
+    background-color: #C10202;
   }
 
   #wishlist, #cart {
