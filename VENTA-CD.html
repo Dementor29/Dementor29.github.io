@@ -340,19 +340,31 @@
   border-radius: 0;
   opacity: 0.85;
 }
-    
+
 footer {
-  margin: 0;              /* elimina márgenes exteriores */
-  padding: 2rem 1rem;     /* conserva algo de padding interior */
-  width: 100vw;           /* asegúrate de que ocupe toda la ventana */
-  box-sizing: border-box; /* incluye padding dentro del ancho */
-  background: #000;
-  color: #ccc;
+  margin: 0;                 /* quita márgenes exteriores */
+  padding: 2rem 1rem;        /* más espacio arriba/abajo, poco a los lados */
+  width: 100vw;
+  box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
-  border-top: 1px solid #444;  /* línea divisoria en la parte superior */
+  justify-content: space-around;  /* reparte bloques */
+  align-items: center;
+  gap: 1rem;                 /* reduce el hueco entre bloques */
+  border-top: 1px solid #444;
+}
+
+/* Aumenta el tamaño de texto dentro del footer */
+footer p {
+  font-size: 1rem;           /* antes 0.85rem, ahora más legible */
+  margin: 0;                 /* quita márgenes extra */
+  line-height: 1.4;
+}
+
+/* Si quieres que cada bloque ocupe similar anchura */
+footer > div {
+  flex: 1;                   /* cada columna igual proporción */
+  min-width: 200px;          /* evitas que se colapse demasiado */
+  text-align: center;        /* centras el contenido de cada columna */
 }
     
 @media (max-width: 600px) {
