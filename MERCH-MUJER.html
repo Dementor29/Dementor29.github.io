@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="AV STORE" />
+  <link rel="manifest" href="/site.webmanifest" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Despertar Del ⛧ Averno</title>
-  <link rel="shortcut icon" href="https://static.thenounproject.com/png/26242-200.png">
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
+  <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
 
   <style>
     :root {
@@ -43,8 +47,23 @@
       margin: 0;
       padding: 20px;
     }
+   
     h1, h2, h3 {
-      text-align: center;
+    text-align: center;
+    margin-bottom: 20px;
+    }
+    h1 {
+    font-family: 'BurzumGothic', serif;  /* ⬅ Aplica la fuente */
+    font-size: 30px;                     /* Tamaño grande como pediste */
+    text-align: center;
+    margin-bottom: 40px;                 /* Espacio debajo del título */
+    }   
+    
+    h2 {
+    color: #cccccc;       /* color */
+    text-align: center;    /* Ya lo tienes, pero por si acaso */
+    margin-bottom: 20px;
+    font-family: 'BurzumGothic', serif;
     }
     
     .catalogo {
@@ -80,6 +99,20 @@
   aspect-ratio: 1 / 1; /* fuerza a mantener proporción cuadrada */
   }
 
+  .item h3 {
+  font-size: 14px;
+  text-align: center;
+  min-height: 40px;
+  margin: 10px 0;
+  color: #cccccc;
+  font-family: 'BurzumGothic', serif;
+  }
+  
+  #wishlist h3, #cart h3 {
+  color: #cccccc;  /* rojo del footer */
+  font-family: 'BurzumGothic', serif;
+  }
+
   .precio {
   color: #C10202; 
   font-weight: bold;
@@ -97,45 +130,101 @@
   .heart-icon.active {
       color: red;
   }
-  .cantidad-label {
-      font-size: 14px;
-      color: #fff;
-      margin-top: 8px;
+
+  cantidad-label {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #cccccc;      
+  }
+
+  .cantidad-input {
+    width: 50px;
+    margin-left: 8px;
+    padding: 4px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #111;
+    color: #cccccc;      
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .cart-button {
+    margin-top: 10px;
+    background-color: #0f0f0f; 
+    color: #cccccc;      
+    border: 1px solid #0f0f0f;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'BurzumGothic', serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
     }
-    .cantidad-input {
-      width: 50px;
-      margin-left: 8px;
-      padding: 4px;
-      border: 1px solid #555;
-      border-radius: 4px;
-      background-color: #111;
-      color: #fff;
-      font-family: inherit;
-      font-size: 14px;
-    }
-    .cart-button, .remove-button {
-      margin-top: 10px;
-      background-color: #444;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-family: 'BurzumGothic', serif;
-    }
-    .cart-button:hover, .remove-button:hover {
-      background-color: #ff0000;
+
+    .cart-button:hover {
+    background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
+    color: #C10202; 
     }
     
-    #wishlist, #cart {
-    margin-top: 40px;
+    #wishlist .cart-button,
+    #cart .cart-button {
+    margin-top: 10px;
+    background-color: #0f0f0f; 
+    color: #C10202;
+    border: 1px solid #0f0f0f;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'BurzumGothic', serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;  
+    }  
+
+    #wishlist .cart-button:hover,
+    #cart .cart-button:hover {
+    background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
+    color: #ff0000;
+    }
+
+    #wishlist button.cart-button,
+    #cart button.cart-button {
+    display: inline-block;
+    margin: 10px 5px;
+    }
+
+    /* CONTENEDORES wishlist y carrito alineados con el catálogo */
+    #wishlist,  
+    #cart {
     background: #000;
     padding: 20px;
     border-radius: 8px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    max-width: 800px;
+    margin: 40px auto; /* centrado con márgenes arriba y abajo */
+    text-align: center;
+    box-sizing: border-box;
+    }
+
+    /* LISTAS UL SIN VIÑETAS NI DESALINEACIÓN */
+    #wishlist ul,
+    #cart ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0; /* margen inferior para separar botones */
+    text-align: left; /* texto alineado a la izquierda */
+    }
+
+    /* CADA ITEM DE LA LISTA (LI) CON FORMATO CLARO */
+    #wishlist ul li,
+    #cart ul li {
+    margin-bottom: 8px;
+    color: #cccccc;  
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    }
+    
     .volver-container {
       text-align: center;
       margin: 40px 0;
@@ -165,7 +254,7 @@
 }
 
 .nequi-btn i {
-  font-size: 3.5rem;              /* grande y vectorial */
+  font-size: 3rem;              /* grande y vectorial */
   color:  #cccccc;                /* blanco por defecto */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -230,20 +319,6 @@
   font-size: 13px;
   display: block;
   margin-top: 4px;
-}
-    
-h1 {
-  font-family: 'BurzumGothic', serif;  /* ⬅ Aplica la fuente */
-  font-size: 30px;                     /* Tamaño grande como pediste */
-  text-align: center;
-  margin-bottom: 40px;                 /* Espacio debajo del título */
-}   
-    
-h2 {
-color: #cccccc;       /* color */
-text-align: center;    /* Ya lo tienes, pero por si acaso */
-margin-bottom: 20px;
-font-family: 'BurzumGothic', serif;
 }
     
 #flyer-overlay img {
