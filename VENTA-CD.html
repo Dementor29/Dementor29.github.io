@@ -210,11 +210,35 @@
   margin: 10px 5px;
   }
 
-  #wishlist,
-  #cart {
+  /* CONTENEDORES wishlist y carrito alineados con el catálogo */
+#wishlist,
+#cart {
+  background: #000;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 40px auto; /* centrado con márgenes arriba y abajo */
   text-align: center;
-  }
+  box-sizing: border-box;
+}
 
+/* LISTAS UL SIN VIÑETAS NI DESALINEACIÓN */
+#wishlist ul,
+#cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0; /* margen inferior para separar botones */
+  text-align: left; /* texto alineado a la izquierda */
+}
+
+/* CADA ITEM DE LA LISTA (LI) CON FORMATO CLARO */
+#wishlist ul li,
+#cart ul li {
+  margin-bottom: 8px;
+  color: #ccc;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
 
   .volver-container {
     text-align: center;
