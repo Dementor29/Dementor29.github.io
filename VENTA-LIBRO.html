@@ -333,6 +333,24 @@
 footer#contacto { background: black; color: #cccccc; padding: 2.5rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left; border-top: 2px solid #C10202; animation: pulseFooter 10s ease-in-out infinite; will-change: box-shadow; }
 footer#contacto div p { margin-bottom: 0.75rem; font-size: 1rem; }
 footer#contacto i { margin-right: 0.5rem; color: #C10202; font-size: 1rem; }
+  
+.ver-mas-button {
+  background-color: #222;          /* negro metal menos oscuro */
+  color:  #cccccc;                  
+  border: 1px solid #222; 
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'BurzumGothic', serif;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ver-mas-button:hover {
+  background-color: #C10202;
+  color: #000;
+}
+
     
 @media (max-width: 600px) {
   footer#contacto div p { font-size: 0.85rem; }
@@ -457,7 +475,7 @@ function crearItem(producto) {
       <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
     </label>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-    <button class="cart-button" onclick="verDescripcion('${producto.nombre}')">Ver más</button>
+    <button class="ver-mas-button" onclick="verDescripcion(...)">Ver más</button>
   `;
   return item;
 }
