@@ -186,15 +186,22 @@
     
   #wishlist .cart-button,
   #cart .cart-button {
-  background-color: #222;     /* negro metálico menos oscuro */
-  color: #C10202;             /* rojo tipo footer */
-  border: 1px solid #444;
-  }
+  margin-top: 10px;
+  background-color: #0f0f0f; 
+  color: #C10202;
+  border: 1px solid #0f0f0f;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'BurzumGothic', serif;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
   #wishlist .cart-button:hover,
   #cart .cart-button:hover {
-  background-color: #111;
-  color: #ffffff;
+  background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
+  color: #ff0000;
   }
 
   .volver-container {
