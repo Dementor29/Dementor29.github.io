@@ -114,6 +114,19 @@
   aspect-ratio: 1 / 1; /* fuerza a mantener proporción cuadrada */
   }
 
+  .item h3 {
+  font-size: 14px;
+  text-align: center;
+  min-height: 40px;
+  margin: 10px 0;
+  color: #cccccc;
+  font-family: 'BurzumGothic', serif;
+  }
+  
+  #wishlist h3, #cart h3 {
+  color: #cccccc;  /* rojo del footer */
+  font-family: 'BurzumGothic', serif;
+}
   .precio {
     color: #C10202; 
     font-weight: bold;
@@ -170,15 +183,18 @@
   background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
   color: #C10202; 
   }
+    
+  #wishlist .cart-button,
+  #cart .cart-button {
+  background-color: #222;     /* negro metálico menos oscuro */
+  color: #C10202;             /* rojo tipo footer */
+  border: 1px solid #444;
+  }
 
-  #wishlist, #cart {
-    margin-top: 40px;
-    background: #000;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+  #wishlist .cart-button:hover,
+  #cart .cart-button:hover {
+  background-color: #111;
+  color: #ffffff;
   }
 
   .volver-container {
