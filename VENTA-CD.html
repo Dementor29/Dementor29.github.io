@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="AV STORE" />
+  <link rel="manifest" href="/site.webmanifest" />
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Despertar Del ⛧ Averno</title>
-  <link href="https://static.thenounproject.com/png/26242-200.png" rel="shortcut icon"/>
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
+  <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
 
   <style>
     
@@ -149,19 +153,22 @@
     transition: all 0.2s ease;
   }
 
-  .cart-button, .remove-button {
-    margin-top: 10px;
-    background-color: #444;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
+  .cart-button {
+  margin-top: 10px;
+  background-color: #0f0f0f; 
+  color: #C10202;
+  border: 1px solid #0f0f0f;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'BurzumGothic', serif;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  .cart-button:hover, .remove-button:hover {
-    background-color: #ff0000;
+  .cart-button:hover {
+  background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
+  color: #ff0000;
   }
 
   #wishlist, #cart {
