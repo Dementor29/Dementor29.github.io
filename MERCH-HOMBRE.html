@@ -117,6 +117,7 @@
   }
     
   .precio {
+    font-family: 'BurzumGothic', serif;
     color: #C10202; 
     font-weight: bold;
     margin-bottom: 10px;
@@ -134,19 +135,20 @@
       color: red;
     }
 
-    cantidad-label {
+    .cantidad-label {
+    font-family: 'BurzumGothic', serif;
     display: flex;
     align-items: center;
     margin-top: 8px;
     font-size: 14px;
-    color: #cccccc;      
-  }
+    color: #cccccc; 
+    }
 
   .cantidad-input {
     width: 50px;
     margin-left: 8px;
     padding: 4px;
-    border: 1px solid #555;
+    border: 1px solid transparent;
     border-radius: 4px;
     background-color: #111;
     color: #cccccc;      
@@ -154,6 +156,12 @@
     transition: all 0.2s ease;
   }
 
+  .cantidad-input:focus {
+  border-color: #C10202;
+  box-shadow: 0 0 5px #C10202aa;
+  outline: none;
+  }
+    
   .cart-button {
     margin-top: 10px;
     background-color: #0f0f0f; 
@@ -346,9 +354,24 @@
   footer#contacto i { margin-right: 0.5rem; color: #C10202; font-size: 1rem; }
     
   @media (max-width: 600px) {
-  footer#contacto div p { font-size: 0.85rem; }
-  footer#contacto i { font-size: 1rem; }
+  footer#contacto {
+    flex-direction: column;        /* cambia de horizontal a vertical */
+    align-items: flex-start;       /* alinea cada columna a la izquierda */
   }
+
+  footer#contacto div {
+    width: 100%;                   /* cada columna ocupa todo el ancho */
+  }
+
+  footer#contacto div p {
+    font-size: 0.85rem;
+  }
+
+  footer#contacto i {
+    font-size: 1rem;
+  }
+}
+
   @media (max-width: 600px) {
   body {
     padding-left: 12px;
