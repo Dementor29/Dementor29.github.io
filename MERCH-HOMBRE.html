@@ -180,12 +180,6 @@
   background-color: black;
   color: #cccccc; 
   }
-
-  select.cantidad-input option:hover{
-  border-color: #C10202;
-  box-shadow: 0 0 5px #C10202;
-  outline: none;
-  }
     
   .cart-button {
     margin-top: 10px;
@@ -412,7 +406,45 @@
     max-height: 95vh;  /* evita que exceda la altura visible */
   }
 }
- 
+
+#top-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 12px 0;
+  background-color: #111;
+  border-bottom: 1px solid #C10202;
+  font-family: 'BurzumGothic', serif;
+  font-size: 16px;
+  color: #cccccc;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+.icono-acceso {
+  cursor: pointer;
+  position: relative;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.icono-acceso:hover {
+  color: #ff0000;
+  border-color: #C10202;
+}
+
+.icono-acceso span {
+  background-color: #C10202;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 6px;
+  font-size: 13px;
+}
+
 </style>
 </head>
 <body>
@@ -422,6 +454,15 @@
   <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
   <img src="bg.png" alt="Flyer Averno" />
   </div>
+
+   <header id="top-bar">
+  <div class="icono-acceso" onclick="document.getElementById('wishlist').scrollIntoView({ behavior: 'smooth' });">
+    🖤 Lista de deseos <span id="contador-wishlist">0</span>
+  </div>
+  <div class="icono-acceso" onclick="document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });">
+    🛒 Carrito <span id="contador-cart">0</span>
+  </div>
+  </header>
   
   <h2>ROPA</h2>
   <div class="catalogo" id="catalogo-ropa"></div>
@@ -677,6 +718,53 @@ function crearItem(producto, esRopa = true) {
     document.getElementById('flyer-overlay').style.display = 'none';
     };
     
+//FUNCION NUEVA//
+  function actualizarContadores() {
+  document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
+  document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
+  }
+
+// Llamar al actualizar contadores cuando se renderizan
+  function renderWishlist() {
+  const ul = document.getElementById("wishlist-items");
+  ul.innerHTML = "";
+  for (let nombre in wishlistData) {
+  const producto = wishlistData[nombre];
+  const id = nombre.replace(/\s+/g, "_");
+  const tallaSelect = producto.esRopa ? `
+    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+    <select id="wishlist-talla-${id}" class="cantidad-input">
+    <option value="">Elige talla</option>
+    <option value="S">S</option><option value="M">M</option>
+    <option value="L">L</option><option value="XL">XL</option>
+    </select>
+    </label>
+    <span id="error-wishlist-${id}" class="error-msg"></span>
+    ` : "";
+
+    ul.innerHTML += `
+      <li style="margin-bottom: 12px;">
+      <span>${nombre} — $${producto.precio.toLocaleString()}</span>
+       ${tallaSelect}
+      <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+      </li>
+      `;
+    }
+
+  actualizarContadores();
+  }
+
+  function renderCarrito() {
+  const ul = document.getElementById("cart-items");
+  ul.innerHTML = "";
+  for (let nombre in cartData) {
+  const it = cartData[nombre];
+  ul.innerHTML += `<li>${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+}
+
+actualizarContadores();
+}
+
 </script>
 </body>
 </html>
