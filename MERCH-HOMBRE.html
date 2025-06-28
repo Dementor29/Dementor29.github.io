@@ -405,7 +405,7 @@
   color: #cccccc;
   padding: 2px 6px;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'BurzumGothic', serif;
 }
 
@@ -424,7 +424,7 @@
 .icono-acceso::after {
   content: attr(data-descripcion);
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   color: #cccccc; /* Cambia este color si quieres otro para la descripción */
   margin-top: 5px;
   font-family: 'BurzumGothic', serif;
@@ -700,33 +700,26 @@ function crearItem(producto, esRopa = true) {
     }
 
   function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-
-  // Resetea cantidades, tallas y errores
-  document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1;
-    else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+    wishlistData = {};
+    renderWishlist();
+    document.querySelectorAll('.heart-icon.active')
+      .forEach(icon => icon.classList.remove('active'));
+    document.querySelectorAll("#wishlist .cantidad-input").forEach(input => {
+      if (input.tagName === "SELECT") input.value = "";
+      else input.value = 1;
+    });
+    document.querySelectorAll('.error-msg').forEach(span => span.textContent = "");
   }
 
   function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-
-  // Resetea cantidades, tallas y errores
-  document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1;
-    else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-}
-
+    cartData = {};
+    renderCarrito();
+    document.querySelectorAll('.heart-icon.active')
+      .forEach(icon => icon.classList.remove('active'));
+    document.querySelectorAll("#cart .cantidad-input").forEach(input => {
+      input.value = 1;
+    });
+  }
     function comprarPorWhatsapp() {
       if (!Object.keys(cartData).length) {
         alert("Carrito vacío");
