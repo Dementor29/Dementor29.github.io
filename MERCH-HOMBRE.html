@@ -706,14 +706,11 @@ function crearItem(producto, esRopa = true) {
     renderWishlist();
     document.querySelectorAll('.heart-icon.active')
       .forEach(icon => icon.classList.remove('active'));
-    document.querySelectorAll("#wishlist .cantidad-input").forEach(input => {
-      if (input.type === "number") {
-        input.value = 1;
-      } else if (input.tagName === "SELECT") {
-        input.selectedIndex = 0;
-      }
-    });
-    document.querySelectorAll('.error-msg').forEach(span => span.textContent = "");
+    document.querySelectorAll(".cantidad-input").forEach(input => {
+    if (input.type === "number") input.value = 1;
+    else input.value = "";
+  });
+  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
   }
 
   function vaciarCarrito() {
@@ -721,13 +718,12 @@ function crearItem(producto, esRopa = true) {
     renderCarrito();
     document.querySelectorAll('.heart-icon.active')
       .forEach(icon => icon.classList.remove('active'));
-    document.querySelectorAll("#cart .cantidad-input").forEach(input => {
-      if (input.type === "number") {
-        input.value = 1;
-      } else if (input.tagName === "SELECT") {
-        input.selectedIndex = 0;
-      }
-    });
+   document.querySelectorAll(".cantidad-input").forEach(input => {
+    if (input.type === "number") input.value = 1;
+    else input.value = "";
+  });
+  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+    
   }
 
     function comprarPorWhatsapp() {
