@@ -716,8 +716,6 @@ function crearItem(producto, esRopa = true) {
   function vaciarCarrito() {
     cartData = {};
     renderCarrito();
-    document.querySelectorAll('.heart-icon.active')
-      .forEach(icon => icon.classList.remove('active'));
    document.querySelectorAll(".cantidad-input").forEach(input => {
     if (input.type === "number") input.value = 1;
     else input.value = "";
