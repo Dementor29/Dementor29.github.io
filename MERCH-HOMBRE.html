@@ -351,7 +351,7 @@
   right: 30px;
   font-size: 13px;
   color: #ccc;
-  font-family: Arial, sans-serif;
+  font-family: 'BurzumGothic', serif;
 }
 
 #flyer-overlay img {
@@ -420,6 +420,7 @@
   top: 0;
   z-index: 9999;
   text-align: center;
+
 }
 
 .icono-acceso * {
@@ -464,16 +465,16 @@
   </div>
 
   <header id="top-bar">
-  <div class="icono-acceso" onclick="document.getElementById('wishlist').scrollIntoView({ behavior: 'smooth' });">
-    <div>⛧<strong>Lista de deseos</strong></div>
-    <div class="descripcion-icono">Guarda tus productos favoritos</div>
+  <div class="icono-acceso *" onclick="document.getElementById('wishlist').scrollIntoView({ behavior: 'smooth' });">
+    <div>⛧ <strong>Lista de Deseos</strong></div>
     <span id="contador-wishlist">0</span>
+    <div class="descripcion-icono">Guarda Tus Productos Infernales</div>
   </div>
 
-  <div class="icono-acceso" onclick="document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });">
-    <div>🛒 <strong>Carrito</strong></div>
-    <div class="descripcion-icono">Consulta y finaliza tu compra</div>
+  <div class="icono-acceso *" onclick="document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });">
+    <div>🛒 <strong>Carrito de Compras</strong></div>
     <span id="contador-cart">0</span>
+    <div class="descripcion-icono">Consulta y Finaliza Tu Compra</div>
   </div>
 </header>
   
