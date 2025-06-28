@@ -423,7 +423,9 @@
 
 }
 
-.icono-acceso {
+.icono-acceso,
+.icono-acceso * {
+  cursor: pointer !important;
   cursor: pointer;
   padding: 10px;
   border-radius: 8px;
@@ -433,14 +435,14 @@
 }
 
 .icono-acceso:hover {
-  color: #ff0000;
+  color: #C10202;
 }
 
 .icono-acceso span {
   position: absolute;
   top: 0;
   right: -8px;
-  background-color: #C10202;
+  background-color: transparent;
   color: white;
   padding: 2px 6px;
   border-radius: 50%;
@@ -450,8 +452,9 @@
 
 .icono-acceso div {
   font-size: 18px;
-  color: #cccccc; /* Cambia este valor si quieres otro color para el texto */
+  color: #C10202; /* Cambia este valor si quieres otro color para el texto */
   transition: color 0.3s ease;
+  font-family: 'BurzumGothic', serif;
 }
 
 .icono-acceso:hover div {
@@ -462,8 +465,9 @@
   content: attr(data-descripcion);
   display: block;
   font-size: 12px;
-  color: #999; /* Cambia este color si quieres otro para la descripción */
+  color: #cccccc; /* Cambia este color si quieres otro para la descripción */
   margin-top: 5px;
+   font-family: 'BurzumGothic', serif;
 }
 
 
@@ -479,12 +483,12 @@
 
   <header id="top-bar">
     
-  <div class="icono-acceso" data-descripcion="Guarda tus productos favoritos" onclick="document.getElementById('wishlist').scrollIntoView({ behavior: 'smooth' });">
+  <div class="icono-acceso" data-descripcion="Guarda Tus Productos Infernales" onclick="document.getElementById('wishlist').scrollIntoView({ behavior: 'smooth' });">
   <div>⛧ <strong>Lista de Deseos</strong></div>
   <span id="contador-wishlist">0</span>
   </div>
 
-  <div class="icono-acceso" data-descripcion="Finaliza tu compra aquí" onclick="document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });">
+  <div class="icono-acceso" data-descripcion="Finaliza Tu Compra Aquí" onclick="document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });">
   <div>🛒 <strong>Carrito de Compras</strong></div>
   <span id="contador-cart">0</span>
   </div>
