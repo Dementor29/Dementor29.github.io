@@ -143,8 +143,26 @@
     font-size: 14px;
     color: #cccccc; 
     }
+    
+  .cantidad-input {
+    width: 50px;
+    margin-left: 8px;
+    padding: 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #111;
+    color: #cccccc;      
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
 
-select.cantidad-input {
+  .cantidad-input:focus {
+  border-color: #C10202;
+  box-shadow: 0 0 5px #C10202aa;
+  outline: none;
+  }
+    
+  select.cantidad-input {
   background-color: #111;
   color: #fff;
   border: 1px solid transparent;
@@ -154,22 +172,16 @@ select.cantidad-input {
   appearance: none;        /* quita estilos del sistema */
   -webkit-appearance: none;
   -moz-appearance: none;
-}
+  }
 
-select.cantidad-input:hover {
+  select.cantidad-input:hover {
   border-color: #cccccc; 
   box-shadow: 0 0 6px #C10202;
-}
+  }
 
-select.cantidad-input option {
+  select.cantidad-input option {
   background-color: black;
   color: white;
-}
-
-  .cantidad-input:focus {
-  border-color: #C10202;
-  box-shadow: 0 0 5px #C10202aa;
-  outline: none;
   }
     
   .cart-button {
