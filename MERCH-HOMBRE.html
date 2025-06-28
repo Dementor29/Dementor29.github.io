@@ -375,7 +375,6 @@
   padding: 10px 20px;
   background-color: #111;
   border-bottom: 1px solid #C10202;
-  font-family: 'BurzumGothic', serif;
   color: #cccccc;
   position: sticky;
   top: 0;
@@ -403,10 +402,10 @@
   top: 0;
   right: -8px;
   background-color: transparent;
-  color: white;
+  color: #cccccc;
   padding: 2px 6px;
   border-radius: 50%;
-  font-size: 13px;
+  font-size: 20px;
   font-family: 'BurzumGothic', serif;
 }
 
@@ -415,20 +414,21 @@
   color: #C10202; /* Cambia este valor si quieres otro color para el texto */
   transition: color 0.3s ease;
   font-family: 'BurzumGothic', serif;
+  background-color: #cccccc;
 }
 
-.icono-acceso:hover div {
+.icono-acceso div:hover {
   color: #C10202;
-  font-family: 'BurzumGothic', serif;
+  
 }
 
 .icono-acceso::after {
   content: attr(data-descripcion);
   display: block;
-  font-size: 12px;
+  font-size: 15px;
   color: #cccccc; /* Cambia este color si quieres otro para la descripción */
   margin-top: 5px;
-   font-family: 'BurzumGothic', serif;
+  font-family: 'BurzumGothic', serif;
 }
 
   footer#contacto { background: black; color: #cccccc; padding: 2.5rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left; border-top: 2px solid #C10202; animation: pulseFooter 10s ease-in-out infinite; will-change: box-shadow; }
@@ -483,7 +483,7 @@
   <header id="top-bar">
     
   <div class="icono-acceso" data-descripcion="Guarda Tus Productos Infernales" onclick="document.getElementById('wishlist').scrollIntoView({ behavior: 'smooth' });">
-  <div>⛧ <strong>Lista de Deseos</strong></div>
+  <div>🤘🏻 <strong>Lista de Deseos</strong></div>
   <span id="contador-wishlist">0</span>
   </div>
 
