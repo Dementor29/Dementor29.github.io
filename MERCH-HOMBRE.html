@@ -437,7 +437,7 @@
   position: relative;
   z-index: 1000;
   transform: scale(1.05);
-  transition: transform 10s ease;
+  transition: transform 0.9s ease;
 }
 
   footer#contacto { background: #111;; color: #cccccc; padding: 2.5rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left; border-top: 2px solid #C10202; animation: pulseFooter 10s ease-in-out infinite; will-change: box-shadow; }
@@ -809,7 +809,7 @@ function irYZoom(seccionId) {
   // 2) Aplica zoom-focus
   el.classList.add('zoom-focus');
   // 3) Quita el zoom al cabo de 600 ms
-  setTimeout(() => el.classList.remove('zoom-focus'), 1000);
+  setTimeout(() => el.classList.remove('zoom-focus'), 800);
 }
     
 </script>
