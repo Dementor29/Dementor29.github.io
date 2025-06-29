@@ -375,7 +375,7 @@
   padding: 10px 20px;
   background-color: #111;
   border-bottom: 1px solid #C10202;
-  color: #cccccc;
+  color: #C10202;
   position: sticky;
   top: 0;
   z-index: 9999;
@@ -394,8 +394,7 @@
 }
 
 .icono-acceso:hover {
-  color: #C10202;
-}
+  color: #cccccc;
 
 .icono-acceso span {
   position: absolute;
@@ -437,7 +436,7 @@
   position: relative;
   z-index: 1000;
   transform: scale(1.05);
-  transition: transform 10s ease;
+  transition: transform 0.9s ease;
 }
 
 /* Extiende header y footer al 100% de la ventana */
@@ -821,7 +820,7 @@ function irYZoom(seccionId) {
   // 2) Aplica zoom-focus
   el.classList.add('zoom-focus');
   // 3) Quita el zoom al cabo de 600 ms
-  setTimeout(() => el.classList.remove('zoom-focus'), 2000);
+  setTimeout(() => el.classList.remove('zoom-focus'), 1500);
 }
     
 </script>
