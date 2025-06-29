@@ -437,7 +437,7 @@
   position: relative;
   z-index: 1000;
   transform: scale(1.05);
-  transition: transform 0.9s ease;
+  transition: transform 10s ease;
 }
 
 /* Extiende header y footer al 100% de la ventana */
@@ -821,7 +821,7 @@ function irYZoom(seccionId) {
   // 2) Aplica zoom-focus
   el.classList.add('zoom-focus');
   // 3) Quita el zoom al cabo de 600 ms
-  setTimeout(() => el.classList.remove('zoom-focus'), 1000);
+  setTimeout(() => el.classList.remove('zoom-focus'), 2000);
 }
     
 </script>
