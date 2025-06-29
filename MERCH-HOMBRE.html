@@ -509,17 +509,15 @@
   </div>
 
   <header id="top-bar">
-    
-  <div class="icono-acceso" ... onclick="abrirOverlay('wishlist-overlay')">
-  <div>🤘🏻 <strong>Lista de Deseos</strong></div>
-  <span id="contador-wishlist">0</span>
+  <div class="icono-acceso" onclick="abrirOverlay('wishlist-overlay')" data-descripcion="Ver Tus Productos Infernales">
+    <div>🤘🏻 <strong>Lista de Deseos</strong></div>
+    <span id="contador-wishlist">0</span>
   </div>
 
-  <div class="icono-acceso" ... onclick="abrirOverlay('cart-overlay')">
-  <div>🛒 <strong>Carrito de Compras</strong></div>
-  <span id="contador-cart">0</span>
+  <div class="icono-acceso" onclick="abrirOverlay('cart-overlay')" data-descripcion="Revisa Tus Compras del Averno">
+    <div>🛒 <strong>Carrito de Compras</strong></div>
+    <span id="contador-cart">0</span>
   </div>
-
 </header>
   
   <h2>ROPA</h2>
@@ -825,7 +823,16 @@ function crearItem(producto, esRopa = true) {
 
 actualizarContadores();
 }
-
+    
+ function centrarEnPantalla(id) {
+    const seccion = document.getElementById(id);
+    if (!seccion) return;
+    seccion.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }
+    
 function abrirOverlay(id) {
   document.getElementById(id).classList.add('visible');
 }
