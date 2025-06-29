@@ -180,16 +180,31 @@
       text-decoration: underline;
     }
 
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: rgba(0, 0, 0, 0.95);
-      font-size: 16px;
-      color: #ccc;
+    /* …tu bloque footer#contacto tal como lo tienes… */
+    footer#contacto {
+    background: black;
+    color: #cccccc;
+    padding: 2.5rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    text-align: left;
+    border-top: 2px solid #C10202;
+    animation: pulseFooter 10s ease-in-out infinite;
+    will-change: box-shadow;
     }
 
-    footer p {
-      margin: 6px 0;
+    /* A continuación tus reglas para los <p> e <i> dentro */
+    footer#contacto div p {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    }
+
+    footer#contacto i {
+    margin-right: 0.5rem;
+    color: #C10202;
+    font-size: 1rem;
     }
 
     .fade-in {
@@ -330,6 +345,26 @@
   75%  { transform: translateX(-50%) rotate(1deg); }
   100% { transform: translateX(-50%) rotate(0deg); }
 }
+
+  @media (max-width: 600px) {
+  footer#contacto {
+    flex-direction: column;        /* cambia de horizontal a vertical */
+    align-items: flex-start;       /* alinea cada columna a la izquierda */
+  }
+
+  footer#contacto div {
+    width: 100%;                   /* cada columna ocupa todo el ancho */
+  }
+
+  footer#contacto div p {
+    font-size: 0.85rem;
+  }
+
+  footer#contacto i {
+    font-size: 1rem;
+  }
+}
+    
   </style>
   </head>
   <body>
@@ -394,21 +429,22 @@
     <p>Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.</p>
     <div class="ver-mas"><a href="NOSOTROS.html">Ver más</a></div>
   </section>
- <footer id="contacto" class="fade-in" style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; text-align: left; gap: 20px;">
-  <div>
-    <p><i class="fas fa-envelope" style="color: #cc0000;"></i> <strong>Correo:</strong> averno_store@despertardelaverno.com</p>
-    <p><i class="fab fa-instagram" style="color: #cc0000;"></i> <strong>Instagram:</strong> @despertar_del_averno</p>
-  </div>
-  <div>
-    <p><i class="fas fa-phone" style="color: #cc0000;"></i> <strong>Teléfono:</strong> +57 315 427 7973</p>
-    <p><i class="fab fa-whatsapp" style="color: #cc0000;"></i> <strong>WhatsApp:</strong>+57 318 154 1064</p>
-  </div>
-  <div>
-    <p><i class="fas fa-map-marker-alt" style="color: #cc0000;"></i> <strong>Dirección:</strong> Palmira - Valle del Cauca</p>
-    <p><i class="fas fa-copyright" style="color: #cc0000;"></i> 2025 Despertar del Averno</p>
-  </div>
-  
-</footer>  
+
+<footer id="contacto" data-aos="fade-up" data-aos-delay="600">
+    <div>
+      <p><i class="fas fa-envelope"></i><strong> Correo:</strong> averno_store@despertardelaverno.com </p>
+      <p><i class="fab fa-instagram"></i><strong> Instagram:</strong> @despertar_del_averno</p>
+    </div>
+    <div>
+      <p><i class="fas fa-phone"></i><strong> Teléfono:</strong> +57 3154277973</p>
+      <p><i class="fab fa-whatsapp"></i><strong> WhatsApp:</strong> +57 3181541064</p>
+    </div>
+    <div>
+      <p><i class="fas fa-map-marker-alt"></i><strong> Dirección:</strong> Palmira - Valle del Cauca</p>
+      <p><i class="fas fa-copyright"></i> 2025 ₳VⱤ₦Ø ₴₮ØⱤɆ </p>
+    </div>
+  </footer>
+ 
 <script>
   
   function scrollToReproductor() {
