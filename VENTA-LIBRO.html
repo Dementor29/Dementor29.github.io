@@ -603,15 +603,14 @@ footer#contacto {
 <body>
     
 <div id="flyer-overlay">
-  <button id="flyer-close">𒉽</button>
-  <small style="position:absolute; top:50px; right:30px; color:#ccc; font-family:Arial; font-size:13px;">
-  Haz clic en la ✖ para cerrar
-</small>
-<img src="bg.png" alt="Flyer Averno" />
+  <button id="flyer-close"
+          onclick="document.getElementById('flyer-overlay').style.display='none'">𒉽</button>
+  <small class="flyer-hint">Haz clic en la ✖ para cerrar</small>
+  <img src="bg.png" alt="Flyer Averno" />
 </div>
   
 <header>
-
+  
 <div class="icono-acceso"
        onclick="irYZoom('wishlist')"
        data-descripcion="Ver Tus Productos Infernales">
