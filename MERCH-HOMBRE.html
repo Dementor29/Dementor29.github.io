@@ -126,10 +126,13 @@
     .heart-icon {
       font-size: 24px;
       color: gray;
-      cursor: pointer;
       position: absolute;
       top: 8px;
       right: 8px;
+      display: inline-block;  /* para que el cursor funcione siempre bien */
+      cursor: pointer;        /* ¡la clave! */
+      user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
+      
     }
     .heart-icon.active {
       color: red;
