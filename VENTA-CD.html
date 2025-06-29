@@ -125,33 +125,38 @@
   #wishlist h3, #cart h3 {
   color: #cccccc;  /* rojo del footer */
   font-family: 'BurzumGothic', serif;
-}
-  .precio {
+  }
+    
+    .precio {
     color: #C10202; 
     font-weight: bold;
     margin-bottom: 10px;
-  }
+    }
 
-  .heart-icon {
+    heart-icon {
     font-size: 24px;
     color: gray;
-    cursor: pointer;
     position: absolute;
     top: 8px;
     right: 8px;
-  }
-
-  .heart-icon.active {
-    color: red;
-  }
+    display: inline-block;  /* para que el cursor funcione siempre bien */
+    cursor: pointer;        /* ¡la clave! */
+    user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
+      
+    }
+    
+    .heart-icon.active {
+      color: red;
+    }
 
   .cantidad-label {
+    font-family: 'BurzumGothic', serif;
     display: flex;
     align-items: center;
     margin-top: 8px;
     font-size: 14px;
-    color: #cccccc;      
-  }
+    color: #cccccc; 
+    }
 
   .cantidad-input {
     width: 50px;
@@ -167,8 +172,27 @@
 
   .cantidad-input:focus {
   border-color: #C10202;
-  box-shadow: 0 0 5px #C10202aa;
+  box-shadow: 0 0 5px #C10202;
   outline: none;
+  }
+    
+  select.cantidad-input {
+  background-color: black;
+  color: #cccccc; 
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 14px;
+  }
+
+  select.cantidad-input:hover {
+  border-color: #C10202;
+  box-shadow: 0 0 6px #C10202;
+  }
+
+  select.cantidad-input option {
+  background-color: black;
+  color: #cccccc; 
   }
     
   .cart-button {
@@ -241,7 +265,7 @@
 #cart ul li {
   margin-bottom: 8px;
   color: #cccccc;  
-  font-family: Arial, sans-serif;
+  font-family: 'BurzumGothic', serif;
   font-size: 14px;
 }
 
@@ -249,19 +273,18 @@
     text-align: center;
     margin: 40px 0;
   }
-
-  .back-link {
-    font-size: 20px;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-
-  .back-link:hover {
-    background-color: #ff0000;
-  }
+    
+ .back-link {
+      font-family: 'BurzumGothic', serif;
+      font-size: 20px;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+    .back-link:hover {
+      background-color: #ff0000;
+    }
     
 .nequi-btn {
   position: fixed;
@@ -340,7 +363,7 @@
   right: 30px;
   font-size: 13px;
   color: #ccc;
-  font-family: Arial, sans-serif;
+  font-family: 'BurzumGothic', serif;
 }
 
   .led-marquee {
@@ -359,6 +382,77 @@
     display: inline-block;
     animation: scroll-left 25s linear infinite;
   }
+
+   #top-bar {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 10px 20px;
+  background-color: #111;
+  border-bottom: 1px solid #C10202;
+  color: #C10202;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  text-align: center;
+
+}
+
+.icono-acceso,
+.icono-acceso * {
+  cursor: pointer !important;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  text-align: center;
+}
+
+.icono-acceso:hover {
+  color: #cccccc;
+  }
+
+.icono-acceso span {
+  position: absolute;
+  top: 0;
+  right: -8px;
+  background-color: transparent;
+  color: #cccccc;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-family: 'BurzumGothic', serif;
+}
+
+.icono-acceso div {
+  font-size: 16px;
+  color: #C10202; /* Cambia este valor si quieres otro color para el texto */
+  transition: color 0.3s ease;
+  font-family: 'BurzumGothic', serif;
+  position: relative;
+  text-align: center;
+}
+
+.icono-acceso div:hover {
+  color: #C10202;
+  
+}
+
+.icono-acceso::after {
+  content: attr(data-descripcion);
+  display: block;
+  font-size: 13px;
+  color: #cccccc; /* Cambia este color si quieres otro para la descripción */
+  margin-top: 5px;
+  font-family: 'BurzumGothic', serif;
+}
+
+/* efecto “zoom-focus” al clic en los iconos */
+.zoom-focus {
+  position: relative;
+  z-index: 1000;
+  transform: scale(1.05);
+  transition: transform 0.9s ease;
 
   @keyframes scroll-left {
     0% {
@@ -413,9 +507,45 @@
   opacity: 0.85;
 }
 
-footer#contacto { background: black; color: #cccccc; padding: 2.5rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left; border-top: 2px solid #C10202; animation: pulseFooter 10s ease-in-out infinite; will-change: box-shadow; }
-footer#contacto div p { margin-bottom: 0.75rem; font-size: 1rem; }
-footer#contacto i { margin-right: 0.5rem; color: #C10202; font-size: 1rem; }
+
+/* …tu bloque footer#contacto tal como lo tienes… */
+footer#contacto {
+  background: #111;
+  color: #cccccc;
+  padding: 2.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  text-align: left;
+  border-top: 2px solid #C10202;
+  animation: pulseFooter 10s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+/* A continuación tus reglas para los <p> e <i> dentro */
+footer#contacto div p {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+footer#contacto i {
+  margin-right: 0.5rem;
+  color: #C10202;
+  font-size: 1rem;
+}
+
+/* Y, para extender footer y header al 100% */
+#top-bar,
+footer#contacto {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+}
     
 @media (max-width: 600px) {
   footer#contacto {
@@ -471,6 +601,22 @@ footer#contacto i { margin-right: 0.5rem; color: #C10202; font-size: 1rem; }
   <img src="bg.png" alt="Flyer Averno" />
 </div>
 
+  <header id="top-bar">
+  <div class="icono-acceso"
+       onclick="irYZoom('wishlist')"
+       data-descripcion="Ver Tus Productos Infernales">
+    🤘🏻 <strong>Lista de Deseos</strong>
+    <span id="contador-wishlist">0</span>
+  </div>
+
+  <div class="icono-acceso"
+       onclick="irYZoom('cart')"
+       data-descripcion="Revisa Tus Compras Del Averno">
+    🛒 <strong>Carrito de Compras</strong>
+    <span id="contador-cart">0</span>
+  </div>
+</header>
+
   <div class="bloque-reproductor">
   <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
 
@@ -493,25 +639,24 @@ footer#contacto i { margin-right: 0.5rem; color: #C10202; font-size: 1rem; }
   <div class="catalogo" id="catalogo-heavy"></div>
 
   <div id="wishlist">
-    <h3>Lista de deseos</h3>
-    <ul id="wishlist-items"></ul>
-    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
-    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+  <h3>Lista de deseos</h3>
+  <ul id="wishlist-items"></ul>
+  <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+  <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
   </div>
 
   <div id="cart">
-    <h3>Carrito de compras</h3>
-    <ul id="cart-items"></ul>
-    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
-    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+  <h3>Carrito de compras</h3>
+  <ul id="cart-items"></ul>
+  <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+  <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
   </div>
 
   <div class="volver-container">
   <button class="volver-btn" onclick="location.href='index.html'">VOLVER</button>
   </div>
 
-  
-  <footer id="contacto" data-aos="fade-up" data-aos-delay="600">
+<footer id="contacto" data-aos="fade-up" data-aos-delay="600">
     <div>
       <p><i class="fas fa-envelope"></i><strong> Correo:</strong> averno_store@despertardelaverno.com </p>
       <p><i class="fab fa-instagram"></i><strong> Instagram:</strong> @despertar_del_averno</p>
@@ -524,7 +669,7 @@ footer#contacto i { margin-right: 0.5rem; color: #C10202; font-size: 1rem; }
       <p><i class="fas fa-map-marker-alt"></i><strong> Dirección:</strong> Palmira - Valle del Cauca</p>
       <p><i class="fas fa-copyright"></i> 2025 ₳VⱤ₦Ø ₴₮ØⱤɆ </p>
     </div>
-  </footer>
+</footer>
   
 <a class="nequi-btn" href="https://wa.me/message/7GNMDBFX4L6IJ1"
    target="_blank">
@@ -692,6 +837,53 @@ footer#contacto i { margin-right: 0.5rem; color: #C10202; font-size: 1rem; }
     document.getElementById('flyer-close').onclick = () => {
     document.getElementById('flyer-overlay').style.display = 'none';
     };
+
+//FUNCION NUEVA//
+  function actualizarContadores() {
+  document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
+  document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
+  }
+
+// Llamar al actualizar contadores cuando se renderizan
+  function renderWishlist() {
+  const ul = document.getElementById("wishlist-items");
+  ul.innerHTML = "";
+  for (let nombre in wishlistData) {
+  const producto = wishlistData[nombre];
+  const id = nombre.replace(/\s+/g, "_");
+  const tallaSelect = producto.esRopa ? `
+    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+    <select id="wishlist-talla-${id}" class="cantidad-input">
+    <option value="">Elige talla</option>
+    <option value="S">S</option><option value="M">M</option>
+    <option value="L">L</option><option value="XL">XL</option>
+    </select>
+    </label>
+    <span id="error-wishlist-${id}" class="error-msg"></span>
+    ` : "";
+
+    ul.innerHTML += `
+      <li style="margin-bottom: 12px;">
+      <span>${nombre} — $${producto.precio.toLocaleString()}</span>
+       ${tallaSelect}
+      <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+      </li>
+      `;
+    }
+
+  actualizarContadores();
+  }
+    
+  function irYZoom(seccionId) {
+  const el = document.getElementById(seccionId);
+  if (!el) return;
+  // 1) Desplaza y centra
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // 2) Aplica zoom-focus
+  el.classList.add('zoom-focus');
+  // 3) Quita el zoom al cabo de 600 ms
+  setTimeout(() => el.classList.remove('zoom-focus'), 1500);
+}
     
 </script>
 </body>
