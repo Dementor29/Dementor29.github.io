@@ -54,12 +54,25 @@
     }
     
   body {
-    background-color: #000000;
-    font-family: 'BurzumGothic', serif;
-    color: white;
-    margin: 0;
-    padding: 20px;
-  }
+      background-color: #000000;
+      font-family: 'BurzumGothic', serif;
+      color: white;
+      margin: 0;
+      padding: 20px;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    input,
+    textarea,
+    select {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    }
 
   h1 {
     text-align: center;
