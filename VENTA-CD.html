@@ -125,12 +125,14 @@
   #wishlist h3, #cart h3 {
   color: #cccccc;  /* rojo del footer */
   font-family: 'BurzumGothic', serif;
-}
-  .precio {
+  }
+  
+    .precio {
+    font-family: 'BurzumGothic', serif;
     color: #C10202; 
     font-weight: bold;
     margin-bottom: 10px;
-  }
+    }
 
    .heart-icon {
       font-size: 24px;
@@ -147,13 +149,14 @@
     color: red;
   }
 
-  .cantidad-label {
+    .cantidad-label {
+    font-family: 'BurzumGothic', serif;
     display: flex;
     align-items: center;
     margin-top: 8px;
     font-size: 14px;
-    color: #cccccc;      
-  }
+    color: #cccccc; 
+    }
 
   .cantidad-input {
     width: 50px;
@@ -169,8 +172,27 @@
 
   .cantidad-input:focus {
   border-color: #C10202;
-  box-shadow: 0 0 5px #C10202aa;
+  box-shadow: 0 0 5px #C10202;
   outline: none;
+  }
+    
+  select.cantidad-input {
+  background-color: black;
+  color: #cccccc; 
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 14px;
+  }
+
+  select.cantidad-input:hover {
+  border-color: #C10202;
+  box-shadow: 0 0 6px #C10202;
+  }
+
+  select.cantidad-input option {
+  background-color: black;
+  color: #cccccc; 
   }
     
   .cart-button {
@@ -658,7 +680,6 @@ footer#contacto {
   <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
   <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
   </div>
-
 
   <div class="volver-container">
   <button class="volver-btn" onclick="location.href='index.html'">VOLVER</button>
