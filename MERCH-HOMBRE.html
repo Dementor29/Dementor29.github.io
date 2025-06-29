@@ -469,6 +469,33 @@
     max-width: 95vw;   /* evita que exceda ese ancho */
     max-height: 95vh;  /* evita que exceda la altura visible */
   }
+    
+}
+/* Estilo para ventana emergente centrada */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.overlay.visible {
+  display: flex;
+}
+
+.ventana-emergente {
+  background: #000;
+  padding: 20px;
+  border: 1px solid #C10202;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 20px #C10202;
 }
 
   </style>
@@ -483,12 +510,12 @@
 
   <header id="top-bar">
     
-  <div class="icono-acceso" data-descripcion="Guarda Tus Productos Infernales" onclick="centrarEnPantalla('wishlist')">
+  <div class="icono-acceso" ... onclick="abrirOverlay('wishlist-overlay')">
   <div>🤘🏻 <strong>Lista de Deseos</strong></div>
   <span id="contador-wishlist">0</span>
   </div>
 
-  <div class="icono-acceso" data-descripcion="Finaliza Tu Compra Aquí" onclick="centrarEnPantalla('cart')">
+  <div class="icono-acceso" ... onclick="abrirOverlay('cart-overlay')">
   <div>🛒 <strong>Carrito de Compras</strong></div>
   <span id="contador-cart">0</span>
   </div>
@@ -501,19 +528,27 @@
   <h2>ACCESORIOS</h2>
   <div class="catalogo" id="catalogo-accesorios"></div>
 
-  <div id="wishlist">
+  <!-- Lista de deseos (emergente) -->
+<div id="wishlist-overlay" class="overlay">
+  <div id="wishlist" class="ventana-emergente">
     <h3>Lista de deseos</h3>
     <ul id="wishlist-items"></ul>
     <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
     <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+    <button class="cart-button" onclick="cerrarOverlay('wishlist-overlay')">Cerrar</button>
   </div>
+</div>
 
-  <div id="cart">
+<!-- Carrito (emergente) -->
+<div id="cart-overlay" class="overlay">
+  <div id="cart" class="ventana-emergente">
     <h3>Carrito de compras</h3>
     <ul id="cart-items"></ul>
     <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
     <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+    <button class="cart-button" onclick="cerrarOverlay('cart-overlay')">Cerrar</button>
   </div>
+</div>
 
   <div class="volver-container">
   <button class="volver-btn" onclick="location.href='index.html'">VOLVER</button>
@@ -791,14 +826,13 @@ function crearItem(producto, esRopa = true) {
 actualizarContadores();
 }
 
-function centrarEnPantalla(id) {
-    const seccion = document.getElementById(id);
-    if (!seccion) return;
-    seccion.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
-  }
+function abrirOverlay(id) {
+  document.getElementById(id).classList.add('visible');
+}
+
+function cerrarOverlay(id) {
+  document.getElementById(id).classList.remove('visible');
+}
     
 </script>
 </body>
