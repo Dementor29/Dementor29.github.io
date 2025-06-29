@@ -642,56 +642,57 @@ footer#contacto {
     productos.forEach((p, idx) => cont.appendChild(crearItem(p, esRopa, idx)));
     }
 
-  function toggleFavorite(el, nombre, precio, esRopa) {
-  el.classList.toggle("active");
+    function toggleFavorite(el, nombre, precio, esRopa) {
+    el.classList.toggle("active");
 
-  if (wishlistData[nombre]) {
-    delete wishlistData[nombre];
-  } else {
-    const id = nombre.replace(/\s+/g, "_");
+    const id = el.closest(".item").querySelector("input").id.replace("cantidad-", ""); // ejemplo: VESTIDO_0
     const inputCant = document.getElementById(`cantidad-${id}`);
-    const cantidad = inputCant ? parseInt(inputCant.value) || 1 : 1;
+    const cantidad = inputCant ? parseInt(inputCant.value, 10) || 1 : 1;
 
-    wishlistData[nombre] = { precio, esRopa, cantidad };
+    if (wishlistData[id]) {
+    delete wishlistData[id];
+    }else {
+    wishlistData[id] = { nombre, precio, esRopa, cantidad };
     }
 
     renderWishlist();
-    actualizarContadores();
     }
     
     function renderWishlist() {
-      const ul = document.getElementById("wishlist-items");
-      ul.innerHTML = "";
-      for (let nombre in wishlistData) {
-        const producto = wishlistData[nombre];
-        const id = nombre.replace(/\s+/g, "_");
-        const tallaSelect = producto.esRopa ? `
-    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-    <select id="wishlist-talla-${id}" class="cantidad-input">
-      <option value="">Elige talla</option>
-      <option value="S">S</option><option value="M">M</option>
-      <option value="L">L</option><option value="XL">XL</option>
-    </select>
-    </label>
-    <span id="error-wishlist-${id}" class="error-msg"></span>
+    const ul = document.getElementById("wishlist-items");
+    ul.innerHTML = "";
+
+    for (let id in wishlistData) {
+    const p = wishlistData[id];
+    const tallaSelect = p.esRopa ? `
+      <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+        <select id="wishlist-talla-${id}" class="cantidad-input">
+          <option value="">Elige talla</option>
+          <option value="S">S</option><option value="M">M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+      </label>
+      <span id="error-wishlist-${id}" class="error-msg"></span>
     ` : "";
 
     ul.innerHTML += `
-          <li style="margin-bottom: 12px;">
-            <span>${nombre} — $${producto.precio.toLocaleString()}</span>
-            ${tallaSelect}
-            <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-          </li>
-        `;
-      }
+      <li style="margin-bottom: 12px;">
+        <span>${p.nombre} — $${p.precio.toLocaleString()} x${p.cantidad}</span>
+        ${tallaSelect}
+        <button class="remove-button" onclick="eliminarDeWishlist('${id}')">✖</button>
+      </li>
+    `;
     }
 
-    function eliminarDeWishlist(nombre) {
-      delete wishlistData[nombre];
-      document.querySelector(`.heart-icon[onclick*='${nombre}']`)?.classList.remove("active");
-      renderWishlist();
+    actualizarContadores();  
     }
-
+    
+  function eliminarDeWishlist(id) {
+  delete wishlistData[id];
+  document.querySelector(`.heart-icon[onclick*='${id}']`)?.classList.remove("active");
+  renderWishlist();
+  }
+    
   function addToCart(nombre, precio, esRopa, id) {
   const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
   let talla = "";
