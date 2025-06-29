@@ -437,7 +437,7 @@
   position: relative;
   z-index: 1000;
   transform: scale(1.05);
-  transition: transform 0.3s ease;
+  transition: transform 10s ease;
 }
 
   footer#contacto { background: #111;; color: #cccccc; padding: 2.5rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left; border-top: 2px solid #C10202; animation: pulseFooter 10s ease-in-out infinite; will-change: box-shadow; }
@@ -483,6 +483,12 @@
 </head>
 <body>
   
+  <div id="flyer-overlay">
+  <button id="flyer-close" title="Cerrar">𒉽</button>
+  <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
+  <img src="bg.png" alt="Flyer Averno" />
+  </div>
+  
  <header id="top-bar">
   <div class="icono-acceso"
        onclick="irYZoom('wishlist')"
@@ -498,7 +504,6 @@
     <span id="contador-cart">0</span>
   </div>
 </header>
-
   
   <h2>ROPA</h2>
   <div class="catalogo" id="catalogo-ropa"></div>
@@ -796,20 +801,16 @@ function crearItem(producto, esRopa = true) {
 actualizarContadores();
 }
 
-/**
- * Desplaza suavemente hasta el elemento + aplica zoom briefly.
- */
 function irYZoom(seccionId) {
   const el = document.getElementById(seccionId);
   if (!el) return;
-  // 1) Scroll centrado
+  // 1) Desplaza y centra
   el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  // 2) Aplica clase de zoom
+  // 2) Aplica zoom-focus
   el.classList.add('zoom-focus');
-  // 3) Quita el zoom tras 600 ms
-  setTimeout(() => el.classList.remove('zoom-focus'), 600);
+  // 3) Quita el zoom al cabo de 600 ms
+  setTimeout(() => el.classList.remove('zoom-focus'), 1000);
 }
-
     
 </script>
 </body>
