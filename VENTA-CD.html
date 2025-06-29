@@ -833,50 +833,37 @@ footer#contacto {
     });
     }
     
- // Quita corazones y resetea inputs solo en wishlist
-function reiniciarUIWishlist() {
-  // Quita corazones solo dentro de #wishlist
-  document
-    .querySelectorAll('#wishlist .heart-icon.active')
-    .forEach(icon => icon.classList.remove('active'));
+ function reiniciarUICatalogo() {
+  // Restablece todas las cantidades a 1
+  document.querySelectorAll(".cantidad-input[type='number']").forEach(input => {
+    input.value = 1;
+  });
 
-  // Resetea inputs de cantidad y selects solo dentro de #wishlist
-  document
-    .querySelectorAll('#wishlist .cantidad-input')
-    .forEach(input => {
-      if (input.tagName === 'SELECT') input.selectedIndex = 0;
-      else input.value = 1;
-    });
+  // Restablece todas las tallas (select)
+  document.querySelectorAll("select.cantidad-input").forEach(select => {
+    select.selectedIndex = 0;
+  });
 
-  // Limpia mensajes de error sólo en wishlist
-  document
-    .querySelectorAll('#wishlist .error-msg')
-    .forEach(span => span.textContent = '');
+  // Limpia todos los mensajes de error
+  document.querySelectorAll(".error-msg").forEach(span => {
+    span.textContent = "";
+  });
+
+  // Quita corazones activos (wishlist)
+  document.querySelectorAll(".heart-icon.active").forEach(icon => {
+    icon.classList.remove("active");
+  });
 }
 
-// Resetea cantidades solo en carrito
-function reiniciarUICarrito() {
-  document
-    .querySelectorAll('#cart .cantidad-input')
-    .forEach(input => { input.value = 1; });
-
-  // (Si tienes spans de error en carrito:)
-  document
-    .querySelectorAll('#cart .error-msg')
-    .forEach(span => span.textContent = '');
-}
-
-// Vaciar sólo wishlist
 function vaciarWishlist() {
   wishlistData = {};
-  reiniciarUIWishlist();
+  reiniciarUICatalogo();  // reinicia también los inputs del catálogo
   renderWishlist();
 }
 
-// Vaciar sólo carrito
 function vaciarCarrito() {
   cartData = {};
-  reiniciarUICarrito();
+  reiniciarUICatalogo();  // reinicia también los inputs del catálogo
   renderCarrito();
 }
     
