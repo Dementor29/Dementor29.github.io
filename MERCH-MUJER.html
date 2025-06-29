@@ -740,12 +740,11 @@ footer#contacto {
     }
 
   function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-
-  // Resetea cantidades, tallas y errores
-  document.querySelectorAll(".cantidad-input").forEach(input => {
+    wishlistData = {};
+    renderWishlist();
+    document.querySelectorAll('.heart-icon.active')
+      .forEach(icon => icon.classList.remove('active'));
+    document.querySelectorAll(".cantidad-input").forEach(input => {
     if (input.type === "number") input.value = 1;
     else input.value = "";
   });
@@ -753,19 +752,15 @@ footer#contacto {
   }
 
   function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
-  wishlistData = {};
-  renderWishlist();
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-
-  // Resetea cantidades, tallas y errores
-  document.querySelectorAll(".cantidad-input").forEach(input => {
+    cartData = {};
+    renderCarrito();
+   document.querySelectorAll(".cantidad-input").forEach(input => {
     if (input.type === "number") input.value = 1;
     else input.value = "";
   });
   document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-}
+    
+  }
 
     function comprarPorWhatsapp() {
       if (!Object.keys(cartData).length) {
