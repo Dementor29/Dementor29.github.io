@@ -440,6 +440,18 @@
   transition: transform 0.9s ease;
 }
 
+/* Extiende header y footer al 100% de la ventana */
+#top-bar,
+footer#contacto {
+  position: relative;
+  width: 100vw;               /* ancho total de la ventana */
+  left: 50%;                  /* sitúa su punto de anclaje en el centro */
+  transform: translateX(-50%);/* lo desplaza de vuelta para centrarlo */
+  box-sizing: border-box;     /* incluye padding/border en el ancho total */
+  padding-left: 20px;         /* opcional: recupera tu padding de 20px */
+  padding-right: 20px;        /* opcional: para que el contenido no pegado al borde */
+}
+    
   footer#contacto { background: #111;; color: #cccccc; padding: 2.5rem 1rem; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left; border-top: 2px solid #C10202; animation: pulseFooter 10s ease-in-out infinite; will-change: box-shadow; }
   footer#contacto div p { margin-bottom: 0.75rem; font-size: 1rem; }
   footer#contacto i { margin-right: 0.5rem; color: #C10202; font-size: 1rem; }
@@ -809,7 +821,7 @@ function irYZoom(seccionId) {
   // 2) Aplica zoom-focus
   el.classList.add('zoom-focus');
   // 3) Quita el zoom al cabo de 600 ms
-  setTimeout(() => el.classList.remove('zoom-focus'), 800);
+  setTimeout(() => el.classList.remove('zoom-focus'), 1000);
 }
     
 </script>
