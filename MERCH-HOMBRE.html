@@ -46,15 +46,26 @@
     box-sizing: border-box;
   }
     
-    body {
-    background-color: #000000;
-    font-family: 'BurzumGothic', serif;
-    color: white;
-    margin: 0 auto;
-    padding: 20px;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
+ body {
+      background-color: #000000;
+      font-family: 'BurzumGothic', serif;
+      color: white;
+      margin: 0;
+      padding: 20px;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    input,
+    textarea,
+    select {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    }
 
   h1, h2, h3 {
     text-align: center;
