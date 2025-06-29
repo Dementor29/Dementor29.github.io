@@ -641,13 +641,24 @@ footer#contacto {
     cont.innerHTML = "";
     productos.forEach((p, idx) => cont.appendChild(crearItem(p, esRopa, idx)));
     }
-    function toggleFavorite(el, nombre, precio, esRopa) {
-      el.classList.toggle("active");
-      if (wishlistData[nombre]) delete wishlistData[nombre];
-      else wishlistData[nombre] = { precio, esRopa };
-      renderWishlist();
+
+  function toggleFavorite(el, nombre, precio, esRopa) {
+  el.classList.toggle("active");
+
+  if (wishlistData[nombre]) {
+    delete wishlistData[nombre];
+  } else {
+    const id = nombre.replace(/\s+/g, "_");
+    const inputCant = document.getElementById(`cantidad-${id}`);
+    const cantidad = inputCant ? parseInt(inputCant.value) || 1 : 1;
+
+    wishlistData[nombre] = { precio, esRopa, cantidad };
     }
 
+    renderWishlist();
+    actualizarContadores();
+    }
+    
     function renderWishlist() {
       const ul = document.getElementById("wishlist-items");
       ul.innerHTML = "";
