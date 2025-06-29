@@ -414,11 +414,11 @@
 }
 
 .zoom-focus {
-position: relative;
-z-index: 1000;
-transform: scale(1.05);
-transition: transform 0.9s ease;
- }
+  position: relative;
+  z-index: 1000;
+  transform: scale(1.05);
+  transition: transform 0.9s ease; /* más lenta y duradera */
+}
 
  #top-bar,
   footer#contacto {
@@ -508,21 +508,19 @@ transition: transform 0.9s ease;
   <img src="bg.png" alt="Flyer Averno" />
 </div>
 
-  <header id="top-bar">
   <div class="icono-acceso"
-       onclick="irYZoom('wishlist')"
-       data-descripcion="Ver Tus Productos Infernales">
-    🤘🏻 <strong>Lista de Deseos</strong>
-    <span id="contador-wishlist">0</span>
-  </div>
+     onclick="irYZoom('wishlist')"
+     data-descripcion="Ver Tus Productos Infernales">
+  🤘🏻 <strong>Lista de Deseos</strong>
+  <span id="contador-wishlist">0</span>
+</div>
 
-  <div class="icono-acceso"
-       onclick="irYZoom('cart')"
-       data-descripcion="Revisa Tus Compras Del Averno">
-    🛒 <strong>Carrito de Compras</strong>
-    <span id="contador-cart">0</span>
-  </div>
-</header>
+<div class="icono-acceso"
+     onclick="irYZoom('cart')"
+     data-descripcion="Revisa Tus Compras Del Averno">
+  🛒 <strong>Carrito de Compras</strong>
+  <span id="contador-cart">0</span>
+</div>
 
   <div class="bloque-reproductor">
   <div class="led-marquee" data-text="TRANSMITIENDO EN VIVO: BLACK ⛧ METAL UNDERGROUND, OSCURIDAD Y SUFRIMIENTO DESDE EL ABISMO."></div>
