@@ -410,7 +410,7 @@
 }
 
 .icono-acceso div {
-  font-size: 18px;
+  font-size: 16px;
   color: #C10202; /* Cambia este valor si quieres otro color para el texto */
   transition: color 0.3s ease;
   font-family: 'BurzumGothic', serif;
@@ -483,12 +483,12 @@
 
   <header id="top-bar">
     
-  <div class="icono-acceso" data-descripcion="Guarda Tus Productos Infernales" onclick="document.getElementById('wishlist').scrollIntoView({ behavior: 'smooth' });">
+  <div class="icono-acceso" data-descripcion="Guarda Tus Productos Infernales" onclick="centrarEnPantalla('wishlist')">
   <div>🤘🏻 <strong>Lista de Deseos</strong></div>
   <span id="contador-wishlist">0</span>
   </div>
 
-  <div class="icono-acceso" data-descripcion="Finaliza Tu Compra Aquí" onclick="document.getElementById('cart').scrollIntoView({ behavior: 'smooth' });">
+  <div class="icono-acceso" data-descripcion="Finaliza Tu Compra Aquí" onclick="centrarEnPantalla('cart')">
   <div>🛒 <strong>Carrito de Compras</strong></div>
   <span id="contador-cart">0</span>
   </div>
@@ -791,6 +791,15 @@ function crearItem(producto, esRopa = true) {
 actualizarContadores();
 }
 
+function centrarEnPantalla(id) {
+    const seccion = document.getElementById(id);
+    if (!seccion) return;
+    seccion.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }
+    
 </script>
 </body>
 </html>
