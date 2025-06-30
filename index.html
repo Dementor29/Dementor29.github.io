@@ -316,11 +316,11 @@
 }
     
 #bandera-play {
-  position: fixed !important;
-  top: 50px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  background: rgba(0, 0, 0, 0.4); /* mejor visibilidad */
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.4);
   color: white;
   padding: 12px 18px;
   font-family: 'BurzumGothic', serif;
@@ -331,23 +331,20 @@
   z-index: 9999;
   cursor: pointer;
   animation: parpadeoSuave 2s infinite;
-  box-shadow: 0 0 10px rgba(193, 2, 2, 0.8);
+  box-shadow: 0 0 10px rgba(193,2,2,0.8);
   transition: transform 0.3s ease;
-  pointer-events: auto;
-  will-change: transform;
 }
-    
-#bandera-play:hover {
-  animation: sacudir 0.4s;
-  background: rgba(0, 0, 0, 0.5);
-}
-    
+
 @keyframes sacudir {
-  0%   { transform: translateX(-50%) rotate(0deg); }
-  25%  { transform: translateX(-50%) rotate(2deg); }
+  0%   { transform: translateX(-50%) rotate( 0deg); }
+  25%  { transform: translateX(-50%) rotate( 2deg); }
   50%  { transform: translateX(-50%) rotate(-2deg); }
-  75%  { transform: translateX(-50%) rotate(1deg); }
-  100% { transform: translateX(-50%) rotate(0deg); }
+  75%  { transform: translateX(-50%) rotate( 1deg); }
+  100% { transform: translateX(-50%) rotate( 0deg); }
+}
+
+#bandera-play:hover {
+  animation: sacudir 0.4s ease-in-out;
 }
 
   @media (max-width: 600px) {
