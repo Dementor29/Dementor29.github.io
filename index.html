@@ -60,10 +60,6 @@
   scroll-behavior: smooth;
   }
 
-  html, body {
-  overflow-x: hidden;
-  }
-
   body {
   background-color: black;
   font-family: 'BurzumGothic', serif;
@@ -316,10 +312,10 @@
 }
     
 #bandera-play {
-  position: fixed;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed !important;
+  top: 50px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   background: rgba(0,0,0,0.4);
   color: white;
   padding: 12px 18px;
@@ -346,22 +342,7 @@
 #bandera-play:hover {
   animation: sacudir 0.4s ease-in-out;
 }
-
-html, body {
-  transform: none !important;
-  perspective: none !important;
-  position: static !important;
-}
-
-#bandera-play {
-  position: fixed !important;
-  top: 50px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  /* el resto de tus estilos… */
-}
-
-
+    
   @media (max-width: 600px) {
   footer#contacto {
     flex-direction: column;        /* cambia de horizontal a vertical */
