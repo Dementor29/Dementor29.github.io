@@ -312,8 +312,6 @@
 }
     
 #bandera-play {
-  position: fixed;
-  top: 5px;
   margin-top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -332,6 +330,8 @@
   box-shadow: 0 0 6px rgba(193, 2, 2, 0.4);
   transition: background 0.3s ease, color 0.3s ease;
   user-select: none;
+  position: sticky;
+  top: 0;
 }
 
 #bandera-play:hover {
