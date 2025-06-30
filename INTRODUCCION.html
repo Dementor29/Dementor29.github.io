@@ -51,13 +51,6 @@
       padding: 0;
     }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 20px auto;
-    }
-
     article {
       padding: 20px;
     }
@@ -85,10 +78,7 @@
   color: #C10202;
   font-weight: bold;
   }
-    
-  img {
-    max-width: 50%; /* ⬅ Imagen más controlada en pantallas grandes */
-  }
+
     :root {
   --volver-bg: #990000;
   --volver-color: #ffffff;
@@ -110,6 +100,36 @@
   background-color: var(--volver-hover-bg);
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+.triptico {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Espacio entre las imágenes */
+  padding: 20px;
+  flex-wrap: wrap; /* Para que en móviles se acomoden */
+}
+
+.triptico img {
+  width: 30%; /* Puedes ajustar esto */
+  max-width: 300px;
+  height: auto;
+  object-fit: cover;
+  border: 4px solid black; /* Simula el marco del cuadro */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 768px) {
+  img {
+    max-width: 50%; /* En pantallas grandes, imagen más pequeña */
+  }
+}
+
 @media (min-width: 768px) {
   body {
     padding: 30px;
@@ -123,7 +143,13 @@
 <body>
 
   <article>
-  <img class="imagen-ajustada" src="https://i.ibb.co/njXWmYd/368498731-316207007639528-1871313160801229970-n.jpg" alt="Imagen del Averno">
+    
+  <div class="triptico">
+  <img src="imagen-izquierda.png" alt="Lado izquierdo">
+  <img src="imagen-central.png" alt="Centro">
+  <img src="imagen-derecha.png" alt="Lado derecho">
+  </div>
+
   <h1>INTRODUCCIÓN</h1>
 
   <p>
