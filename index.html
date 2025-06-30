@@ -314,16 +314,19 @@
     
 #bandera-play {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 8px 0;
-  background: rgba(0, 0, 0, 0.6); /* fondo transparente */
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 500px;
+  width: 90%;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.6);
   color: white;
   font-family: 'BurzumGothic', serif;
   font-size: 14px;
   text-align: center;
-  border-bottom: 1px solid #C10202;
+  border: 1px solid #C10202;
+  border-radius: 6px;
   z-index: 99999;
   animation: parpadeoSuave 2s infinite;
   box-shadow: 0 0 6px rgba(193, 2, 2, 0.4);
