@@ -58,13 +58,15 @@
   font-family: 'BurzumGothic', serif;
   color: white;
   scroll-behavior: smooth;
-    }
+  position: relative;
+  overflow-x: hidden;
+  }
 
   body {
   background-color: black;
   font-family: 'BurzumGothic', serif;
   z-index: 0;
-}
+  }
 
   body::before {
   content: "";
@@ -315,7 +317,7 @@
   position: fixed;
   top: 50px;
   left: 50%;
-  background: rgba(0, 0, 0, 0.6); /* mejor visibilidad */
+  background: rgba(0, 0, 0, 0.4); /* mejor visibilidad */
   color: white;
   padding: 12px 18px;
   font-family: 'BurzumGothic', serif;
@@ -337,7 +339,7 @@
   animation: sacudir 0.4s;
   background: rgba(0, 0, 0, 0.5);
 }
-
+    
 @keyframes sacudir {
   0%   { transform: translateX(-50%) rotate(0deg); }
   25%  { transform: translateX(-50%) rotate(2deg); }
