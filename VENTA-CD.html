@@ -862,8 +862,15 @@ function vaciarWishlist() {
 }
 
 function vaciarCarrito() {
+  // Limpia los datos del carrito
   cartData = {};
-  reiniciarUICatalogo();  // ✔ Esto limpia todos los inputs del catálogo
+
+  // Reinicia solo las cantidades visibles del catálogo (inputs tipo number)
+  document.querySelectorAll('.catalogo .cantidad-input[type="number"]').forEach(input => {
+    input.value = 1;
+  });
+
+  // Vuelve a renderizar el carrito (ya vacío)
   renderCarrito();
 }
     
