@@ -347,6 +347,21 @@
   animation: sacudir 0.4s ease-in-out;
 }
 
+html, body {
+  transform: none !important;
+  perspective: none !important;
+  position: static !important;
+}
+
+#bandera-play {
+  position: fixed !important;
+  top: 50px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  /* el resto de tus estilos… */
+}
+
+
   @media (max-width: 600px) {
   footer#contacto {
     flex-direction: column;        /* cambia de horizontal a vertical */
@@ -371,8 +386,7 @@
   <body>
 
   <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
-  <i class="fas fa-play"></i> Presiona y Escuha
-  </div>
+  <i class="fas fa-play"></i>  Presiona y Escuha</div>
   
   <header class="fade-in">
     <h1>DESPERTAR DEL AVERNO</h1>
