@@ -66,7 +66,7 @@
 }
   
   body {
-  padding-top: 40px; /* ajusta según la altura de #bandera-play */
+  padding-top: 60px; /* ajusta según la altura de #bandera-play */
   }
     
   body::before {
@@ -321,8 +321,8 @@
   left: 50%;
   transform: translateX(-50%);
   max-width: 200px;
-  width: 50%;
-  padding: 10px 20px;
+  width: 70%; /* más ancho en móvil */
+  padding: 12px 10px;
   background: rgba(0, 0, 0, 0.3);
   color: white;
   font-family: 'BurzumGothic', serif;
@@ -336,13 +336,25 @@
   transition: background 0.3s ease, color 0.3s ease;
   user-select: none;
 }
-
+    
 #bandera-play:hover {
   background: #C10202;
   color: black;
   animation: none;
 }
 
+@media (max-width: 600px) {
+  #bandera-play {
+    font-size: 13px;
+    padding: 10px;
+    width: 90%;
+  }
+
+  body {
+    padding-top: 70px; /* más espacio si el banner ocupa más alto */
+  }
+}
+    
 @keyframes parpadeoSuave {
   0%, 100% { opacity: 0.6; }
   50%      { opacity: 1; }
