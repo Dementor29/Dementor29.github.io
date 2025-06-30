@@ -733,21 +733,7 @@ function toggleFavorite(element, nombre, precio) {
   }
   renderWishlist();
 }
-
-function renderWishlist() {
-  const wishlist = document.getElementById("wishlist-items");
-  wishlist.innerHTML = "";
-  for (const nombre in wishlistData) {
-    const item = wishlistData[nombre];
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
-      <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-    `;
-    wishlist.appendChild(li);
-  }
-}
-
+  
 function eliminarDeWishlist(nombre) {
   if (wishlistData[nombre]) {
     wishlistData[nombre].element.classList.remove("active");
@@ -882,36 +868,20 @@ function cerrarModal() {
   document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
   }
 
-// Llamar al actualizar contadores cuando se renderizan
   function renderWishlist() {
-  const ul = document.getElementById("wishlist-items");
-  ul.innerHTML = "";
-  for (let nombre in wishlistData) {
-  const producto = wishlistData[nombre];
-  const id = nombre.replace(/\s+/g, "_");
-  const tallaSelect = producto.esRopa ? `
-    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-    <select id="wishlist-talla-${id}" class="cantidad-input">
-    <option value="">Elige talla</option>
-    <option value="S">S</option><option value="M">M</option>
-    <option value="L">L</option><option value="XL">XL</option>
-    </select>
-    </label>
-    <span id="error-wishlist-${id}" class="error-msg"></span>
-    ` : "";
-
-    ul.innerHTML += `
-      <li style="margin-bottom: 12px;">
-      <span>${nombre} — $${producto.precio.toLocaleString()}</span>
-       ${tallaSelect}
+  const wishlist = document.getElementById("wishlist-items");
+  wishlist.innerHTML = "";
+  for (const nombre in wishlistData) {
+    const item = wishlistData[nombre];
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${nombre} - $${item.precio.toLocaleString()} x${item.cantidad}
       <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
-      </li>
-      `;
-    }
-
-  actualizarContadores();
+    `;
+    wishlist.appendChild(li);
   }
-
+  }
+  
   function renderCarrito() {
   const ul = document.getElementById("cart-items");
   ul.innerHTML = "";
