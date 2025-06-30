@@ -95,11 +95,12 @@
   }
 
     header {
-      text-align: center;
-      padding: 40px 20px 10px;
-      background: rgba(0, 0, 0, 0.7);
+    margin-top: 48px;
+    text-align: center;
+    padding: 40px 20px 10px;
+    background: rgba(0, 0, 0, 0.7);
     }
-
+    
     header h1 {
       font-size: 36px;
       color: #C10202;
@@ -313,22 +314,21 @@
     
 #bandera-play {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 0;
+  background: rgba(0, 0, 0, 0.85);
   color: white;
-  padding: 12px 18px;
   font-family: 'BurzumGothic', serif;
   font-size: 14px;
-  border: 1px solid #cccccc;
-  border-left: 2px solid #cccccc;
-  border-radius: 6px;
-  z-index: 99999; /* más alto que todo */
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(193,2,2,0.8);
-  animation: parpadeo 3s infinite;
-  will-change: transform;
+  text-align: center;
+  border-bottom: 1px solid #C10202;
+  z-index: 99999;
+  animation: parpadeoSuave 2s infinite;
+  box-shadow: 0 0 10px rgba(193, 2, 2, 0.8);
+  transition: all 0.3s ease;
+  user-select: none;
 }
 
 @keyframes parpadeo {
@@ -363,8 +363,7 @@
   </style>
   </head>
   <body>
-
- <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
+  <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
   <i class="fas fa-play"></i> Presiona y Escucha</div>
   
   <header class="fade-in">
