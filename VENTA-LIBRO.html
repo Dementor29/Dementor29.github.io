@@ -711,7 +711,7 @@ function crearItem(producto) {
       <input type="number" min="1" value="1" class="cantidad-input" onchange="actualizarCantidad('${producto.nombre}', this.value)">
     </label>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio})">Agregar al carrito</button>
-    <button class="ver-mas-button" onclick="verDescripcion(...)">Ver más</button>
+    <button class="ver-mas-button" onclick="verDescripcion('${producto.nombre}')">Ver más</button>
   `;
   return item;
 }
@@ -765,11 +765,14 @@ function addToCart(nombre, precio) {
     .find(el => el.querySelector('h3').textContent === nombre);
   const cantidad = parseInt(elemento.querySelector('.cantidad-input').value) || 1;
   cartData[nombre] = { precio: precio, cantidad: cantidad };
+  
   if (wishlistData[nombre]) {
     wishlistData[nombre].cantidad = cantidad;
     renderWishlist();
   }
+
   renderCarrito();
+  actualizarContadores(); // ✅ actualiza el contador 🛒
 }
 
 function renderCarrito() {
@@ -880,6 +883,8 @@ function cerrarModal() {
     `;
     wishlist.appendChild(li);
   }
+
+  actualizarContadores(); // ✅ esto actualiza los contadores
   }
   
   function renderCarrito() {
