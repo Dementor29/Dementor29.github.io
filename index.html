@@ -64,6 +64,10 @@
   background-color: black;
   margin: 0;
 }
+  
+  body {
+  padding-top: 40px; /* ajusta según la altura de #bandera-play */
+  }
     
   body::before {
   content: "";
@@ -312,7 +316,8 @@
 }
     
 #bandera-play {
-  margin-top: 0;
+  position: fixed;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   max-width: 200px;
@@ -330,8 +335,6 @@
   box-shadow: 0 0 6px rgba(193, 2, 2, 0.4);
   transition: background 0.3s ease, color 0.3s ease;
   user-select: none;
-  position: sticky;
-  top: 0;
 }
 
 #bandera-play:hover {
