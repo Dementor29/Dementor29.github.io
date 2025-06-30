@@ -114,34 +114,45 @@
 .volver-btn:hover {
   background-color: var(--volver-hover-bg);
 }
-
-img {
-  max-width: 100%;
+    
+.imagen-principal img {
+  width: 100%;
+  max-width: 800px;
   height: auto;
   display: block;
-  margin: 20px auto;
+  margin: 0 auto 30px auto;
+  border: 4px solid black;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
 }
 
 .triptico {
   display: flex;
   justify-content: center;
-  gap: 10px; /* Espacio entre las imágenes */
-  padding: 20px;
-  flex-wrap: wrap; /* Para que en móviles se acomoden */
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .triptico img {
-  width: 30%; /* Puedes ajustar esto */
+  width: 100%;
   max-width: 300px;
   height: auto;
-  object-fit: cover;
-  border: 4px solid black; /* Simula el marco del cuadro */
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  border: 4px solid black;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
 }
 
-@media (min-width: 768px) {
-  img {
-    max-width: 50%; /* En pantallas grandes, imagen más pequeña */
+/* Responsivo pero siempre grandes */
+@media (max-width: 768px) {
+  .triptico {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .triptico img {
+    max-width: 45%;
+  }
+
+  .imagen-principal img {
+    max-width: 100%;
   }
 }
 
@@ -159,11 +170,16 @@ img {
 
   <article>
     
-  <div class="triptico">
+  <!-- Imagen principal centrada y grande -->
+<div class="imagen-principal">
+  <img src="palmira.jpg" alt="Imagen central principal">
+</div>
+
+<!-- Imágenes laterales tipo cuadro -->
+<div class="triptico">
   <img src="ChatGPT Image 30 jun 2025, 17_28_11.png" alt="Lado izquierdo">
-  <img src="palmira.jpg" alt="Centro">
   <img src="ChatGPT Image 30 jun 2025, 17_28_13.png" alt="Lado derecho">
-  </div>
+</div>
 
   <h1>INTRODUCCIÓN</h1>
 
