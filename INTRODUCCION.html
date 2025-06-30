@@ -116,7 +116,7 @@
 }
     
 .imagen-principal img {
-  width: 100%;
+  width: 60%;
   max-width: 500px;
   height: auto;
   display: block;
@@ -140,6 +140,9 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.6);
 }
 
+.volteada {
+  transform: scaleX(-1);
+}
 /* Responsivo pero siempre grandes */
 @media (max-width: 768px) {
   .triptico {
@@ -177,7 +180,7 @@
 
 <!-- Imágenes laterales tipo cuadro -->
 <div class="triptico">
-  <img src="ChatGPT Image 30 jun 2025, 17_28_11.png" alt="Lado izquierdo">
+  <img class="volteada" src="ChatGPT Image 30 jun 2025, 17_28_11.png" alt="Lado izquierdo">
   <img src="ChatGPT Image 30 jun 2025, 17_28_13.png" alt="Lado derecho">
 </div>
 
