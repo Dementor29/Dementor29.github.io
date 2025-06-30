@@ -79,7 +79,20 @@
   background-position: center;
   z-index: -1;
   pointer-events: none;
-}
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  }
+
+  input,
+  textarea,
+  select {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  }
 
     header {
       text-align: center;
