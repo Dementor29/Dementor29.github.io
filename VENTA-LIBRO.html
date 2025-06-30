@@ -703,7 +703,7 @@ function crearItem(producto) {
 
   item.innerHTML = `
     <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio})">⛧</span>
-    <img src="${producto.imagen}" alt="${producto.nombre}" style="mix-blend-mode: multiply;">
+    <img src="${producto.imagen}" alt="${producto.nombre}" style="mix-blend-mode: multiply; filter: contrast(110%) brightness(1.1);"
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
     <label class="cantidad-label">
