@@ -315,7 +315,7 @@
   position: fixed;
   top: 50px;
   left: 50%;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.6); /* mejor visibilidad */
   color: white;
   padding: 12px 18px;
   font-family: 'BurzumGothic', serif;
@@ -329,9 +329,10 @@
   animation: parpadeoSuave 2s infinite;
   box-shadow: 0 0 10px rgba(193, 2, 2, 0.8);
   transition: transform 0.3s ease;
-  position: fixed; /* 👇 ESTA LÍNEA EVITA QUE SE DESPLACE CON EL CONTENIDO */
+  pointer-events: auto;
+  will-change: transform;
 }
-
+    
 #bandera-play:hover {
   animation: sacudir 0.4s;
   background: rgba(0, 0, 0, 0.5);
