@@ -54,18 +54,14 @@
   }
     
   body, html {
-  height: 100%;
-  font-family: 'BurzumGothic', serif;
-  color: white;
-  scroll-behavior: smooth;
-  }
-
-  body {
+  height:100%;
+  font-family:'BurzumGothic', serif;
+  color:white;
+  scroll-behavior:smooth;
+  overflow-x:hidden;  /* ya no position:relative aquí */
   background-color: black;
-  font-family: 'BurzumGothic', serif;
-  z-index: 0;
   }
-
+    
   body::before {
   content: "";
   position: fixed;
@@ -372,8 +368,8 @@
   </head>
   <body>
 
-  <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
-  <i class="fas fa-play"></i>  Presiona y Escuha</div>
+ <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
+  <i class="fas fa-play"></i> Presiona y Escucha</div>
   
   <header class="fade-in">
     <h1>DESPERTAR DEL AVERNO</h1>
