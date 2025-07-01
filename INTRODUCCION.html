@@ -157,12 +157,56 @@
 transform: scaleX(-1);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .imagen-principal img {
-    width: 100%;
-    margin-bottom: -20px;
+    width: 80%;
+    margin-bottom: -30px;
   }
+
+  .triptico {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow-x: auto;
+    gap: 5px;
   }
+
+  .triptico img {
+    width: 30vw;
+    max-width: none;
+    border: 2px solid black;
+    box-shadow: 0 0 6px rgba(0,0,0,0.4);
+  }
+
+  h1 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  article {
+    padding: 15px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .rojo {
+    font-size: 1em;
+  }
+
+  footer .volver-btn {
+    width: 90%;
+    font-size: 1rem;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #C10202;
+    color: white;
+    border-radius: 4px;
+    border: none;
+  }
+}
     
 @media (min-width: 768px) {
   body {
