@@ -126,35 +126,25 @@
 }
 
 .triptico {
+  width: 100vw; /* ocupa todo el ancho de la pantalla */
+  margin-left: calc(-50vw + 50%); /* centrado real respecto a la pantalla */
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   gap: 0;
-  padding: 0;
-  margin: 0 auto;
-  width: 100%;
-  max-width: none;
 }
 
 .triptico img {
-  width: 70%;
-  height: auto;
+  width: 33.3333%;
   object-fit: cover;
   border: 4px solid black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-  display: block;
 }
 
-/* Ajuste de altura estilo “cuadro colgado” */
-.triptico img:nth-child(1) {
-  margin-top: 0px;
-}
-.triptico img:nth-child(2) {
-  margin-top: 50px; /* Imagen central más alta */
-}
-.triptico img:nth-child(3) {
-  margin-top: 0px;
-}
+.triptico img:nth-child(1) { margin-top: 30px; }
+.triptico img:nth-child(2) { margin-top: 0px; }
+.triptico img:nth-child(3) { margin-top: 20px; }
+
 
 .volteada {
   transform: scaleX(-1);
