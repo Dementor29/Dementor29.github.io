@@ -50,8 +50,11 @@
       padding: 0;
     }
 
+    
     article {
-      padding: 20px;
+    padding: 15px;
+    font-size: 15px;
+    line-height: 1.6;
     }
 
     h1 {
@@ -135,7 +138,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 10px;
+  gap: 5px;
 }
 
 .triptico img {
@@ -154,21 +157,10 @@
 transform: scaleX(-1);
 }
 
-@media (max-width: 768px) {
-  .triptico {
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    overflow-x: auto; /* Agrega scroll horizontal si se necesita */
-    gap: 0;
-  }
-  }
-
-@media (max-width: 768px) {
-  .triptico img {
-  width: 35vw;
+@media (max-width: 600px) {
+  .imagen-principal img {
+    width: 80%;
+    margin-bottom: -20px;
   }
   }
     
