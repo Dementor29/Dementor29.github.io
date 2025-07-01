@@ -159,19 +159,24 @@ transform: scaleX(-1);
 
 @media (max-width: 768px) {
   .triptico {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin: 20px 0;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
 
   .triptico img {
-    width: 60vw;
-    max-width: 40%;
+    flex: 0 0 auto;
+    width: 80vw;
     height: auto;
-    margin: 0 auto;
+    scroll-snap-align: center;
   }
 }
+
    
 @media (min-width: 768px) {
   body {
