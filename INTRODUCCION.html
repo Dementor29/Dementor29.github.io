@@ -146,9 +146,9 @@
 }
 
 /* Estas reglas ahora sí funcionarán */
-.triptico img:nth-child(1) { margin-top: 30px; }
-.triptico img:nth-child(2) { margin-top: -100px; }
-.triptico img:nth-child(3) { margin-top: 30px; }
+.triptico img:nth-child(1) { margin-top: 20px; }
+.triptico img:nth-child(2) { margin-top: 0px; }
+.triptico img:nth-child(3) { margin-top: 20px; }
 
 
 .volteada {
@@ -157,25 +157,15 @@
 
 @media (max-width: 768px) {
   .triptico {
-    flex-direction: column; /* Cambia de fila a columna */
-    align-items: center;    /* Centra las imágenes */
-    gap: 20px;              /* Espacio entre imágenes */
-    width: 100%;
-    margin-left: 0;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow-x: auto; /* Agrega scroll horizontal si se necesita */
+    gap: 0;
   }
-
-  .triptico img {
-    width: 90%;             /* Ocupa la mayor parte del ancho de pantalla */
-    max-width: none;
-    height: auto;
-  }
-
-  .imagen-principal img {
-    width: 90%;
-    max-width: 320px;
-  }
-}
-    
+  
 @media (min-width: 768px) {
   body {
     padding: 30px;
