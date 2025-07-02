@@ -1,1 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="AV STORE" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Tienda online de libros de ocultismo, CDs de black metal, ropa alternativa y arte inspirado en el satanismo moderno. Compra por WhatsApp desde Colombia." />
+<meta name="keywords" content="satanismo, ocultismo, black metal, ropa alternativa, libros esotéricos, cds underground, arte oscuro, lucifer, tienda metalera, Despertar del Averno" />
+<meta name="author" content="Averno Store" />
 
+<!-- Accesibilidad / UX -->
+<meta name="theme-color" content="#000000" />
+<meta name="color-scheme" content="dark" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph (para Facebook, WhatsApp, LinkedIn...) -->
+<meta property="og:title" content="Despertar del Averno – Tienda de ocultismo, música y arte" />
+<meta property="og:description" content="Explora un refugio digital para mentes libres y oscuras. Libros esotéricos, música underground, moda alternativa y más." />
+<meta property="og:image" content="https://despertardelaverno.com/favicon-96x96.png" />
+<meta property="og:url" content="https://despertardelaverno.com" />
+<meta property="og:type" content="website" />
+
+<!-- Twitter Card (para X/Twitter) -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Despertar del Averno – Ocultismo, música, arte y más" />
+<meta name="twitter:description" content="Tienda alternativa de libros, CDs, ropa y productos oscuros para mentes libres." />
+<meta name="twitter:image" content="https://despertardelaverno.com/favicon-96x96.png" />
+<meta name="description" content="satanismo">
+<meta name="keywords" content="juegos, videos, imágenes, entretenimiento, youtube, videojuegos, celular, pc, computador, online, league of legends, free fire, mobile, valhalla krigere, valhalla, krigere">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Despertar Del ⛧ Averno</title>
+  
+  <style>
+
+  @font-face {
+  font-family: 'BurzumGothic';
+  src: url('fonts/BurzumGothic.woff') format('woff');
+  }
+    
+    header, footer {
+      text-align: center;
+      padding: 1em;
+    }
+    
+    body {
+      background-color: black;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    
+    article {
+    padding: 15px;
+    font-size: 15px;
+    line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'BurzumGothic', serif;
+    }
+
+    nav {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    input,
+    textarea,
+    select {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    }
+
+  nav a:hover {
+  color: #C10202;
+  }
+
+  span.rojo {
+  color: #ff4d4d;            /* rojo suave */
+  font-weight: bold;
+  font-size: 1.1em;          /* aumenta ligeramente el tamaño del texto */
+  text-decoration: none;     /* elimina el subrayado */
+  }
+    
+    :root {
+  --volver-bg: #990000;
+  --volver-color: #ffffff;
+  --volver-hover-bg: #770000;
+  }
+
+.volver-btn {
+  background-color: var(--volver-bg);
+  color: var(--volver-color);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1em;
+}
+.volver-btn:hover {
+  background-color: var(--volver-hover-bg);
+}
+
+.imagen-principal img {
+  width: 50%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+  margin-bottom: -50px; /* Puedes ajustar el valor */
+  z-index: 2;
+  position: relative;
+  border: 4px solid black;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+  background-color: black;
+}
+    
+.triptico {
+  width: 100vw; /* ocupa todo el ancho de la pantalla */
+  margin-left: calc(-50vw + 50%); /* centrado real respecto a la pantalla */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.triptico img {
+  width: 20vw;
+  height: auto;
+  max-width: 500px;
+  border: 4px solid black;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+} /* ← Esta llave CIERRE es indispensable */
+
+.triptico img:nth-child(1) { margin-bottom: -40px; }
+.triptico img:nth-child(2) { margin-bottom: 60px; }
+.triptico img:nth-child(3) { margin-bottom: -40px; }
+
+.volteada {
+transform: scaleX(-1);
+}
+
+@media (max-width: 768px) {
+  .imagen-principal img {
+    width: 60%;
+    margin-bottom: -20px;
+    background-color: black;
+  }
+  }
+
+@media (max-width: 768px) {
+  .triptico {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .triptico img {
+    flex: 0 0 auto;
+    width: 70vw;
+    height: auto;
+    scroll-snap-align: center;
+  }
+}
+
+   
+@media (min-width: 768px) {
+  body {
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto; /* ⬅ Centra el contenido */
+  }
+  }
+
+</style>
+</head>
+<body>
+  
+    <!-- Imagen principal centrada y grande -->
+<div class="imagen-principal">
+  <img src="palmira.jpg" alt="Imagen central principal">
+</div>
+
+<!-- Imágenes laterales tipo cuadro -->
+<div class="triptico">
+  <img class="volteada" src="ChatGPT Image 30 jun 2025, 17_28_11.png" alt="Lado izquierdo">
+  <img src="ChatGPT Image 30 jun 2025, 18_41_34.png" alt="En el medio">
+  <img src="ChatGPT Image 30 jun 2025, 17_28_13.png" alt="Lado derecho">
+</div>
+
+  <article>
+  <h1>INTRODUCCIÓN</h1>
+
+  <p>
+    Las imagenes superiores no son un simple logo: es el reflejo de <span class="rojo">Palmira - Valle Del Cauca</span>, donde la <span class="rojo">Cultura underground</span> Se funde con la intensidad del <span class="rojo">Metal extremo</span>. Yo, <strong>Juan Heredia</strong>, Creador de <strong>Averno Store</strong>, He construido este proyecto como un santuario personal: Una mezcla del <span class="rojo">90 %</span> Como <span class="rojo">Tienda Digital</span> —Con <span class="rojo">Ropa alternativa</span>, <span class="rojo">CDs Extremos</span>, <span class="rojo">Accesorios Esotéricos</span> y <span class="rojo">libros de Ocultismo</span>— Y un <span class="rojo">10 %</span> Como <span class="rojo">Foro</span> Para Comprar y Compartir <span class="rojo">Filosofias y Creencias</span>, <span class="rojo">Debates</span> y Experiencias al filo de la <span class="rojo">Oscuridad</span>.
+  </p>
+
+  <p>
+    Cada rincón de esta página está impregnado de una búsqueda personal y profunda: Despertar la <span class="rojo">Conciencia</span> A través del conocimiento prohibido, El arte oscuro y la expresión sin filtros. No somos una comunidad masiva, Somos almas que arden con ideas propias.
+  </p>
+
+  <p>
+    <strong>Adéntrate. Explora mis pasillos digitales. Despierta tu <span class="rojo">Averno</span> interior.</strong><br> ¡Bienvenid@ a la experiencia única de <strong>Averno Store</strong>!
+  </p>
+    
+</article>
+
+<footer>
+  <button class="volver-btn" onclick="location.href='/'">
+  VOLVER
+</button>
+</footer>
+  
+</body>
+</html>
