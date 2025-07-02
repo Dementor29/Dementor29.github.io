@@ -33,15 +33,16 @@
   <link rel="manifest" href="/site.webmanifest" />
   <style>
 
-    a, a:visited, a:link, a:active {
-      color: var(--text-color) !important;
-      text-decoration: none !important;
+    a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
     }
+
     a:hover {
-      text-decoration: underline !important;
-    }
-    a:hover {
-      text-decoration: underline;
+    text-decoration: underline;
+    text-decoration-color: #C10202; /* Rojo infernal */
+    color: #C10202;
     }
 
     /* Fuente Burzum con @font-face */
