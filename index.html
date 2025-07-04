@@ -296,6 +296,7 @@ nav a,
 .submenu-items a {
   position: relative;
   text-decoration: none;
+  display: inline-block;
 }
 
 nav a::after,
@@ -306,17 +307,32 @@ nav a::after,
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 0%;
+  width: 0;
   height: 2px;
-  background-color: currentColor;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, background-color 0.3s ease;
 }
 
+/* Efecto de subrayado al pasar el mouse */
 nav a:hover::after,
 .secondary-nav a:hover::after,
 .submenu-toggle:hover::after,
 .submenu-items a:hover::after {
   width: 100%;
+}
+
+/* COLOR DEL SUBRAYADO SEGÚN EL COLOR DEL TEXTO */
+nav a[style*="#C10202"]:hover::after,
+.secondary-nav a[style*="#C10202"]:hover::after,
+.submenu-toggle[style*="#C10202"]:hover::after,
+.submenu-items a[style*="#C10202"]:hover::after {
+background-color: #cccccc; /* gris metálico para texto rojo */
+}
+
+nav a[style*="#cccccc;"]:hover::after,
+.secondary-nav a[style*="white"]:hover::after,
+.submenu-toggle[style*="white"]:hover::after,
+.submenu-items a[style*="white"]:hover::after {
+background-color: #C10202; /* rojo para texto blanco */
 }
     
 #bandera-play {
