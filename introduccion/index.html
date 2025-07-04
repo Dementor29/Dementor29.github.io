@@ -96,19 +96,18 @@
   nav a:hover {
   color: #C10202;
   }
-
-  span.rojo {
-  color: #ff4d4d;            /* rojo suave */
-  font-weight: bold;
-  font-size: 1.1em;          /* aumenta ligeramente el tamaño del texto */
-  text-decoration: none;     /* elimina el subrayado */
-  }
     
     :root {
   --volver-bg: #990000;
   --volver-color: #ffffff;
   --volver-hover-bg: #770000;
+  --highlight: #ff4d4d;
   }
+    
+/* modo claro opcional */
+body.light-mode {
+--highlight: #b30000; /* más oscuro si lo deseas en modo claro */
+}
 
 .volver-btn {
   background-color: var(--volver-bg);
@@ -165,10 +164,11 @@ transform: scaleX(-1);
 }
 
 .intro-contenido {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   padding: 20px;
   text-align: justify;
+  max-width: none;  /* Evita que se limite a 800px u otro */
 }
     
 @media (max-width: 768px) {
@@ -227,17 +227,26 @@ transform: scaleX(-1);
   <article class="intro-contenido">
   <h1>INTRODUCCIÓN</h1>
 
-  <p>
-    Las imagenes superiores no son un simple logo: es el reflejo de <span class="rojo">Palmira - Valle Del Cauca</span>, donde la <span class="rojo">Cultura underground</span> Se funde con la intensidad del <span class="rojo">Metal extremo</span>. Yo, <strong>Juan Heredia</strong>, Creador de <strong>Averno Store</strong>, He construido este proyecto como un santuario personal: Una mezcla del <span class="rojo">90 %</span> Como <span class="rojo">Tienda Digital</span> —Con <span class="rojo">Ropa alternativa</span>, <span class="rojo">CDs Extremos</span>, <span class="rojo">Accesorios Esotéricos</span> y <span class="rojo">libros de Ocultismo</span>— Y un <span class="rojo">10 %</span> Como <span class="rojo">Foro</span> Para Comprar y Compartir <span class="rojo">Filosofias y Creencias</span>, <span class="rojo">Debates</span> y Experiencias al filo de la <span class="rojo">Oscuridad</span>.
+<p>
+    Averno Store es mucho más que una tienda: es un manifiesto digital y simbólico, concebido en <span style="color: var(--highlight);">Palmira – Valle del Cauca</span>, donde la estética <span style="color: var(--highlight);">underground</span> y el <span style="color: var(--highlight);">metal extremo</span> se entrelazan como lenguaje cultural y espiritual. Esta plataforma nace con una visión clara: consolidar un espacio auténtico para el conocimiento, la expresión libre y la resistencia estética frente al <span style="color: var(--highlight);">dogma</span> dominante.
   </p>
 
   <p>
-    Cada rincón de esta página está impregnado de una búsqueda personal y profunda: Despertar la <span class="rojo">Conciencia</span> A través del conocimiento prohibido, El arte oscuro y la expresión sin filtros. No somos una comunidad masiva, Somos almas que arden con ideas propias.
+    Su estructura combina un <span style="color: var(--highlight);">90 %</span> como <strong>tienda digital</strong> —especializada en <span style="color: var(--highlight);">libros de ocultismo</span>, <span style="color: var(--highlight);">ropa alternativa</span>, <span style="color: var(--highlight);">música extrema</span> y <span style="color: var(--highlight);">accesorios esotéricos</span>— y un <span style="color: var(--highlight);">10 %</span> como foro filosófico: un canal de intercambio de <span style="color: var(--highlight);">ideas</span>, <span style="color: var(--highlight);">creencias no convencionales</span> y <span style="color: var(--highlight);">debate</span> sobre espiritualidad, arte y conciencia.
   </p>
 
   <p>
-    <strong>Adéntrate. Explora mis pasillos digitales. Despierta tu <span class="rojo">Averno</span> interior.</strong><br> ¡Bienvenid@ a la experiencia única de <strong>Averno Store</strong>!
+    Cada sección de este sitio ha sido diseñada con intención: desde su estética visual hasta su contenido simbólico, todo impulsa una causa mayor —el <span style="color: var(--highlight);">despertar de la conciencia</span> a través del pensamiento crítico, el arte oscuro y la búsqueda del conocimiento prohibido.
   </p>
+
+  <p>
+    No pretendemos ser una comunidad masiva. Somos una red de mentes que eligen el camino menos transitado. Aquí, <strong>la oscuridad no es caos: es <span style="color: var(--highlight);">claridad interior</span></strong>.
+  </p>
+
+  <p style="margin-top: 2em;">
+    <strong>Bienvenid@ a Averno Store. Explora. Despierta. Y activa tu <span style="color: var(--highlight);">Averno interior</span>.</strong>
+    
+</p>
     
 </article>
 
