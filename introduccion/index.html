@@ -166,6 +166,7 @@ transform: scaleX(-1);
 }
 
 .intro-contenido {
+  animation: fadeInUp 1.5s ease forwards;
   max-width: 1200px; /* Puedes ajustar a 1000, 1100, etc. */
   margin: 0 auto;
   padding: 40px 20px;
@@ -176,7 +177,7 @@ transform: scaleX(-1);
 .intro-contenido h2::after {
   content: "";
   display: block;
-  width: 60px;
+  width: 80px;
   height: 3px;
   background-color: var(--highlight);
   margin: 10px auto 0 auto;
@@ -189,6 +190,16 @@ transform: scaleX(-1);
   100% { opacity: 0.2; }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
     
 @media (max-width: 768px) {
   .imagen-principal img {
@@ -233,14 +244,14 @@ transform: scaleX(-1);
   
     <!-- Imagen principal centrada y grande -->
 <div class="imagen-principal">
-  <img src="palmira.jpg" alt="Imagen central principal">
+  <img src="palmira.jpg" alt="Imagen central principal" loading="lazy">
 </div>
 
 <!-- Imágenes laterales tipo cuadro -->
 <div class="triptico">
   <img class="volteada" src="ChatGPT Image 30 jun 2025, 17_28_11.png" alt="Lado izquierdo">
-  <img src="ChatGPT Image 30 jun 2025, 18_41_34.png" alt="En el medio">
-  <img src="ChatGPT Image 30 jun 2025, 17_28_13.png" alt="Lado derecho">
+  <img src="ChatGPT Image 30 jun 2025, 18_41_34.png" alt="En el medio" loading="lazy">
+  <img src="ChatGPT Image 30 jun 2025, 17_28_13.png" alt="Lado derecho" loading="lazy">
 </div>
 
   <article class="intro-contenido">
