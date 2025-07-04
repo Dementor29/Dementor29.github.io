@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+ <!DOCTYPE html>
+  <html lang="es">
+  <head>
   
   <meta name="description" content="Averno Store es un templo digital para mentes libres y oscuras. Aquí encontrarás libros de ocultismo, música underground, ropa alternativa, accesorios, arte y filosofía inspirados en el satanismo moderno. Un refugio para quienes buscan romper dogmas y explorar el conocimiento prohibido."/>
   <!-- Palabras clave relevantes -->
@@ -32,35 +32,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   
   <style>
-    
-  html, body {
-  height: 100%;
-  font-family: 'BurzumGothic', serif;
-  color: white;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  background-image: url('bg.png');
-  margin: 0;
-  }
-
- body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover; /* ✅ Rellenará toda la pantalla */
-  background-repeat: no-repeat;
-  background-position: center center;
-  z-index: -1;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  }
-    
+   
   * {
     box-sizing: border-box;
     margin: 0;
@@ -76,6 +48,36 @@
   font-family: 'BurzumGothic', serif;
   }
     
+ html, body {
+  height: 100%;
+  font-family: 'BurzumGothic', serif;
+  color: white;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background: url('bg.png') no-repeat center center fixed;
+  background-size: contain;
+  background-color: black;
+  margin: 0;
+}    
+  body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('bg.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  }
+
   input,
   textarea,
   select {
@@ -135,6 +137,7 @@
     .secondary-nav a {
       margin: 0 15px;
       font-size: 15px;
+      color: #ff9999;
       text-decoration: none;
     }
     
@@ -283,10 +286,15 @@
   display: block;
   padding: 8px 16px;
   font-size: 15px;
+  color: white;
   text-decoration: none;
   transition: all 0.3s;
   position: relative;
   text-align: left;
+}
+
+.submenu-items a:hover {
+  color: #C10202;
 }
     
 nav a,
@@ -319,22 +327,20 @@ nav a:hover::after,
   width: 100%;
 }
 
-nav a.rojo:hover::after,
-.secondary-nav a.rojo:hover::after,
-.submenu-toggle.rojo:hover::after,
-.submenu-items a.rojo:hover::after {
-  background-color: #cccccc; /* gris metálico */
+/* COLOR DEL SUBRAYADO SEGÚN EL COLOR DEL TEXTO */
+nav a[style*="#C10202"]:hover::after,
+.secondary-nav a[style*="#C10202"]:hover::after,
+.submenu-toggle[style*="#C10202"]:hover::after,
+.submenu-items a[style*="#C10202"]:hover::after {
+background-color: #cccccc; /* gris metálico para texto rojo */
 }
 
-nav a.gris-metal:hover::after,
-.secondary-nav a.gris-metal:hover::after,
-.submenu-toggle.gris-metal:hover::after,
-.submenu-items a.gris-metal:hover::after {
-  background-color: #C10202; /* rojo */
+nav a[style*="#cccccc;"]:hover::after,
+.secondary-nav a[style*="#cccccc"]:hover::after,
+.submenu-toggle[style*="#cccccc"]:hover::after,
+.submenu-items a[style*="#cccccc"]:hover::after {
+background-color: #C10202; /* rojo para texto blanco */
 }
-    
-.rojo { color: #C10202; }
-.gris-metal { color: #cccccc; }
     
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
@@ -414,53 +420,57 @@ nav a.gris-metal:hover::after,
   </div>
     
   <nav class="fade-in">
-    <a class="rojo"href="#introduccion">INTRODUCCIÓN</a>
-    <a class="gris-metal"href="#autobiografia">AUTOBIOGRAFÍA</a>
-    <a class="rojo"href="#banda">PROYECTO BANDA</a>
-    <a class="gris-metal"href="#nosotros">NOSOTROS</a>
-    <a class="rojo"href="#contacto">CONTACTO</a>
+    <a href="#introduccion" style="color: #C10202;">INTRODUCCIÓN</a>
+    <a href="#autobiografia" style="color: #cccccc;">AUTOBIOGRAFÍA</a>
+    <a href="#banda" style="color: #C10202;">PROYECTO BANDA</a>
+    <a href="#nosotros" style="color: #cccccc;">NOSOTROS</a>
+    <a href="#contacto" style="color: #C10202;">CONTACTO</a>
   </nav>
 
   <div class="secondary-nav fade-in">
-    <a class="gris-metal"href="venta-cd/">VENTA DE CD's</a>
+    <a href="venta-cd/" style="color: #cccccc;">VENTA DE CD's</a>
     
   <div class="submenu">
-    <span class="submenu-toggle rojo">MERCH ▾</span>
+    <span class="submenu-toggle" style="color: #C10202;">MERCH ▾</span>
     <div class="submenu-items">
-      <a class="gris-metal"href="merch-hombre/">HOMBRE</a>
-      <a class="rojo"href="merch-mujer/">MUJER</a> <!-- ← aquí irá el nuevo enlace -->
+      <a href="merch-hombre/" style="color: #cccccc;">HOMBRE</a>
+      <a href="merch-mujer/" style="color: #C10202;">MUJER</a> <!-- ← aquí irá el nuevo enlace -->
     </div>
   </div>
     
-  <a class="gris-metal"href="libros/">VENTA DE LIBROS</a>
+  <a href="libros/"style="color: #cccccc;">VENTA DE LIBROS</a>
   </div>
 
   <main> 
-    
   <section id="introduccion" class="fade-in">
     <h2>INTRODUCCIÓN</h2>
     <p>Averno Store es un templo digital para mentes libres y oscuras. Aquí encontrarás libros de ocultismo, música underground, ropa alternativa, accesorios, arte y filosofía inspirados en el satanismo moderno. Un refugio para quienes buscan romper dogmas y explorar el conocimiento prohibido.</p>
     <div class="ver-mas"><a href="introduccion/">Ver más</a></div>
   </section>
-  
+  </main>
+
+  <main>  
   <section id="autobiografia" class="fade-in">
     <h2>AUTOBIOGRAFÍA</h2>
     <p>Explora el camino personal de transformación y despertar de conciencia, desde la rebeldía espiritual hasta el encuentro con lo oculto y lo verdadero.</p>
     <div class="ver-mas"><a href="autobiografia/">Ver más</a></div>
   </section>
+  </main>
 
+  <main>
   <section id="banda" class="fade-in">
     <h2>PROYECTO BANDA</h2>
     <p>Un proyecto musical oscuro y atmosférico nacido desde lo más profundo, combinando black metal, ritual y poesía de sombras.</p>
     <div class="ver-mas"><a href="banda/">Ver más</a></div>
   </section>
-  
+  </main>
+
+  <main>
   <section id="nosotros" class="fade-in">
     <h2>NOSOTROS</h2>
     <p>Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.</p>
     <div class="ver-mas"><a href="nosotros/">Ver más</a></div>
   </section>
-    
   </main>
 
 <footer id="contacto" class="fade-in" style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; text-align: left; gap: 20px;">
