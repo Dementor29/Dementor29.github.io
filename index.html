@@ -54,8 +54,6 @@
   color: white;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background: url('bg.png') no-repeat center center fixed;
-  background-size: contain;
   background-color: black;
   margin: 0;
 }    
@@ -327,21 +325,20 @@ nav a:hover::after,
   width: 100%;
 }
 
-/* COLOR DEL SUBRAYADO SEGÚN EL COLOR DEL TEXTO */
-nav a[style*="#C10202"]:hover::after,
-.secondary-nav a[style*="#C10202"]:hover::after,
-.submenu-toggle[style*="#C10202"]:hover::after,
-.submenu-items a[style*="#C10202"]:hover::after {
-background-color: #cccccc; /* gris metálico para texto rojo */
+nav a.rojo:hover::after,
+.secondary-nav a.rojo:hover::after,
+.submenu-toggle.rojo:hover::after,
+.submenu-items a.rojo:hover::after {
+  background-color: #cccccc; /* gris metálico */
 }
 
-nav a[style*="#cccccc;"]:hover::after,
-.secondary-nav a[style*="#cccccc"]:hover::after,
-.submenu-toggle[style*="#cccccc"]:hover::after,
-.submenu-items a[style*="#cccccc"]:hover::after {
-background-color: #C10202; /* rojo para texto blanco */
+nav a.gris-metal:hover::after,
+.secondary-nav a.gris-metal:hover::after,
+.submenu-toggle.gris-metal:hover::after,
+.submenu-items a.gris-metal:hover::after {
+  background-color: #C10202; /* rojo */
 }
-
+    
 .rojo { color: #C10202; }
 .gris-metal { color: #cccccc; }
     
@@ -431,17 +428,17 @@ background-color: #C10202; /* rojo para texto blanco */
   </nav>
 
   <div class="secondary-nav fade-in">
-    <a href="venta-cd/" style="color: #cccccc;">VENTA DE CD's</a>
+    <a class="gris-metal"href="venta-cd/">VENTA DE CD's</a>
     
   <div class="submenu">
-    <span class="submenu-toggle" style="color: #C10202;">MERCH ▾</span>
+    <span class="submenu-toggle rojo">MERCH ▾</span>
     <div class="submenu-items">
-      <a href="merch-hombre/" style="color: #cccccc;">HOMBRE</a>
-      <a href="merch-mujer/" style="color: #C10202;">MUJER</a> <!-- ← aquí irá el nuevo enlace -->
+      <a class="gris-metal"href="merch-hombre/">HOMBRE</a>
+      <a class="rojo"href="merch-mujer/">MUJER</a> <!-- ← aquí irá el nuevo enlace -->
     </div>
   </div>
     
-  <a href="libros/"style="color: #cccccc;">VENTA DE LIBROS</a>
+  <a class="gris-metal"href="libros/">VENTA DE LIBROS</a>
   </div>
 
   <main> 
@@ -469,9 +466,7 @@ background-color: #C10202; /* rojo para texto blanco */
     <p>Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.</p>
     <div class="ver-mas"><a href="nosotros/">Ver más</a></div>
   </section>
-  
-  </section>
-  </section>
+    
   </main>
 
 <footer id="contacto" class="fade-in" style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; text-align: left; gap: 20px;">
