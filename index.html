@@ -334,6 +334,42 @@ nav a[style*="#cccccc;"]:hover::after,
 .submenu-items a[style*="#cccccc"]:hover::after {
 background-color: #C10202; /* rojo para texto blanco */
 }
+
+.link-blanco {
+  color: #cccccc; 
+}
+
+.link-rojo {
+  color: #C10202;
+}
+
+/* Subrayado al pasar el mouse */
+.link-blanco,
+.link-rojo {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-blanco::after,
+.link-rojo::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  transition: width 0.3s ease;
+}
+
+.link-blanco:hover::after {
+  width: 100%;
+  background-color: #C10202; /* subrayado rojo */
+}
+
+.link-rojo:hover::after {
+  width: 100%;
+  background-color: #cccccc;  /* subrayado gris metal sobre texto rojo */
+}
     
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
@@ -426,8 +462,8 @@ background-color: #C10202; /* rojo para texto blanco */
   <div class="submenu">
     <span class="submenu-toggle" style="color: #C10202;">MERCH ▾</span>
     <div class="submenu-items">
-      <a href="merch-hombre/" style="color: #cccccc;">HOMBRE</a>
-      <a href="merch-mujer/" style="color: #C10202;">MUJER</a> <!-- ← aquí irá el nuevo enlace -->
+      <a href="merch-hombre/" class="link-blanco">HOMBRE</a>
+      <a href="merch-mujer/" class="link-rojo">MUJER</a> <!-- ← aquí irá el nuevo enlace -->
     </div>
   </div>
 
