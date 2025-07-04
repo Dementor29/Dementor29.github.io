@@ -102,12 +102,14 @@
   --volver-color: #ffffff;
   --volver-hover-bg: #770000;
   --highlight: #ff4d4d;
+  --soft-gray: #bbbbbb;
+
   }
     
-/* modo claro opcional */
-body.light-mode {
---highlight: #b30000; /* más oscuro si lo deseas en modo claro */
-}
+  /* modo claro opcional */
+  body.light-mode {
+  --highlight: #b30000; /* más oscuro si lo deseas en modo claro */
+  }
 
 .volver-btn {
   background-color: var(--volver-bg);
@@ -125,7 +127,7 @@ body.light-mode {
 }
 
 .imagen-principal img {
-  width: 45%;
+  width: 40%;
   max-width: 400px;
   height: auto;
   display: block;
@@ -168,7 +170,25 @@ transform: scaleX(-1);
   margin: 0 auto;
   padding: 40px 20px;
   text-align: justify;
+  margin-top: 60px;
 }
+
+.intro-contenido h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--highlight);
+  margin: 10px auto 0 auto;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
     
 @media (max-width: 768px) {
   .imagen-principal img {
@@ -224,7 +244,7 @@ transform: scaleX(-1);
 </div>
 
   <article class="intro-contenido">
-  <h1>INTRODUCCIÓN</h1>
+  <h2>INTRODUCCIÓN</h2>
 
 <p>
     Averno Store es mucho más que una tienda: es un manifiesto digital y simbólico, concebido en <span style="color: var(--highlight);">Palmira – Valle del Cauca</span>, donde la estética <span style="color: var(--highlight);">underground</span> y el <span style="color: var(--highlight);">metal extremo</span> se entrelazan como lenguaje cultural y espiritual. Esta plataforma nace con una visión clara: consolidar un espacio auténtico para el conocimiento, la expresión libre y la resistencia estética frente al <span style="color: var(--highlight);">dogma</span> dominante.
