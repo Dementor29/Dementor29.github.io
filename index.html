@@ -32,23 +32,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   
   <style>
-   
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    }
     
-  @font-face {
-  font-family: 'BurzumGothic';
-  src: url('fonts/BurzumGothic.woff') format('woff');
-  }
-    
-  h1, h2 {
-  font-family: 'BurzumGothic', serif;
-  }
-    
-html, body {
+  html, body {
   height: 100%;
   font-family: 'BurzumGothic', serif;
   color: white;
@@ -56,7 +41,7 @@ html, body {
   overflow-x: hidden;
   background-color: black; /* esto sí está bien como respaldo */
   margin: 0;
-}
+  }
 
  body::before {
   content: "";
@@ -75,8 +60,23 @@ html, body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-}
-
+  }
+    
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+    
+  @font-face {
+  font-family: 'BurzumGothic';
+  src: url('fonts/BurzumGothic.woff') format('woff');
+  }
+    
+  h1, h2 {
+  font-family: 'BurzumGothic', serif;
+  }
+    
   input,
   textarea,
   select {
@@ -284,7 +284,6 @@ html, body {
   display: block;
   padding: 8px 16px;
   font-size: 15px;
-  color: inherit; /* ✅ Respeta .rojo o .gris-metal */
   text-decoration: none;
   transition: all 0.3s;
   position: relative;
