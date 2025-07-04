@@ -266,15 +266,14 @@
 .submenu-items {
   display: none;
   position: absolute;
-  top: 100%; /* justo debajo del botón */
-  left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
+  background: rgba(0, 0, 0, 0.8); /* igual que el menú principal */
   min-width: 160px;
-  z-index: 999;
-  border-radius: 0px;
+  padding: 8px 0;
+  z-index: 10;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-  margin-top: 10px;
+  border-radius: 0; /* esquinas rectas */
+  text-align: left;
+  margin-top: 8px; /* separa del botón MERCH */
 }
 
 .submenu:hover .submenu-items {
