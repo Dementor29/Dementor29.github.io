@@ -264,18 +264,16 @@
 }
 
 .submenu-items {
-  z-index: 1000;           /* asegúrate de que esté por encima */
   display: none;
   position: absolute;
-  top: calc( 99% + 10px);  /* antes tenías +5px, ahora le damos 20px */
+  top: calc(100% - 2px);  /* se superpone 2px al toggle */
   left: 0;
-  margin-top: 0; 
   background: rgba(0, 0, 0, 0.8);
   min-width: 160px;
   padding: 8px 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   border-radius: 0;
-  text-align: left;
+  z-index: 1000;
 }
    
 .submenu:hover .submenu-items {
@@ -286,12 +284,9 @@
 .submenu-items a {
   display: block;
   padding: 8px 16px;
-  font-size: 15px;
   color: white;
   text-decoration: none;
-  transition: all 0.3s;
-  position: relative;
-  text-align: left;
+  transition: color 0.3s;
 }
 
 .submenu-items a:hover {
