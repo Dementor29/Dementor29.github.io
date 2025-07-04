@@ -125,14 +125,6 @@
       border-bottom: 1px solid transparent;
       transition: 0.3s;
     }
-
-    nav a:hover {
-      border-bottom: 1px solid red;
-    }
-    
-    .secondary-nav a:hover {
-    border-bottom: 1px solid red;
-    }
     
     .secondary-nav {
     margin-top: 40px;
@@ -148,11 +140,7 @@
       color: #ff9999;
       text-decoration: none;
     }
-
-    .secondary-nav a:hover {
-      color: #ffffff;
-    }
-
+    
     section {
     padding: 50px 20px;
     margin-bottom: 20px;
@@ -274,11 +262,7 @@
   border-bottom: 1px solid transparent;
   transition: 0.3s;
 }
-
-.submenu-toggle:hover {
-  border-bottom: 1px solid red;
-}
-
+    
 .submenu-items {
   display: none;
   position: absolute;
@@ -301,13 +285,38 @@
   border-bottom: 1px solid transparent;
   transition: 0.3s;
 }
-
-.submenu-items a:hover {
-  border-bottom: 1px solid red;
-}
-
+    
 .submenu:hover .submenu-items {
   display: block;
+}
+
+nav a,
+.secondary-nav a,
+.submenu-toggle,
+.submenu-items a {
+  position: relative;
+  text-decoration: none;
+}
+
+nav a::after,
+.secondary-nav a::after,
+.submenu-toggle::after,
+.submenu-items a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+.secondary-nav a:hover::after,
+.submenu-toggle:hover::after,
+.submenu-items a:hover::after {
+  width: 100%;
 }
     
 #bandera-play {
