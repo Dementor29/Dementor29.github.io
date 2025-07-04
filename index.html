@@ -264,11 +264,12 @@
 }
 
 .submenu-items {
+  z-index: 1000;           /* asegúrate de que esté por encima */
   display: none;
   position: absolute;
   top: calc(100% + 10px);  /* antes tenías +5px, ahora le damos 20px */
   left: 0;
-  z-index: 1000;           /* asegúrate de que esté por encima */
+  margin-top: 0; 
   background: rgba(0, 0, 0, 0.8);
   min-width: 160px;
   padding: 8px 0;
