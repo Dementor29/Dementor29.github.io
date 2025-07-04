@@ -266,15 +266,15 @@
 .submenu-items {
   display: none;
   position: absolute;
+  top: calc(100% + 20px);  /* antes tenías +5px, ahora le damos 20px */
+  left: 0;
+  z-index: 1000;           /* asegúrate de que esté por encima */
   background: rgba(0, 0, 0, 0.8);
   min-width: 160px;
   padding: 8px 0;
-  z-index: 10;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   border-radius: 0;
   text-align: left;
-  top: calc(100% + 5px); /* ⬅ posiciona justo debajo del botón */
-  left: 0;
 }
    
 .submenu:hover .submenu-items {
