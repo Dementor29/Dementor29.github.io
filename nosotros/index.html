@@ -38,10 +38,24 @@
   <style>
   
     @font-face { font-family: 'BurzumGothic'; src: url('fonts/BurzumGothic.woff') format('woff'); }
-    body { font-family: 'BurzumGothic', serif; line-height: 1.6; background: #faf8f3; color: #000; margin: 0; }
-    a { color: inherit; text-decoration: none; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+    font-family: 'BurzumGothic';
+    background-color: #f3f0ec; /* o el que elijas */
+    color: #111; /* texto oscuro suave */  
+    }
 
+    h1, h2, h3 {
+    color: #C10202;
+    }
+
+    a {
+    color: #770000;  
+    }
+    a:hover {
+    color: #C10202;
+    }
+    
     /* LANGUAGE OVERLAY */
     #langOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); display: none; justify-content: center; align-items: center; z-index: 2000; pointer-events: none; }
     #langOverlay.active { display: flex; pointer-events: all; }
