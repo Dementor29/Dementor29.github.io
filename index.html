@@ -60,6 +60,7 @@
   overflow-x: hidden;
   background: black; /* fondo base */
   position: relative;
+  z-index: 0;
   }
     
   body.modal-abierto main,
@@ -203,15 +204,15 @@
   }
     
   body::before {
-  content: "";
-  position: fixed;
+  content: "";                      /* ¡importante! */
+  position: fixed;                 /* cubre toda la ventana */
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: url('bg.png') center center no-repeat;
-  background-size: cover; /* ✅ mejor que 'contain' */
-  z-index: -1;
+  background-size: cover;
+  z-index: -10;                    /* suficientemente bajo */
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
