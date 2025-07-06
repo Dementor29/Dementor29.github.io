@@ -156,20 +156,23 @@
   z-index: 2;
   text-align: center;      /* centra el contenido */
   margin-top: 20px;
+  align-items: center;
+  gap: 12px; /* más separación */
+  margin-top: 20px;
   }
 
   /* Estilo para “Ver Colección” */
   .ver-coleccion-btn {
   font-family: 'BurzumGothic', serif;
-  background-color: #990000;
-  color: #ffffff; 
+  background-color: #C10202;  
+  color: #cccccc;  
   text-decoration: none;
   padding: 12px 24px;
   font-size: 1.1rem;
   transition: all 0.3s ease;
   display: inline-block;
   border: none;
-  border-radius: 10px;
+  border-radius: 0px;
   box-shadow: 0 0 6px rgba(193, 2, 2, 0.3);
   margin-right: 10px;      /* separa del botón cerrar */
   }
@@ -183,11 +186,11 @@
   /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
   .flyer-close-btn {
   font-family: 'BurzumGothic', serif;
-  background-color: #990000;     /* mismo fondo */
-  color: white;                  /* mismo texto */
+  background-color: #C10202;      /* mismo fondo */
+  color: #cccccc;                  /* mismo texto */
   border: none;                  /* sin borde */
   padding: 8px 16px;             /* igual tamaño */
-  border-radius: 10px;
+  border-radius: 0px;
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -196,16 +199,16 @@
 
   /* Hover idéntico */
   .flyer-close-btn:hover {
-  background-color: black;     /* mismo hover */
+  background-color: #cccccc; /* mismo hover */
   box-shadow: 0 0 10px black, 0 0 20px black;
-  color: #cccccc; 
+  color: black; 
   }
     
   .ver-coleccion-btn:hover,  
   .flyer-close-btn:hover {
-  background-color: black;
-  color: #cccccc; 
-  box-shadow: 0 0 10px #cccccc, 0 0 20px black;
+  background-color: #cccccc; 
+  color: black; 
+  box-shadow: 0 0 10px black, 0 0 20px black;
   }
     
   body::before {
