@@ -84,16 +84,30 @@
   background: url('humo.avif') no-repeat bottom center;
   background-size: cover;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.45;
   z-index: 9998;
-  animation: flotarHumo 10s ease-in-out infinite;
+  animation: flotarHumo 12s ease-in-out infinite;
   }
 
   @keyframes flotarHumo {
   0%, 100% { transform: translateY(0px); opacity: 0.5; }
-  50% { transform: translateY(-10px); opacity: 0.7; }
+  50% { transform: translateY(-8px); opacity: 0.7; }
   }
 
+  #flyer-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black !important;
+  backdrop-filter: blur(6px);
+  text-align: center;
+  padding-top: 60px;
+  }
+    
   body::before {
   content: "";
   position: fixed;
@@ -425,7 +439,7 @@
   <img src="cola.png" alt="Flyer Cinco Puntas" style="max-width: 800px; width: 100%; height: auto; border-radius: 0px;" />
   
   <div style="margin-top:20px;">
-  <a href="CINCO-PUNTAS.html" style="background:#cc0000; padding:10px 20px; color:white; text-decoration:none; border-radius:6px; font-family:Arial;">Ver Colección</a>
+  <a href="CINCO-PUNTAS.html" style="background:#cc0000; padding:10px 20px; color:white; text-decoration:none; border-radius:6px; font-family:'BurzumGothic', serif;">Ver Colección</a>
   <br><br>
   <button onclick="cerrarFlyer()" style="
   margin-top: 15px;
@@ -442,6 +456,7 @@
   onmouseout="this.style.background='none'; this.style.color='#ccc';">
   Cerrar
   </button>
+
   </div>
   </div>
 
