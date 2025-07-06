@@ -204,15 +204,17 @@
   }
     
   body::before {
-  content: "";                      /* ¡importante! */
-  position: fixed;                 /* cubre toda la ventana */
+  content: "";
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url('bg.webp') center center no-repeat;
-  background-size: cover;
-  z-index: -10;                    /* suficientemente bajo */
+  background-image: url('bg.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
