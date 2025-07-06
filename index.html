@@ -334,15 +334,7 @@
       padding: 15px;
       gap: 20px;
     }
-
-    nav a,
-    .secondary-nav a,
-    .submenu-items a {
-    position: relative;
-    text-decoration: none;
-    display: inline-block;
-    }
-   
+    
     section {
     padding: 50px 20px;
     margin-bottom: 20px;
@@ -460,11 +452,7 @@
   display: inline-block;
   cursor: pointer;
 }
-
-.submenu-toggle:hover {
-  border-bottom: 1px solid red;
-}
-
+    
 .submenu-items {
   display: none;
   position: absolute;
@@ -478,19 +466,33 @@
   margin-top: 6px; 
 }
 
-.submenu-items a {
-  display: block;
-  padding: 8px 16px;
-  font-size: 15px;
-  font-family: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: 0.3s;
+.submenu-items {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  min-width: 160px;
+  padding: 8px 0;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  text-align: left;
+  margin-top: 6px;
+  
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
     
 .submenu:hover .submenu-items,
 .submenu-items:hover {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.submenu-items a {
+  display: inline-block !important;
+  padding: 6px 12px;
 }
 
 .flyer-cta a.ver-coleccion-btn,
