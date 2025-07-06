@@ -32,7 +32,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   
   <style>
-    
+
+  body {
+  visibility: hidden;
+  }
+  
   * {
     box-sizing: border-box;
     margin: 0;
@@ -54,11 +58,9 @@
   color: white;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background: url('bg.png') no-repeat center center fixed;
-  background-size: contain;
-  background-color: black;
-  margin: 0;
-  }    
+  background: black; /* fondo base */
+  position: relative;
+  }
     
   body.modal-abierto main,
   body.modal-abierto header,
@@ -207,17 +209,14 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('bg.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url('bg.png') center center no-repeat;
+  background-size: cover; /* ✅ mejor que 'contain' */
   z-index: -1;
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-
   }
 
   input,
@@ -685,21 +684,25 @@
     }
   }
   
-    window.addEventListener('load', function () {
-    const flyer = document.getElementById("flyer-modal");
-    const humo  = document.getElementById("humo-fondo");
+  window.addEventListener('DOMContentLoaded', function () {
+  const flyer = document.getElementById("flyer-modal");
+  const humo  = document.getElementById("humo-fondo");
 
-    // Mostrar el flyer de una
-    flyer.style.display = "block";
-    humo.style.display  = "block";
-    document.body.classList.add("modal-abierto");
-    // Función cerrar
-    window.cerrarFlyer = function () {
-      flyer.style.display = "none";
-      humo.style.display  = "none";
-      document.body.classList.remove("modal-abierto");
-    };
-  });
+  flyer.style.display = "block";
+  humo.style.display  = "block";
+
+  document.body.classList.add("modal-abierto");
+
+  // ✅ Aquí mostramos el body completo sin parpadeo
+  document.body.style.visibility = "visible";
+
+  // Botón cerrar
+  window.cerrarFlyer = function () {
+    flyer.style.display = "none";
+    humo.style.display  = "none";
+    document.body.classList.remove("modal-abierto");
+  };
+});
 
 </script>
 </body>
