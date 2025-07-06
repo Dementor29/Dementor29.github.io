@@ -75,6 +75,13 @@
     display: none !important;
   }
 
+  body {
+  background-image: url('humo.png');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+  }
+
   #humo-fondo {
   position: fixed;
   bottom: 0;
@@ -107,6 +114,28 @@
   text-align: center;
   padding-top: 60px;
   }
+
+ .ver-coleccion-btn {
+  font-family: 'BurzumGothic', serif;
+  background-color: #990000;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: none;
+  box-shadow: 0 0 6px rgba(193, 2, 2, 0.3);
+  }
+
+  .ver-coleccion-btn:hover {
+  background-color: #770000;
+  color: #fff;
+  box-shadow: 0 0 10px #770000, 0 0 20px #770000;
+  cursor: pointer;
+  }
+
     
   body::before {
   content: "";
@@ -422,7 +451,7 @@
   </head>
   <body>
     
-<div id="humo-fondo" style="display:none;"></div>
+<div id="humo-fondo"></div>
 
   <!-- Modal del flyer -->
 <div id="flyer-modal" style="
@@ -439,7 +468,7 @@
   <img src="cola.png" alt="Flyer Cinco Puntas" style="max-width: 800px; width: 100%; height: auto; border-radius: 0px;" />
   
   <div style="margin-top:20px;">
-  <a href="CINCO-PUNTAS.html" style="background:#cc0000; padding:10px 20px; color:white; text-decoration:none; border-radius:6px; font-family:'BurzumGothic', serif;">Ver Colección</a>
+  <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn"><i class="fa fa-eye" style="margin-right: 6px;"></i> VER COLECCIÓN</a>
   <br><br>
   <button onclick="cerrarFlyer()" style="
   margin-top: 15px;
@@ -591,8 +620,8 @@
     }
   }
 
-document.addEventListener("DOMContentLoaded", function () {
-document.documentElement.classList.remove("preload");
+  window.addEventListener('load', function () {
+  document.getElementById("humo-fondo").style.display = "block";
 
   const flyer = document.getElementById("flyer-modal");
   const humo = document.getElementById("humo-fondo");
