@@ -75,6 +75,25 @@
     display: none !important;
   }
 
+  #humo-fondo {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35vh;
+  background: url('humo.avif') no-repeat bottom center;
+  background-size: cover;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 9998;
+  animation: flotarHumo 10s ease-in-out infinite;
+  }
+
+  @keyframes flotarHumo {
+  0%, 100% { transform: translateY(0px); opacity: 0.5; }
+  50% { transform: translateY(-10px); opacity: 0.7; }
+  }
+
   body::before {
   content: "";
   position: fixed;
@@ -382,11 +401,14 @@
   footer#contacto i {
     font-size: 1rem;
   }
-}
-    
+  }
+
+ 
   </style>
   </head>
   <body>
+    
+<div id="humo-fondo" style="display:none;"></div>
 
   <!-- Modal del flyer -->
 <div id="flyer-modal" style="
@@ -399,14 +421,16 @@
   backdrop-filter: blur(6px);
   text-align: center;
   padding-top: 60px;">
-  <img src="cola.png" alt="Flyer Cinco Puntas" style="max-width: 800px; width: 100%; height: auto; border-radius: 0px; box-shadow: 0 0 20px rgba(255,0,0,0.3);" />
+  
+  <img src="cola.png" alt="Flyer Cinco Puntas" style="max-width: 800px; width: 100%; height: auto; border-radius: 0px;" />
+  
   <div style="margin-top:20px;">
   <a href="CINCO-PUNTAS.html" style="background:#cc0000; padding:10px 20px; color:white; text-decoration:none; border-radius:6px; font-family:Arial;">Ver Colección</a>
   <br><br>
   <button onclick="cerrarFlyer()" style="
   margin-top: 15px;
   background: none;
-  border: 1px solid #999;
+  border: 0px;
   color: #ccc;
   font-size: 16px;
   padding: 10px 20px;
@@ -418,7 +442,6 @@
   onmouseout="this.style.background='none'; this.style.color='#ccc';">
   Cerrar
   </button>
-    
   </div>
   </div>
 
@@ -488,7 +511,7 @@
       <a href="CINCO-PUNTAS.html" style="background:#cc0000; padding:10px 20px; color:#fff; text-decoration:none; border-radius:6px;">Ver Colección</a>
     </div>
     <div style="text-align:center;">
-      <img src="cincop.jpg" alt="Averno x Cinco Puntas" style="max-width:90%; border-radius:10px; margin-top:20px;">
+      <img src="colasen.png" alt="Averno x Cinco Puntas" style="max-width:90%; border-radius:10px; margin-top:20px;">
     </div>
   </section>
 </main>
@@ -553,26 +576,24 @@
     }
   }
 
-  // Quitar clase preload cuando la página haya cargado
-  document.addEventListener("DOMContentLoaded", function () {
-    document.documentElement.classList.remove("preload");
+document.addEventListener("DOMContentLoaded", function () {
+document.documentElement.classList.remove("preload");
 
-    // Definir el flyer correctamente
-    const flyer = document.getElementById("flyer-modal");
+  const flyer = document.getElementById("flyer-modal");
+  const humo = document.getElementById("humo-fondo");
 
-    // Activar clase que oculta todo menos el flyer
-    document.body.classList.add("modal-abierto");
+  document.body.classList.add("modal-abierto");
 
-    // Mostrar el flyer al cargar
-    flyer.style.display = "block";
+  flyer.style.display = "block";
+  humo.style.display = "block";
 
-    // Función para cerrar el flyer
-    window.cerrarFlyer = function () {
+  window.cerrarFlyer = function () {
     flyer.style.display = "none";
+    humo.style.display = "none";
     document.body.classList.remove("modal-abierto");
-    document.documentElement.classList.remove("preload"); // 👈 esta línea es esencial
-    };
-  });
+  };
+});
+
 
 </script>
 </body>
