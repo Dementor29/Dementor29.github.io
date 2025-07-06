@@ -115,8 +115,8 @@
   pointer-events: none;
   z-index: 3;
   animation:
-  fadeSmoke 30s ease-out forwards,
-  moverSmoke 30s linear infinite,   /* movimiento suave e infinito */
+  fadeSmoke 60s ease-out forwards,
+  moverSmoke 20s linear infinite,   /* movimiento suave e infinito */
   
   }
     /* Movimiento suave e infinito */
@@ -161,8 +161,8 @@
   /* Estilo para “Ver Colección” */
   .ver-coleccion-btn {
   font-family: 'BurzumGothic', serif;
-  background-color: #990000;
-  color: white;
+  background-color: #444444; 
+  color: #f1f1f1; 
   text-decoration: none;
   padding: 12px 24px;
   border-radius: 6px;
@@ -201,28 +201,13 @@
   box-shadow: 0 0 10px #770000, 0 0 20px #770000;
   color: white;
   }
-
- .ver-coleccion-btn {
-  font-family: 'BurzumGothic', serif;
-  background-color: #990000;
-  color: white;
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  display: inline-block;
-  border: none;
-  box-shadow: 0 0 6px rgba(193, 2, 2, 0.3);
+    
+  .ver-coleccion-btn:hover,  
+  .flyer-close-btn:hover {
+  background-color: #666666;
+  color: #ffffff;
+  box-shadow: 0 0 10px #cccccc, 0 0 20px #888888;
   }
-
-  .ver-coleccion-btn:hover {
-  background-color: #770000;
-  color: #fff;
-  box-shadow: 0 0 10px #770000, 0 0 20px #770000;
-  cursor: pointer;
-  }
-
     
   body::before {
   content: "";
