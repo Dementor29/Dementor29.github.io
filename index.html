@@ -157,7 +157,7 @@
   text-align: center;      /* centra el contenido */
   margin-top: 20px;
   align-items: center;
-  gap: 20px; /* más separación */
+  gap: 30px; /* más separación */
   margin-top: 20px;
   }
 
@@ -461,6 +461,12 @@
 .submenu:hover .submenu-items {
   display: block;
 }
+
+.flyer-cta a.ver-coleccion-btn,
+.flyer-cta button.flyer-close-btn {
+  width: 220px;           /* MISMO ANCHO FIJO PARA AMBOS */
+  text-align: center;
+}
     
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
@@ -533,7 +539,7 @@
     <!-- 4) CTA -->
     <div class="flyer-cta">
       <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn">
-        <i class="fa fa-eye"></i>Ver
+        <i class="fa fa-eye"></i> Ver
       </a>
       <button onclick="cerrarFlyer()" class="flyer-close-btn">
       Cerrar
