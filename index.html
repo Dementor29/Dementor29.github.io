@@ -104,26 +104,22 @@
   overflow: hidden;           /* importante para recortar el humo */
   }
 
-  /* HUMO ocupando toda la pantalla */
+  /* Humo a pantalla completa */
   #flyer-modal #humo-fondo {
   position: absolute;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('humo.png') center top / cover no-repeat;
+  opacity: 0.6;
   pointer-events: none;
   z-index: 3;
-  /* Desglosemos en propiedades separadas: */
-  background-image: url('humo.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* Pon la posición inicial en 0,0 para que moverSmoke funcione */
-  background-position: 0 0;
-  opacity: 0.6;
-  /* movimiento efade más rápido */
   animation:
-  moverSmoke 60s linear infinite,
-  fadeSmoke 60s ease-out forwards;
+  smokeDrift 20s linear infinite,   /* movimiento suave e infinito */
+  smokeFade 20s ease-out forwards;   /* desvanecimiento muy lento y sólo una vez */
   }
 
-   /* Movimiento suave e infinito */
+    /* Movimiento suave e infinito */
   @keyframes moverSmoke {
   from { background-position: 0 0; }
   to   { background-position: 200px 200px; }
