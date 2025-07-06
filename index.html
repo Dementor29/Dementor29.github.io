@@ -254,6 +254,7 @@
     font-size: 20px;
     }
 
+    /* Enlaces con efecto de subrayado animado */
     nav a,
     .secondary-nav a,
     .submenu-toggle,
@@ -261,23 +262,24 @@
     position: relative;
     text-decoration: none;
     display: inline-block;
-    overflow: hidden; 
-    }
+    }    
 
+    /* Línea animada debajo de los enlaces */
     nav a::after,
     .secondary-nav a::after,
     .submenu-toggle::after,
     .submenu-items a::after {
     content: "";
     position: absolute;
-    bottom: -4px;
     left: 0;
+    bottom: -3px;
     width: 0;
     height: 2px;
-    background-color: currentColor; /* usa el color del texto */
+    background-color: currentColor; /* usa el mismo color del texto */
     transition: width 0.3s ease;
     }
 
+    /* Al pasar el mouse: la línea se expande */
     nav a:hover::after,
     .secondary-nav a:hover::after,
     .submenu-toggle:hover::after,
