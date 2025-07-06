@@ -100,17 +100,18 @@
   overflow: hidden;           /* importante para recortar el humo */
   }
 
-  /* El humo cubre todo el modal */
   #flyer-modal #humo-fondo {
   position: absolute;
   inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  width: 100vw;
+  height: 100vh;
   background: url('humo.png') center center / cover no-repeat;
-  opacity: 0.6;                    /* inicio más visible */
+  opacity: 0.6;
   pointer-events: none;
-  z-index: 3;                      /* encima del flyer */
+  z-index: 3;
   animation:
-  moverSmoke 5s linear infinite, /* movimiento rápido */
-  fadeSmoke 12s ease-out forwards; /* se desvanece en 12s */
+  moverSmoke 6s linear infinite,       /* movimiento suave */
+  fadeSmoke 40s ease-out forwards;     /* desvanecimiento muy lento */
   }
 
   /* Movimiento continuo diagonal */
@@ -119,10 +120,9 @@
   to   { background-position: 200px 200px; }
   }
 
-  /* Desvanecimiento total */
   @keyframes fadeSmoke {
   0%   { opacity: 0.6; }
-  80%  { opacity: 0.3; }
+  50%  { opacity: 0.4; }
   100% { opacity: 0; }
   }
 
@@ -527,30 +527,20 @@
     font-size: 1rem;
   }
   }
-
- 
+    
   </style>
   </head>
   <body>
     
-  <!-- Modal del flyer -->
-  <div id="flyer-modal">
-  <!-- HUMO sobre todo, full screen -->
-  <div id="humo-fondo"></div>
-
-  <!-- Imagen del flyer -->
-  <img src="cola.png" class="flyer-img" />
-
-  <!-- Botones -->
   <div class="flyer-cta">
-    <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn">
-      <i class="fa fa-eye"></i> VER COLECCIÓN
-    </a>
-    <button onclick="cerrarFlyer()" class="flyer-close-btn">
-    Cerrar</button>
+  <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn">
+    <i class="fa fa-eye"></i> VER COLECCIÓN
+  </a>
+  <button onclick="cerrarFlyer()" class="flyer-close-btn">
+    Cerrar
+  </button>
   </div>
-  </div>
-
+    
   <button onclick="cerrarFlyer()" style="
   margin-top: 15px;
   background: none;
@@ -697,24 +687,23 @@
       });
     }
   }
-
+  
   window.addEventListener('load', function () {
-  // Referencias al modal y al humo
-  const flyer = document.getElementById("flyer-modal");
-  const humo  = document.getElementById("humo-fondo");
+    const flyer = document.getElementById("flyer-modal");
+    const humo  = document.getElementById("humo-fondo");
 
-  // Muestro ambos al cargar
-  flyer.style.display = "block";
-  humo.style.display  = "block";
-  document.body.classList.add("modal-abierto");
+    // Mostrar el flyer de una
+    flyer.style.display = "block";
+    humo.style.display  = "block";
+    document.body.classList.add("modal-abierto");
 
-  // Función de cierre: oculta ambos y restaura la página
-  window.cerrarFlyer = function () {
-    flyer.style.display = "none";
-    humo.style.display  = "none";
-    document.body.classList.remove("modal-abierto");
-  };
-});
+    // Función cerrar
+    window.cerrarFlyer = function () {
+      flyer.style.display = "none";
+      humo.style.display  = "none";
+      document.body.classList.remove("modal-abierto");
+    };
+  });
 
 </script>
 </body>
