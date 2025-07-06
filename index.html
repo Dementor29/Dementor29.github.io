@@ -115,8 +115,8 @@
   pointer-events: none;
   z-index: 3;
   animation:
-  fadeSmoke 40s ease-out forwards,
-  moverSmoke 40s linear infinite,   /* movimiento suave e infinito */
+  fadeSmoke 60s ease-out forwards,
+  moverSmoke 60s linear infinite,   /* movimiento suave e infinito */
   
   }
     /* Movimiento suave e infinito */
@@ -177,7 +177,7 @@
 
   /* Elimina cualquier margin-right en “Ver Colección” */
   .ver-coleccion-btn {
-  margin: 0; /* antes tenía margin-right:10px; */
+  margin: 10; /* antes tenía margin-right:10px; */
   padding: 8px 16px; /* tamaño reducido como pediste */
   }  
 
@@ -197,16 +197,16 @@
 
   /* Hover idéntico */
   .flyer-close-btn:hover {
-  background-color: #770000;     /* mismo hover */
-  box-shadow: 0 0 10px #770000, 0 0 20px #770000;
+  background-color: black;     /* mismo hover */
+  box-shadow: 0 0 10px black, 0 0 20px black;
   color: #cccccc; 
   }
     
   .ver-coleccion-btn:hover,  
   .flyer-close-btn:hover {
-  background-color: #666666;
+  background-color: black;
   color: #cccccc; 
-  box-shadow: 0 0 10px #cccccc, 0 0 20px #888888;
+  box-shadow: 0 0 10px #cccccc, 0 0 20px black;
   }
     
   body::before {
@@ -459,6 +459,26 @@
 .submenu:hover .submenu-items {
   display: block;
 }
+
+.rayo {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: url('rayo.png') no-repeat center;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  animation: rayosFlash 60s infinite;
+}
+
+.rayo-1 { top: 10%; left: 20%; animation-delay: 2s; }
+.rayo-2 { top: 40%; right: 15%; animation-delay: 6s; }
+
+@keyframes rayosFlash {
+  0%, 98%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
     
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
@@ -526,9 +546,13 @@
   <div id="flyer-modal">
     <!-- 2) Imagen humo a pantalla completa -->
     <div id="humo-fondo"></div>
+    <div class="rayo rayo-1"></div>
+    <div class="rayo rayo-2"></div>
 
     <!-- 3) Flyer encima del humo -->
     <img src="cola.png" class="flyer-img" alt="Flyer Cinco Puntas" />
+    <img src="rayo.png" class="rayo efecto" alt="">
+    <img src="rayo.png" class="rayo efecto" alt="">
 
     <!-- 4) CTA -->
     <div class="flyer-cta">
