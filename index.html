@@ -32,7 +32,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   
   <style>
-   
+  
+    body {
+    visibility: hidden;
+    }
+    
   * {
     box-sizing: border-box;
     margin: 0;
@@ -688,7 +692,7 @@
     }
   }
   
-  window.addEventListener('load', function () {
+    window.addEventListener('load', function () {
     const flyer = document.getElementById("flyer-modal");
     const humo  = document.getElementById("humo-fondo");
 
@@ -696,7 +700,7 @@
     flyer.style.display = "block";
     humo.style.display  = "block";
     document.body.classList.add("modal-abierto");
-
+    document.body.style.visibility = 'visible';
     // Función cerrar
     window.cerrarFlyer = function () {
       flyer.style.display = "none";
