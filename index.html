@@ -165,7 +165,7 @@
   display: inline-block;
   border: none;
   border-radius: 0px;
-  box-shadow: 0 0 6px rgba(193, 2, 2, 0.9);
+  box-shadow: 0 0 6px rgba(193, 2, 2, 10);
   margin-right: 10px;      /* separa del botón cerrar */
   }
 
@@ -186,7 +186,7 @@
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 6px rgba(193, 2, 2, 0.9);
+  box-shadow: 0 0 6px rgba(193, 2, 2, 10);
   }
 
   /* Hover idéntico */
@@ -456,10 +456,21 @@
 
 .flyer-cta a.ver-coleccion-btn,
 .flyer-cta button.flyer-close-btn {
-  width: 220px;           /* MISMO ANCHO FIJO PARA AMBOS */
+  width: auto;
+  min-width: 120px; /* opcional, para que no queden tan pequeños */
   text-align: center;
 }
-    
+
+.cruz-invertida {
+  font-family: 'BurzumGothic', serif;
+  font-size: 50px;
+  color: #cc0000;
+  transform: rotate(180deg);
+  display: inline-block;
+  margin: 0 20px;
+  user-select: none;
+}
+        
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
   max-width: 200px;
@@ -530,13 +541,16 @@
     <img src="cola.png" class="flyer-img" alt="Flyer Cinco Puntas" />
     <!-- 4) CTA -->
     <div class="flyer-cta">
-      <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn">
-        <i class="fa fa-eye"></i> Ver
-      </a>
-      <button onclick="cerrarFlyer()" class="flyer-close-btn">
-      Cerrar
-      </button>
-    </div>
+  <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn">
+    <i class="fa fa-eye"></i> Ver
+  </a>
+
+  <div class="cruz-invertida">X</div> <!-- Aquí está la cruz -->
+
+  <button onclick="cerrarFlyer()" class="flyer-close-btn">
+    Cerrar
+  </button>
+  </div>
   </div>
     
   <button onclick="cerrarFlyer()" style="
