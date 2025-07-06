@@ -261,6 +261,7 @@
     position: relative;
     text-decoration: none;
     display: inline-block;
+    overflow: hidden; 
     }
 
     nav a::after,
@@ -269,15 +270,14 @@
     .submenu-items a::after {
     content: "";
     position: absolute;
-    top: calc(100% + 5px);
-    bottom: -2px;
+    bottom: -4px; /* subrayado pegado abajo */
     left: 0;
-    z-index: 1000;
     width: 0;
     height: 2px;
+    background-color: transparent;
     transition: width 0.3s ease, background-color 0.3s ease;
     }
-
+    
     /* Efecto de subrayado al pasar el mouse */
     nav a:hover::after,
     .secondary-nav a:hover::after,
@@ -300,11 +300,7 @@
     .submenu-items a[style*="#cccccc"]:hover::after {
     background-color: #C10202; /* rojo para texto blanco */
     }
-    
-    .secondary-nav a:hover {
-    border-bottom: 1px solid red;
-    }
-    
+      
     .secondary-nav {
     margin-top: 40px;
     margin-bottom: 80px; /* 👈 agrega separación hacia las secciones */
@@ -337,7 +333,6 @@
       color: white;
       text-decoration: none;
       font-size: 16px;
-      border-bottom: 1px solid transparent;
       transition: 0.3s;
     }
     
@@ -662,9 +657,7 @@
       Forjamos una alianza con <strong style="color:#cc0000;">Cinco Puntas Diseño</strong>, marca independiente colombiana de camisetas oscuras y esotéricas. 
       Ahora disponibles en nuestra tienda como <strong>colección exclusiva</strong> para almas rebeldes.
     </p>
-    <div style="text-align: center; margin: 20px 0;">
-      <a href="CINCO-PUNTAS.html" style="background:#f5f5f5; padding: 0px 30px; color:black; font-size: 25px; text-decoration:none; border-radius:2px;">Ver Colección</a>
-    </div>
+    <div class="ver-mas"><a href="INTRODUCCION.html">Ver más</a></div>
   </section>
   </main>
 
