@@ -155,7 +155,7 @@
     
   .precio {
     font-family: 'BurzumGothic', serif;
-    color: color: var(--dorado-claro); 
+    color: var(--dorado-claro); 
     font-weight: bold;
     margin-bottom: 10px;
   }
@@ -171,8 +171,9 @@
       user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
       
     }
+    
     .heart-icon.active {
-      color: red;
+    color: var(--dorado-claro); 
     }
 
     .cantidad-label {
@@ -197,7 +198,7 @@
   }
 
   .cantidad-input:focus {
-  border-color: color: var(--dorado-claro);
+  border-color: var(--dorado-claro);
   box-shadow: 0 0 5px color: var(--dorado-claro);
   outline: none;
   }
@@ -212,7 +213,7 @@
   }
 
   select.cantidad-input:hover {
-  border-color: color: var(--dorado-claro);
+  border-color: var(--dorado-claro);
   box-shadow: 0 0 6px color: var(--dorado-claro);
   }
 
@@ -236,14 +237,14 @@
 
     .cart-button:hover {
     background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
-    color: color: var(--dorado-claro); 
+    color: var(--dorado-claro); 
     }
     
     #wishlist .cart-button,
     #cart .cart-button {
     margin-top: 10px;
     background-color: #0f0f0f; 
-    color: color: var(--dorado-claro);
+    color: var(--dorado-claro);
     border: 1px solid #0f0f0f;
     padding: 8px 12px;
     cursor: pointer;
@@ -414,8 +415,8 @@
   gap: 50px;
   padding: 10px 20px;
   background-color: #111;
-  border-bottom: 1px solid color: var(--dorado-claro);
-  color: color: var(--dorado-claro);
+  border-bottom: 1px solid var(--dorado-claro);
+  color: var(--dorado-claro);
   position: sticky;
   top: 0;
   z-index: 9999;
@@ -451,7 +452,7 @@
 
 .icono-acceso div {
   font-size: 16px;
-  color: color: var(--dorado-oscuro); /* Cambia este valor si quieres otro color para el texto */
+  color: var(--dorado-oscuro); /* Cambia este valor si quieres otro color para el texto */
   transition: color 0.3s ease;
   font-family: 'BurzumGothic', serif;
   position: relative;
@@ -459,7 +460,7 @@
 }
 
 .icono-acceso div:hover {
-  color: color: var(--dorado-claro);
+color: var(--dorado-claro);
   
 }
 
@@ -490,7 +491,7 @@ footer#contacto {
   justify-content: space-around;
   gap: 20px;
   text-align: left;
-  border-top: 2px solid color: var(--dorado-claro);
+  border-top: 2px solid var(--dorado-claro);
   animation: pulseFooter 10s ease-in-out infinite;
   will-change: box-shadow;
 }
@@ -503,7 +504,7 @@ footer#contacto div p {
 
 footer#contacto i {
   margin-right: 0.5rem;
-  color: color: var(--dorado-oscuro);
+  color: var(--dorado-oscuro);
   font-size: 1rem;
 }
 
