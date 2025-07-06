@@ -104,31 +104,30 @@
   overflow: hidden;           /* importante para recortar el humo */
   }
 
-  /* Humo a pantalla completa */
-  #flyer-modal #humo-fondo {
+  /* HUMO fullscreen dentro del modal */
+#flyer-modal #humo-fondo {
   position: absolute;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  background: url('humo.png') center top / cover no-repeat;
-  opacity: 0.6;
+  inset: 0;                      /* ocupa todo el modal */
   pointer-events: none;
   z-index: 3;
+  background: url('humo.png') center/cover no-repeat;
+  opacity: 0.6;
+  /* Movimiento diagonal infinito + fade-out once */
   animation:
-  smokeDrift 20s linear infinite,   /* movimiento suave e infinito */
-  smokeFade 20s ease-out forwards;   /* desvanecimiento muy lento y sólo una vez */
+  moverSmoke 20s linear infinite,
+  fadeSmoke 40s ease-out forwards;
   }
 
-    /* Movimiento suave e infinito */
+  /* Movimiento diagonal continuo */
   @keyframes moverSmoke {
-  from { background-position: 0 0; }
-  to   { background-position: 200px 200px; }
+  from { background-position:   0px    0px; }
+  to   { background-position: 300px  300px; }
   }
 
-  /* Desciende y se desvanece en 60s, sólo una vez */
+  /* Sólo desvanecimiento de opacidad en 60s */  
   @keyframes fadeSmoke {
-  0%   { opacity: 0.6; transform: translateY(0); }
-  100% { opacity:   0; transform: translateY(200px); }
+  from { opacity: 0.6; }
+  to { opacity:   0; }
   }
 
   /* Ya no necesitas flotarHumo, pero si lo quieres combinar para un ligero pulso: */
