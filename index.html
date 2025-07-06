@@ -32,10 +32,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   
   <style>
-  
-  body.modal-abierto {
-  visibility: hidden;
-  }
     
   * {
     box-sizing: border-box;
@@ -102,6 +98,7 @@
   backdrop-filter: blur(6px);
   z-index: 9999;
   overflow: hidden;           /* importante para recortar el humo */
+  visibility: visible !important;
   }
 
   /* Humo a pantalla completa */
