@@ -100,24 +100,21 @@
   overflow: hidden;           /* importante para recortar el humo */
   }
 
-  /* Humo dentro del modal */
+  /* Humo ahora SOBRE la imagen */
   #flyer-modal #humo-fondo {
-  position: absolute;         /* dentro del modal */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40%;               /* ocupa la parte baja */
-  background: url('humo.png') no-repeat bottom center;
-  background-size: cover;
-  opacity: 0.45;
-  animation: flotarHumo 12s ease-in-out infinite;
-  z-index: 1;                 /* muy bajo, por debajo de la img */
+  position: absolute;
+  inset: 0;               /* cubre todo el modal */
+  background: url('humo.png') center center / cover no-repeat;
+  opacity: 0.25;          /* más transparente */
+  pointer-events: none;
+  z-index: 3;             /* por encima de la .flyer-img */
+  animation: flotarHumo 6s ease-in-out infinite; /* más rápido */
   }
 
-  /* Imagen del flyer encima del humo */
+  /* Reajusta la imagen para que quede detrás */
   #flyer-modal .flyer-img {
   position: relative;
-  z-index: 2;                 /* por encima del humo */
+  z-index: 2;             /* justo debajo del humo */
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
@@ -132,8 +129,56 @@
   }
 
   @keyframes flotarHumo {
-  0%, 100% { transform: translateY(0); opacity: 0.5; }
-  50%      { transform: translateY(-8px); opacity: 0.7; }
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-15px) scale(1.05); }
+  }
+
+  /* Asegura que los botones queden centrados */
+  #flyer-modal .flyer-cta {
+  position: relative;
+  z-index: 2;
+  text-align: center;      /* centra el contenido */
+  margin-top: 20px;
+  }
+
+  /* Estilo para “Ver Colección” */
+  .ver-coleccion-btn {
+  font-family: 'BurzumGothic', serif;
+  background-color: #990000;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: none;
+  box-shadow: 0 0 6px rgba(193, 2, 2, 0.3);
+  margin-right: 10px;      /* separa del botón cerrar */
+  }
+
+  .ver-coleccion-btn:hover {
+  background-color: #770000;
+  box-shadow: 0 0 10px #770000, 0 0 20px #770000;
+  }
+
+  /* Estilo para “Cerrar” */
+  .flyer-close-btn {
+  font-family: 'BurzumGothic', serif;
+  background: none;
+  border: 1px solid #ccc;
+  color: #ccc;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  }
+
+  .flyer-close-btn:hover {
+  background-color: #cc0000;
+  color: black;
+  border-color: #cc0000;
   }
 
  .ver-coleccion-btn {
@@ -473,11 +518,11 @@
   <body>
     
   <div id="flyer-modal">
-  <div id="humo-fondo"></div>               <!-- capa humo -->
-  <img src="cola.png" class="flyer-img" />  <!-- imagen del flyer -->
-  <div class="flyer-cta">                  <!-- botones -->
+  <div id="humo-fondo"></div>
+  <img src="cola.png" class="flyer-img" />
+  <div class="flyer-cta">
     <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn">
-      <i class="fa fa-eye"></i> VER COLECCIÓN
+      <i class="fa fa-eye" style="margin-right:6px;"></i> VER COLECCIÓN
     </a>
     <button onclick="cerrarFlyer()" class="flyer-close-btn">Cerrar</button>
   </div>
