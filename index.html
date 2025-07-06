@@ -115,9 +115,9 @@
   pointer-events: none;
   z-index: 3;
   animation:
-  fadeSmoke 30s ease-out forwards,
-  moverSmoke 30s linear infinite,   /* movimiento suave e infinito */
-  flotarHumo 30s ease-out forwards;   /* desvanecimiento muy lento y sólo una vez */
+  fadeSmoke 50s ease-out forwards,
+  moverSmoke 50s linear infinite,   /* movimiento suave e infinito */
+  
   }
 
     /* Movimiento suave e infinito */
@@ -130,12 +130,6 @@
   @keyframes fadeSmoke {
   from { opacity: 0.6; }
   to   { opacity:   0; }
-  }
-
-  /* Ya no necesitas flotarHumo, pero si lo quieres combinar para un ligero pulso: */
-  @keyframes flotarHumo {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50%      { transform: translateY(-5px) scale(1.02); }
   }
     
   /* Flyer bajo el humo */
