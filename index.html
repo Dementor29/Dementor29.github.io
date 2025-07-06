@@ -464,13 +464,17 @@
 .cruz-invertida {
   font-family: 'BurzumGothic', serif;
   font-size: 50px;
-  color: #cc0000;
+  color: white;
   transform: rotate(180deg);
   display: inline-block;
   margin: 0 20px;
   user-select: none;
 }
-        
+
+ .parpadea {
+  animation: parpadeoSuave 3s infinite;
+}
+           
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
   max-width: 200px;
@@ -541,34 +545,18 @@
     <img src="cola.png" class="flyer-img" alt="Flyer Cinco Puntas" />
     <!-- 4) CTA -->
     <div class="flyer-cta">
-  <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn">
+  <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn parpadea">
     <i class="fa fa-eye"></i> Ver
   </a>
 
-  <div class="cruz-invertida">X</div> <!-- Aquí está la cruz -->
+  <div class="cruz-invertida">&#x2E38;</div> <!-- opcional -->
 
-  <button onclick="cerrarFlyer()" class="flyer-close-btn">
-    Cerrar
+  <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
+  Cerrar
   </button>
   </div>
   </div>
     
-  <button onclick="cerrarFlyer()" style="
-  margin-top: 15px;
-  background: none;
-  border: 0px;
-  color: #ccc;
-  font-size: 16px;
-  padding: 10px 20px;
-  font-family: 'BurzumGothic', serif;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;"
-  onmouseover="this.style.background='#cc0000'; this.style.color='black';"
-  onmouseout="this.style.background='none'; this.style.color='#ccc';">
-  Cerrar
-  </button>
-
   <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
   <i class="fas fa-play" style="margin-right: 8px;"></i> Presiona y Escucha
   </div>
