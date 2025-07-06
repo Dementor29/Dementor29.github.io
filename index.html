@@ -270,14 +270,14 @@
     .submenu-items a::after {
     content: "";
     position: absolute;
+    bottom: -4px;
     left: 0;
-    bottom: -4px;           /* separación suave del texto */
     width: 0;
     height: 2px;
-    transition: width 0.3s ease, background-color 0.3s ease;  
+    background-color: currentColor; /* usa el color del texto */
+    transition: width 0.3s ease;
     }
-    
-    /* Efecto de subrayado al pasar el mouse */
+
     nav a:hover::after,
     .secondary-nav a:hover::after,
     .submenu-toggle:hover::after,
@@ -307,7 +307,10 @@
     padding: 12px;
     text-align: center;
     display: flex;           /* asegúrate de que sean flex-containers */
-    align-items: center;  
+    align-items: center; 
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
     }
     
     .secondary-nav a {
@@ -330,13 +333,14 @@
       gap: 20px;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      transition: 0.3s;
+    nav a,
+    .secondary-nav a,
+    .submenu-items a {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
     }
-    
+   
     section {
     padding: 50px 20px;
     margin-bottom: 20px;
@@ -450,12 +454,9 @@
 }
 
 .submenu-toggle {
+  position: relative;
+  display: inline-block;
   cursor: pointer;
-  padding: 5px 10px;
-  color: #C10202;
-  font-size: 15px;
-  border-bottom: 1px solid transparent;
-  transition: 0.3s;
 }
 
 .submenu-toggle:hover {
@@ -658,7 +659,7 @@
       Forjamos una alianza con <strong style="color:#cc0000;">Cinco Puntas Diseño</strong>, marca independiente colombiana de camisetas oscuras y esotéricas. 
       Ahora disponibles en nuestra tienda como <strong>colección exclusiva</strong> para almas rebeldes.
     </p>
-    <div class="ver-mas"><a href="INTRODUCCION.html">Ver más</a></div>
+    <div class="ver-mas"><a href="introduccion/">Ver más</a></div>
   </section>
   </main>
 
@@ -666,7 +667,7 @@
   <section id="intro" class="fade-in">
     <h2>INTRODUCCIÓN</h2>
     <p>Averno Store es un templo digital para mentes libres y oscuras. Aquí encontrarás libros de ocultismo, música underground, ropa alternativa, accesorios, arte y filosofía inspirados en el satanismo moderno. Un refugio para quienes buscan romper dogmas y explorar el conocimiento prohibido.</p>
-    <div class="ver-mas"><a href="INTRODUCCION.html">Ver más</a></div>
+    <div class="ver-mas"><a href="introduccion/">Ver más</a></div>
   </section>
   </main>
 
@@ -674,7 +675,7 @@
   <section id="bio" class="fade-in">
     <h2>AUTOBIOGRAFÍA</h2>
     <p>Explora el camino personal de transformación y despertar de conciencia, desde la rebeldía espiritual hasta el encuentro con lo oculto y lo verdadero.</p>
-    <div class="ver-mas"><a href="AUTOBIOGRAFIA.html">Ver más</a></div>
+    <div class="ver-mas"><a href="autobiografia/">Ver más</a></div>
   </section>
   </main>
 
@@ -682,7 +683,7 @@
   <section id="banda" class="fade-in">
     <h2>PROYECTO BANDA</h2>
     <p>Un proyecto musical oscuro y atmosférico nacido desde lo más profundo, combinando black metal, ritual y poesía de sombras.</p>
-    <div class="ver-mas"><a href="BANDA.html">Ver más</a></div>
+    <div class="ver-mas"><a href="banda/">Ver más</a></div>
   </section>
   </main>
 
@@ -690,7 +691,7 @@
   <section id="nosotros" class="fade-in">
     <h2>NOSOTROS</h2>
     <p>Detrás de cada diseño, hay una sola persona entregando su visión: moda oscura, espíritu metalero y productos que hablan de tu identidad única.</p>
-    <div class="ver-mas"><a href="NOSOTROS.html">Ver más</a></div>
+    <div class="ver-mas"><a href="nosotros/">Ver más</a></div>
   </section>
   </main>
 
