@@ -104,35 +104,37 @@
   overflow: hidden;           /* importante para recortar el humo */
   }
 
+  /* Humo a pantalla completa */
   #flyer-modal #humo-fondo {
   position: absolute;
-  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  inset: 0;
   width: 100vw;
   height: 100vh;
-  background: url('humo.png') center center / cover no-repeat;
+  background: url('humo.png') center top / cover no-repeat;
   opacity: 0.6;
   pointer-events: none;
   z-index: 3;
   animation:
-  moverSmoke 6s linear infinite,       /* movimiento suave */
-  fadeSmoke 40s ease-out forwards;     /* desvanecimiento muy lento */
+  smokeDrift 10s linear infinite,   /* movimiento suave e infinito */
+  smokeFade 60s ease-out forwards;   /* desvanecimiento muy lento y sólo una vez */
   }
 
-  /* Movimiento continuo diagonal */
+   /* Movimiento suave e infinito */
   @keyframes moverSmoke {
   from { background-position: 0 0; }
   to   { background-position: 200px 200px; }
   }
 
+  /* Desciende y se desvanece en 60s, sólo una vez */
   @keyframes fadeSmoke {
-  0%   { opacity: 0.6; }
-  50%  { opacity: 0.4; }
-  100% { opacity: 0; }
+  0%   { opacity: 0.6; transform: translateY(0); }
+  100% { opacity:   0; transform: translateY(200px); }
   }
 
+  /* Ya no necesitas flotarHumo, pero si lo quieres combinar para un ligero pulso: */
   @keyframes flotarHumo {
   0%, 100% { transform: translateY(0) scale(1); }
-  50%      { transform: translateY(-15px) scale(1.05); }
+  50%      { transform: translateY(-5px) scale(1.02); }
   }
     
   /* Flyer bajo el humo */
@@ -145,11 +147,12 @@
   display: block;
   }
 
-  /* Botones sobre el humo */
+  /* Contenedor de los CTA: columna y centrado */
   #flyer-modal .flyer-cta {
-  position: relative;
-  z-index: 4;
-  text-align: center;
+  display: flex;
+  flex-direction: column;  /* apila verticalmente */
+  align-items: center;     /* centra horizontalmente */
+  gap: 12px;               /* separa los botones */
   margin-top: 20px;
   }
     
@@ -173,32 +176,36 @@
   transition: all 0.3s ease;
   display: inline-block;
   border: none;
+  border-radius: 0px;
   box-shadow: 0 0 6px rgba(193, 2, 2, 0.3);
   margin-right: 10px;      /* separa del botón cerrar */
   }
 
-  .ver-coleccion-btn:hover {
-  background-color: #770000;
-  box-shadow: 0 0 10px #770000, 0 0 20px #770000;
-  }
+  /* Elimina cualquier margin-right en “Ver Colección” */
+  .ver-coleccion-btn {
+  margin: 0; /* antes tenía margin-right:10px; */
+  padding: 8px 16px; /* tamaño reducido como pediste */
+  }  
 
-  /* Estilo para “Cerrar” */
+  /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
   .flyer-close-btn {
   font-family: 'BurzumGothic', serif;
-  background: none;
-  border: 1px solid #ccc;
-  color: #ccc;
-  padding: 10px 20px;
-  border-radius: 6px;
+  background-color: #990000;     /* mismo fondo */
+  color: white;                  /* mismo texto */
+  border: none;                  /* sin borde */
+  padding: 8px 16px;             /* igual tamaño */
+  border-radius: 0px;
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(193, 2, 2, 0.3);
   }
 
+  /* Hover idéntico */
   .flyer-close-btn:hover {
-  background-color: #cc0000;
-  color: black;
-  border-color: #cc0000;
+  background-color: #770000;     /* mismo hover */
+  box-shadow: 0 0 10px #770000, 0 0 20px #770000;
+  color: white;
   }
 
  .ver-coleccion-btn {
