@@ -399,14 +399,29 @@
   backdrop-filter: blur(6px);
   text-align: center;
   padding-top: 60px;">
-  <img src="cola.png" alt="Flyer Cinco Puntas" style="max-width: 500px; width: 90%; height: auto; border-radius: 10px; box-shadow: 0 0 20px rgba(255,0,0,0.3);" />
+  <img src="cola.png" alt="Flyer Cinco Puntas" style="max-width: 800px; width: 100%; height: auto; border-radius: 0px; box-shadow: 0 0 20px rgba(255,0,0,0.3);" />
   <div style="margin-top:20px;">
-    <a href="CINCO-PUNTAS.html" style="background:#cc0000; padding:10px 20px; color:white; text-decoration:none; border-radius:6px; font-family:Arial;">Ver Colección</a>
-    <br><br>
-    <button onclick="cerrarFlyer()" style="margin-top:10px; background:none; border:none; color:#fff; font-size:20px; text-decoration:underline;">Cerrar</button>
-  </div>
-</div>
+  <a href="CINCO-PUNTAS.html" style="background:#cc0000; padding:10px 20px; color:white; text-decoration:none; border-radius:6px; font-family:Arial;">Ver Colección</a>
+  <br><br>
+  <button onclick="cerrarFlyer()" style="
+  margin-top: 15px;
+  background: none;
+  border: 1px solid #999;
+  color: #ccc;
+  font-size: 16px;
+  padding: 10px 20px;
+  font-family: 'BurzumGothic', serif;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;"
+  onmouseover="this.style.background='#cc0000'; this.style.color='black';"
+  onmouseout="this.style.background='none'; this.style.color='#ccc';">
+  Cerrar
+  </button>
     
+  </div>
+  </div>
+
   <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
   <i class="fas fa-play" style="margin-right: 8px;"></i> Presiona y Escucha
   </div>
