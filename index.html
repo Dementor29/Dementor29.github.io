@@ -553,8 +553,9 @@
 
     // Función para cerrar el flyer
     window.cerrarFlyer = function () {
-      flyer.style.display = "none";
-      document.body.classList.remove("modal-abierto");
+    flyer.style.display = "none";
+    document.body.classList.remove("modal-abierto");
+    document.documentElement.classList.remove("preload"); // 👈 esta línea es esencial
     };
   });
 
