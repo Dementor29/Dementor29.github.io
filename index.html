@@ -33,9 +33,9 @@
   
   <style>
   
-    body {
-    visibility: hidden;
-    }
+  body.modal-abierto {
+  visibility: hidden;
+  }
     
   * {
     box-sizing: border-box;
@@ -696,7 +696,6 @@
     flyer.style.display = "block";
     humo.style.display  = "block";
     document.body.classList.add("modal-abierto");
-    document.body.style.visibility = 'visible';
     // Función cerrar
     window.cerrarFlyer = function () {
       flyer.style.display = "none";
