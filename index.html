@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+ <!DOCTYPE html>
+  <html lang="es">
+  <head>
   
   <meta name="description" content="Averno Store es un templo digital para mentes libres y oscuras. Aquí encontrarás libros de ocultismo, música underground, ropa alternativa, accesorios, arte y filosofía inspirados en el satanismo moderno. Un refugio para quienes buscan romper dogmas y explorar el conocimiento prohibido."/>
   <!-- Palabras clave relevantes -->
@@ -30,27 +30,9 @@
   <meta name="apple-mobile-web-app-title" content="AV STORE" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-  <meta name="description" content="Colección exclusiva de Averno Store y Cinco Puntas Diseño. Camisetas oscuras, esotéricas y hechas en Colombia para almas rebeldes. Arte, satanismo moderno y envíos nacionales.">
-  <!-- Open Graph (para Facebook y WhatsApp) -->
-  <meta property="og:title" content="Averno Store x Cinco Puntas – Colección Exclusiva">
-  <meta property="og:description" content="Edición limitada de camisetas oscuras y esotéricas. Alianza entre Averno Store y Cinco Puntas Diseño. Diseño colombiano con alma rebelde.">
-  <meta property="og:image" content="https://despertardelaverno.com/img/cinco-puntas-banner.jpg">
-  <meta property="og:url" content="https://despertardelaverno.com/cinco-puntas.html">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Averno x Cinco Puntas – Camisetas Oscuras en Edición Limitada">
-  <meta name="twitter:description" content="Satanismo moderno, arte y diseño colombiano. Alianza entre Averno Store y Cinco Puntas Diseño.">
-  <meta name="twitter:image" content="https://despertardelaverno.com/img/cinco-puntas-banner.jpg">
-
-  <style>
-
-  body {
-  visibility: hidden;
-  }
   
+  <style>
+   
   * {
     box-sizing: border-box;
     margin: 0;
@@ -66,157 +48,17 @@
   font-family: 'BurzumGothic', serif;
   }
     
-  html, body {
+ html, body {
   height: 100%;
   font-family: 'BurzumGothic', serif;
   color: white;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background: black; /* fondo base */
-  position: relative;
-  z-index: 0;
-  }
-    
-  body.modal-abierto main,
-  body.modal-abierto header,
-  body.modal-abierto nav,
-  body.modal-abierto .secondary-nav,
-  body.modal-abierto .barra-cinco-puntas,
-  body.modal-abierto footer,
-  body.modal-abierto .bloque-reproductor,
-  body.modal-abierto #bandera-play {
-  display: none !important;
-  }
-
-  #humo-fondo {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 35vh;
-  background: url('humo.png') no-repeat bottom center;
-  background-size: cover;
-  pointer-events: none;
-  opacity: 0.45;
-  z-index: 9998;
-  animation: flotarHumo 12s ease-in-out infinite;
-  }
-
-  @keyframes flotarHumo {
-  0%, 100% { transform: translateY(0px); opacity: 0.5; }
-  50% { transform: translateY(-8px); opacity: 0.7; }
-  }
-
-  /* Contenedor modal */
-  #flyer-modal {
-  display: none;
-  position: fixed;
-  inset: 0;                   /* top:0; right:0; bottom:0; left:0 */
+  background: url('bg.webp') no-repeat center center fixed;
+  background-size: contain;
   background-color: black;
-  backdrop-filter: blur(6px);
-  z-index: 9999;
-  overflow: hidden;           /* importante para recortar el humo */
-  visibility: visible !important;
-  }
-
-  /* Humo a pantalla completa */
-  #flyer-modal #humo-fondo {
-  position: absolute;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  background: url('humo.png') center top / cover no-repeat;
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 3;
-  animation:
-  fadeSmoke 60s ease-out forwards,
-  moverSmoke 60s linear infinite,   /* movimiento suave e infinito */
-  
-  }
-    /* Movimiento suave e infinito */
-  @keyframes moverSmoke {
-  from { background-position: 0 0; }
-  to   { background-position: 200px 200px; }
-  }
-
-  /* Desvanecimiento lento, manteniendo la imagen estacionaria */
-  @keyframes fadeSmoke {
-  from { opacity: 0.6; }
-  to   { opacity:   0; }
-  }
-    
-  /* Flyer bajo el humo */
-  #flyer-modal .flyer-img {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  width: 90%;
-  margin: 0 auto;
-  display: block;
-  }
-    
-  /* Asegura que los botones queden centrados */
-  #flyer-modal .flyer-cta {
-  position: relative;
-  z-index: 2;
-  text-align: center;      /* centra el contenido */
-  margin-top: 20px;
-  align-items: center;
-  gap: 30px; /* más separación */
-  margin-top: 20px;
-  width: auto;
-  }
-
-  /* Estilo para “Ver Colección” */
-  .ver-coleccion-btn {
-  font-family: 'BurzumGothic', serif;
-  background-color: black;   
-  color: white; 
-  text-decoration: none;
-  padding: 12px 24px;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  display: inline-block;
-  border: none;
-  border-radius: 1px;
-  box-shadow: 0 0 6px rgba(193, 2, 2, 20);
-  margin-right: 10px;      /* separa del botón cerrar */
-  }
-
-  /* Elimina cualquier margin-right en “Ver Colección” */
-  .ver-coleccion-btn {
-  margin: 10; /* antes tenía margin-right:10px; */
-  padding: 8px 16px; /* tamaño reducido como pediste */
-  }  
-
-  /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
-  .flyer-close-btn {
-  font-family: 'BurzumGothic', serif;
-  background-color: black;      /* mismo fondo */
-  color: white;                  /* mismo texto */
-  border: none;                  /* sin borde */
-  padding: 8px 16px;             /* igual tamaño */
-  border-radius: 1px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 6px rgba(193, 2, 2, 20);
-  }
-
-  /* Hover idéntico */
-  .flyer-close-btn:hover {
-  background-color: #cccccc; /* mismo hover */
-  box-shadow: 0 0 10px black, 0 0 20px black;
-  color: black; 
-  }
-    
-  .ver-coleccion-btn:hover,  
-  .flyer-close-btn:hover {
-  background-color: #cccccc; 
-  color: black; 
-  box-shadow: 0 0 10px black, 0 0 20px black;
-  }
-    
+  margin: 0;
+}    
   body::before {
   content: "";
   position: fixed;
@@ -228,7 +70,6 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  filter: brightness(0.8);
   z-index: -1;
   pointer-events: none;
   user-select: none;
@@ -268,65 +109,29 @@
     font-size: 20px;
     }
 
-    /* Enlaces con efecto de subrayado animado */
-    nav a,
-    .secondary-nav a,
-    .submenu-toggle,
-    .submenu-items a {
-    position: relative;
-    text-decoration: none;
-    display: inline-block;
-    }    
-
-    /* Línea animada debajo de los enlaces */
-    nav a::after,
-    .secondary-nav a::after,
-    .submenu-toggle::after,
-    .submenu-items a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    width: 0;
-    height: 2px;
-    background-color: currentColor; /* usa el mismo color del texto */
-    transition: width 0.3s ease;
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px;
+      gap: 20px;
     }
 
-    /* Al pasar el mouse: la línea se expande */
-    nav a:hover::after,
-    .secondary-nav a:hover::after,
-    .submenu-toggle:hover::after,
-    .submenu-items a:hover::after {
-    width: 100%;
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      border-bottom: 1px solid transparent;
+      transition: 0.3s;
     }
-
-    /* COLOR DEL SUBRAYADO SEGÚN EL COLOR DEL TEXTO */
-    nav a[style*="#C10202"]:hover::after,
-    .secondary-nav a[style*="#C10202"]:hover::after,
-    .submenu-toggle[style*="#C10202"]:hover::after,
-    .submenu-items a[style*="#C10202"]:hover::after {
-    background-color: #cccccc; /* gris metálico para texto rojo */  
-    }
-
-    nav a[style*="#cccccc;"]:hover::after,
-    .secondary-nav a[style*="#cccccc"]:hover::after,
-    .submenu-toggle[style*="#cccccc"]:hover::after,
-    .submenu-items a[style*="#cccccc"]:hover::after {
-    background-color: #C10202; /* rojo para texto blanco */
-    }
-      
+    
     .secondary-nav {
     margin-top: 40px;
     margin-bottom: 80px; /* 👈 agrega separación hacia las secciones */
     background: rgba(0, 0, 0, 0.85);
     padding: 12px;
     text-align: center;
-    display: flex;           /* asegúrate de que sean flex-containers */
-    align-items: center; 
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
     }
     
     .secondary-nav a {
@@ -335,24 +140,11 @@
       color: #ff9999;
       text-decoration: none;
     }
-
-    .secondary-nav a:hover {
-      color: #ffffff;
-    }
-
-     nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 15px;
-      gap: 20px;
-    }
     
     section {
     padding: 50px 20px;
     margin-bottom: 20px;
-    background: rgba(0, 0, 0, 0.70);
+    background: rgba(0, 0, 0, 0.60);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     border-left: none;
@@ -394,9 +186,10 @@
       font-size: 16px;
       color: #ccc;
     }
-
+    
     footer p {
-      margin: 6px 0;
+    margin: 6px 0;
+    font-size: 1rem;
     }
     
     .fade-in {
@@ -462,67 +255,92 @@
 }
 
 .submenu-toggle {
-  position: relative;
-  display: inline-block;
   cursor: pointer;
+  padding: 5px 10px;
+  color: #C10202;
+  font-size: 15px;
+  border-bottom: 1px solid transparent;
+  transition: 0.3s;
 }
 
 .submenu-items {
+  display: none;
   position: absolute;
-  background: rgba(0, 0, 0, 0.9);
-  min-width: 160px;
-  max-height: 300px;
-  overflow-y: auto;
-  padding: 8px 0;
-  z-index: 999; /* 🔺 Más alto que otros elementos */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  border-radius: 0px;
+  top: calc(100% + 10px);  /* se superpone 2px al toggle */
+  left: 0;
   text-align: left;
-  margin-top: 14px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+  min-width: 160px;
+  padding: 8px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  z-index: 1000;
 }
-
-/* 👇 Esta es la parte CLAVE */
+   
 .submenu:hover .submenu-items {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  display: block;
 }
 
+/* enlaces dentro del menú */
 .submenu-items a {
-  display: inline-block !important;
-  padding: 6px 12px;
-}
-
-.submenu-items.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.flyer-cta a.ver-coleccion-btn,
-.flyer-cta button.flyer-close-btn {
-  width: auto;
-  min-width: 120px; /* opcional, para que no queden tan pequeños */
-  text-align: center;
-}
-
-.cruz-invertida {
-  font-size: 80px;
+  display: block;
+  padding: 8px 16px;
   color: white;
-  margin: 0 20px;
-  display: inline-block;
-  line-height: 1;
-  user-select: none;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.submenu-items a:hover {
+  color: #C10202;
 }
     
- .parpadea {
-  animation: parpadeoSuave 3s infinite;
+nav a,
+.secondary-nav a,
+.submenu-toggle,
+.submenu-items a {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
 }
-           
+
+nav a::after,
+.secondary-nav a::after,
+.submenu-toggle::after,
+.submenu-items a::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 5px);
+  bottom: -2px;
+  left: 0;
+  z-index: 1000;
+  width: 0;
+  height: 2px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efecto de subrayado al pasar el mouse */
+nav a:hover::after,
+.secondary-nav a:hover::after,
+.submenu-toggle:hover::after,
+.submenu-items a:hover::after {
+  width: 100%;
+}
+
+/* COLOR DEL SUBRAYADO SEGÚN EL COLOR DEL TEXTO */
+nav a[style*="#C10202"]:hover::after,
+.secondary-nav a[style*="#C10202"]:hover::after,
+.submenu-toggle[style*="#C10202"]:hover::after,
+.submenu-items a[style*="#C10202"]:hover::after {
+background-color: #cccccc; /* gris metálico para texto rojo */
+}
+
+nav a[style*="#cccccc;"]:hover::after,
+.secondary-nav a[style*="#cccccc"]:hover::after,
+.submenu-toggle[style*="#cccccc"]:hover::after,
+.submenu-items a[style*="#cccccc"]:hover::after {
+background-color: #C10202; /* rojo para texto blanco */
+}
+    
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
   max-width: 200px;
@@ -579,32 +397,11 @@
   footer#contacto i {
     font-size: 1rem;
   }
-  }
+}
     
   </style>
   </head>
   <body>
-    
-  <!-- 1) Contenedor del modal -->
-  <div id="flyer-modal">
-  <!-- 2) Imagen humo a pantalla completa -->
-  <div id="humo-fondo"></div>
-  <!-- 3) Flyer encima del humo -->
-  <img src="cola.png" class="flyer-img" alt="Flyer Cinco Puntas" />
-  <!-- 4) CTA -->
-  <div class="flyer-cta">
-  <a href="avernoxcincopuntas/" class="ver-coleccion-btn parpadea">
-  <i class="fa fa-eye"></i> Ver
-  </a>
-
-  <div class="cruz-invertida">𐕣</div>
-
-  <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
-  Cerrar
-  </button>
-  </div>
-
-  </div>
     
   <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
   <i class="fas fa-play" style="margin-right: 8px;"></i> Presiona y Escucha
@@ -622,58 +419,29 @@
   </div>
     
   <nav class="fade-in">
-    <a href="#intro" style="color: #C10202;">INTRODUCCIÓN</a>
-    <a href="#bio" style="color: #cccccc;">AUTOBIOGRAFÍA</a>
+    <a href="#introduccion" style="color: #C10202;">INTRODUCCIÓN</a>
+    <a href="#autobiografia" style="color: #cccccc;">AUTOBIOGRAFÍA</a>
     <a href="#banda" style="color: #C10202;">PROYECTO BANDA</a>
     <a href="#nosotros" style="color: #cccccc;">NOSOTROS</a>
     <a href="#contacto" style="color: #C10202;">CONTACTO</a>
   </nav>
 
- <div class="secondary-nav fade-in">
-  <a href="venta-cd/" style="color: #cccccc;">VENTA DE CD's</a>
-
+  <div class="secondary-nav fade-in">
+    <a href="venta-cd/" style="color: #cccccc;">VENTA DE CD's</a>
+    
   <div class="submenu">
-    <span class="submenu-toggle" style="color: #C10202;" onclick="toggleSubmenu()">MERCH ▾</span>
+    <span class="submenu-toggle" style="color: #C10202;">MERCH ▾</span>
     <div class="submenu-items">
       <a href="merch-hombre/" style="color: #cccccc;">HOMBRE</a>
-      <a href="merch-mujer/" style="color: #C10202;">MUJER</a>
+      <a href="merch-mujer/" style="color: #C10202;">MUJER</a> <!-- ← aquí irá el nuevo enlace -->
     </div>
   </div>
-
-  <a href="libros/" style="color: #cccccc;">VENTA DE LIBROS</a>
-</div>
-
-<div class="barra-cinco-puntas fade-in" style="
-  width: 100%;
-  background: linear-gradient(to right, #000000, #330000, #000000);
-  text-align: center;
-  padding: 14px 10px;
-  margin-top: -20px;
-  z-index: 99;
-  position: relative;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  font-family: 'BurzumGothic', serif;
-  animation: parpadeoSuave 3s infinite;
-">
-  ⚔️ NUEVA COLECCIÓN DISPONIBLE: <a href="avernoxcincopuntas/" style="color:#C10202; text-decoration:underline;">CINCO PUNTAS DISEÑO</a> ⚔️
-</div>
-
-
-<main>
-  <section class="fade-in" id="alianza-cinco-puntas">
-    <h2>AVERNO STORE   <strong style="color:#C10202;"> X</strong>  CINCO PUNTAS</h2>
-    <p>
-      Forjamos una alianza con <strong style="color:#C10202;">Cinco Puntas Diseño</strong>, marca independiente colombiana de camisetas oscuras y esotéricas. 
-      Ahora disponibles en nuestra tienda como <strong>colección exclusiva</strong> para almas rebeldes.
-    </p>
-    <div class="ver-mas"><a href="avernoxcincopuntas/">Ver más</a></div>
-  </section>
-  </main>
+    
+  <a href="libros/"style="color: #cccccc;">VENTA DE LIBROS</a>
+  </div>
 
   <main> 
-  <section id="intro" class="fade-in">
+  <section id="introduccion" class="fade-in">
     <h2>INTRODUCCIÓN</h2>
     <p>Averno Store es un templo digital para mentes libres y oscuras. Aquí encontrarás libros de ocultismo, música underground, ropa alternativa, accesorios, arte y filosofía inspirados en el satanismo moderno. Un refugio para quienes buscan romper dogmas y explorar el conocimiento prohibido.</p>
     <div class="ver-mas"><a href="introduccion/">Ver más</a></div>
@@ -681,7 +449,7 @@
   </main>
 
   <main>  
-  <section id="bio" class="fade-in">
+  <section id="autobiografia" class="fade-in">
     <h2>AUTOBIOGRAFÍA</h2>
     <p>Explora el camino personal de transformación y despertar de conciencia, desde la rebeldía espiritual hasta el encuentro con lo oculto y lo verdadero.</p>
     <div class="ver-mas"><a href="autobiografia/">Ver más</a></div>
@@ -732,47 +500,6 @@
     }
   }
   
-  window.addEventListener('DOMContentLoaded', function () {
-  const flyer = document.getElementById("flyer-modal");
-  const humo  = document.getElementById("humo-fondo");
-
-  flyer.style.display = "block";
-  humo.style.display  = "block";
-
-  document.body.classList.add("modal-abierto");
-
-  // ✅ Aquí mostramos el body completo sin parpadeo
-  document.body.style.visibility = "visible";
-
-  // Botón cerrar
-  window.cerrarFlyer = function () {
-    flyer.style.display = "none";
-    humo.style.display  = "none";
-    document.body.classList.remove("modal-abierto");
-  };
-});
-
-  // Alternar visibilidad del submenú en clic (móvil o PC)
-  function toggleSubmenu() {
-    const submenu = document.querySelector('.submenu-items');
-    const isVisible = submenu.classList.contains('visible');
-
-    // Cierra si está abierto
-    document.querySelectorAll('.submenu-items').forEach(el => el.classList.remove('visible'));
-
-    if (!isVisible) {
-      submenu.classList.add('visible');
-    }
-  }
-
-  // Cierra el submenú al hacer clic fuera
-  document.addEventListener('click', function(e) {
-    const submenuContainer = document.querySelector('.submenu');
-    if (!submenuContainer.contains(e.target)) {
-      document.querySelectorAll('.submenu-items').forEach(el => el.classList.remove('visible'));
-    }
-  });
-
 </script>
 </body>
 </html>
