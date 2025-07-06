@@ -165,12 +165,11 @@
   color: #ffffff; 
   text-decoration: none;
   padding: 12px 24px;
-  border-radius: 6px;
   font-size: 1.1rem;
   transition: all 0.3s ease;
   display: inline-block;
   border: none;
-  border-radius: 0px;
+  border-radius: 10px;
   box-shadow: 0 0 6px rgba(193, 2, 2, 0.3);
   margin-right: 10px;      /* separa del botón cerrar */
   }
@@ -188,7 +187,7 @@
   color: white;                  /* mismo texto */
   border: none;                  /* sin borde */
   padding: 8px 16px;             /* igual tamaño */
-  border-radius: 0px;
+  border-radius: 10px;
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -459,26 +458,6 @@
 .submenu:hover .submenu-items {
   display: block;
 }
-
-.rayo {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background: url('rayo.png') no-repeat center;
-  background-size: contain;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 5;
-  animation: rayosFlash 60s infinite;
-}
-
-.rayo-1 { top: 10%; left: 20%; animation-delay: 2s; }
-.rayo-2 { top: 40%; right: 15%; animation-delay: 6s; }
-
-@keyframes rayosFlash {
-  0%, 98%, 100% { opacity: 0; }
-  50% { opacity: 1; }
-}
     
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
@@ -546,14 +525,8 @@
   <div id="flyer-modal">
     <!-- 2) Imagen humo a pantalla completa -->
     <div id="humo-fondo"></div>
-    <div class="rayo rayo-1"></div>
-    <div class="rayo rayo-2"></div>
-
     <!-- 3) Flyer encima del humo -->
     <img src="cola.png" class="flyer-img" alt="Flyer Cinco Puntas" />
-    <img src="rayo.png" class="rayo efecto" alt="">
-    <img src="rayo.png" class="rayo efecto" alt="">
-
     <!-- 4) CTA -->
     <div class="flyer-cta">
       <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn">
