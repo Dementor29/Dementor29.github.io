@@ -123,13 +123,13 @@
   fadeSmoke 60s ease-out forwards;
   }
 
-   /* Mueve la textura de humo diagonalmente */
+   /* Movimiento suave e infinito */
   @keyframes moverSmoke {
-  from { background-position:   0px   0px; }
+  from { background-position: 0 0; }
   to   { background-position: 200px 200px; }
   }
 
-  /* Baja y se desvanece */
+  /* Desciende y se desvanece en 60s, sólo una vez */
   @keyframes fadeSmoke {
   0%   { opacity: 0.6; transform: translateY(0); }
   100% { opacity:   0; transform: translateY(200px); }
