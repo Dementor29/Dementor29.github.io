@@ -270,12 +270,11 @@
     .submenu-items a::after {
     content: "";
     position: absolute;
-    bottom: -4px; /* subrayado pegado abajo */
     left: 0;
+    bottom: -4px;           /* separación suave del texto */
     width: 0;
     height: 2px;
-    background-color: transparent;
-    transition: width 0.3s ease, background-color 0.3s ease;
+    transition: width 0.3s ease, background-color 0.3s ease;  
     }
     
     /* Efecto de subrayado al pasar el mouse */
@@ -307,6 +306,8 @@
     background: rgba(0, 0, 0, 0.85);
     padding: 12px;
     text-align: center;
+    display: flex;           /* asegúrate de que sean flex-containers */
+    align-items: center;  
     }
     
     .secondary-nav a {
@@ -455,6 +456,9 @@
   padding: 5px 10px;
   border-bottom: 1px solid transparent;
   transition: 0.3s;
+  display: inline-flex;    /* igual que un <a>, pero flex */
+  align-items: center;  
+  position: relative;      /* para su ::after */
 }
 
 .submenu-toggle:hover {
@@ -652,7 +656,7 @@
 
 <main>
   <section class="fade-in" id="alianza-cinco-puntas">
-    <h2>AVERNO STORE  <strong style="color:#C10202;">X</strong>  CINCO PUNTAS</h2>
+    <h2>AVERNO STORE   <strong style="color:#C10202;"> X</strong>  CINCO PUNTAS</h2>
     <p>
       Forjamos una alianza con <strong style="color:#cc0000;">Cinco Puntas Diseño</strong>, marca independiente colombiana de camisetas oscuras y esotéricas. 
       Ahora disponibles en nuestra tienda como <strong>colección exclusiva</strong> para almas rebeldes.
