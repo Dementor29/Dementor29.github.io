@@ -105,17 +105,16 @@
   }
 
   /* HUMO fullscreen dentro del modal */
-#flyer-modal #humo-fondo {
+  #flyer-modal #humo-fondo {
   position: absolute;
-  inset: 0;                      /* ocupa todo el modal */
+  inset: 0;               /* ocupa todo el modal */
+  background: url('humo.png') center/cover no-repeat;
   pointer-events: none;
   z-index: 3;
-  background: url('humo.png') center/cover no-repeat;
   opacity: 0.6;
-  /* Movimiento diagonal infinito + fade-out once */
-  animation:
-  moverSmoke 20s linear infinite,
-  fadeSmoke 40s ease-out forwards;
+
+  /* Sólo desvanecimiento de opacidad en 30s */
+  animation: fadeSmoke 30s ease-out forwards;
   }
 
   /* Movimiento diagonal continuo */
@@ -124,12 +123,11 @@
   to   { background-position: 300px  300px; }
   }
 
-  /* Sólo desvanecimiento de opacidad en 60s */  
+  /* Desvanecimiento lento, manteniendo la imagen estacionaria */
   @keyframes fadeSmoke {
   from { opacity: 0.6; }
-  to { opacity:   0; }
+  to   { opacity:   0; }
   }
-
   /* Ya no necesitas flotarHumo, pero si lo quieres combinar para un ligero pulso: */
   @keyframes flotarHumo {
   0%, 100% { transform: translateY(0) scale(1); }
