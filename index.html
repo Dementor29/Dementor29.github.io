@@ -100,39 +100,55 @@
   overflow: hidden;           /* importante para recortar el humo */
   }
 
-  /* Humo ahora SOBRE la imagen */
+  /* El humo cubre todo el modal */
   #flyer-modal #humo-fondo {
   position: absolute;
-  inset: 0;               /* cubre todo el modal */
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
   background: url('humo.png') center center / cover no-repeat;
-  opacity: 0.25;          /* más transparente */
+  opacity: 0.6;                    /* inicio más visible */
   pointer-events: none;
-  z-index: 3;             /* por encima de la .flyer-img */
-  animation: flotarHumo 6s ease-in-out infinite; /* más rápido */
+  z-index: 3;                      /* encima del flyer */
+  animation:
+  moverSmoke 5s linear infinite, /* movimiento rápido */
+  fadeSmoke 12s ease-out forwards; /* se desvanece en 12s */
   }
 
-  /* Reajusta la imagen para que quede detrás */
-  #flyer-modal .flyer-img {
-  position: relative;
-  z-index: 2;             /* justo debajo del humo */
-  max-width: 800px;
-  width: 90%;
-  margin: 0 auto;
-  display: block;
+  /* Movimiento continuo diagonal */
+  @keyframes moverSmoke {
+  from { background-position: 0 0; }
+  to   { background-position: 200px 200px; }
   }
 
-  /* CTA y botón */
-  #flyer-modal .flyer-cta {
-  position: relative;
-  z-index: 2;                 /* también por encima */
-  margin-top: 20px;
+  /* Desvanecimiento total */
+  @keyframes fadeSmoke {
+  0%   { opacity: 0.6; }
+  80%  { opacity: 0.3; }
+  100% { opacity: 0; }
   }
 
   @keyframes flotarHumo {
   0%, 100% { transform: translateY(0) scale(1); }
   50%      { transform: translateY(-15px) scale(1.05); }
   }
+    
+  /* Flyer bajo el humo */
+  #flyer-modal .flyer-img {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+  }
 
+  /* Botones sobre el humo */
+  #flyer-modal .flyer-cta {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  margin-top: 20px;
+  }
+    
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
   position: relative;
@@ -517,12 +533,18 @@
   </head>
   <body>
     
+  <!-- Modal del flyer -->
   <div id="flyer-modal">
+  <!-- HUMO sobre todo, full screen -->
   <div id="humo-fondo"></div>
+
+  <!-- Imagen del flyer -->
   <img src="cola.png" class="flyer-img" />
+
+  <!-- Botones -->
   <div class="flyer-cta">
     <a href="CINCO-PUNTAS.html" class="ver-coleccion-btn">
-      <i class="fa fa-eye" style="margin-right:6px;"></i> VER COLECCIÓN
+      <i class="fa fa-eye"></i> VER COLECCIÓN
     </a>
     <button onclick="cerrarFlyer()" class="flyer-close-btn">Cerrar</button>
   </div>
@@ -675,24 +697,23 @@
     }
   }
 
-  window.addEventListener('load', function () {
-  document.getElementById("humo-fondo").style.display = "block";
-
+indow.addEventListener('load', function () {
+  // Referencias al modal y al humo
   const flyer = document.getElementById("flyer-modal");
-  const humo = document.getElementById("humo-fondo");
+  const humo  = document.getElementById("humo-fondo");
 
+  // Muestro ambos al cargar
+  flyer.style.display = "block";
+  humo.style.display  = "block";
   document.body.classList.add("modal-abierto");
 
-  flyer.style.display = "block";
-  humo.style.display = "block";
-
+  // Función de cierre: oculta ambos y restaura la página
   window.cerrarFlyer = function () {
-  flyer.style.display = "none";
-  humo.style.display = "none";
-  document.body.classList.remove("modal-abierto");
+    flyer.style.display = "none";
+    humo.style.display  = "none";
+    document.body.classList.remove("modal-abierto");
   };
-  });
-
+});
 
 </script>
 </body>
