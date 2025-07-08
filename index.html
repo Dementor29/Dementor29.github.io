@@ -45,6 +45,8 @@
   ] 
   }
   </script>
+
+   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
   
   <style>
    
@@ -57,7 +59,8 @@
   @font-face {
   font-family: 'BurzumGothic';
   src: url('fonts/BurzumGothic.woff') format('woff');
-  }
+  font-display: swap; /* 👈 mejora performance */
+ }
     
   h1, h2 {
   font-family: 'BurzumGothic', serif;
@@ -82,7 +85,7 @@
   width: 100vw;
   height: 100vh;
   background-image: url('bg.webp');
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   filter: brightness(0.8);
@@ -546,7 +549,7 @@
       document.querySelectorAll('.submenu-items').forEach(el => el.classList.remove('visible'));
     }
   });
- 
+
 </script>
 </body>
 </html>
