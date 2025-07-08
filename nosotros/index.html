@@ -36,17 +36,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
   <style>
-  
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+    
     @font-face { font-family: 'BurzumGothic'; src: url('fonts/BurzumGothic.woff') format('woff'); }
     
     body {
     font-family: 'BurzumGothic';
     background-color: #f3f0ec; /* o el que elijas */
     color: #111; /* texto oscuro suave */  
+    width: 100%;
+    overflow-x: hidden;
     }
 
     html {
     background-color: #f3f0ec; /* mismo que el body */
+    width: 100%;
+    overflow-x: hidden;
     }
     
     h1, h2, h3 {
@@ -104,7 +114,7 @@
 
     /* NOSOTROS */
     .nosotros { background: #000; color: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: center; padding: 4rem 0; }
-    .nosotros img { width: 100%; max-width: 80%; height: auto; object-fit: cover; border-radius: 8px; justify-self: end; }
+    .nosotros img { width: 100%; max-width: 100%; height: auto; object-fit: cover; border-radius: 8px; display: block; }
     .nosotros-text { padding: 0 1rem; }
     .nosotros-text h2 { font-size: 2.2rem; color: #C10202; margin-bottom: 1rem; }
     .nosotros-text p { margin-bottom: 1rem; color: #ccc; font-size: 1rem; text-align: justify; }
