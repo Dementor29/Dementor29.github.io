@@ -506,7 +506,26 @@
       });
     }
   }
-  
+
+ function toggleSubmenu() {
+    const submenu = document.querySelector('.submenu-items');
+    const isVisible = submenu.classList.contains('visible');
+
+    // Cierra todos los submenús antes de abrir el nuevo
+    document.querySelectorAll('.submenu-items').forEach(el => el.classList.remove('visible'));
+
+    if (!isVisible) {
+      submenu.classList.add('visible');
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    const submenuContainer = document.querySelector('.submenu');
+    if (!submenuContainer.contains(e.target)) {
+      document.querySelectorAll('.submenu-items').forEach(el => el.classList.remove('visible'));
+    }
+  });
+ 
 </script>
 </body>
 </html>
