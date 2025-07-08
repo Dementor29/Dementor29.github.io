@@ -562,7 +562,7 @@ footer#contacto {
   <div id="flyer-overlay">
   <button id="flyer-close" title="Cerrar">𒉽</button>
   <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
-  <img src="colasenama.png" alt="Flyer Averno" />
+  <img src="colasenama.png" alt="Flyer Averno"/>
   </div>
   
  <header id="top-bar">
@@ -730,7 +730,7 @@ function crearItem(producto, esRopa = true) {
     const errorEl = document.getElementById(`error-${id}`);
     if (!talla) {
       if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
-      errorEl.style.color: var(--dorado-oscuro);  // color error
+      errorEl.style.color = 'var(--dorado-oscuro)';
       return;
     } else {
       if (errorEl) errorEl.textContent = "";
@@ -751,7 +751,7 @@ function crearItem(producto, esRopa = true) {
     const errorEl = document.getElementById(`error-wishlist-${id}`);
     if (!talla) {
     if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
-    errorEl.style.color: var(--dorado-oscuro);  // color error 
+    errorEl.style.color = 'var(--dorado-oscuro)'; 
     return;
     } else {
     if (errorEl) errorEl.textContent = "";
