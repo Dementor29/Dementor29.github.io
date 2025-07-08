@@ -54,12 +54,11 @@
   color: white;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background: url('bg.webp') no-repeat center center fixed;
-  background-size: contain;
-  background-color: black;
-  margin: 0;
-}    
-
+  background: black; /* fondo base */
+  position: relative;
+  z-index: 0;
+  }
+   
   body::before {
   content: "";
   position: fixed;
@@ -301,52 +300,53 @@
 }
 
     
-nav a,
-.secondary-nav a,
-.submenu-toggle,
-.submenu-items a {
-  position: relative;
-  text-decoration: none;
-  display: inline-block;
-}
+/* Enlaces con efecto de subrayado animado */
+    nav a,
+    .secondary-nav a,
+    .submenu-toggle,
+    .submenu-items a {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    }    
 
-nav a::after,
-.secondary-nav a::after,
-.submenu-toggle::after,
-.submenu-items a::after {
-  content: "";
-  position: absolute;
-  top: calc(100% + 5px);
-  bottom: -2px;
-  left: 0;
-  z-index: 1000;
-  width: 0;
-  height: 2px;
-  transition: width 0.3s ease, background-color 0.3s ease;
-}
+    /* Línea animada debajo de los enlaces */
+    nav a::after,
+    .secondary-nav a::after,
+    .submenu-toggle::after,
+    .submenu-items a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: currentColor; /* usa el mismo color del texto */
+    transition: width 0.3s ease;
+    }
 
-/* Efecto de subrayado al pasar el mouse */
-nav a:hover::after,
-.secondary-nav a:hover::after,
-.submenu-toggle:hover::after,
-.submenu-items a:hover::after {
-  width: 100%;
-}
+    /* Al pasar el mouse: la línea se expande */
+    nav a:hover::after,
+    .secondary-nav a:hover::after,
+    .submenu-toggle:hover::after,
+    .submenu-items a:hover::after {
+    width: 100%;
+    }
 
-/* COLOR DEL SUBRAYADO SEGÚN EL COLOR DEL TEXTO */
-nav a[style*="#C10202"]:hover::after,
-.secondary-nav a[style*="#C10202"]:hover::after,
-.submenu-toggle[style*="#C10202"]:hover::after,
-.submenu-items a[style*="#C10202"]:hover::after {
-background-color: #cccccc; /* gris metálico para texto rojo */
-}
+    /* COLOR DEL SUBRAYADO SEGÚN EL COLOR DEL TEXTO */
+    nav a[style*="#C10202"]:hover::after,
+    .secondary-nav a[style*="#C10202"]:hover::after,
+    .submenu-toggle[style*="#C10202"]:hover::after,
+    .submenu-items a[style*="#C10202"]:hover::after {
+    background-color: #cccccc; /* gris metálico para texto rojo */  
+    }
 
-nav a[style*="#cccccc;"]:hover::after,
-.secondary-nav a[style*="#cccccc"]:hover::after,
-.submenu-toggle[style*="#cccccc"]:hover::after,
-.submenu-items a[style*="#cccccc"]:hover::after {
-background-color: #C10202; /* rojo para texto blanco */
-}
+    nav a[style*="#cccccc;"]:hover::after,
+    .secondary-nav a[style*="#cccccc"]:hover::after,
+    .submenu-toggle[style*="#cccccc"]:hover::after,
+    .submenu-items a[style*="#cccccc"]:hover::after {
+    background-color: #C10202; /* rojo para texto blanco */
+    }
     
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
