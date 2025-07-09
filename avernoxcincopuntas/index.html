@@ -570,27 +570,28 @@ strong {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .carrusel {
   display: flex;
-  overflow: hidden;
+  overflow-x: auto;
   scroll-behavior: smooth;
-  width: 100%;
-  justify-content: center;
+  gap: 20px;
+  padding: 10px;
 }
     
 .carrusel img {
-  height: auto;
+  height: 200px;
   width: auto;
-  max-width: 40%;
-  object-fit: cover;
-  border-radius: 2px;
+  flex-shrink: 0;
+  border-radius: 4px;
   opacity: 0.9;
   transition: transform 0.4s ease;
 }
-
+    
 .carrusel img:hover {
   transform: scale(1.03);
   opacity: 1;
@@ -710,7 +711,7 @@ strong {
   <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
   </div>
 
-  <h2>Modboard</h2>
+  <h2 style="color: var(--dorado-claro);">Modboard</h2>
   <section class="carrusel">
   <div class="carrusel-contenedor">
     <button class="flecha izquierda" onclick="scrollCarrusel(-1)">⟨</button>
@@ -1008,28 +1009,11 @@ function irYZoom(seccionId) {
   setTimeout(() => el.classList.remove('zoom-focus'), 1500);
 }
 
-let currentIndex = 0;
-
 function scrollCarrusel(direccion) {
-  const slides = document.querySelectorAll('.slide');
-  const total = slides.length;
-
-  // Ocultar todas las imágenes
-  slides.forEach(slide => slide.style.display = 'none');
-
-  // Actualizar el índice
-  currentIndex += direccion;
-  if (currentIndex < 0) currentIndex = total - 1;
-  if (currentIndex >= total) currentIndex = 0;
-
-  // Mostrar solo la imagen actual
-  slides[currentIndex].style.display = 'block';
+  const carrusel = document.querySelector('.carrusel');
+  const scrollAmount = 300; // ajusta el desplazamiento según tu gusto
+  carrusel.scrollBy({ left: direccion * scrollAmount, behavior: 'smooth' });
 }
-
-// Mostrar la primera imagen al cargar
-document.addEventListener('DOMContentLoaded', () => {
-  scrollCarrusel(0);
-});
     
 </script>
 </body>
