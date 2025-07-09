@@ -410,11 +410,16 @@
 @media (max-width: 768px) {
   #bandera-play {
     width: 100%;
-    margin: 5px auto 10px; /* ⬅ menos espacio arriba y 0px abajo */
+    margin: 10px auto 0; /* ⬅ menos espacio arriba y 0px abajo */
     font-size: 15px;
     padding: 8px 12px;
   }
-
+ 
+  header h1 {
+    margin-top: 0;         /* Sube el título eliminando espacio arriba */
+    font-size: 26px;       /* (opcional) Ajusta tamaño si lo ves muy grande */
+  }
+ 
   header {
     margin-top: 10px;       /* ⬅ reduce la separación del título */
     padding-top: 20px;      /* ⬅ también reduce el padding interno si quieres */
