@@ -565,21 +565,7 @@ strong {
   font-family: 'BurzumGothic', serif;
   z-index: 10;
 }
-
-.galeria-carrusel {
-  max-width: 1000px;
-  margin: 60px auto;
-  text-align: center;
-  padding: 20px;
-}
-
-.galeria-carrusel h2 {
-  font-family: 'BurzumGothic', serif;
-  color: #cccccc;
-  font-size: 26px;
-  margin-bottom: 20px;
-}
-
+    
 .carrusel-contenedor {
   position: relative;
   display: flex;
@@ -596,9 +582,9 @@ strong {
 }
     
 .carrusel img {
-  height: 120px;
+  height: 240px;
   width: auto;
-  min-width: 100%;
+  max-width: 100%;
   object-fit: cover;
   border-radius: 2px;
   opacity: 0.9;
@@ -723,9 +709,9 @@ strong {
   <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
   <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
   </div>
-  
-  <section class="carrusel">
+
   <h2>Modboard</h2>
+  <section class="carrusel">
   <div class="carrusel-contenedor">
     <button class="flecha izquierda" onclick="scrollCarrusel(-1)">⟨</button>
     <div class="galeria-imagenes">
