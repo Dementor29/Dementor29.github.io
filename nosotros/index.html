@@ -148,10 +148,41 @@
       footer#contacto div { width: 100%; }
       footer#contacto div p { font-size: 0.85rem; }
       footer#contacto i { font-size: 1rem; }
+
+      @media(max-width: 768px) {
+    body {
+    padding: 20px; /* Añade espacio interno para que el texto no toque los bordes */
     }
-  </style>
+
+    .hero h1 {
+    font-size: 2rem !important; /* Reduce el tamaño del título principal */
+    }
+
+    .hero p {
+    font-size: 1rem;
+    padding: 0 10px; /* Evita que el texto toque los bordes */
+    }
+
+    .nosotros-text {
+    padding: 0 10px; /* Reduce separación lateral del texto en sección "nosotros" */
+    }
+
+    .nosotros-text h2 {
+    font-size: 1.4rem !important; /* Reduce el tamaño de "PROYECTO AVERNO" en móviles */
+    }
+
+    .nosotros img {
+    width: 95% !important; /* Agranda la imagen en móviles */
+    max-width: 100%;
+    margin: 0 auto 20px auto;
+    }
+    }
+    }
+    
+</style>
 </head>
 <body>
+  
   <div id="langOverlay">
     <div class="options">
       <div class="banderas-container">
