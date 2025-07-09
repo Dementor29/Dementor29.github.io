@@ -590,6 +590,35 @@ strong {
   color: white;
   text-align: center;
 }
+
+.item-marco {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+}
+
+.item-marco img.producto-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* detrás del marco */
+}
+
+.item-marco img.marco-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2; /* por encima de la camiseta */
+  pointer-events: none; /* para que no bloquee clics */
+}
     
   @media (max-width: 600px) {
   footer#contacto {
@@ -733,7 +762,10 @@ strong {
       <div class="contenido-producto">
         <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
         <div class="etiqueta-exclusivo">🔥 EXCLUSIVO</div>
-        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <div class="item-marco">
+        <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
+        <img src="b4ea4985-b5bf-4678-9c73-0c3e57cefc62.png" alt="Marco decorativo" class="marco-overlay">
+        </div>
         <h3>${producto.nombre}</h3>
         <div class="precio">$${producto.precio.toLocaleString()}</div>
         <label class="cantidad-label">Cant:
