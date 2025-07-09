@@ -396,12 +396,14 @@ color: var(--dorado-oscuro);
 }
 
 #flyer-overlay img {
-  width: auto;
+  width: 90vw;
   height: auto;
-  max-width: 90vw;
-  max-height: 80vh;
+  max-height: 90vh;
+  object-fit: contain;
+  animation: parpadeo-led 2.5s infinite;
+  border-radius: 0;
 }
-        
+    
 .error-msg {
   color: red;
   font-size: 13px;
@@ -531,6 +533,23 @@ footer#contacto {
   font-family: 'BurzumGothic', serif;
   text-align: justify;
 }
+
+.frase-autor {
+  bbackground: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'), rgba(0, 0, 0, 0.6);
+  background-blend-mode: overlay;
+  background-size: cover;
+  padding: 20px;
+  border-left: 4px solid var(--dorado-oscuro);
+  font-style: italic;
+  color: #ccc;
+  margin: 30px auto;
+  max-width: 700px;
+  font-family: 'BurzumGothic', serif;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
     
   @media (max-width: 600px) {
   footer#contacto {
@@ -577,8 +596,12 @@ footer#contacto {
   <img src="colasenama.png" alt="Flyer Averno"/>
   </div>
 
- <section class="bloque-manifiesto">
-  <p><strong>Cinco Puntas</strong> y <strong>Averno Store</strong> unen fuerzas para celebrar la identidad oscura, rebelde y espiritual del metal extremo. Esta colección limitada fusiona arte, diseño gráfico brutalista y la esencia inconforme del underground colombiano.</p>
+<section class="bloque-manifiesto">
+<p><strong class="destacado">Cinco Puntas</strong> y <strong class="destacado">Averno Store</strong> Unen fuerzas para celebrar la identidad oscura, Rebelde y Espiritual del Metal extremo. Esta colección limitada fusiona arte, Diseño gráfico brutalista y la esencia inconforme del underground colombiano.</p>
+<blockquote class="frase-autor">
+  “Nuestras ediciones son limitada porque nuestros diseños no son para el rebaño.”
+</blockquote>
+   
 </section>
 
  <header id="top-bar">
