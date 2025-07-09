@@ -569,10 +569,12 @@ strong {
 .carrusel-contenedor {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  justify-content: center;  /* ↖️ centra horizontalmente */
+  align-items: center;       /* ↖️ centra verticalmente */
+  gap: 20px;                 /* espacio entre flechas e imagen */
   max-width: 100%;
+  margin: 0 auto;            /* ↖️ centra el contenedor dentro de la página */
+  padding: 20px 0;
 }
 
 .carrusel {
@@ -584,10 +586,10 @@ strong {
 }
     
 .carrusel img {
-  height: 40%;
+  height: 20%;
   width: auto;
   flex-shrink: 0;
-  border-radius: 2px;
+  border-radius: 1px;
   opacity: 0.9;
   transition: transform 0.4s ease;
 }
