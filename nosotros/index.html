@@ -47,7 +47,7 @@
     @font-face { font-family: 'BurzumGothic'; src: url('fonts/BurzumGothic.woff') format('woff'); }
     
     body {
-    font-family: 'BurzumGothic';
+    font-family: 'BurzumGothic', serif;
     background-color: #f3f0ec; /* o el que elijas */
     color: #111; /* texto oscuro suave */  
     width: 100%;
@@ -149,9 +149,10 @@
       footer#contacto div p { font-size: 0.85rem; }
       footer#contacto i { font-size: 1rem; }
 
-      @media(max-width: 768px) {
+    @media(max-width: 768px) {
     body {
-    padding: 20px; /* Añade espacio interno para que el texto no toque los bordes */
+    font-family: 'BurzumGothic', serif;
+    padding: 10px; /* Añade espacio interno para que el texto no toque los bordes */
     }
 
     .hero h1 {
