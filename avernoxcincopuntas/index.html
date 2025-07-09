@@ -551,6 +551,20 @@ footer#contacto {
 strong {
   color: var(--dorado-claro); /* o reemplaza por otro color como #C10202 */
 }
+
+.etiqueta-exclusivo {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: var(--dorado-claro);
+  color: black;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: Arial, sans-serif;
+  z-index: 10;
+}
     
   @media (max-width: 600px) {
   footer#contacto {
@@ -598,9 +612,9 @@ strong {
   </div>
 
 <section class="bloque-manifiesto">
-<p><strong class="destacado">Cinco Puntas</strong> y <strong class="destacado">Averno Store</strong> Unen fuerzas para celebrar la identidad oscura, Rebelde y Espiritual del Metal extremo. Esta colección limitada fusiona arte, Diseño gráfico brutalista y la esencia inconforme del underground colombiano.</p>
+<p><strong class="destacado">Cinco Puntas Diseño</strong> y <strong class="destacado">Averno Store</strong> Unen fuerzas para celebrar la identidad Oscura, Rebelde y Espiritual del Metal extremo. Esta colección limitada fusiona arte, Diseño gráfico brutalista y La esencia inconforme del underground Colombiano, Seperando la simbologia dandole eco y auto visibilidad en algunos casos mas profunda y en otros mas directa</p>
 <blockquote class="frase-autor">
-  “Nuestras ediciones son limitada porque nuestros diseños no son para el rebaño.”
+  “Nuestras ediciones son limitadas porque nuestros diseños no son para el rebaño.”
 </blockquote>
    
 </section>
@@ -672,7 +686,7 @@ strong {
     let wishlistData = {};
     let cartData = {};
 
-function crearItem(producto, esRopa = true) {
+  function crearItem(producto, esRopa = true) {
   const item = document.createElement("div");
   item.className = "item";
   const id = producto.nombre.replace(/\s+/g, "_");
@@ -690,6 +704,7 @@ function crearItem(producto, esRopa = true) {
 
   item.innerHTML = `
     <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
+    <div class="etiqueta-exclusivo">🔥 EXCLUSIVO</div>
     <img src="${producto.imagen}" alt="${producto.nombre}">
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
