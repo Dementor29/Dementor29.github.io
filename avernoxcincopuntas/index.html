@@ -118,6 +118,7 @@
   }
 
   .item {
+    font-size: 1.1rem;
     background-color: black;
     border-radius: 1px;
     padding: 10px;
@@ -568,8 +569,8 @@ strong {
     
 .item-marco {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 320px;
+  height: 320px;
   overflow: hidden;
 }
 
@@ -733,7 +734,7 @@ strong {
 
     item.innerHTML = `
     <div class="item-marco">
-    <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
+    <img src="${producto.imagen}" alt="${producto.nombre}">
     <img src="marco.png" alt="Marco decorativo" class="marco-overlay">
     </div>
     <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
@@ -741,20 +742,20 @@ strong {
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
     <label class="cantidad-label">Cant:
-    <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
+      <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
     </label>
-    ${tallaSelect}  
+    ${tallaSelect}
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
-    </div>
-    </div>
-    `;
+  `;
 
-    // Borra error al cambiar talla
+    // Aquí agregamos el listener que borra el error al cambiar la talla:
     if (esRopa) {
     const select = item.querySelector(`#talla-${id}`);
     const errorSpan = item.querySelector(`#error-${id}`);
     select.addEventListener('change', () => {
-      if (select.value) errorSpan.textContent = "";
+      if (select.value) {
+        errorSpan.textContent = "";
+      }
     });
     }
 
