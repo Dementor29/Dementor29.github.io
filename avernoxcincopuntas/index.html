@@ -565,6 +565,33 @@ strong {
   font-family: 'BurzumGothic', serif;
   z-index: 10;
 }
+
+.moodboard-galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.moodboard-galeria img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+  filter: grayscale(20%) brightness(90%);
+  opacity: 0.9;
+}
+
+.moodboard-galeria img:hover {
+  transform: scale(1.03) translateY(-6px);
+  filter: grayscale(0%) brightness(100%);
+  opacity: 1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
     
   @media (max-width: 600px) {
   footer#contacto {
