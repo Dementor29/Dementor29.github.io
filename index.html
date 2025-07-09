@@ -384,7 +384,7 @@
   border-radius: 6px;
   z-index: 99999;
   animation: parpadeoSuave 3s infinite;
-  box-shadow: 0 0 6px rgba(193, 2, 2, 0.4);
+  box-shadow: none;
   transition: background 0.3s ease, color 0.3s ease;
   user-select: none;
 }
@@ -393,6 +393,7 @@
   background: #C10202;
   color: black;
   animation: none;
+  box-shadow: none;
 }
 
 #bandera-play i { margin-right: 8px; }
@@ -405,13 +406,18 @@
   0%, 100% { opacity: 0.6; }
   50%      { opacity: 1; }
 }
-
+   
 @media (max-width: 768px) {
   #bandera-play {
     width: 100%;
-    margin: 20px auto 5px; /* Menos espacio arriba y abajo */
+    margin: 10px auto 0; /* ⬅ menos espacio arriba y 0px abajo */
     font-size: 15px;
     padding: 8px 12px;
+  }
+
+  header {
+    margin-top: 10px;       /* ⬅ reduce la separación del título */
+    padding-top: 20px;      /* ⬅ también reduce el padding interno si quieres */
   }
 }
 
