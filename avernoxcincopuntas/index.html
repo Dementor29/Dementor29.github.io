@@ -168,6 +168,7 @@
       display: inline-block;  /* para que el cursor funcione siempre bien */
       cursor: pointer;        /* ¡la clave! */
       user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
+      z-index: 3;  
       
     }
     
@@ -594,21 +595,24 @@ strong {
   z-index: 2; /* por encima de la camiseta */
   pointer-events: none; /* para que no bloquee clics */
 }
-
 /* Icono lupa sobre la imagen */
 .zoom-icon {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 1.4rem;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  padding: 4px;
-  border-radius: 4px;
+  font-size: 1.5rem;      /* o el tamaño que quieras */
+  color: #fff;            /* relleno blanco */
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;     /* contorno negro */
+  display: inline-block;
   cursor: pointer;
-  z-index: 3;
+  /* si quieres posicionarlo “afuera” del marco: */
+  position: absolute;
+  bottom: -10px;          /* ajusta según lo lejos que quieras */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;             /* por encima del marco */
 }
-
 /* Lightbox oculto por defecto */
 #lightbox {
   display: none;
@@ -627,7 +631,7 @@ strong {
   position: absolute;
   top: 20px; right: 30px;
   font-size: 2rem;
-  color: #fff;
+  color: #ccc;
   cursor: pointer;
 }
     
