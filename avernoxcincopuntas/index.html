@@ -594,6 +594,42 @@ strong {
   z-index: 2; /* por encima de la camiseta */
   pointer-events: none; /* para que no bloquee clics */
 }
+
+/* Icono lupa sobre la imagen */
+.zoom-icon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 1.4rem;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* Lightbox oculto por defecto */
+#lightbox {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+#lightbox .close-btn {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
     
   @media (max-width: 600px) {
   footer#contacto {
@@ -734,6 +770,7 @@ strong {
     item.innerHTML = `
     <div class="item-marco">
     <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
+    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">🔍</div>
     <img src="marco.png" alt="Marco decorativo" class="marco-overlay">
     </div>
     <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
@@ -972,8 +1009,24 @@ function scrollCarrusel(direccion) {
   const scrollAmount = 300; // ajusta el desplazamiento según tu gusto
   carrusel.scrollBy({ left: direccion * scrollAmount, behavior: 'smooth' });
 }
+
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  img.src = src;
+  lb.style.display = 'flex';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
     
 </script>
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close-btn">×</span>
+  <img id="lightbox-img" src="" alt="Ampliación">
+</div>
+  
 </body>
 </html>
 
