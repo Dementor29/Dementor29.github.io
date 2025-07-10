@@ -161,7 +161,7 @@
     
     .heart-icon {
       font-size: 50px;
-      color: gray;
+      color: var(--dorado-oscuro); 
       position: absolute;
       top: 8px;
       right: 8px;
@@ -172,7 +172,7 @@
     }
     
     .heart-icon.active {
-    color: var(--dorado-oscuro); 
+    color: gray;
     }
 
     .cantidad-label {
@@ -596,7 +596,7 @@ strong {
   position: absolute;
   top: auto;          /* anula reglas globales */
   right: auto;
-  bottom: 0px;        /* 8px del borde inferior */
+  bottom: 1px;        /* 8px del borde inferior */
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
@@ -615,7 +615,7 @@ strong {
 
  .heart-icon, .zoom-icon {
   cursor: pointer;
-  padding: 6px;
+  padding: 5px;
 }
    
 .item-marco .zoom-icon {
@@ -667,9 +667,8 @@ strong {
 
 .separator {
   width: 1px;
-  height: 1em; /* altura del texto actual */
+  height: none; /* altura del texto actual */
   background-color: var(--dorado-oscuro); /* color sutil */
-  opacity: 0.6; /* opcional para hacerlo más tenue */
 }
         
   @media (max-width: 600px) {
