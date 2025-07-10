@@ -586,10 +586,12 @@ strong {
 
 .item-marco .heart-icon {
   position: absolute;
-  bottom: 8px;           /* a 8px del borde inferior */
-  left: 50%;             /* centrar horizontal */
+  top: auto;          /* anula reglas globales */
+  right: auto;
+  bottom: 8px;        /* 8px del borde inferior */
+  left: 50%;
   transform: translateX(-50%);
-  z-index: 5;            /* por encima del marco */
+  z-index: 5;
 }
     
 .item-marco img.marco-overlay {
@@ -602,14 +604,18 @@ strong {
   z-index: 2; /* por encima de la camiseta */
   pointer-events: none; /* para que no bloquee clics */
 }
-    
-/* Icono lupa sobre la imagen */
-.zoom-icon {
-position: absolute;
-  bottom: -12px;        /* sale 12px por debajo del marco */
-  left: -12px;          /* sale 12px a la izquierda del marco */
-  font-size: 1.4rem;    /* tamaño a tu gusto */
-  color: #cccc;
+
+ .heart-icon, .zoom-icon {
+  cursor: pointer;
+  padding: 6px;
+}
+   
+.item-marco .zoom-icon {
+  position: absolute;
+  bottom: -16px;    /* fuera del marco */
+  left: -16px;      /* fuera del marco */
+  font-size: 1.4rem;
+  color: white;
   text-shadow:
     -1px -1px 0 #000,
      1px -1px 0 #000,
@@ -617,7 +623,6 @@ position: absolute;
      1px  1px 0 #000;
   z-index: 5;
 }
-/* Lightbox oculto por defecto */
     
 #lightbox {
   display: none;
