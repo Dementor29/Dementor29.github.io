@@ -160,8 +160,13 @@
   }
     
     .heart-icon {
-      font-size: 50px;
-      color: var(--dorado-oscuro); 
+      font-size: 40px;
+      color: var(--dorado-oscuro);
+       text-shadow: 
+      -1px -1px 0 var(--dorado-oscuro),  
+      1px -1px 0 var(--dorado-oscuro),
+      -1px  1px 0 var(--dorado-oscuro),
+      1px  1px 0 var(--dorado-oscuro);
       position: absolute;
       top: 8px;
       right: 8px;
@@ -596,7 +601,7 @@ strong {
   position: absolute;
   top: auto;          /* anula reglas globales */
   right: auto;
-  bottom: -10px;        /* 8px del borde inferior */
+  bottom: -15px;        /* 8px del borde inferior */
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
