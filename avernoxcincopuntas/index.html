@@ -160,7 +160,7 @@
   }
     
     .heart-icon {
-      font-size: 40px;
+      font-size: 50px;
       color: gray;
       position: absolute;
       top: 8px;
@@ -596,7 +596,7 @@ strong {
   position: absolute;
   top: auto;          /* anula reglas globales */
   right: auto;
-  bottom: 12px;        /* 8px del borde inferior */
+  bottom: 0px;        /* 8px del borde inferior */
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
@@ -819,7 +819,7 @@ strong {
     <div class="precio">$${producto.precio.toLocaleString()}</div>
     <div class="cantidad-talla-wrapper">
     <label class="cantidad-label">Cant:
-    <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1">  <div class="separator"></div> </label> ${tallaSelect} </div>
+    <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> </label> <div class="separator"></div> ${tallaSelect} </div>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
   `;
 
