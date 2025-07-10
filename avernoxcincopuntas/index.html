@@ -162,11 +162,11 @@
     .heart-icon {
       font-size: 40px;
       color: var(--dorado-oscuro);
-       text-shadow: 
-      -1px -1px 0 var(--dorado-oscuro),  
-      1px -1px 0 var(--dorado-oscuro),
-      -1px  1px 0 var(--dorado-oscuro),
-      1px  1px 0 var(--dorado-oscuro);
+      text-shadow: 
+      -0.5px -0.5px 0 var(--dorado-oscuro),  
+      0.5px -0.5px 0 var(--dorado-oscuro),
+      -0.5px  0.5px 0 var(--dorado-oscuro),
+      0.5px  0.5px 0 var(--dorado-oscuro);
       position: absolute;
       top: 8px;
       right: 8px;
@@ -671,8 +671,9 @@ strong {
 }
 
 .separator {
-  width: 2px;
-  height: 1.2em; /* del tamaño del texto */
+  width: 4px;
+  display: inline-block;
+  height: 1.1em; /* del tamaño del texto */
   background-color: var(--dorado-oscuro); /* color de la línea */
   opacity: 0.6; /* hace la línea más sutil */
 }
