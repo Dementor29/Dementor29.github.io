@@ -584,6 +584,14 @@ strong {
   transform: translate(-50%, -50%);
   z-index: 1;
 }
+  
+/* Dentro de tu <style> */
+.item-marco .heart-icon {
+  top: 8px;
+  right: 8px;
+  left: auto;      /* quitar cualquier left anterior */
+  z-index: 5;      /* por encima del marco */
+}
 
 .item-marco img.marco-overlay {
   position: absolute;
@@ -595,25 +603,24 @@ strong {
   z-index: 2; /* por encima de la camiseta */
   pointer-events: none; /* para que no bloquee clics */
 }
+    
 /* Icono lupa sobre la imagen */
 .zoom-icon {
-  font-size: 1.5rem;      /* o el tamaño que quieras */
-  color: #fff;            /* relleno blanco */
+ position: absolute;
+  bottom: -12px;      /* sale un poco debajo del marco */
+  left: 12px;         /* alinea con la esquina izquierda */
+  transform: none;    /* ya no centramos */
+  font-size: 1.4rem;  /* ajuste de tamaño */
+  color: #fff;        /* blanco */
   text-shadow:
     -1px -1px 0 #000,
      1px -1px 0 #000,
     -1px  1px 0 #000,
-     1px  1px 0 #000;     /* contorno negro */
-  display: inline-block;
-  cursor: pointer;
-  /* si quieres posicionarlo “afuera” del marco: */
-  position: absolute;
-  bottom: -10px;          /* ajusta según lo lejos que quieras */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;             /* por encima del marco */
+     1px  1px 0 #000;
+  z-index: 5;
 }
 /* Lightbox oculto por defecto */
+    
 #lightbox {
   display: none;
   position: fixed; inset: 0;
@@ -774,9 +781,8 @@ strong {
     item.innerHTML = `
     <div class="item-marco">
     <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
-    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">🔍</div>
-    <img src="marco.png" alt="Marco decorativo" class="marco-overlay">
-    </div>
+    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')"><i class="fas fa-search"></i></div>
+    <img src="marco.png" alt="Marco decorativo" class="marco-overlay"></div>
     <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span>
     <div class="etiqueta-exclusivo">🔥 EXCLUSIVO</div>
     <h3>${producto.nombre}</h3>
