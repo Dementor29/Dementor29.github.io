@@ -596,7 +596,7 @@ strong {
   position: absolute;
   top: auto;          /* anula reglas globales */
   right: auto;
-  bottom: 4px;        /* 8px del borde inferior */
+  bottom: 2px;        /* 8px del borde inferior */
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
@@ -800,7 +800,7 @@ strong {
     <div class="precio">$${producto.precio.toLocaleString()}</div>
     <div class="cantidad-talla-wrapper">
     <label class="cantidad-label">Cant:
-    <input type="number" ... > </label>  ${tallaSelect} </div>
+    <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> </label> ${tallaSelect} </div>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
   `;
 
