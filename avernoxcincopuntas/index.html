@@ -596,7 +596,7 @@ strong {
   position: absolute;
   top: auto;          /* anula reglas globales */
   right: auto;
-  bottom: 2px;        /* 8px del borde inferior */
+  bottom: 12px;        /* 8px del borde inferior */
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
@@ -631,6 +631,12 @@ strong {
      1px  1px 0 #000;
   z-index: 5;
 }
+
+.zoom-icon:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+  color: var(--dorado-claro); /* o cualquier color que quieras */
+}
     
 #lightbox {
   display: none;
@@ -648,11 +654,24 @@ strong {
 #lightbox .close-btn {
   position: absolute;
   top: 20px; right: 30px;
-  font-size: 2rem;
-  color: var(--dorado-claro);
+  font-size: 3rem;
+  color: #cccc;
   cursor: pointer;
 }
-    
+
+.cantidad-y-talla {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espacio horizontal entre elementos */
+}
+
+.separator {
+  width: 1px;
+  height: 1em; /* altura del texto actual */
+  background-color: var(--dorado-oscuro); /* color sutil */
+  opacity: 0.6; /* opcional para hacerlo más tenue */
+}
+        
   @media (max-width: 600px) {
   footer#contacto {
     flex-direction: column;        /* cambia de horizontal a vertical */
@@ -800,7 +819,7 @@ strong {
     <div class="precio">$${producto.precio.toLocaleString()}</div>
     <div class="cantidad-talla-wrapper">
     <label class="cantidad-label">Cant:
-    <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> </label> ${tallaSelect} </div>
+    <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1">  <div class="separator"></div> </label> ${tallaSelect} </div>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
   `;
 
