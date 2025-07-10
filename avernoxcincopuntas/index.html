@@ -160,7 +160,7 @@
   }
     
     .heart-icon {
-      font-size: 24px;
+      font-size: 40px;
       color: gray;
       position: absolute;
       top: 8px;
@@ -183,7 +183,15 @@
     font-size: 14px;
     color: #cccccc; 
     }
-    
+
+  .cantidad-talla-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* ⇠ espacio entre Cantidad y Talla */
+  margin-top: 10px;
+  flex-wrap: wrap; /* para que no se rompa en pantallas pequeñas */
+  }
+
   .cantidad-input {
     width: 50px;
     margin-left: 8px;
@@ -588,7 +596,7 @@ strong {
   position: absolute;
   top: auto;          /* anula reglas globales */
   right: auto;
-  bottom: 8px;        /* 8px del borde inferior */
+  bottom: 10px;        /* 8px del borde inferior */
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
@@ -615,7 +623,7 @@ strong {
   bottom: -16px;    /* fuera del marco */
   left: -16px;      /* fuera del marco */
   font-size: 1.4rem;
-  color: white;
+  color: #ccc;
   text-shadow:
     -1px -1px 0 #000,
      1px -1px 0 #000,
@@ -641,7 +649,7 @@ strong {
   position: absolute;
   top: 20px; right: 30px;
   font-size: 2rem;
-  color: #ccc;
+  color: var(--dorado-claro);
   cursor: pointer;
 }
     
@@ -790,10 +798,9 @@ strong {
     <div class="etiqueta-exclusivo">🔥 EXCLUSIVO</div>
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
+    <div class="cantidad-talla-wrapper">
     <label class="cantidad-label">Cant:
-      <input type="number" min="1" value="1" class="cantidad-input" id="cantidad-${id}">
-    </label>
-    ${tallaSelect}
+    <input type="number" ... > </label>  ${tallaSelect} </div>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
   `;
 
