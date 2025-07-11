@@ -680,28 +680,20 @@ strong {
   top: 4px; /* mueve hacia abajo */
 }
 
-.fuego-animado {
-  display: inline-block;
-  animation: parpadeoFuego 1s infinite ease-in-out alternate;
-  transform-origin: center bottom;
-  font-size: 1.3em;
+.gif-fuego {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  margin: 0 6px;
+  animation: parpadeoGif 1s infinite ease-in-out alternate;
 }
 
-@keyframes parpadeoFuego {
-  0% {
-    transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 4px orange) brightness(1.2);
-  }
-  50% {
-    transform: scale(1.1) rotate(-2deg);
-    filter: drop-shadow(0 0 6px red) brightness(1.4);
-  }
-  100% {
-    transform: scale(1.05) rotate(2deg);
-    filter: drop-shadow(0 0 8px yellow) brightness(1.6);
-  }
+@keyframes parpadeoGif {
+  0% { filter: brightness(1) drop-shadow(0 0 2px orange); }
+  50% { filter: brightness(1.2) drop-shadow(0 0 6px red); }
+  100% { filter: brightness(1.1) drop-shadow(0 0 4px yellow); }
 }
-            
+      
   @media (max-width: 600px) {
   footer#contacto {
     flex-direction: column;        /* cambia de horizontal a vertical */
@@ -771,7 +763,7 @@ strong {
   </div>
 </header>
   
-  <h2>¡EDICION <span class="fuego-animado">🔥</span> LIMITADA!</h2>
+  <h2>¡EDICION <img src="fuego.gif" class="gif-fuego" alt="fuego"> LIMITADA!</h2>
   <div class="catalogo" id="catalogo-ropa"></div>
   
   <div id="wishlist">
