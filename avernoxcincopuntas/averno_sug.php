@@ -17,7 +17,7 @@ $stmt->bind_param('ss', $email, $mensaje);
 
 if($stmt->execute()) {
   // Redirigir a página de “gracias” (crea gracias.html)
-  header('Location: gracias/');
+  header('Location: Dementor29.github.io/gracias/index.html');
   exit;
 } else {
   echo "Error al guardar la sugerencia, inténtalo de nuevo.";
