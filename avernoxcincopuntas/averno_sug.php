@@ -1,6 +1,6 @@
 <?php
 // Conexión a la base de datos
-$mysqli = new mysqli('localhost','root','','averno_sug');
+$mysqli = new mysqli('localhost','admin','','averno_sug');
 if($mysqli->connect_errno) {
   die("Error de conexión: " . $mysqli->connect_error);
 }
@@ -17,7 +17,7 @@ $stmt->bind_param('ss', $email, $mensaje);
 
 if($stmt->execute()) {
   // Redirigir a página de “gracias” (crea gracias.html)
-  header('Location: Dementor29.github.io/gracias/index.html');
+  header('Location: gracias/');
   exit;
 } else {
   echo "Error al guardar la sugerencia, inténtalo de nuevo.";
