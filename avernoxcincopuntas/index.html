@@ -744,13 +744,19 @@ strong {
 
   .linea-dorada {
   border: none;
-  height: 2px;                           /* grosor del borde dorado */
-  background-color: var(--dorado-claro); /* línea superior dorada */
+  height: 4px;
   width: 100vw;
+  margin: 40px 0;
+  background: linear-gradient(
+    to bottom,
+    var(--dorado-claro) 0%,
+    var(--dorado-claro) 50%,
+    #333 50%,
+    #333 100%
+  );
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: #1a1a1a;
   }
   
   @media (max-width: 600px) {
