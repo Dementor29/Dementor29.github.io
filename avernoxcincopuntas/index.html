@@ -161,27 +161,28 @@
   }
     
     .heart-icon {
-    font-size: 40px;
-    color: #222;
-    text-shadow: 
-    -0.3px -0.3px 0 black,
-     0.3px -0.3px 0 black,
-    -0.3px  0.3px 0 black,
-     0.3px  0.3px 0 black;
-    opacity: 0.85;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    display: inline-block;
-    cursor: pointer;
-    user-select: none;
-    z-index: 3;
+      font-size: 40px;
+      color: black;
+      text-shadow: 
+      -0.5px -0.5px 0 black,
+      0.5px -0.5px 0 black,
+      -0.5px  0.5px 0 black,
+      0.5px  0.5px 0 black;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: inline-block;  /* para que el cursor funcione siempre bien */
+      cursor: pointer;        /* ¡la clave! */
+      user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
+      z-index: 3;  
     }
     
     .heart-icon.active {
     color: var(--dorado-claro);
+    text-shadow: 0 0 6px var(--dorado-claro);
+    opacity: 1;
     }
-
+    
     .cantidad-label {
     font-family: 'BurzumGothic', serif;
     display: flex;
@@ -840,7 +841,7 @@ strong {
 
   <hr class="linea-dorada"> 
   <section class="bloque-manifiesto"> 
-  <h2>Sugerencias ⛧ Comentarios</h2>
+  <h2>Sugerencias △ Comentarios</h2>
   <form action="https://formspree.io/f/xvgqpgpl" method="POST">
     <label for="email">Tu correo:</label><br>
     <input type="email" name="email" id="email" required><br><br>
