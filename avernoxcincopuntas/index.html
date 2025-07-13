@@ -687,7 +687,49 @@ strong {
   margin: 0 6px;
   vertical-align: text-bottom;
 }
-    
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #111;
+  padding: 20px;
+  border: 1px solid var(--dorado-claro);
+  border-radius: 8px;
+}
+
+form label {
+  color: var(--dorado-claro);
+  font-family: 'BurzumGothic', serif;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  background: #000;
+  color: #ccc;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+form button {
+  background: var(--dorado-claro);
+  color: #000;
+  font-family: 'BurzumGothic', serif;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: var(--dorado-oscuro);
+  color: white;
+}
+        
   @media (max-width: 600px) {
   footer#contacto {
     flex-direction: column;        /* cambia de horizontal a vertical */
@@ -773,7 +815,20 @@ strong {
   <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
   <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
   </div>
-  
+
+  <section class="bloque-manifiesto">
+  <h2>Sugerencias o Comentarios</h2>
+  <form action="https://formspree.io/f/xvgqpgpl" method="POST">
+    <label for="email">Tu correo:</label><br>
+    <input type="email" name="email" id="email" required><br><br>
+
+    <label for="mensaje">Tu mensaje:</label><br>
+    <textarea name="message" id="mensaje" rows="6" required></textarea><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+  </section>
+
   <div class="volver-container">
   <button class="volver-btn" onclick="location.href='/'">VOLVER</button>
   </div>
