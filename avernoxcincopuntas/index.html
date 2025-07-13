@@ -742,11 +742,15 @@ strong {
   color: #cccccc;
   }
 
-  .linea-decorativa {
-  width: 100%;
-  height: 2px;
-  background-color: var(--dorado-claro);
-  margin: 40px auto 20px auto;
+  .linea-dorada {
+  border: none;
+  height: 2px;                           /* grosor del borde dorado */
+  background-color: var(--dorado-claro); /* línea superior dorada */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 4px rgba(150, 150, 150, 0.2); /* sombra gris debajo */
   }
   
   @media (max-width: 600px) {
