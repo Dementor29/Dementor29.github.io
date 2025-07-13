@@ -161,20 +161,21 @@
   }
     
     .heart-icon {
-      font-size: 40px;
-      color: black;
-      text-shadow: 
-      -0.5px -0.5px 0 black,
-      0.5px -0.5px 0 black,
-      -0.5px  0.5px 0 black,
-      0.5px  0.5px 0 black;
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      display: inline-block;  /* para que el cursor funcione siempre bien */
-      cursor: pointer;        /* ¡la clave! */
-      user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
-      z-index: 3;  
+    font-size: 40px;
+    color: #222;
+    text-shadow: 
+    -0.3px -0.3px 0 black,
+     0.3px -0.3px 0 black,
+    -0.3px  0.3px 0 black,
+     0.3px  0.3px 0 black;
+    opacity: 0.85;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+    z-index: 3;
     }
     
     .heart-icon.active {
@@ -744,7 +745,7 @@ strong {
 
   .linea-dorada {
   border: none;
-  height: 2px;
+  height: 1px;
   background-color: var(--dorado-claro); /* usa tu color */
   margin: 40px auto 20px auto; /* separación arriba y abajo */
   width: 100vwm; /* puedes ajustar esto */
@@ -820,7 +821,7 @@ strong {
 </header>
   
   <h2>¡EDICION <img src="fuego.gif" class="gif-fuego" alt="fuego"> LIMITADA!</h2>
-  <p style="text-align:center; color:#777; font-size:13px; margin-top:-20px;">HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA.</p>
+  <p style="text-align:center; color:#777; font-size:13px; margin-top:-20px; margin-bottom:40px;">> HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA <</p>
   <div class="catalogo" id="catalogo-ropa"></div>
   
   <div id="wishlist">
