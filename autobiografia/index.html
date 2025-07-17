@@ -93,6 +93,8 @@
     .gallery-track {
     display: flex;
     animation: scroll 100s linear infinite alternate;
+    will-change: transform;
+    transform: translate3d(0,0,0);
     }
     .gallery-item {
       flex: 0 0 auto;
@@ -104,9 +106,12 @@
     object-fit: cover;
     border-radius: 8px;
     }
+    .gallery-item:last-child {
+    margin-right: 0;  
+    }
     @keyframes scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-4060px); }  /* desplaza toda la pista hasta la última */
+    0%   { transform: translate3d(   0, 0, 0); }
+    100% { transform: translate3d(-4060px, 0, 0); }
     }
     .mode-toggle {
       position: fixed;
