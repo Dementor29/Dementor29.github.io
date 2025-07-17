@@ -32,7 +32,18 @@
   <meta name="apple-mobile-web-app-title" content="AV STORE" />
   <link rel="manifest" href="/site.webmanifest" />
   <style>
-    
+
+    /* evita cualquier subrayado en tus enlaces de recursos */  
+    .recursos a {
+    text-decoration: none;
+    color: var(--text-color);
+    }
+
+    /* si quieres subrayado solo al pasar el ratón */
+    .recursos a:hover {
+    text-decoration: underline;
+    color: var(--highlight);  
+    }
     /* Fuente Burzum con @font-face */
     @font-face {
       font-family: 'BurzumGothic';
@@ -140,19 +151,7 @@
   .volver-btn:hover {
   background-color: var(--volver-hover-bg);
   }  
-
-  /* evita cualquier subrayado en tus enlaces de recursos */  
-  .recursos a {
-  text-decoration: none;
-  color: var(--text-color);
-  }
-
-  /* si quieres subrayado solo al pasar el ratón */
-  .recursos a:hover {
-  text-decoration: underline;
-  color: var(--highlight);  
-  }
-   
+    
 </style>
 </head>
   
