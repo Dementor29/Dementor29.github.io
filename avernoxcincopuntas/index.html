@@ -754,7 +754,21 @@ strong {
   margin: 40px auto 20px auto;
   width: calc(100vw - 40px); /* 20px padding por lado */
   }
-  
+
+  /* Responsivo */
+  @media (max-width: 600px) {
+  h2 {
+    font-size: 26px; /* o menos si quieres */
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .gif-fuego {
+    width: 40px;
+    margin: 0 4px;
+  }
+  }
+    
   @media (max-width: 600px) {
   footer#contacto {
     flex-direction: column;        /* cambia de horizontal a vertical */
@@ -812,14 +826,14 @@ strong {
   <div class="icono-acceso"
        onclick="irYZoom('wishlist')"
        data-descripcion="Ver Tus Productos Infernales">
-    🤘🏻 <strong>Lista de Deseos</strong>
+    🤘🏻<strong>Lista de Deseos</strong>
     <span id="contador-wishlist">0</span>
   </div>
 
   <div class="icono-acceso"
        onclick="irYZoom('cart')"
        data-descripcion="Revisa Tus Compras Del Averno">
-    🛒 <strong>Carrito de Compras</strong>
+    🛒<strong>Carrito de Compras</strong>
     <span id="contador-cart">0</span>
   </div>
 </header>
