@@ -33,17 +33,23 @@
   <link rel="manifest" href="/site.webmanifest" />
   <style>
 
-    /* evita cualquier subrayado en tus enlaces de recursos */  
-    .recursos a {
-    text-decoration: none;
-    color: var(--text-color);
+    cite li {
+    list-style: none;           /* Quita el punto de la lista */
+    margin-bottom: 8px;
+    }  
+    
+    cite li a {
+    text-decoration: none;      /* Quita la línea subrayada */
+    color: var(--text-color);   /* Mantiene el color actual */
+    }    
+
+    cite li a:hover {
+    color: var(--text-highlight); /* Rojo al pasar el mouse */
+    text-decoration: none; /* Si quieres que se subraye solo al pasar */
+    text-decoration-color: none;
     }
 
-    /* si quieres subrayado solo al pasar el ratón */
-    .recursos a:hover {
-    text-decoration: underline;
-    color: var(--highlight);  
-    }
+    
     /* Fuente Burzum con @font-face */
     @font-face {
       font-family: 'BurzumGothic';
@@ -103,7 +109,7 @@
     }
     .gallery-track {
     display: flex;
-    animation: scroll 100s linear infinite alternate;
+    animation: scroll 120s linear infinite alternate;
     will-change: transform;
     transform: translate3d(0,0,0);
     }
@@ -391,8 +397,7 @@
 
   <p><strong style="color: var(--highlight);">RECURSOS:</strong></p>
 
-  <ul class="recursos">  
-  
+<cite>
   <li>
     <a href="https://www.youtube.com/watch?v=XPC-F1p-0_Y&t=44s">Matías De Stefano - Un Paso En la apertura De La Consciencia. 
     </a>
@@ -427,8 +432,8 @@
     <a href="https://www.youtube.com/@LaCasaGnostica">La Casa Gnóstica
     </a>
   </li>
-  </ul>
-    
+
+</cite> 
 </section>
     
 <footer>
