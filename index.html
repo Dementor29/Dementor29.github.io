@@ -106,13 +106,17 @@
   -ms-user-select: text;
   }
 
-    header {
-    margin-top: 20px; /* menos espacio que antes */
-    text-align: center;
-    padding: 40px 20px 10px;
-    background: rgba(0, 0, 0, 0.7);
-    }
-    
+   header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 300px; /* o lo que necesites para el alto visual */
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+ }    
+   
     header h1 {
       font-size: 36px;
       color: #C10202;
