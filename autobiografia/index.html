@@ -44,11 +44,10 @@
     }    
 
     cite li a:hover {
-    color: var(--text-highlight); /* Rojo al pasar el mouse */
-    text-decoration: none; /* Si quieres que se subraye solo al pasar */
-    text-decoration-color: none;
+    color: var(--highlight);            /* Rojo al pasar el mouse */
+    text-decoration: underline !important; /* Si quieres que se subraye solo al pasar */
+    text-decoration-color: underline !important;
     }
-
     
     /* Fuente Burzum con @font-face */
     @font-face {
@@ -98,9 +97,10 @@
       font-family: 'BurzumGothic', serif;
     }
     .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;   /* ← Esto centra todo el texto dentro */
     }
     .gallery {
       display: flex;
