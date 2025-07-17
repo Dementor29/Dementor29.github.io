@@ -45,8 +45,8 @@
 
     cite li a:hover {
     color: #C10202;             /* Rojo al pasar el mouse */
-    text-decoration: underline; /* Si quieres que se subraye solo al pasar */
-    text-decoration-color: #C10202;
+    text-decoration: underline !important; /* Si quieres que se subraye solo al pasar */
+    text-decoration-color: var(--highlight);
     }
     
     /* Fuente Burzum con @font-face */
@@ -108,7 +108,7 @@
     }
     .gallery-track {
     display: flex;
-    animation: scroll 40s linear infinite;  /* ya no alternate */
+    animation: scroll 60s linear infinite alternate;
     }
     .gallery-item {
       flex: 0 0 auto;
