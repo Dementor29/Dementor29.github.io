@@ -115,9 +115,10 @@
       margin-right: 10px;
     }
     .gallery-item img {
-      width: 280px;
-      height: auto;
-      border-radius: 8px;
+    width: 280px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 8px;
     }
     @keyframes scroll {
       0% { transform: translateX(0); }
@@ -150,6 +151,8 @@
   .volver-btn:hover {
   background-color: var(--volver-hover-bg);
   }  
+
+ a { color: var(--text-color); text-decoration: underline; } 
     
 </style>
 </head>
