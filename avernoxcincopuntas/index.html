@@ -450,10 +450,6 @@ color: var(--dorado-oscuro);
   position: relative;
   text-align: center;
 }
-
-.icono-acceso:hover div {
-  color: #cccccc;
-}
     
 .icono-acceso span {
   position: absolute;
@@ -477,7 +473,7 @@ color: var(--dorado-oscuro);
 }
 
 .icono-acceso div:hover {
-color: var(--dorado-claro);
+color: #cccccc;
   
 }
 
@@ -665,8 +661,15 @@ strong {
   font-size: 3rem;
   color: #cccc;
   cursor: pointer;
+  font-family: 'BurzumGothic', serif;
 }
-
+    
+#lightbox .close-btn:hover {
+  color: var(--dorado-claro);
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+    
 .cantidad-y-talla {
   display: flex;
   align-items: center;
