@@ -471,10 +471,10 @@ color: var(--dorado-oscuro);
   position: relative;
   text-align: center;
 }
-
-.icono-acceso div:hover {
-color: #cccccc;
-  
+    
+.icono-acceso:hover,
+.icono-acceso:hover * {
+  color: #cccccc;
 }
 
 .icono-acceso::after {
@@ -750,9 +750,9 @@ strong {
   .linea-dorada {
   border: none;
   height: 1px;
-  background-color: var(--dorado-claro); /* usa tu color */
-  margin: 40px auto 20px auto; /* separación arriba y abajo */
-  width: 100vwm; /* puedes ajustar esto */
+  background-color: var(--dorado-claro);
+  margin: 40px 0 20px 0;
+  width: 100vw;
   }
   
   @media (max-width: 600px) {
