@@ -32,6 +32,22 @@
   <meta name="apple-mobile-web-app-title" content="AV STORE" />
   <link rel="manifest" href="/site.webmanifest" />
   <style>
+
+  cite li {
+    list-style: none;           /* Quita el punto de la lista */
+    margin-bottom: 8px;
+    }  
+    
+    cite li a {
+    text-decoration: none;      /* Quita la línea subrayada */
+    color: var(--text-color);   /* Mantiene el color actual */
+    }    
+
+    cite li a:hover {
+    color: #C10202;             /* Rojo al pasar el mouse */
+    text-decoration: underline; /* Si quieres que se subraye solo al pasar */
+    text-decoration-color: #C10202;
+    }
     
     /* Fuente Burzum con @font-face */
     @font-face {
@@ -70,54 +86,43 @@
       margin: 0;
       padding: 0;
     }
-    
     header, footer {
       text-align: center;
       padding: 1em;
     }
-    
     h1, h2 {
       text-align: center;
       color: var(--title-color);
       margin-top: 1em;
       font-family: 'BurzumGothic', serif;
     }
-    
     .container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
     }
-    
     .gallery {
       display: flex;
       overflow: hidden;
       margin: 20px 0;
     }
-    
     .gallery-track {
       display: flex;
       animation: scroll 40s linear infinite alternate;
     }
-    
     .gallery-item {
       flex: 0 0 auto;
       margin-right: 10px;
     }
-    
     .gallery-item img {
-    width: 280px;
-    height: 380px;
-    object-fit: cover;
-    border-radius: 8px;
+      width: 280px;
+      height: auto;
+      border-radius: 8px;
     }
-    
     @keyframes scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    
     .mode-toggle {
       position: fixed;
       top: 10px;
@@ -142,12 +147,9 @@
     transition:       background-color 0.3s ease;
     margin-top:       1em;
     }
-    
   .volver-btn:hover {
   background-color: var(--volver-hover-bg);
-  }
-
- a { color: var(--text-color); text-decoration: underline; }
+  }  
     
 </style>
 </head>
@@ -193,46 +195,45 @@
 
   <p>Aprovecho para tocar otros temas que alimentaron más mis preguntas.</p>
   </section>
-
-  <ul>
-  <li>
-  ¿Por qué gente mala vive y gente buena muere todo el tiempo?
-  </li>
-  <li>
-  ¿Por qué dejan en manos de su Dios el control de todo?
-  </li>
-  <li>
-  ¿Por qué su Dios permite que haya un desbalance brutal e incoherente en este mundo?
-  </li>
-  <li>
-  ¿Por qué sus creyentes y predicadores no aplican sus propios principios y mandamientos?
-  </li>
-  <li>
-  ¿Por qué se les es necesario obligar y restregar en cara prácticamente a las personas sus creencias y pensamientos?
-  </li>
-  <li>
-  ¿Por qué en algún momento de la historia como las cruzadas y quema de brujas, tuvieron que acudir a la muerte para hacer sumisión sobre otras creencias y culturas diferente a la de ellos? 
-  </li>
-  <li>
-  ¿Por qué obligar a los demás a doctrinar su fe y sus creencias y no respetar el libre albedrio y pensar de los demás?
-  </li>
-  <li>
-  ¿Por qué abusar de su poder y de las personas que creen en ellos?
-  </li>
-  <li>
-  ¿Por qué defienden tanto la frase:"Dios sabe cómo hace sus cosas", justificando enfermedades, muertes, pobreza e incluso hasta defendiendo criminales y actos atroces de política y corrupción.
-  </li>
-  <li>
-  ¿Por qué un criminal ya sea violador o cualquier otro tipo, es perdonado por la iglesia antes de morir por condena o cualquier tipo de muerte que tenga, solo por el hecho de que se es arrepentido de todo lo que hizo y sus pecados y confesarlos ante Dios? No tiene sentido.
-  </li>
-  </ul>
+  
+  <p >
+  • ¿Por qué gente mala vive y gente buena muere todo el tiempo?
+  </p>
+  <p>
+  • ¿Por qué dejan en manos de su Dios el control de todo?
+  </p>
+  <p>
+  • ¿Por qué su Dios permite que haya un desbalance brutal e incoherente en este mundo?
+  </p>
+  <p>
+  • ¿Por qué sus creyentes y predicadores no aplican sus propios principios y mandamientos?
+  </p>
+  <p>
+  • ¿Por qué se les es necesario obligar y restregar en cara prácticamente a las personas sus creencias y pensamientos?
+  </p>
+  <p>
+  • ¿Por qué en algún momento de la historia como las cruzadas y quema de brujas, tuvieron que acudir a la muerte para hacer sumisión sobre otras creencias y culturas diferente a la de ellos? 
+  </p>
+  <p>
+  • ¿Por qué obligar a los demás a doctrinar su fe y sus creencias y no respetar el libre albedrio y pensar de los demás?
+  </p>
+  <p>
+  • ¿Por qué abusar de su poder y de las personas que creen en ellos?
+  </p>
+  <p>
+  • ¿Por qué defienden tanto la frase:"Dios sabe cómo hace sus cosas", justificando enfermedades, muertes, pobreza e incluso hasta defendiendo criminales y actos atroces de política y corrupción.
+  </p>
+  <p>
+  • ¿Por qué un criminal ya sea violador o cualquier otro tipo, es perdonado por la iglesia antes de morir por condena o cualquier tipo de muerte que tenga, solo por el hecho de que se es arrepentido de todo lo que hizo y sus pecados y confesarlos ante Dios? No tiene sentido.
+  </p>
   
   <section id="vision">
     <h2>VISION Y LEGADO</h2>
     <p>Tras estudiar textos como <cite style="color: var(--highlight);">"Magia Vampírica" de Michael W. Ford</cite>, comprendí conceptos como <span style="color: var(--highlight);">Lilith</span> y el <span style="color: var(--highlight);">plano astral</span>. Este trayecto me enseñó la importancia de la <span style="color: var(--highlight);">autoedificación</span>, el respeto por la vida y la evolución constante. Mi visión abraza la liberación personal y el pensamiento crítico: no insistir en dogmas, sino fomentar el diálogo y la investigación. Así, invito a quienes me lean a cuestionar todo, a trascender la esfera convencional y a forjar su propio legado.</p>
 
   <p><strong style="color: var(--highlight);">RECURSOS:</strong></p>
-
+    
+  <cite>
   <li>
     <a href="https://www.youtube.com/watch?v=XPC-F1p-0_Y&t=44s">Matías De Stefano - Un Paso En la apertura De La Consciencia. 
     </a>
@@ -266,11 +267,11 @@
   <li>
     <a href="https://www.youtube.com/@LaCasaGnostica">La Casa Gnóstica
     </a>
-  </li> 
-    
+  </li>
+
+</cite>
 </section>
     
-</div>
 <footer>
   <button class="volver-btn" onclick="location.href='/'">
   VOLVER
