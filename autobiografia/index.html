@@ -107,8 +107,8 @@
       margin: 20px 0;
     }
     .gallery-track {
-      display: flex;
-      animation: scroll 40s linear infinite alternate;
+    display: flex;
+    animation: scroll 40s linear infinite;  /* ya no alternate */
     }
     .gallery-item {
       flex: 0 0 auto;
@@ -121,8 +121,8 @@
     border-radius: 8px;
     }
     @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-4060px); }  /* desplaza toda la pista hasta la última */
     }
     .mode-toggle {
       position: fixed;
