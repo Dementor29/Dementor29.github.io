@@ -86,43 +86,53 @@
       margin: 0;
       padding: 0;
     }
+    
     header, footer {
       text-align: center;
       padding: 1em;
     }
+    
     h1, h2 {
       text-align: center;
       color: var(--title-color);
       margin-top: 1em;
       font-family: 'BurzumGothic', serif;
     }
+    
     .container {
       max-width: 900px;
       margin: auto;
       padding: 20px;
     }
+    
     .gallery {
       display: flex;
       overflow: hidden;
       margin: 20px 0;
     }
+    
     .gallery-track {
       display: flex;
       animation: scroll 40s linear infinite alternate;
     }
+    
     .gallery-item {
       flex: 0 0 auto;
       margin-right: 10px;
     }
+    
     .gallery-item img {
-      width: 280px;
-      height: auto;
-      border-radius: 8px;
+    width: 280px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 8px;
     }
+    
     @keyframes scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+    
     .mode-toggle {
       position: fixed;
       top: 10px;
@@ -151,11 +161,15 @@
   background-color: var(--volver-hover-bg);
   }
 
-    a { color: var(--text-color); text-decoration: underline; }
-  </style>
+ a { color: var(--text-color); text-decoration: underline; }
+    
+</style>
 </head>
+  
 <body>
+  
 <button class="mode-toggle" onclick="toggleMode()">MODO 🌙 LECTURA</button>
+  
 <header>
   <h1>AUTOBIOGRAFIA</h1>
 </header>
@@ -177,6 +191,9 @@
       <div class="gallery-item"><img src="WhatsApp Image 2025-07-17 at 8.59.40 AM.jpeg" alt="Imagen 12"></div>
       <div class="gallery-item"><img src="WhatsApp Image 2025-07-17 at 8.59.41 AM(1).jpeg" alt="Imagen 13"></div>
       <div class="gallery-item"><img src="WhatsApp Image 2025-07-17 at 8.59.41 AM.jpeg" alt="Imagen 14"></div>
+    </div>
+  </div>
+</div>
       
   <!-- Secciones concentradas en 3 bloques -->
 <section id="origen">
@@ -232,7 +249,6 @@
 
   <p><strong style="color: var(--highlight);">RECURSOS:</strong></p>
 
-   <cite>
   <li>
     <a href="https://www.youtube.com/watch?v=XPC-F1p-0_Y&t=44s">Matías De Stefano - Un Paso En la apertura De La Consciencia. 
     </a>
@@ -267,8 +283,7 @@
     <a href="https://www.youtube.com/@LaCasaGnostica">La Casa Gnóstica
     </a>
   </li>
-
-</cite>
+    
 </section>
 
 <footer>
@@ -280,5 +295,6 @@
 <script>
   function toggleMode() { document.body.classList.toggle("light-mode"); }
 </script>
+  
 </body>
 </html>
