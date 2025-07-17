@@ -32,22 +32,6 @@
   <meta name="apple-mobile-web-app-title" content="AV STORE" />
   <link rel="manifest" href="/site.webmanifest" />
   <style>
-
-    cite li {
-    list-style: none;           /* Quita el punto de la lista */
-    margin-bottom: 8px;
-    }  
-    
-    cite li a {
-    text-decoration: none;      /* Quita la línea subrayada */
-    color: var(--text-color);   /* Mantiene el color actual */
-    }    
-
-    cite li a:hover {
-    color: var(--highlight);            /* Rojo al pasar el mouse */
-    text-decoration: underline !important; /* Si quieres que se subraye solo al pasar */
-    text-decoration-color: underline !important;
-    }
     
     /* Fuente Burzum con @font-face */
     @font-face {
@@ -108,7 +92,7 @@
     }
     .gallery-track {
     display: flex;
-    animation: scroll 80s linear infinite alternate;
+    animation: scroll 100s linear infinite alternate;
     }
     .gallery-item {
       flex: 0 0 auto;
@@ -151,7 +135,19 @@
   .volver-btn:hover {
   background-color: var(--volver-hover-bg);
   }  
-    
+
+  /* evita cualquier subrayado en tus enlaces de recursos */  
+  .recursos a {
+  text-decoration: none;
+  color: var(--text-color);
+  }
+
+  /* si quieres subrayado solo al pasar el ratón */
+  .recursos a:hover {
+  text-decoration: underline;
+  color: var(--highlight);  
+  }
+   
 </style>
 </head>
   
@@ -205,7 +201,7 @@
       <div class="gallery-item">
         <img
           src="WhatsApp Image 2025-07-17 at 8.59.38 AM.jpeg"
-          alt="Imagen 7"
+          alt="Imagen 5"
           loading="lazy"
           width="280"
           height="380"
@@ -214,7 +210,7 @@
       <div class="gallery-item">
         <img
           src="WhatsApp Image 2025-07-17 at 8.59.39 AM.jpeg"
-          alt="Imagen 8"
+          alt="Imagen 6"
           loading="lazy"
           width="280"
           height="380"
@@ -223,7 +219,7 @@
       <div class="gallery-item">
         <img
           src="WhatsApp Image 2025-07-17 at 8.59.40 AM(1).jpeg"
-          alt="Imagen 9"
+          alt="Imagen 7"
           loading="lazy"
           width="280"
           height="380"
@@ -232,7 +228,7 @@
       <div class="gallery-item">
         <img
           src="WhatsApp Image 2025-07-17 at 8.59.40 AM(3).jpeg"
-          alt="Imagen 11"
+          alt="Imagen 8"
           loading="lazy"
           width="280"
           height="380"
@@ -241,7 +237,7 @@
       <div class="gallery-item">
         <img
           src="WhatsApp Image 2025-07-17 at 8.59.40 AM.jpeg"
-          alt="Imagen 12"
+          alt="Imagen 9"
           loading="lazy"
           width="280"
           height="380"
@@ -250,7 +246,7 @@
       <div class="gallery-item">
         <img
           src="WhatsApp Image 2025-07-17 at 8.59.41 AM(1).jpeg"
-          alt="Imagen 13"
+          alt="Imagen 10"
           loading="lazy"
           width="280"
           height="380"
@@ -259,7 +255,7 @@
       <div class="gallery-item">
         <img
           src="WhatsApp Image 2025-07-17 at 8.59.41 AM.jpeg"
-          alt="Imagen 14"
+          alt="Imagen 11"
           loading="lazy"
           width="280"
           height="380"
@@ -303,6 +299,35 @@
           height="380"
         >
       </div>
+      <div class="gallery-item">
+        <img
+          src="WhatsApp Image 2025-07-17 at 8.59.38 AM.jpeg"
+          alt="Imagen 5"
+          loading="lazy"
+          width="280"
+          height="380"
+        >
+      </div>
+      <div class="gallery-item">
+        <img
+          src="WhatsApp Image 2025-07-17 at 8.59.39 AM.jpeg"
+          alt="Imagen 6"
+          loading="lazy"
+          width="280"
+          height="380"
+        >
+      </div>
+      <div class="gallery-item">
+        <img
+          src="WhatsApp Image 2025-07-17 at 8.59.40 AM(1).jpeg"
+          alt="Imagen 7"
+          loading="lazy"
+          width="280"
+          height="380"
+        >
+      </div>
+
+      
     </div>
   </div>
 </div>
@@ -361,8 +386,9 @@
     <p>Tras estudiar textos como <cite style="color: var(--highlight);">"Magia Vampírica" de Michael W. Ford</cite>, comprendí conceptos como <span style="color: var(--highlight);">Lilith</span> y el <span style="color: var(--highlight);">plano astral</span>. Este trayecto me enseñó la importancia de la <span style="color: var(--highlight);">autoedificación</span>, el respeto por la vida y la evolución constante. Mi visión abraza la liberación personal y el pensamiento crítico: no insistir en dogmas, sino fomentar el diálogo y la investigación. Así, invito a quienes me lean a cuestionar todo, a trascender la esfera convencional y a forjar su propio legado.</p>
 
   <p><strong style="color: var(--highlight);">RECURSOS:</strong></p>
-    
-  <cite>
+
+  <ul class="recursos">  
+  
   <li>
     <a href="https://www.youtube.com/watch?v=XPC-F1p-0_Y&t=44s">Matías De Stefano - Un Paso En la apertura De La Consciencia. 
     </a>
@@ -398,7 +424,6 @@
     </a>
   </li>
 
-</cite>
 </section>
     
 <footer>
