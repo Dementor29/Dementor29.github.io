@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+EN ESTE CODIGO, COMO HAGO PARA QUE EL MARCO SE VEA COMPLETO?: <!DOCTYPE html>
 <html lang="es">
 <head>
   
@@ -10,7 +10,7 @@
   <link rel="manifest" href="/site.webmanifest" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Averno Store</title>
+  <title>Averno △ Store</title>
   
   <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
 
@@ -162,7 +162,7 @@
     
     .heart-icon {
       font-size: 40px;
-      color: black;
+      color: white;
       text-shadow: 
       -0.5px -0.5px 0 black,
       0.5px -0.5px 0 black,
@@ -579,23 +579,23 @@ strong {
     
 .item-marco {
   position: relative;
-  width: 300px; /* o el tamaño que desees */
-  height: 300px; /* altura igual para mantener proporción cuadrada */
+  width: 300px;
+  height: 300px;
   overflow: hidden;
   margin: 0 30px;
-  border: 2px solid #fff; /* Agrega un borde para el marco si es necesario */
 }
 
 .item-marco img.producto-imagen {
   position: absolute;
   top: 50%; left: 50%;
-  width: 100%;          /* Ahora la imagen ocupa todo el ancho del marco */
-  height: 100%;         /* La imagen se adapta completamente al alto del marco */
-  object-fit: contain;  /* Esto mantiene la proporción de la imagen sin recortar */
-  transform: translate(-50%, -50%); /* Centra la imagen en el marco */
+  width: 90%;         /* ocupa el 80% del ancho del marco */
+  height: auto;       /* mantiene proporción */
+  max-height: 80%;    /* evita salirse verticalmente */
+  object-fit: contain;
+  transform: translate(-50%, -50%);
   z-index: 1;
 }
-    
+
 .item-marco .heart-icon {
   position: absolute;
   top: auto;          /* anula reglas globales */
@@ -610,13 +610,13 @@ strong {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2; /* por encima de la camiseta */
-  pointer-events: none; /* para que no bloquee clics */
+  width: 100%;     /* Ocupa todo el ancho del marco */
+  height: 100%;    /* Ocupa toda la altura del marco */
+  object-fit: contain; /* Asegura que la imagen se ajuste sin recortarse */
+  z-index: 2; /* Se coloca por encima de la camiseta, pero debajo de la imagen */
+  pointer-events: none; /* No bloquea interacciones, solo sirve como decorado */
 }
-
+    
  .heart-icon, .zoom-icon {
   cursor: pointer;
   padding: 5px;
