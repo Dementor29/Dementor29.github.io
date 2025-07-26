@@ -1,1 +1,1180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="AV STORE" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Averno Store x Cinco Puntas</title>
+  
+  <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
 
+
+  <!-- SEO METAETIQUETAS -->
+  <meta name="title" content="Averno Store x Cinco Puntas">
+  <meta name="description" content="Explora la fusión de diseño independiente y estilo metalero. Cinco Puntas y Averno Store unen fuerzas para ofrecerte ropa oscura, arte gráfico y expresión alternativa.">
+  <meta name="keywords" content="Cinco Puntas, Averno Store, ropa oscura, camisetas metaleras, diseño independiente, diseño gráfico oscuro, estética alternativa, tienda metal, moda inconforme, Colombia">
+  <meta name="author" content="Juan Camilo Heredia (Averno)">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="es">
+
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Cinco Puntas x Averno Store | Estética Oscura y Diseño Rebelde">
+  <meta property="og:description" content="Colaboración entre Cinco Puntas y Averno Store. Arte gráfico, camisetas oscuras, y diseño sin censura. Exprésate con estilo auténtico.">
+  <meta property="og:image" content="https://despertardelaverno.com/favicon-96x96.png">
+  <meta property="og:url" content="https://despertardelaverno.com/catalogo-ropa">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cinco Puntas x Averno Store | Moda Metalera e Independiente">
+  <meta name="twitter:description" content="Descubre una alianza creativa entre el diseño gráfico rebelde y la moda alternativa. Camisetas, arte y estilo oscuro.">
+  <meta name="twitter:image" content="https://despertardelaverno.com/favicon-96x96.png">
+
+  <style>
+    
+    :root {
+  --dorado-oscuro: #d8a156;
+  --dorado-claro: #a5783e;
+}
+
+.volver-btn {
+  background-color: var(--dorado-claro);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1em;
+}
+
+.volver-btn:hover {
+  background-color: var(--dorado-oscuro);
+  color: white;
+}
+
+    @font-face {
+      font-family: 'BurzumGothic';
+      src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
+    }
+
+    * {
+    box-sizing: border-box;
+  }
+    
+ body {
+      background-color: #000000;
+      font-family: 'BurzumGothic', serif;
+      color: white;
+      margin: 0;
+      padding: 20px;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    input,
+    textarea,
+    select {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    }
+
+  h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-family: 'BurzumGothic', serif;
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    color: #cccccc;
+    font-family: 'BurzumGothic', serif;
+    margin-bottom: 50px; /* separa del contenido de abajo */
+    margin-top: 20px;  /* sube el título desde arriba */
+  }
+    
+  .catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .item {
+    font-size: 1.1rem;
+    border-radius: 1px;
+    padding: 10px;
+    width: 260px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 0 15px;
+  }
+
+  .item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover; /* antes estaba en "contain" */
+  border-radius: 0px;
+  margin-bottom: 10px;
+  aspect-ratio: 1 / 1; /* fuerza a mantener proporción cuadrada */
+  }
+    
+  .item h3 {
+  font-size: 18px;
+  text-align: center;
+  min-height: 40px;
+  margin: 10px 0;
+  color: #cccccc;
+  font-family: 'BurzumGothic', serif;
+  }
+  
+  #wishlist h3, #cart h3 {
+  color: #cccccc;  /* rojo del footer */
+  font-family: 'BurzumGothic', serif;
+  }
+    
+  .precio {
+    font-family: 'BurzumGothic', serif;
+    color: var(--dorado-claro); 
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+    
+    .heart-icon {
+      font-size: 40px;
+      color: black;
+      text-shadow: 
+      -0.5px -0.5px 0 black,
+      0.5px -0.5px 0 black,
+      -0.5px  0.5px 0 black,
+      0.5px  0.5px 0 black;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: inline-block;  /* para que el cursor funcione siempre bien */
+      cursor: pointer;        /* ¡la clave! */
+      user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
+      z-index: 3;  
+    }
+    
+    .heart-icon.active {
+    color: var(--dorado-claro);
+    text-shadow: 0 0 6px var(--dorado-claro);
+    opacity: 1;
+    }
+    
+    .cantidad-label {
+    font-family: 'BurzumGothic', serif;
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #cccccc; 
+    }
+
+  .cantidad-talla-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* ⇠ espacio entre Cantidad y Talla */
+  margin-top: 10px;
+  flex-wrap: wrap; /* para que no se rompa en pantallas pequeñas */
+  }
+
+  .cantidad-input {
+    width: 50px;
+    margin-left: 8px;
+    padding: 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #111;
+    color: #cccccc;      
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .cantidad-input:focus {
+  border-color: var(--dorado-claro);
+  box-shadow: 0 0 5px color: var(--dorado-claro);
+  outline: none;
+  }
+    
+  select.cantidad-input {
+  background-color: black;
+  color: #cccccc; 
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 14px;
+  }
+
+  select.cantidad-input:hover {
+  border-color: var(--dorado-claro);
+  box-shadow: 0 0 6px color: var(--dorado-claro);
+  }
+
+  select.cantidad-input option {
+  background-color: black;
+  color: #cccccc; 
+  }
+    
+  .cart-button {
+    margin-top: 30px;
+    background-color: #0f0f0f; 
+    color: #cccccc;      
+    border: 1px solid #0f0f0f;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'BurzumGothic', serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .cart-button:hover {
+    background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
+    color: var(--dorado-claro); 
+    }
+    
+    #wishlist .cart-button,
+    #cart .cart-button {
+    margin-top: 10px;
+    background-color: #0f0f0f; 
+    color: var(--dorado-claro);
+    border: 1px solid #0f0f0f;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'BurzumGothic', serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;  
+    }  
+
+    #wishlist .cart-button:hover,
+    #cart .cart-button:hover {
+    background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
+    color: #cccccc; 
+    }
+
+    #wishlist button.cart-button,
+    #cart button.cart-button {
+    display: inline-block;
+    margin: 10px 5px;
+    }
+
+    /* CONTENEDORES wishlist y carrito alineados con el catálogo */
+    #wishlist,  
+    #cart {
+    background: #000;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 40px auto; /* centrado con márgenes arriba y abajo */
+    text-align: center;
+    box-sizing: border-box;
+    }
+
+    /* LISTAS UL SIN VIÑETAS NI DESALINEACIÓN */
+    #wishlist ul,
+    #cart ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0; /* margen inferior para separar botones */
+    text-align: left; /* texto alineado a la izquierda */
+    }
+
+    /* CADA ITEM DE LA LISTA (LI) CON FORMATO CLARO */
+    #wishlist ul li,
+    #cart ul li {
+    margin-bottom: 8px;
+    color: #cccccc;  
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    }
+    
+    .volver-container {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .back-link {
+      font-family: 'BurzumGothic', serif;
+      font-size: 20px;
+      color: white; 
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+    .back-link:hover {
+      background-color: #ff0000;
+    }
+    
+.nequi-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: none;
+  padding: 10px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: color 0.3s ease, background 0.3s ease;
+  z-index: 999;
+}
+
+.nequi-btn i {
+  font-size: 3rem;              /* grande y vectorial */
+  color: #cccccc;                 /* blanco por defecto */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nequi-btn:hover {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.nequi-btn:hover i {
+color: var(--dorado-oscuro);               /* tu rojo de títulos */
+}
+
+  /* FLYER EMERGENTE */
+#flyer-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000; /* fondo transparente */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+    /* FLYER EMERGENTE */
+#flyer-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000; /* fondo transparente */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#flyer-overlay img {
+  width: auto;
+  height: auto;
+  max-width: 75vw;
+  max-height: 80vh;
+  object-fit: contain;
+  animation: parpadeo-led 2.5s infinite;
+  border-radius: 0;
+}
+
+#flyer-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 22px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+#flyer-close:hover {
+color: var(--dorado-oscuro); 
+}
+
+.flyer-hint {
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  font-size: 13px;
+  color: #ccc;
+  font-family: 'BurzumGothic', serif;
+}
+
+#flyer-overlay img {
+  width: 100vw;
+  height: auto;
+  max-height: 100vh;
+  object-fit: contain;
+  animation: parpadeo-led 2.5s infinite;
+  border-radius: 0;
+}
+    
+.error-msg {
+  color: red;
+  font-size: 13px;
+  display: block;
+  margin-top: 4px;
+}
+  
+  #top-bar {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 10px 20px;
+  background-color: #111;
+  border-bottom: 1px solid var(--dorado-claro);
+  color: var(--dorado-claro);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  text-align: center;
+
+}
+
+.icono-acceso,
+.icono-acceso * {
+  cursor: pointer !important;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  text-align: center;
+}
+    
+.icono-acceso span {
+  position: absolute;
+  top: 0;
+  right: -8px;
+  background-color: transparent;
+  color: #cccccc;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-family: 'BurzumGothic', serif;
+}
+
+.icono-acceso div {
+  font-size: 16px;
+  color: var(--dorado-oscuro); /* Cambia este valor si quieres otro color para el texto */
+  transition: color 0.3s ease;
+  font-family: 'BurzumGothic', serif;
+  position: relative;
+  text-align: center;
+}
+    
+.icono-acceso:hover,
+.icono-acceso:hover * {
+  color: #cccccc;
+}
+
+.icono-acceso::after {
+  content: attr(data-descripcion);
+  display: block;
+  font-size: 13px;
+  color: #cccccc; /* Cambia este color si quieres otro para la descripción */
+  margin-top: 5px;
+  font-family: 'BurzumGothic', serif;
+}
+
+/* efecto “zoom-focus” al clic en los iconos */
+.zoom-focus {
+  position: relative;
+  z-index: 1000;
+  transform: scale(1.05);
+  transition: transform 0.9s ease;
+}
+
+/* …tu bloque footer#contacto tal como lo tienes… */
+footer#contacto {
+  background: #111;
+  color: #cccccc;
+  padding: 2.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  text-align: left;
+  border-top: 2px solid var(--dorado-claro);
+  animation: pulseFooter 10s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+/* A continuación tus reglas para los <p> e <i> dentro */
+footer#contacto div p {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+footer#contacto i {
+  margin-right: 0.5rem;
+  color: var(--dorado-oscuro);
+  font-size: 1rem;
+}
+
+/* Y, para extender footer y header al 100% */
+#top-bar,
+footer#contacto {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.bloque-manifiesto {
+  background: rgba(20, 20, 20, 0.85);
+  font-size: 15px;
+  color: #cccccc;
+  border-left: 3px solid var(--dorado-claro);
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  font-family: 'BurzumGothic', serif;
+  text-align: justify;
+}
+
+.frase-autor {
+  background: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'), rgba(0, 0, 0, 0.5);
+  background-blend-mode: overlay;
+  background-size: cover;
+  padding: 15px 20px;
+  font-style: italic;
+  color: #ccc;
+  font-family: 'BurzumGothic', serif;
+  font-size: 1.2rem; /* ↖️ Aumenta aquí el tamaño */
+  text-align: center;
+  margin: 30px auto 0;
+  max-width: 800px;
+}
+
+strong {
+  color: var(--dorado-claro); /* o reemplaza por otro color como #C10202 */
+}
+
+.etiqueta-exclusivo {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: var(--dorado-claro);
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: 'BurzumGothic', serif;
+  z-index: 10;
+}
+    
+.item-marco {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  margin: 0 30px;
+}
+
+.item-marco img.producto-imagen {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 90%;         /* ocupa el 80% del ancho del marco */
+  height: auto;       /* mantiene proporción */
+  max-height: 80%;    /* evita salirse verticalmente */
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.item-marco .heart-icon {
+  position: absolute;
+  top: auto;          /* anula reglas globales */
+  right: auto;
+  bottom: -13px;        /* 8px del borde inferior */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+    
+.item-marco img.marco-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2; /* por encima de la camiseta */
+  pointer-events: none; /* para que no bloquee clics */
+}
+
+ .heart-icon, .zoom-icon {
+  cursor: pointer;
+  padding: 5px;
+}
+   
+.item-marco .zoom-icon {
+  position: absolute;
+  bottom: -16px;    /* fuera del marco */
+  left: -16px;      /* fuera del marco */
+  font-size: 1.4rem;
+  color: #ccc;
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+  z-index: 5;
+}
+
+.zoom-icon:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+  color: var(--dorado-claro); /* o cualquier color que quieras */
+}
+    
+#lightbox {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+#lightbox .close-btn {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 3rem;
+  color: #cccc;
+  cursor: pointer;
+  font-family: 'BurzumGothic', serif;
+}
+    
+#lightbox .close-btn:hover {
+  color: var(--dorado-claro);
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+    
+.cantidad-y-talla {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espacio horizontal entre elementos */
+}
+
+.separator {
+  width: 4px;
+  display: inline-block;
+  height: 1.1em; /* del tamaño del texto */
+  background-color: var(--dorado-oscuro); /* color de la línea */
+  opacity: 0.6; /* hace la línea más sutil */
+  position: relative;
+  top: 4px; /* mueve hacia abajo */
+}
+
+.gif-fuego {
+  width: 90px;
+  height: auto;
+  vertical-align: middle;
+  margin: 0 6px;
+  vertical-align: text-bottom;
+  }
+
+ form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: black;
+  padding: 20px;
+  border: none;
+  border-radius: 1px;
+  }
+
+  form label {
+  color: var(--dorado-claro);
+  font-family: 'BurzumGothic', serif;
+  }
+
+  form input,
+  form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  background: black;
+  color: #ccc;
+  border: 1px solid #333;
+  border-radius: 1px;
+  }
+
+  form button {
+  background: var(--dorado-claro);
+  color: #000;
+  font-family: 'BurzumGothic', serif;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: background 0.3s;
+  }
+
+  form button:hover {
+  background: var(--dorado-oscuro);
+  color: white;
+  }
+
+  .bloque-manifiesto {
+  background: transparent;                  /* elimina el fondo gris */
+  border-left: none;                        /* elimina la línea amarilla */
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  font-family: 'BurzumGothic', serif;
+  text-align: justify;
+  color: #cccccc;
+  }
+
+  .linea-dorada {
+  border: none;
+  height: 1px;
+  background-color: var(--dorado-claro);
+  margin: 40px auto 20px auto;
+  width: calc(100vw - 40px); /* 20px padding por lado */
+  }
+
+  /* Responsivo */
+  @media (max-width: 600px) {
+  h2 {
+    font-size: 26px; /* o menos si quieres */
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .gif-fuego {
+    width: 40px;
+    margin: 0 4px;
+  }
+  }
+    
+  @media (max-width: 600px) {
+  footer#contacto {
+    flex-direction: column;        /* cambia de horizontal a vertical */
+    align-items: flex-start;       /* alinea cada columna a la izquierda */
+  }
+
+  footer#contacto div {
+    width: 100%;                   /* cada columna ocupa todo el ancho */
+  }
+
+  footer#contacto div p {
+    font-size: 0.85rem;
+  }
+
+  footer#contacto i {
+    font-size: 1rem;
+  }
+}
+
+  @media (max-width: 600px) {
+  body {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+    
+  @media (max-width: 600px) {
+  /* En móviles más pequeños, aprovechamos casi todo el ancho/alto */
+  #flyer-overlay img {
+    width: 95vw;       /* casi todo el ancho de la pantalla */
+    height: auto;      /* mantiene proporción */
+    max-width: 95vw;   /* evita que exceda ese ancho */
+    max-height: 95vh;  /* evita que exceda la altura visible */
+  }
+  }
+
+</style>
+</head>
+<body>
+  
+  <div id="flyer-overlay">
+  <button id="flyer-close" title="Cerrar">𒉽</button>
+  <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
+  <img src="colasenama.png" alt="Flyer Averno"/>
+  </div>
+
+<section class="bloque-manifiesto">
+<p><strong class="destacado">Cinco Puntas Diseño</strong> y <strong class="destacado">Averno Store</strong> Unen fuerzas para celebrar la identidad Oscura, Rebelde y Espiritual del Metal extremo. Esta colección limitada fusiona arte, Diseño gráfico brutalista y La esencia inconforme del underground Colombiano, Seperando la simbologia dandole eco y auto visibilidad en algunos casos mas profunda y en otros mas directa.</p>
+<blockquote class="frase-autor">
+  “Nuestras ediciones son limitadas porque nuestros diseños no son para el rebaño.”
+</blockquote>
+   
+</section>
+
+ <header id="top-bar">
+  <div class="icono-acceso"
+       onclick="irYZoom('wishlist')"
+       data-descripcion="Ver Tus Productos Infernales">🤘🏻<strong>Lista de Deseos</strong>
+    <span id="contador-wishlist">0</span>
+  </div>
+
+  <div class="icono-acceso"
+       onclick="irYZoom('cart')"
+       data-descripcion="Revisa Tus Compras Del Averno">🛒<strong>Carrito de Compras</strong>
+    <span id="contador-cart">0</span>
+  </div>
+</header>
+  
+  <h2>¡EDICION <img src="fuego.gif" class="gif-fuego" alt="fuego"> LIMITADA!</h2>
+  <p style="text-align:center; color:#777; font-size:13px; margin-top:-20px; margin-bottom:40px;">> HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA <</p>
+  <div class="catalogo" id="catalogo-ropa"></div>
+  
+  <div id="wishlist">
+  <h3>Lista de deseos</h3>
+  <ul id="wishlist-items"></ul>
+  <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+  <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+  </div>
+
+  <div id="cart">
+  <h3>Carrito de compras</h3>
+  <ul id="cart-items"></ul>
+  <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+  <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+  </div>
+
+  <hr class="linea-dorada"> 
+  <section class="bloque-manifiesto"> 
+  <h2>Sugerencias △ Comentarios</h2>
+  <form action="https://formspree.io/f/xvgqpgpl" method="POST">
+    <label for="email">Tu correo:</label><br>
+    <input type="email" name="email" id="email" required><br><br>
+
+    <label for="mensaje">Tu mensaje:</label><br>
+    <textarea name="message" id="mensaje" rows="6" required></textarea><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+  </section>
+
+  <div class="volver-container">
+  <button class="volver-btn" onclick="location.href='/'">VOLVER</button>
+  </div>
+
+  <footer id="contacto" data-aos="fade-up" data-aos-delay="600">
+    <div>
+      <p><i class="fas fa-envelope"></i><strong> Correo:</strong> averno_store@despertardelaverno.com </p>
+      <p><i class="fab fa-facebook"></i> <strong>Facebook:</strong> https://www.facebook.com/AvrnoStore</p>
+    </div>
+    <div>
+      <p><i class="fas fa-phone"></i><strong> Teléfono:</strong> +57 3154277973</p>
+      <p><i class="fab fa-whatsapp"></i><strong> WhatsApp:</strong> +57 3181541064</p>
+    </div>
+    <div>
+      <p><i class="fas fa-map-marker-alt"></i><strong> Dirección:</strong> Palmira - Valle del Cauca</p>
+      <p><i class="fas fa-copyright"></i> 2025 ₳VⱤ₦Ø ₴₮ØⱤɆ </p>
+    </div>
+  </footer>
+
+  <a class="nequi-btn" href="https://wa.me/message/7GNMDBFX4L6IJ1"
+   target="_blank">
+  <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    const productosRopa = [
+      { nombre: "BURZUM", precio: 40000, imagen: "1.png" },
+      { nombre: "DEICIDE", precio: 85000, imagen: "2.png" },
+      { nombre: "BEHEMOTH", precio: 20000, imagen: "3.png" }
+    ];
+    
+    let wishlistData = {};
+    let cartData = {};
+
+    function crearItem(producto, esRopa = true) {
+    const item = document.createElement("div");
+    item.className = "item";
+    const id = producto.nombre.replace(/\s+/g, "_");
+
+    let tallaSelect = esRopa ? `
+    <label class="cantidad-label">Talla:
+      <select class="cantidad-input" id="talla-${id}">
+        <option value="">Elige talla</option>
+        <option value="S">S</option><option value="M">M</option>
+        <option value="L">L</option><option value="XL">XL</option>
+      </select>
+    </label>
+    <span id="error-${id}" class="error-msg"></span>
+    `: "";
+
+    item.innerHTML = `
+    <div class="item-marco">
+    <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
+    <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span> 
+    <img src="marco.png" alt="Marco decorativo" class="marco-overlay"></div>
+    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')"><i class="fas fa-search"></i></div>
+    <div class="etiqueta-exclusivo">🔥 EXCLUSIVO</div>
+    <h3>${producto.nombre}</h3>
+    <div class="precio">$${producto.precio.toLocaleString()}</div>
+    <div class="cantidad-talla-wrapper">
+    <label class="cantidad-label">Cant:
+    <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> </label> <div class="separator"></div> ${tallaSelect} </div>
+    <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
+  `;
+
+    // Aquí agregamos el listener que borra el error al cambiar la talla:
+    if (esRopa) {
+    const select = item.querySelector(`#talla-${id}`);
+    const errorSpan = item.querySelector(`#error-${id}`);
+    select.addEventListener('change', () => {
+      if (select.value) {
+        errorSpan.textContent = "";
+      }
+    });
+    }
+
+    return item;
+    }
+
+    function renderCatalogo(productos, contenedorId, esRopa) {
+      const cont = document.getElementById(contenedorId);
+      cont.innerHTML = "";
+      productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
+    }
+
+    function toggleFavorite(el, nombre, precio, esRopa) {
+      el.classList.toggle("active");
+      if (wishlistData[nombre]) delete wishlistData[nombre];
+      else wishlistData[nombre] = { precio, esRopa };
+      renderWishlist();
+    }
+
+    function renderWishlist() {
+      const ul = document.getElementById("wishlist-items");
+      ul.innerHTML = "";
+      for (let nombre in wishlistData) {
+        const producto = wishlistData[nombre];
+        const id = nombre.replace(/\s+/g, "_");
+        const tallaSelect = producto.esRopa ? `
+    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+    <select id="wishlist-talla-${id}" class="cantidad-input">
+      <option value="">Elige talla</option>
+      <option value="S">S</option><option value="M">M</option>
+      <option value="L">L</option><option value="XL">XL</option>
+    </select>
+    </label>
+    <span id="error-wishlist-${id}" class="error-msg"></span>
+    ` : "";
+
+    ul.innerHTML += `
+          <li style="margin-bottom: 12px;">
+            <span>${nombre} — $${producto.precio.toLocaleString()}</span>
+            ${tallaSelect}
+            <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+          </li>
+        `;
+      }
+    }
+
+    function eliminarDeWishlist(nombre) {
+      delete wishlistData[nombre];
+      document.querySelector(`.heart-icon[onclick*='${nombre}']`)?.classList.remove("active");
+      renderWishlist();
+    }
+
+ function addToCart(nombre, precio, esRopa) {
+  const id = nombre.replace(/\s+/g, "_");
+  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
+  let talla = "";
+
+  if (esRopa) {
+    talla = document.getElementById(`talla-${id}`).value;
+    const errorEl = document.getElementById(`error-${id}`);
+    if (!talla) {
+      if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+      errorEl.style.color = 'var(--dorado-oscuro)';
+      return;
+    } else {
+      if (errorEl) errorEl.textContent = "";
+    }
+  }
+
+  cartData[nombre] = { precio, cantidad, talla };
+  renderCarrito();
+}
+    function moverWishlistACarrito() {
+    for (let nombre in wishlistData) {
+    const producto = wishlistData[nombre];
+    const id = nombre.replace(/\s+/g, "_");
+    let talla = "";
+    if (producto.esRopa) {
+  talla = document.getElementById(`wishlist-talla-${id}`).value;
+
+    const errorEl = document.getElementById(`error-wishlist-${id}`);
+    if (!talla) {
+    if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+    errorEl.style.color = 'var(--dorado-oscuro)'; 
+    return;
+    } else {
+    if (errorEl) errorEl.textContent = "";
+    }
+    }
+
+   cartData[nombre] = { precio: producto.precio, cantidad: 1, talla };
+      }
+      wishlistData = {};
+      renderWishlist();
+      renderCarrito();
+      document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+    }
+
+    function renderCarrito() {
+      const ul = document.getElementById("cart-items");
+      ul.innerHTML = "";
+      for (let nombre in cartData) {
+        const it = cartData[nombre];
+        ul.innerHTML += `<li>${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+      }
+    }
+
+    function eliminarDelCarrito(nombre) {
+      delete cartData[nombre];
+      renderCarrito();
+    }
+
+  function vaciarWishlist() {
+    wishlistData = {};
+    renderWishlist();
+    document.querySelectorAll('.heart-icon.active')
+      .forEach(icon => icon.classList.remove('active'));
+    document.querySelectorAll(".cantidad-input").forEach(input => {
+    if (input.type === "number") input.value = 1;
+    else input.value = "";
+  });
+  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+  }
+
+  function vaciarCarrito() {
+    cartData = {};
+    renderCarrito();
+   document.querySelectorAll(".cantidad-input").forEach(input => {
+    if (input.type === "number") input.value = 1;
+    else input.value = "";
+  });
+  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+    
+  }
+
+    function comprarPorWhatsapp() {
+      if (!Object.keys(cartData).length) {
+        alert("Carrito vacío");
+        return;
+      }
+      let msg = "Hola, quiero comprar:%0A";
+      for (let nombre in cartData) {
+        const it = cartData[nombre];
+        msg += `- ${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
+      }
+      window.open(`https://wa.me/573181541064?text=${msg}`, '_blank');
+    }
+
+    renderCatalogo(productosRopa, "catalogo-ropa", true);
+    renderWishlist();
+    document.getElementById('flyer-close').onclick = function () {
+    document.getElementById('flyer-overlay').style.display = 'none';
+    };
+    
+//FUNCION NUEVA//
+  function actualizarContadores() {
+  document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
+  document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
+  }
+
+// Llamar al actualizar contadores cuando se renderizan
+  function renderWishlist() {
+  const ul = document.getElementById("wishlist-items");
+  ul.innerHTML = "";
+  for (let nombre in wishlistData) {
+  const producto = wishlistData[nombre];
+  const id = nombre.replace(/\s+/g, "_");
+  const tallaSelect = producto.esRopa ? `
+    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+    <select id="wishlist-talla-${id}" class="cantidad-input">
+    <option value="">Elige talla</option>
+    <option value="S">S</option><option value="M">M</option>
+    <option value="L">L</option><option value="XL">XL</option>
+    </select>
+    </label>
+    <span id="error-wishlist-${id}" class="error-msg"></span>
+    ` : "";
+
+    ul.innerHTML += `
+      <li style="margin-bottom: 12px;">
+      <span>${nombre} — $${producto.precio.toLocaleString()}</span>
+       ${tallaSelect}
+      <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+      </li>
+      `;
+    }
+
+  actualizarContadores();
+  }
+
+  function renderCarrito() {
+  const ul = document.getElementById("cart-items");
+  ul.innerHTML = "";
+  for (let nombre in cartData) {
+  const it = cartData[nombre];
+  ul.innerHTML += `<li>${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+}
+
+actualizarContadores();
+}
+
+function irYZoom(seccionId) {
+  const el = document.getElementById(seccionId);
+  if (!el) return;
+  // 1) Desplaza y centra
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // 2) Aplica zoom-focus
+  el.classList.add('zoom-focus');
+  // 3) Quita el zoom al cabo de 600 ms
+  setTimeout(() => el.classList.remove('zoom-focus'), 1500);
+}
+
+function scrollCarrusel(direccion) {
+  const carrusel = document.querySelector('.carrusel');
+  const scrollAmount = 300; // ajusta el desplazamiento según tu gusto
+  carrusel.scrollBy({ left: direccion * scrollAmount, behavior: 'smooth' });
+}
+
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  img.src = src;
+  lb.style.display = 'flex';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+    
+</script>
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close-btn">×</span>
+  <img id="lightbox-img" src="" alt="Ampliación">
+</div>
+  
+</body>
+</html>
