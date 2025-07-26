@@ -108,15 +108,15 @@
   }
     
   .catalogo {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 40px;
-    width: 100%;
-    max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Reducido el espacio entre los ítems */
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 100%;
   }
-
+    
   .item {
     font-size: 1.1rem;
     border-radius: 1px;
@@ -582,7 +582,7 @@ strong {
   width: 300px;
   height: 300px;
   overflow: hidden;
-  margin: 0 30px;
+  margin: 0 20px;
 }
 
 .item-marco img.producto-imagen {
@@ -608,13 +608,14 @@ strong {
     
 .item-marco img.marco-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;     /* Ocupa todo el ancho del marco */
-  height: 100%;    /* Ocupa toda la altura del marco */
-  object-fit: contain; /* Asegura que la imagen se ajuste sin recortarse */
-  z-index: 2; /* Se coloca por encima de la camiseta, pero debajo de la imagen */
-  pointer-events: none; /* No bloquea interacciones, solo sirve como decorado */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  width: 120%; /* Aumenta el tamaño del marco (más grande que el área de la camiseta) */
+  height: 120%; /* Aumenta la altura del marco */
+  object-fit: cover; /* Asegura que la imagen se cubra por completo sin deformarse */
+  transform: translate(-50%, -50%); /* Centra la imagen */
+  z-index: 2; /* Se coloca por encima de la camiseta */
+  pointer-events: none; /* No interfiere con las interacciones */
 }
     
  .heart-icon, .zoom-icon {
