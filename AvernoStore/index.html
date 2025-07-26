@@ -579,10 +579,11 @@ strong {
     
 .item-marco {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 300px; /* Tamaño ajustado del marco */
+  height: 300px; /* Mantener la altura proporcional */
   overflow: hidden;
-  margin: 0 20px;
+  margin: 0 20px; /* Menos espacio entre los items */
+  border: 2px solid #fff; /* Borde visible del marco */
 }
 
 .item-marco img.producto-imagen {
@@ -610,14 +611,13 @@ strong {
   position: absolute;
   top: 50%; /* Centrado vertical */
   left: 50%; /* Centrado horizontal */
-  width: 120%; /* Aumenta el tamaño del marco (más grande que el área de la camiseta) */
-  height: 120%; /* Aumenta la altura del marco */
-  object-fit: cover; /* Asegura que la imagen se cubra por completo sin deformarse */
-  transform: translate(-50%, -50%); /* Centra la imagen */
-  z-index: 2; /* Se coloca por encima de la camiseta */
-  pointer-events: none; /* No interfiere con las interacciones */
-}
-    
+  width: 110%; /* Ajuste para que la imagen del marco sea un poco más grande */
+  height: 110%; /* Ajuste de altura para que la imagen del marco no se recorte */
+  object-fit: contain; /* Asegura que la imagen del marco se ajuste sin recortarse */
+  transform: translate(-50%, -50%); /* Centra la imagen dentro del marco */
+  z-index: 2; /* Imagen del marco por encima de la camiseta */
+  pointer-events: none; /* La imagen del marco no bloquea interacciones */
+}   
  .heart-icon, .zoom-icon {
   cursor: pointer;
   padding: 5px;
