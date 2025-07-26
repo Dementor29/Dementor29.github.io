@@ -582,20 +582,21 @@ strong {
   width: 300px; /* Tamaño ajustado del marco */
   height: 300px; /* Mantener la altura proporcional */
   overflow: hidden;
-  margin: 0 15px; /* Menos espacio entre los items */
+  margin: 0 20px; /* Menos espacio entre los items */
 }
 
 .item-marco img.producto-imagen {
   position: absolute;
-  top: 50%; left: 50%;
-  width: 90%;         /* ocupa el 80% del ancho del marco */
-  height: auto;       /* mantiene proporción */
-  max-height: 80%;    /* evita salirse verticalmente */
-  object-fit: contain;
-  transform: translate(-50%, -50%);
+  top: 40%; /* Mueve la imagen un poco hacia arriba desde el centro */
+  left: 50%;
+  width: 90%; /* Sigue ocupando el 90% del ancho del marco */
+  height: auto; /* Mantiene la proporción */
+  max-height: 80%; /* Evita que se salga verticalmente */
+  object-fit: contain; /* Mantiene la imagen dentro del área sin recortes */
+  transform: translate(-50%, -50%); /* Centra la imagen */
   z-index: 1;
 }
-
+    
 .item-marco .heart-icon {
   position: absolute;
   top: auto;          /* anula reglas globales */
@@ -610,8 +611,8 @@ strong {
   position: absolute;
   top: 50%; /* Centrado vertical */
   left: 50%; /* Centrado horizontal */
-  width: 150%; /* Ajuste para que la imagen del marco sea un poco más grande */
-  height: 150%; /* Ajuste de altura para que la imagen del marco no se recorte */
+  width: 140%; /* Ajuste para que la imagen del marco sea un poco más grande */
+  height: 140%; /* Ajuste de altura para que la imagen del marco no se recorte */
   object-fit: contain; /* Asegura que la imagen del marco se ajuste sin recortarse */
   transform: translate(-50%, -50%); /* Centra la imagen dentro del marco */
   z-index: 2; /* Imagen del marco por encima de la camiseta */
