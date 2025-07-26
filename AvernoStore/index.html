@@ -169,7 +169,7 @@
       -0.5px  0.5px 0 black,
       0.5px  0.5px 0 black;
       position: absolute;
-      top: 5px;
+      top: 8px;
       right: 8px;
       display: inline-block;  /* para que el cursor funcione siempre bien */
       cursor: pointer;        /* ¡la clave! */
@@ -568,7 +568,7 @@ strong {
   top: 6px;
   left: 6px;
   background: #333333;
-  color: black;
+  color: white;
   font-size: 12px;
   font-weight: bold;
   padding: 2px 6px;
@@ -643,28 +643,36 @@ strong {
   color: var(--dorado-claro); /* o cualquier color que quieras */
 }
     
+/* Lightbox para la imagen ampliada */
 #lightbox {
   display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.85);
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85); /* Fondo oscuro */
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
+
+/* Imagen ampliada en el lightbox */
 #lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  max-width: 80%; /* Limita el ancho máximo de la imagen */
+  max-height: 80%; /* Limita la altura máxima de la imagen */
+  object-fit: contain; /* Mantiene la proporción de la imagen sin recortes */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra para mejorar el contraste */
 }
+
+/* Close button (botón para cerrar el lightbox) */
 #lightbox .close-btn {
   position: absolute;
-  top: 20px; right: 30px;
+  top: 20px;
+  right: 30px;
   font-size: 3rem;
   color: #cccc;
   cursor: pointer;
   font-family: 'BurzumGothic', serif;
 }
-    
+
 #lightbox .close-btn:hover {
   color: var(--dorado-claro);
   transform: scale(1.2);
