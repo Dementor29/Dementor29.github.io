@@ -40,7 +40,7 @@
     
     :root {
   --dorado-oscuro: #8B0000;
-  --dorado-claro: #B22222;
+  --dorado-claro: #8B0000;
 }
 
 .volver-btn {
@@ -579,23 +579,23 @@ strong {
     
 .item-marco {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 300px; /* o el tamaño que desees */
+  height: 300px; /* altura igual para mantener proporción cuadrada */
   overflow: hidden;
   margin: 0 30px;
+  border: 2px solid #fff; /* Agrega un borde para el marco si es necesario */
 }
 
 .item-marco img.producto-imagen {
   position: absolute;
   top: 50%; left: 50%;
-  width: 90%;         /* ocupa el 80% del ancho del marco */
-  height: auto;       /* mantiene proporción */
-  max-height: 80%;    /* evita salirse verticalmente */
-  object-fit: contain;
-  transform: translate(-50%, -50%);
+  width: 100%;          /* Ahora la imagen ocupa todo el ancho del marco */
+  height: 100%;         /* La imagen se adapta completamente al alto del marco */
+  object-fit: contain;  /* Esto mantiene la proporción de la imagen sin recortar */
+  transform: translate(-50%, -50%); /* Centra la imagen en el marco */
   z-index: 1;
 }
-
+    
 .item-marco .heart-icon {
   position: absolute;
   top: auto;          /* anula reglas globales */
