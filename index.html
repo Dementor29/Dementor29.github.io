@@ -139,19 +139,19 @@
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
 
-  /* NUEVO contenedor footer */
 .flyer-footer {
   position: absolute;
-  bottom: 120px;               /* a 20px del borde inferior */
-  left: 50%;                  /* empieza en el centro */
+  bottom: 120px;
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 60px;
-  z-index: 10;                /* encima de la imagen */
-  pointer-events: auto;       /* clickeable */
+  z-index: 10;
+  pointer-events: auto;
 }
-
+   
 /* ya no necesitarás posicionar individualmente */
 .cruz-invertida,
 .ver-coleccion-btn,
@@ -499,21 +499,17 @@
   pointer-events: auto;       /* Que sigan clicables */
 }
 
-.cruz-invertida {
-  font-size: 100px;
-  color: white;
-  margin: 0 20px;
-  display: inline-block;
-  line-height: 1;
-  user-select: none;
-  position: absolute;       /* Asegura que z-index surta efecto */
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+.cruz-invertida-img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0) invert(1); /* asegura que se vea blanca en fondo negro */
 }
    
- .parpadea {
+  .parpadea {
   animation: parpadeoSuave 3s infinite;
 }
     
@@ -659,7 +655,7 @@
       <i class="fa fa-eye"></i> Ver
     </a>
    
-   <div class="cruz-invertida">𐕣</div>
+   <img src="cruz.png" alt="cruz invertida" class="cruz-invertida-img"/>
    
     <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
       Cerrar
