@@ -157,42 +157,46 @@
   background-color: var(--volver-hover-bg);
   }  
     
-.enlace-titulo {
-  text-decoration: none;
-  color: #e9e9e9;
-  display: inline-block;
-  transition: color 0.3s ease;
+.titulo-banda {
+  text-align: center;     /* centra todo su contenido */
+  margin: 1em 0;          /* separa un poco arriba y abajo */
 }
 
+/* elimina el tamaño fijo y deja que herede el <h2> por defecto */
 .enlace-titulo h2 {
-  font-family: 'Burzum', serif;
-  font-size: 28px;
-  font-weight: normal;
+  display: inline;        /* ya no bloque completo, sino inline para heredar el centrado */
+  font-family: 'BurzumGothic', serif;
+  font-size: inherit;     /* mismo tamaño que tus otros h2 */
   margin: 0;
- text-align: center !important;
   position: relative;
-  display: inline-block;
   text-transform: uppercase;
 }
 
+/* subrayado animado en hover */
 .enlace-titulo h2::after {
   content: '';
-  display: block;
-  width: 0;
-  height: 2px;
-  background-color: var(--highlight, #ff0000);
-  transition: width 0.3s ease;
   position: absolute;
+  left: 0; right: 0;
   bottom: -4px;
-  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: var(--highlight);
+  transition: width 0.3s ease;
 }
 
 .enlace-titulo:hover h2::after {
   width: 100%;
 }
 
+/* color inicial y en hover */
+.enlace-titulo {
+  color: var(--title-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
 .enlace-titulo:hover {
-  color: var(--highlight, #ff0000);
+  color: var(--highlight);
 }
     
 </style>
@@ -441,11 +445,11 @@
 
   <p>Lejos de las tendencias comerciales, <strong style="color: var(--highlight);">AZEAZEL</strong> se mueve en los márgenes, con la intención de abrirse paso en la escena underground con honestidad, oscuridad y furia ritual.</p>
 
-  <li style="list-style: none;">
+  <div class="titulo-banda">
   <a href="/banda/" class="enlace-titulo">
     <h2>AZEAZEL</h2>
   </a>
-  </li>
+  </div>
     
   </section>
   
