@@ -138,8 +138,7 @@
   0%, 100% { transform: translateY(0px); opacity: 0.5; }
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
-
- 
+   
   /* Contenedor modal */
   #flyer-modal {
   display: none;
@@ -161,7 +160,7 @@
   background: url('humo.png') center top / cover no-repeat;
   opacity: 0.6;
   pointer-events: none;
-  z-index: 103;
+  z-index: 102;
   animation:
   fadeSmoke 60s ease-out forwards,
   moverSmoke 60s linear infinite,   /* movimiento suave e infinito */
@@ -182,7 +181,7 @@
   /* Flyer bajo el humo */
   #flyer-modal .flyer-img {
   position: relative;
-  z-index: 101;
+  z-index: 100;
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
@@ -192,7 +191,7 @@
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
   position: relative;
-  z-index: 102;
+  z-index: 101;
   text-align: center;      /* centra el contenido */
   margin-top: 20px;
   align-items: center;
