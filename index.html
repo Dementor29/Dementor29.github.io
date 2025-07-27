@@ -149,7 +149,7 @@
   overflow: hidden;           /* importante para recortar el humo */
   visibility: visible !important;
   pointer-events: none;
-  z-index: -1;
+  z-index: 1000;  
   }
 
   /* Humo a pantalla completa */
@@ -161,7 +161,7 @@
   background: url('humo.png') center top / cover no-repeat;
   opacity: 0.6;
   pointer-events: none;
-  z-index: 3;
+  z-index: 1001;
   animation:
   fadeSmoke 60s ease-out forwards,
   moverSmoke 60s linear infinite,   /* movimiento suave e infinito */
@@ -192,7 +192,7 @@
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
   position: relative;     /* garantiza que el z-index se aplique */
-  z-index:  10 !important; /* bien por encima de todo */
+  z-index: 1003  !important; /* bien por encima de todo */
   pointer-events: auto !important;
   text-align: center;      /* centra el contenido */
   margin-top: 20px;
