@@ -55,7 +55,11 @@
     margin: 0;
     padding: 0;
     }
-    
+   
+   body {
+  visibility: hidden;
+  }
+   
   @font-face {
   font-family: 'BurzumGothic';
   src: url('fonts/BurzumGothic.woff') format('woff');
@@ -97,6 +101,17 @@
   -ms-user-select: none;
   }
 
+  body.modal-abierto main,
+  body.modal-abierto header,
+  body.modal-abierto nav,
+  body.modal-abierto .secondary-nav,
+  body.modal-abierto .barra-cinco-puntas,
+  body.modal-abierto footer,
+  body.modal-abierto .bloque-reproductor,
+  body.modal-abierto #bandera-play {
+  display: none !important;
+  }
+   
   input,
   textarea,
   select {
@@ -106,6 +121,134 @@
   -ms-user-select: text;
   }
 
+  #humo-fondo {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35vh;
+  background: url('humo.png') no-repeat bottom center;
+  background-size: cover;
+  pointer-events: none;
+  opacity: 0.45;
+  z-index: 9998;
+  animation: flotarHumo 12s ease-in-out infinite;
+  }
+
+  @keyframes flotarHumo {
+  0%, 100% { transform: translateY(0px); opacity: 0.5; }
+  50% { transform: translateY(-8px); opacity: 0.7; }
+  }
+
+  /* Contenedor modal */
+  #flyer-modal {
+  display: none;
+  position: fixed;
+  inset: 0;                   /* top:0; right:0; bottom:0; left:0 */
+  background-color: black;
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  overflow: hidden;           /* importante para recortar el humo */
+  visibility: visible !important;
+  }
+
+  /* Humo a pantalla completa */
+  #flyer-modal #humo-fondo {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('humo.png') center top / cover no-repeat;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 3;
+  animation:
+  fadeSmoke 60s ease-out forwards,
+  moverSmoke 60s linear infinite,   /* movimiento suave e infinito */
+  
+  }
+    /* Movimiento suave e infinito */
+  @keyframes moverSmoke {
+  from { background-position: 0 0; }
+  to   { background-position: 200px 200px; }
+  }
+
+  /* Desvanecimiento lento, manteniendo la imagen estacionaria */
+  @keyframes fadeSmoke {
+  from { opacity: 0.6; }
+  to   { opacity:   0; }
+  }
+    
+  /* Flyer bajo el humo */
+  #flyer-modal .flyer-img {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+  }
+    
+  /* Asegura que los botones queden centrados */
+  #flyer-modal .flyer-cta {
+  position: relative;
+  z-index: 2;
+  text-align: center;      /* centra el contenido */
+  margin-top: 20px;
+  align-items: center;
+  gap: 30px; /* más separación */
+  margin-top: 20px;
+  width: auto;
+  }
+
+  /* Estilo para “Ver Colección” */
+  .ver-coleccion-btn {
+  font-family: 'BurzumGothic', serif;
+  background-color: black;   
+  color: white; 
+  text-decoration: none;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: none;
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(193, 2, 2, 20);
+  margin-right: 10px;      /* separa del botón cerrar */
+  }
+
+  /* Elimina cualquier margin-right en “Ver Colección” */
+  .ver-coleccion-btn {
+  margin: 10; /* antes tenía margin-right:10px; */
+  padding: 8px 16px; /* tamaño reducido como pediste */
+  }  
+
+  /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
+  .flyer-close-btn {
+  font-family: 'BurzumGothic', serif;
+  background-color: black;      /* mismo fondo */
+  color: white;                  /* mismo texto */
+  border: none;                  /* sin borde */
+  padding: 8px 16px;             /* igual tamaño */
+  border-radius: 1px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(193, 2, 2, 20);
+  }
+
+  /* Hover idéntico */
+  .flyer-close-btn:hover {
+  background-color: #cccccc; /* mismo hover */
+  box-shadow: 0 0 10px black, 0 0 20px black;
+  color: black; 
+  }
+    
+  .ver-coleccion-btn:hover,  
+  .flyer-close-btn:hover {
+  background-color: #cccccc; 
+  color: black; 
+  box-shadow: 0 0 10px black, 0 0 20px black;
+  }
   header {
   display: flex;
   flex-direction: column;
@@ -117,7 +260,7 @@
   text-align: center;
   font-family: 'BurzumGothic', serif;
   color: inherit;
- }    
+  }    
    
    header h1 {
    color: #A10000;
@@ -333,6 +476,25 @@
   pointer-events: auto;
 }
 
+.flyer-cta a.ver-coleccion-btn,
+.flyer-cta button.flyer-close-btn {
+  width: auto;
+  min-width: 120px; /* opcional, para que no queden tan pequeños */
+  text-align: center;
+}
+
+.cruz-invertida {
+  font-size: 80px;
+  color: white;
+  margin: 0 20px;
+  display: inline-block;
+  line-height: 1;
+  user-select: none;
+}
+    
+ .parpadea {
+  animation: parpadeoSuave 3s infinite;
+}
     
 /* Enlaces con efecto de subrayado animado */
     nav a,
@@ -465,7 +627,28 @@
   </style>
   </head>
   <body>
-    
+
+    <!-- 1) Contenedor del modal -->
+  <div id="flyer-modal">
+  <!-- 2) Imagen humo a pantalla completa -->
+  <div id="humo-fondo"></div>
+  <!-- 3) Flyer encima del humo -->
+  <img src="cola.png" class="flyer-img" alt="Flyer Cinco Puntas" />
+  <!-- 4) CTA -->
+  <div class="flyer-cta">
+  <a href="avernoxcincopuntas/" class="ver-coleccion-btn parpadea">
+  <i class="fa fa-eye"></i> Ver
+  </a>
+
+  <div class="cruz-invertida">𐕣</div>
+
+  <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
+  Cerrar
+  </button>
+  </div>
+
+  </div>
+   
   <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
   <i class="fas fa-play" style="margin-right: 8px;"></i> Presiona y Escucha
   </div>
@@ -503,6 +686,34 @@
   <a href="libros/" style="color: #cccccc;">VENTA DE LIBROS</a>
 </div>
 -->
+  <div class="barra-cinco-puntas fade-in" style="
+  width: 100%;
+  background: linear-gradient(to right, #000000, #330000, #000000);
+  text-align: center;
+  padding: 14px 10px;
+  margin-top: -20px;
+  z-index: 99;
+  position: relative;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  font-family: 'BurzumGothic', serif;
+  animation: parpadeoSuave 3s infinite;
+">
+  ⚔️ NUEVA COLECCIÓN DISPONIBLE: <a href="avernoxcincopuntas/" style="color:#C10202; text-decoration:underline;">CINCO PUNTAS DISEÑO</a> ⚔️
+</div>
+   
+<main>
+  <section class="fade-in" id="alianza-cinco-puntas">
+    <h2>AVERNO STORE   <strong style="color:#C10202;"> X</strong>  CINCO PUNTAS</h2>
+    <p>
+      Forjamos una alianza con <strong style="color:#C10202;">Cinco Puntas Diseño</strong>, marca independiente colombiana de camisetas oscuras y esotéricas. 
+      Ahora disponibles en nuestra tienda como <strong>colección exclusiva</strong> para almas rebeldes.
+    </p>
+    <div class="ver-mas"><a href="avernoxcincopuntas/">Ver más</a></div>
+  </section>
+  </main>
+   
   <div class="separador"></div>
   <main> 
   <section id="intro" class="fade-in">
@@ -555,12 +766,33 @@
       });
     }
   }
+  
+  window.addEventListener('DOMContentLoaded', function () {
+  const flyer = document.getElementById("flyer-modal");
+  const humo  = document.getElementById("humo-fondo");
 
- function toggleSubmenu() {
+  flyer.style.display = "block";
+  humo.style.display  = "block";
+
+  document.body.classList.add("modal-abierto");
+
+  // ✅ Aquí mostramos el body completo sin parpadeo
+  document.body.style.visibility = "visible";
+
+  // Botón cerrar
+  window.cerrarFlyer = function () {
+    flyer.style.display = "none";
+    humo.style.display  = "none";
+    document.body.classList.remove("modal-abierto");
+  };
+  });
+
+  // Alternar visibilidad del submenú en clic (móvil o PC)
+  function toggleSubmenu() {
     const submenu = document.querySelector('.submenu-items');
     const isVisible = submenu.classList.contains('visible');
 
-    // Cierra todos los submenús antes de abrir el nuevo
+    // Cierra si está abierto
     document.querySelectorAll('.submenu-items').forEach(el => el.classList.remove('visible'));
 
     if (!isVisible) {
@@ -568,6 +800,7 @@
     }
   }
 
+  // Cierra el submenú al hacer clic fuera
   document.addEventListener('click', function(e) {
     const submenuContainer = document.querySelector('.submenu');
     if (!submenuContainer.contains(e.target)) {
