@@ -138,6 +138,28 @@
   0%, 100% { transform: translateY(0px); opacity: 0.5; }
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
+
+  /* NUEVO contenedor footer */
+.flyer-footer {
+  position: absolute;
+  bottom: 20px;               /* a 20px del borde inferior */
+  left: 50%;                  /* empieza en el centro */
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 10;                /* encima de la imagen */
+  pointer-events: auto;       /* clickeable */
+}
+
+/* ya no necesitarás posicionar individualmente */
+.cruz-invertida,
+.ver-coleccion-btn,
+.flyer-close-btn {
+  position: static !important;
+  bottom: auto; left: auto; transform: none;
+  z-index: auto;
+}
    
  #flyer-modal {
   position: fixed; /* no relative */
@@ -645,25 +667,20 @@
   </head>
   <body>
 
-<!-- 1) Contenedor del modal -->
   <div id="flyer-modal">
-  <!-- 2) Imagen humo a pantalla completa -->
   <div id="humo-fondo"></div>
-  <!-- 3) Flyer encima del humo -->
   <img src="palmira.png" class="flyer-img" alt="Flyer Cinco Puntas" />
-  <!-- 4) CTA -->
-  <div class="flyer-cta">
-  <a href="avernoxcincopuntas/" class="ver-coleccion-btn parpadea">
-  <i class="fa fa-eye"></i> Ver
-  </a>
 
-  <div class="cruz-invertida">𐕣</div>
-
-  <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
-  Cerrar
-  </button>
+  <!-- NUEVO: contenedor footer -->
+  <div class="flyer-footer">
+    <div class="cruz-invertida">𐕣</div>
+    <a href="avernoxcincopuntas/" class="ver-coleccion-btn parpadea">
+      <i class="fa fa-eye"></i> Ver
+    </a>
+    <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
+      Cerrar
+    </button>
   </div>
-
   </div>
     
   <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
