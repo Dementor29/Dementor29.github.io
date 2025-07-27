@@ -148,6 +148,22 @@
   z-index: 9990;
   overflow: hidden;
   }   
+
+   /* Humo a pantalla completa */
+  #flyer-modal #humo-fondo {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('humo.png') center top / cover no-repeat;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 3;
+  animation:
+  fadeSmoke 60s ease-out forwards,
+  moverSmoke 60s linear infinite,   /* movimiento suave e infinito */
+  }
+   
   /* Movimiento suave e infinito */
   @keyframes moverSmoke {
   from { background-position: 0 0; }
