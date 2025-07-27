@@ -278,7 +278,10 @@
   background-color: #cccccc; 
   color: black; 
   box-shadow: 0 0 10px black, 0 0 20px black;
+  padding: 12px 20px;  /* antes 8px/16px, sube a 12px/20px */
+  font-size: 1.2rem;   /* antes 1.1rem, sube a 1.2rem */
   }
+   
   header {
   display: flex;
   flex-direction: column;
@@ -525,7 +528,7 @@
   line-height: 1;
   user-select: none;
   position: absolute;       /* Asegura que z-index surta efecto */
-  bottom: 20px;
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -672,11 +675,11 @@
   <img src="palmira.png" class="flyer-img" alt="Flyer Cinco Puntas" />
 
   <!-- NUEVO: contenedor footer -->
-  <div class="flyer-footer">
-    <div class="cruz-invertida">𐕣</div>
-    <a href="avernoxcincopuntas/" class="ver-coleccion-btn parpadea">
+  <div class="flyer-footer"> 
+    <a href="AvernoStore/" class="ver-coleccion-btn parpadea">
       <i class="fa fa-eye"></i> Ver
     </a>
+   <div class="cruz-invertida">𐕣</div>
     <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
       Cerrar
     </button>
