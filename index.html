@@ -130,23 +130,23 @@
   background-size: cover;
   pointer-events: none;
   opacity: 0.45;
-  z-index: -3 !important;
+  z-index: 9998;
   animation: flotarHumo 12s ease-in-out infinite;
   }
-
+   
   @keyframes flotarHumo {
   0%, 100% { transform: translateY(0px); opacity: 0.5; }
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
    
-  /* Contenedor modal */
+ /* Contenedor modal */
   #flyer-modal {
   display: none;
   position: fixed;
   inset: 0;                   /* top:0; right:0; bottom:0; left:0 */
   background-color: black;
   backdrop-filter: blur(6px);
-  z-index: 100;
+  z-index: 9999;
   overflow: hidden;           /* importante para recortar el humo */
   visibility: visible !important;
   }
@@ -160,7 +160,7 @@
   background: url('humo.png') center top / cover no-repeat;
   opacity: 0.6;
   pointer-events: none;
-  z-index: 102;
+  z-index: 3;
   animation:
   fadeSmoke 60s ease-out forwards,
   moverSmoke 60s linear infinite,   /* movimiento suave e infinito */
@@ -178,20 +178,20 @@
   to   { opacity:   0; }
   }
     
-  /* Flyer bajo el humo */
+ /* Flyer bajo el humo */
   #flyer-modal .flyer-img {
   position: relative;
-  z-index: 100;
+  z-index: 2;
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
   display: block;
   }
-    
+   
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
   position: relative;
-  z-index: 101;
+  z-index: 2;
   text-align: center;      /* centra el contenido */
   margin-top: 20px;
   align-items: center;
@@ -475,6 +475,7 @@
   visibility: visible;
   pointer-events: auto;
 }
+
 
 .flyer-cta a.ver-coleccion-btn,
 .flyer-cta button.flyer-close-btn {
