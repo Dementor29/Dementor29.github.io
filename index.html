@@ -130,7 +130,7 @@
   background-size: cover;
   pointer-events: none;
   opacity: 0.45;
-  z-index: 9998;
+  z-index: -3 !important;
   animation: flotarHumo 12s ease-in-out infinite;
   }
 
@@ -182,7 +182,7 @@
   /* Flyer bajo el humo */
   #flyer-modal .flyer-img {
   position: relative;
-  z-index: 0;
+  z-index: -2 !important;
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
@@ -191,8 +191,9 @@
     
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
-  position: relative;
-  z-index: 0;
+  position: relative;     /* garantiza que el z-index se aplique */
+  z-index:  10 !important; /* bien por encima de todo */
+  pointer-events: auto !important;
   text-align: center;      /* centra el contenido */
   margin-top: 20px;
   align-items: center;
