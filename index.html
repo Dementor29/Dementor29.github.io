@@ -139,17 +139,17 @@
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
 
+ 
   /* Contenedor modal */
   #flyer-modal {
   display: none;
   position: fixed;
   inset: 0;                   /* top:0; right:0; bottom:0; left:0 */
-  background-color: #2e2e2e;
+  background-color: black;
   backdrop-filter: blur(6px);
+  z-index: 9999;
   overflow: hidden;           /* importante para recortar el humo */
   visibility: visible !important;
-  pointer-events: none;
-  z-index: 1000;  
   }
 
   /* Humo a pantalla completa */
@@ -161,13 +161,13 @@
   background: url('humo.png') center top / cover no-repeat;
   opacity: 0.6;
   pointer-events: none;
-  z-index: 1001;
+  z-index: 3;
   animation:
   fadeSmoke 60s ease-out forwards,
   moverSmoke 60s linear infinite,   /* movimiento suave e infinito */
-  
   }
-    /* Movimiento suave e infinito */
+   
+  /* Movimiento suave e infinito */
   @keyframes moverSmoke {
   from { background-position: 0 0; }
   to   { background-position: 200px 200px; }
@@ -182,7 +182,7 @@
   /* Flyer bajo el humo */
   #flyer-modal .flyer-img {
   position: relative;
-  z-index: -2 !important;
+  z-index: 2;
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
@@ -191,9 +191,8 @@
     
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
-  position: relative;     /* garantiza que el z-index se aplique */
-  z-index: 1003  !important; /* bien por encima de todo */
-  pointer-events: auto !important;
+  position: relative;
+  z-index: 2;
   text-align: center;      /* centra el contenido */
   margin-top: 20px;
   align-items: center;
@@ -483,7 +482,6 @@
   width: auto;
   min-width: 120px; /* opcional, para que no queden tan pequeños */
   text-align: center;
-  z-index: 10;
 }
 
 .cruz-invertida {
@@ -493,9 +491,8 @@
   display: inline-block;
   line-height: 1;
   user-select: none;
-  z-index: 10;
 }
-    
+   
  .parpadea {
   animation: parpadeoSuave 3s infinite;
 }
