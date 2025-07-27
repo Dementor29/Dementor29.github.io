@@ -139,35 +139,15 @@
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
    
- /* Contenedor modal */
-  #flyer-modal {
-  display: none;
-  position: relative; /* clave para que z-index funcione internamente */
-  inset: 0;                   /* top:0; right:0; bottom:0; left:0 */
+ #flyer-modal {
+  position: fixed; /* no relative */
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: black;
-  backdrop-filter: blur(6px);
-  z-index: 1;
-  overflow: hidden;           /* importante para recortar el humo */
-  visibility: visible !important;
-  }
-
-  /* Humo a pantalla completa */
-  #flyer-modal #humo-fondo {
-  position: absolute;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  background: url('humo.png') center top / cover no-repeat;
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 3;
-  animation:
-  fadeSmoke 60s ease-out forwards,
-  moverSmoke 60s linear infinite,   /* movimiento suave e infinito */
-  }
-   
+  z-index: 9990;
+  overflow: hidden;
+  }   
   /* Movimiento suave e infinito */
   @keyframes moverSmoke {
   from { background-position: 0 0; }
@@ -182,18 +162,17 @@
     
  /* Flyer bajo el humo */
   #flyer-modal .flyer-img {
-  position: relative;
-  z-index: 1; 
-  max-width: 800px;
-  width: 90%;
-  margin: 0 auto;
-  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5; /* flyer al medio */
   }
    
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
-  position: relative;         /* Asegura que z-index surta efecto */
-  z-index: 50;                /* Intermedio */
+  position: absolute;         /* Asegura que z-index surta efecto */
+  z-index: 10;                /* Intermedio */
   pointer-events: auto;       /* Que sigan clicables */
   text-align: center;      /* centra el contenido */
   margin-top: 20px;
@@ -237,6 +216,10 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 0 6px rgba(193, 2, 2, 20);
+  position: absolute;
+  z-index: 10; /* botones al frente */
+  bottom: 20px;
+  left: 20px;
   }
 
   /* Hover idéntico */
@@ -497,8 +480,10 @@
   display: inline-block;
   line-height: 1;
   user-select: none;
-  position: relative;         /* Asegura que z-index surta efecto */
-  z-index: 50;                /* Intermedio */
+  position: absolute;       /* Asegura que z-index surta efecto */
+  z-index: 10;                /* Intermedio */
+  bottom: 20px;
+  left: 20px;
 }
    
  .parpadea {
@@ -638,19 +623,17 @@
   <body>
 
 <!-- 1) Contenedor del modal -->
-<div id="flyer-modal">
+  <div id="flyer-modal">
   <!-- 2) Imagen humo a pantalla completa -->
   <div id="humo-fondo"></div>
   <!-- 3) Flyer encima del humo -->
-  <img src="palmira.png" class="flyer-img" alt="Flyer Palmira x Averno Store" />
+  <img src="palmira.png" class="flyer-img" alt="Flyer Cinco Puntas" />
   <!-- 4) CTA -->
   <div class="flyer-cta">
-    <a href="AvernoStore/" class="ver-coleccion-btn parpadea">
-      <i class="fa fa-eye"></i> Ver
-    </a>
-  </div>
-</div> <!-- ← Aquí cierras #flyer-modal -->
-   
+  <a href="avernoxcincopuntas/" class="ver-coleccion-btn parpadea">
+  <i class="fa fa-eye"></i> Ver
+  </a>
+
   <div class="cruz-invertida">𐕣</div>
 
   <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
@@ -659,7 +642,7 @@
   </div>
 
   </div>
-   
+    
   <div id="bandera-play" onclick="document.getElementById('reproductor').play()">
   <i class="fas fa-play" style="margin-right: 8px;"></i> Presiona y Escucha
   </div>
