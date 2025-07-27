@@ -142,11 +142,11 @@
  /* Contenedor modal */
   #flyer-modal {
   display: none;
-  position: fixed;
+  position: relative; /* clave para que z-index funcione internamente */
   inset: 0;                   /* top:0; right:0; bottom:0; left:0 */
   background-color: black;
   backdrop-filter: blur(6px);
-  z-index: 9999;
+  z-index: 1;
   overflow: hidden;           /* importante para recortar el humo */
   visibility: visible !important;
   }
