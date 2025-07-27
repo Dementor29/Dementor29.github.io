@@ -199,14 +199,18 @@
   to   { opacity:   0; }
   }
     
- /* Flyer bajo el humo */
-  #flyer-modal .flyer-img {
+ .flyer-img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 5; /* flyer al medio */
-  }
+  z-index: 5;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
    
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
