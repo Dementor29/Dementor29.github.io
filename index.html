@@ -146,10 +146,10 @@
   inset: 0;                   /* top:0; right:0; bottom:0; left:0 */
   background-color: #2e2e2e;
   backdrop-filter: blur(6px);
-  z-index: 0;
   overflow: hidden;           /* importante para recortar el humo */
   visibility: visible !important;
   pointer-events: none;
+  z-index: -1;
   }
 
   /* Humo a pantalla completa */
@@ -182,7 +182,7 @@
   /* Flyer bajo el humo */
   #flyer-modal .flyer-img {
   position: relative;
-  z-index: 2;
+  z-index: 0;
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
@@ -192,7 +192,7 @@
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
   position: relative;
-  z-index: 2;
+  z-index: 0;
   text-align: center;      /* centra el contenido */
   margin-top: 20px;
   align-items: center;
