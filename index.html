@@ -646,26 +646,37 @@
   }
 }
 
-@media (max-width: 768px) {
-  .flyer-footer {
-    bottom: 80px;       /* ajusta este valor para posicionar justo bajo la cruz */
-    gap: 60px;          /* mantén el mismo espacio que en PC */
-    padding: 0;         /* quita el padding móvil que agregamos antes */
+  @media (max-width: 768px) {
+  /* Aumenta la imagen y súbela un poco */
+  .flyer-img {
+    max-height: 75vh;    /* más grande en móvil */
+    top: 40%;            /* sube la imagen desde el 50% al 40% */
+    /* conserva left/transform para centrar */
   }
 
+  /* Eleva los botones y quita wrapping */
+  .flyer-footer {
+    bottom: 100px;       /* menos distancia al fondo para subirlos */
+    gap: 30px;           /* reduce el espacio para que quepan bien */
+  }
+
+  /* Mantén icono y texto en la misma línea */
   .ver-coleccion-btn,
   .flyer-close-btn {
-    padding: 12px 20px; /* mismos valores que en PC */
-    font-size: 1.4rem;  /* igual que en pantalla grande */
+    display: inline-flex;    /* flex interno */
+    align-items: center;
+    white-space: nowrap;     /* evitamos que “Ver” baje */
   }
 
-  .cruz-invertida-img {
-    height: 200px;       /* deja que sea su altura natural */
-    max-height: 100px;  /* o el valor que quieras para que no desborde */
-    width: auto;
+  /* Ajuste fino del padding si es necesario */
+  .ver-coleccion-btn {
+    padding: 12px 20px;
   }
-}
-
+  .flyer-close-btn {
+    padding: 12px 20px;
+  }
+  }
+    
   </style>
   </head>
   <body>
