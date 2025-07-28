@@ -889,48 +889,7 @@
 
   document.body.classList.add("modal-abierto");
 
-  // ✅ Aquí mostramos el body completo sin parpadeo
-  document.body.style.visibility = "visible";
-
-  // Botón cerrar
-  window.cerrarFlyer = function () {
-    flyer.style.display = "none";
-    humo.style.display  = "none";
-    document.body.classList.remove("modal-abierto");
-  };
-  });
-
-  // Alternar visibilidad del submenú en clic (móvil o PC)
-  function toggleSubmenu() {
-    const submenu = document.querySelector('.submenu-items');
-    const isVisible = submenu.classList.contains('visible');
-
-    // Cierra si está abierto
-    document.querySelectorAll('.submenu-items').forEach(el => el.classList.remove('visible'));
-
-    if (!isVisible) {
-      submenu.classList.add('visible');
-    }
-  }
-
-  // Cierra el submenú al hacer clic fuera
-  document.addEventListener('click', function(e) {
-    const submenuContainer = document.querySelector('.submenu');
-    if (!submenuContainer.contains(e.target)) {
-      document.querySelectorAll('.submenu-items').forEach(el => el.classList.remove('visible'));
-    }
-  });
-
-  window.addEventListener('DOMContentLoaded', function () {
-  const flyer = document.getElementById("flyer-modal");
-  const humo  = document.getElementById("humo-fondo");
-
-  flyer.style.display = "block";
-  humo.style.display  = "block";
-
-  document.body.classList.add("modal-abierto");
-
-  // ✅ Aquí mostramos el body completo sin parpadeo
+  // Mostrar el body completamente sin parpadeo
   document.body.style.visibility = "visible";
 
   // Función para añadir la clase 'parpadea' después de que la animación termine
@@ -939,7 +898,7 @@
   botones.forEach((boton) => {
     // Espera que la animación de caída termine
     boton.addEventListener('animationend', function() {
-      // Añade la clase parpadea después de la animación de caída
+      // Añade la clase 'parpadea' después de la animación de caída
       boton.classList.add('parpadea');
     });
   });
