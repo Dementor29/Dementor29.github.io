@@ -609,6 +609,39 @@
 #introduccion {
   margin-top: 60px;
 }
+    
+/* 1) Definimos la animación de “caída” */
+@keyframes caer {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 2) Aplicamos la animación con delays para escalonar la entrada */
+.flyer-img {
+  animation: caer 0.8s ease-out forwards;
+  animation-delay: 0s;
+}
+
+.cruz-invertida-img {
+  animation: caer 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.ver-coleccion-btn {
+  animation: caer 0.8s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.flyer-close-btn {
+  animation: caer 0.8s ease-out forwards;
+  animation-delay: 0.6s;
+}
 
 @keyframes parpadeoSuave {
   0%, 100% { opacity: 0.6; }
