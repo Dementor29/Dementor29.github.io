@@ -500,7 +500,6 @@
   pointer-events: auto;
 }
 
-
 .flyer-cta a.ver-coleccion-btn,
 .flyer-cta button.flyer-close-btn {
   width: auto;
@@ -526,7 +525,7 @@
 /* 1) Animación de parpadeo con brillo intenso */
 @keyframes parpadeoIntenso {
   0%, 100% {
-    opacity: 0.2;
+    opacity: 0.6;
     filter: brightness(1);
   }
   50% {
@@ -538,6 +537,7 @@
 /* 2) Aplica la nueva animación */
 .parpadea {
   animation: parpadeoIntenso 0.8s ease-in-out infinite;
+  opacity: 1; /* Asegúrate de que no empiece con 0 */
 }
     
 /* Enlaces con efecto de subrayado animado */
