@@ -911,6 +911,32 @@
     }
   });
 
+window.addEventListener('DOMContentLoaded', function () {
+  const flyer = document.getElementById("flyer-modal");
+  const humo  = document.getElementById("humo-fondo");
+
+  flyer.style.display = "block";
+  humo.style.display  = "block";
+
+  document.body.classList.add("modal-abierto");
+
+  // Muestra el body completo sin parpadeo
+  document.body.style.visibility = "visible";
+
+  // Añadir clase parpadea después de que los botones caigan
+  setTimeout(function () {
+    document.querySelector('.ver-coleccion-btn').classList.add('parpadea');
+    document.querySelector('.flyer-close-btn').classList.add('parpadea');
+  }, 2500);  // Ajusta este tiempo si necesitas un retraso diferente
+
+  // Botón cerrar
+  window.cerrarFlyer = function () {
+    flyer.style.display = "none";
+    humo.style.display  = "none";
+    document.body.classList.remove("modal-abierto");
+  };
+});
+
 </script>
 </body>
 </html>
