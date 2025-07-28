@@ -514,8 +514,21 @@
   filter: brightness(0) invert(1); /* asegura que se vea blanca en fondo negro */
 }
    
-  .parpadea {
-  animation: parpadeoSuave 3s infinite;
+/* 1) Animación de parpadeo con brillo intenso */
+@keyframes parpadeoIntenso {
+  0%, 100% {
+    opacity: 0.2;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(4);   /* Explosión de brillo */
+  }
+}
+
+/* 2) Aplica la nueva animación */
+.parpadea {
+  animation: parpadeoIntenso 0.8s ease-in-out infinite;
 }
     
 /* Enlaces con efecto de subrayado animado */
