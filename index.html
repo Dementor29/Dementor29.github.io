@@ -648,23 +648,24 @@
 
 @media (max-width: 768px) {
   .flyer-footer {
-    bottom: 60px;       /* acércalo más al fondo para que no quede fuera */
-    gap: 20px;          /* reduce el espacio entre elementos */
-    padding: 0 10px;    /* margen lateral para evitar desbordes */
-    box-sizing: border-box;
+    bottom: 80px;       /* ajusta este valor para posicionar justo bajo la cruz */
+    gap: 60px;          /* mantén el mismo espacio que en PC */
+    padding: 0;         /* quita el padding móvil que agregamos antes */
   }
 
   .ver-coleccion-btn,
   .flyer-close-btn {
-    padding: 8px 12px;  /* botones más pequeños */
-    font-size: 1rem;    /* texto más compacto */
+    padding: 12px 20px; /* mismos valores que en PC */
+    font-size: 1.4rem;  /* igual que en pantalla grande */
   }
 
   .cruz-invertida-img {
-    height: 40px;       /* reduce el tamaño de la cruz si hace falta */
+    height: auto;       /* deja que sea su altura natural */
+    max-height: 100px;  /* o el valor que quieras para que no desborde */
+    width: auto;
   }
 }
-    
+
   </style>
   </head>
   <body>
