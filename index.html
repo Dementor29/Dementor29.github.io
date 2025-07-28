@@ -920,7 +920,7 @@
     }
   });
 
-window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('DOMContentLoaded', function () {
   const flyer = document.getElementById("flyer-modal");
   const humo  = document.getElementById("humo-fondo");
 
@@ -929,7 +929,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   document.body.classList.add("modal-abierto");
 
-  // Muestra el body completo sin parpadeo
+  // ✅ Aquí mostramos el body completo sin parpadeo
   document.body.style.visibility = "visible";
 
   // Función para añadir la clase 'parpadea' después de que la animación termine
@@ -938,7 +938,7 @@ window.addEventListener('DOMContentLoaded', function () {
   botones.forEach((boton) => {
     // Espera que la animación de caída termine
     boton.addEventListener('animationend', function() {
-      // Añade la clase parpadea
+      // Añade la clase parpadea después de la animación de caída
       boton.classList.add('parpadea');
     });
   });
@@ -950,7 +950,7 @@ window.addEventListener('DOMContentLoaded', function () {
     document.body.classList.remove("modal-abierto");
   };
 });
-
+  
 </script>
 </body>
 </html>
