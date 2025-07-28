@@ -609,45 +609,54 @@
   margin-top: 60px;
 }
     
-/* 1) Keyframes para la imagen, arrancando a -100vh arriba */
+/* Animación de caída de la imagen */
 @keyframes caerFlyer {
   0% {
-    transform: translate(-50%, -150%); /* -150% para asegurarnos de que venga muy de arriba */
+    transform: translate(-50%, -150%); /* Empieza desde arriba */
     opacity: 0;
   }
   100% {
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /* Se mueve a la posición central */
     opacity: 1;
   }
 }
 
-/* 2) Keyframes para cruz y botones, arrancando a -100vh arriba */
+/* Animación de caída de la cruz y botones */
 @keyframes caerY {
   0% {
-    transform: translateY(-100vh);
+    transform: translateY(-100vh); /* Empieza desde arriba */
     opacity: 0;
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(0); /* Se mueve a la posición final */
     opacity: 1;
   }
 }
 
-/* 3) Aplicación con duración más lenta y delays escalonados */
+/* Aplica la animación con retraso */
 .flyer-img {
   animation: caerFlyer 2.5s ease-out forwards;
-  animation-delay: 0s;
+  animation-delay: 0s;  /* Sin retraso */
 }
 
+/* Animación para cruz */
 .cruz-invertida-img {
   animation: caerY 2.5s ease-out forwards;
-  animation-delay: 0.5s;
+  animation-delay: 0.5s;  /* Retraso para la cruz */
 }
 
+/* Animación para botones */
 .ver-coleccion-btn,
 .flyer-close-btn {
   animation: caerY 2.5s ease-out forwards;
-  animation-delay: 1s;
+  animation-delay: 1s;  /* Retraso para los botones */
+}
+
+/* Para asegurarte de que no se trabe, usa el fill-mode para que mantengan su estado final */
+.cruz-invertida-img,
+.ver-coleccion-btn,
+.flyer-close-btn {
+  animation-fill-mode: forwards;
 }
     
 @keyframes parpadeoSuave {
