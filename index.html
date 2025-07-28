@@ -923,11 +923,16 @@ window.addEventListener('DOMContentLoaded', function () {
   // Muestra el body completo sin parpadeo
   document.body.style.visibility = "visible";
 
-  // Añadir clase parpadea después de que los botones caigan
-  setTimeout(function () {
-    document.querySelector('.ver-coleccion-btn').classList.add('parpadea');
-    document.querySelector('.flyer-close-btn').classList.add('parpadea');
-  }, 2500);  // Ajusta este tiempo si necesitas un retraso diferente
+  // Función para añadir la clase 'parpadea' después de que la animación termine
+  const botones = document.querySelectorAll('.ver-coleccion-btn, .flyer-close-btn');
+
+  botones.forEach((boton) => {
+    // Espera que la animación de caída termine
+    boton.addEventListener('animationend', function() {
+      // Añade la clase parpadea
+      boton.classList.add('parpadea');
+    });
+  });
 
   // Botón cerrar
   window.cerrarFlyer = function () {
