@@ -59,7 +59,17 @@
    body {
   visibility: hidden;
   }
-   
+
+  /* 0) Oculto todo hasta que empiece la animación */
+  .flyer-img,
+  .cruz-invertida-img,
+  .ver-coleccion-btn,
+  .flyer-close-btn {
+  opacity: 0;
+  /* Asegúrate de que la animación mantenga el estado final */
+  animation-fill-mode: forwards;
+  }
+    
   @font-face {
   font-family: 'BurzumGothic';
   src: url('fonts/BurzumGothic.woff') format('woff');
