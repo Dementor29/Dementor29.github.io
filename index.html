@@ -140,16 +140,12 @@
   }
 
 .flyer-footer {
-  position: absolute;
-  bottom: 120px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* elimina: position, bottom, left, transform */
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 60px;
-  z-index: 10;
-  margin-top: 250px;
+  margin-top: 20px; /* aquí sube o baja cambiando este valor */
   pointer-events: auto;
 }
    
@@ -166,14 +162,16 @@
 #flyer-modal {
   position: fixed;
   top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centra todo verticalmente */
-  align-items: center;
+  justify-content: center; /* centra verticalmente */
+  align-items: center;     /* centra horizontalmente */
   background-color: #0a0a0a;
   z-index: 9990;
- }
+  overflow: hidden;
+}
    
    /* Humo a pantalla completa */
   #flyer-modal #humo-fondo {
@@ -203,17 +201,13 @@
   }
     
  .flyer-img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
+  /* elimina estos: position, top, left, transform, z-index */
   max-width: 90vw;
   max-height: 90vh;
   width: auto;
   height: auto;
   object-fit: contain;
-}
+  }
    
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
