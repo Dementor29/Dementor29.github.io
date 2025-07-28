@@ -645,6 +645,25 @@
     font-size: 1rem;
   }
 }
+
+@media (max-width: 768px) {
+  .flyer-footer {
+    bottom: 60px;       /* acércalo más al fondo para que no quede fuera */
+    gap: 20px;          /* reduce el espacio entre elementos */
+    padding: 0 10px;    /* margen lateral para evitar desbordes */
+    box-sizing: border-box;
+  }
+
+  .ver-coleccion-btn,
+  .flyer-close-btn {
+    padding: 8px 12px;  /* botones más pequeños */
+    font-size: 1rem;    /* texto más compacto */
+  }
+
+  .cruz-invertida-img {
+    height: 40px;       /* reduce el tamaño de la cruz si hace falta */
+  }
+}
     
   </style>
   </head>
