@@ -248,7 +248,6 @@
   font-size: 1.4rem;   /* antes 1.1rem, sube a 1.2rem */
   margin-right: 10px;      /* separa del botón cerrar */
   top: 20px; /* sube este valor para bajarlo más */
-  opacity: 1;
   }
    
   /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
@@ -264,7 +263,6 @@
   transition: all 0.3s ease;
   display: inline-block;
   top: 20px; /* sube este valor para bajarlo más */
-  opacity: 1;
   }
    
   .ver-coleccion-btn:hover,  
@@ -512,7 +510,7 @@
   pointer-events: auto;       /* Que sigan clicables */
 }
 
-.cruz-invertida-img {
+  .cruz-invertida-img {
   object-fit: contain;
   display: block;
   max-height: none;
@@ -522,35 +520,24 @@
   align-items: center;
   justify-content: center;
   filter: brightness(0) invert(1); /* asegura que se vea blanca en fondo negro */
-}
-   
-/* 1) Animación de parpadeo con brillo intenso */
-@keyframes parpadeoIntenso {
-  0%, 100% {
-    opacity: 0.6;
-    filter: brightness(1);
   }
-  50% {
+    
+    /* 1) Animación de parpadeo con brillo intenso */
+    @keyframes parpadeoIntenso {
+    0%, 100% {
+    opacity: 0.2;
+    filter: brightness(1);
+    }
+    50% {
     opacity: 1;
     filter: brightness(4);   /* Explosión de brillo */
-  }
-}
+    }
+    }
 
-/* 2) Aplica la nueva animación */
-.parpadea {
-  animation: parpadeoIntenso 0.8s ease-in-out infinite;
-  opacity: 1; /* Asegúrate de que no empiece con 0 */
-}
-    
-/* Enlaces con efecto de subrayado animado */
-    nav a,
-    .secondary-nav a,
-    .submenu-toggle,
-    .submenu-items a {
-    position: relative;
-    text-decoration: none;
-    display: inline-block;
-    }    
+    /* 2) Aplica la nueva animación */
+    .parpadea {
+    animation: parpadeoIntenso 0.8s ease-in-out infinite;
+    }
 
     /* Línea animada debajo de los enlaces */
     nav a::after,
