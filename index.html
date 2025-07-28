@@ -610,8 +610,20 @@
   margin-top: 60px;
 }
     
-/* 1) Definimos la animación de “caída” */
-@keyframes caer {
+/* Keyframes para la imagen, preservando su centrado X */
+@keyframes caerFlyer {
+  0% {
+    transform: translate(-50%, -200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+/* Animación de caída solo en Y para cruz y botones */
+@keyframes caerY {
   0% {
     transform: translateY(-200px);
     opacity: 0;
@@ -622,27 +634,28 @@
   }
 }
 
-/* 2) Aplicamos la animación con delays para escalonar la entrada */
+/* Aplico caerFlyer a la imagen */
 .flyer-img {
-  animation: caer 0.8s ease-out forwards;
+  animation: caerFlyer 0.8s ease-out forwards;
   animation-delay: 0s;
 }
 
+/* Aplico caerY escalonado a cruz y botones */
 .cruz-invertida-img {
-  animation: caer 0.8s ease-out forwards;
+  animation: caerY 0.8s ease-out forwards;
   animation-delay: 0.3s;
 }
 
 .ver-coleccion-btn {
-  animation: caer 0.8s ease-out forwards;
+  animation: caerY 0.8s ease-out forwards;
   animation-delay: 0.6s;
 }
 
 .flyer-close-btn {
-  animation: caer 0.8s ease-out forwards;
+  animation: caerY 0.8s ease-out forwards;
   animation-delay: 0.6s;
 }
-
+    
 @keyframes parpadeoSuave {
   0%, 100% { opacity: 0.6; }
   50%      { opacity: 1; }
