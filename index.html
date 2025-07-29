@@ -159,17 +159,14 @@
   pointer-events: auto;
 }
    
-/* Animación de caída para la cruz y los botones */
-.cruz-invertida-img,
+/* ya no necesitarás posicionar individualmente */
+.cruz-invertida,
 .ver-coleccion-btn,
 .flyer-close-btn {
-  opacity: 0;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%); /* Centrado horizontal */
-  z-index: 10;
-  animation: caerY 2.5s ease-out forwards;
-  animation-delay: 0s; /* Sin retraso para todos */
+  position: static !important;
+  bottom: auto; left: auto; transform: none;
+  z-index: auto;
+  margin-top: 100px; /* o el valor que necesites */
 }
    
  #flyer-modal {
@@ -634,14 +631,14 @@
   }
 }
 
-/* Animación de caída (para cruz y botones) */
+/* Animación de caída de la cruz y botones */
 @keyframes caerY {
   0% {
-    transform: translateY(-100vh); /* Empieza fuera de la pantalla (arriba) */
+    transform: translateY(-100vh); /* Empieza desde arriba */
     opacity: 0;
   }
   100% {
-    transform: translateY(0); /* Se mueve a la posición final (en su lugar) */
+    transform: translateY(0); /* Se mueve a la posición final */
     opacity: 1;
   }
 }
