@@ -544,21 +544,19 @@
     }
     }
 
-    /* 1) Oculta inicialmente los botones y define las dos animaciones en cascada */
+   /* 1) Sólo caída */
     .ver-coleccion-btn,
     .flyer-close-btn {
     opacity: 0;
+    animation: caerY 2.5s ease-out forwards;
     animation-fill-mode: forwards;
-    animation:
-    caerY 2.5s ease-out forwards,                 /* 1ª: caída */
-    parpadeoIntenso 0.8s ease-in-out infinite 2.5s; /* 2ª: parpadeo tras 2.5s */
     }
 
-    /* 2) Aplica la nueva animación */
+    /* 2) Sólo parpadeo, sin delay aquí */
     .parpadea {
     animation: parpadeoIntenso 0.8s ease-in-out infinite;
     }
-
+    
     /* Enlaces con efecto de subrayado animado */
     nav a,
     .secondary-nav a,
@@ -886,47 +884,37 @@
  
 <script>
   
-  function scrollToReproductor() {
-    const reproductor = document.querySelector('.bloque-reproductor');
-    if (reproductor) {
-      window.scrollTo({
-        top: reproductor.offsetTop - 60,
-        behavior: 'smooth'
-      });
-    }
-  }
-  
-  window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('DOMContentLoaded', function () {
+  // 1) Mostrar el modal
   const flyer = document.getElementById("flyer-modal");
   const humo  = document.getElementById("humo-fondo");
-
   flyer.style.display = "block";
   humo.style.display  = "block";
-
   document.body.classList.add("modal-abierto");
-
-  // Mostrar el body completamente sin parpadeo
   document.body.style.visibility = "visible";
 
-  // Función para añadir la clase 'parpadea' después de que la animación termine
-  const botones = document.querySelectorAll('.ver-coleccion-btn, .flyer-close-btn');
+  // 2) Scroll
+  // (tu scrollToReproductor lo dejas igual)
 
+  // 3) Animación de botones
+  const botones = document.querySelectorAll('.ver-coleccion-btn, .flyer-close-btn');
   botones.forEach((boton) => {
-    // Espera que la animación de caída termine
-    boton.addEventListener('animationend', function() {
-      // Añade la clase 'parpadea' después de la animación de caída
-      boton.classList.add('parpadea');
+    // cuando termine *caerY*, arrancamos el parpadeo
+    boton.addEventListener('animationend', (e) => {
+      if (e.animationName === 'caerY') {
+        boton.classList.add('parpadea');
+      }
     });
   });
 
-  // Botón cerrar
+  // 4) Cerrar flyer
   window.cerrarFlyer = function () {
     flyer.style.display = "none";
     humo.style.display  = "none";
     document.body.classList.remove("modal-abierto");
   };
 });
-  
+
 </script>
 </body>
 </html>
