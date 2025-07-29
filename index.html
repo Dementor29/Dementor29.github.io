@@ -145,7 +145,7 @@
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
 
-/* Asegura que los botones y la cruz estén centrados */
+
 .flyer-footer {
   position: absolute;
   bottom: 80px;
@@ -154,8 +154,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px; /* Reduce la separación entre los botones y la cruz */
+  gap: 60px;
   z-index: 10;
+  margin-top: 250px;
   pointer-events: auto;
 }
    
@@ -209,20 +210,17 @@
   to   { opacity:   0; }
   }
     
-  /* Animación de la imagen del flyer */
-  .flyer-img {
+   .flyer-img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 5;
   max-width: 90vw;
   max-height: 90vh;
   width: auto;
   height: auto;
   object-fit: contain;
-  z-index: 5;
-  opacity: 0;
-  animation: caerFlyer 2.5s ease-out forwards;
   }
     
   /* Asegura que los botones queden centrados */
@@ -238,28 +236,33 @@
   width: auto;
   }
 
-  /* Posición de los botones */
+    /* Estilo para “Ver Colección” */
   .ver-coleccion-btn {
-  top: 0; /* Los botones empiezan alineados en la parte superior */
-  padding: 12px 20px;
-  font-size: 1.3rem;
-  color: white;
+  font-family: 'BurzumGothic', serif;
   background-color: transparent;
+  color: white; 
   text-decoration: none;
+  transition: all 0.3s ease;
   display: inline-block;
-  animation-delay: 0s; /* Empieza con la animación de caída */
+  padding: 12px 20px;  /* antes 8px/16px, sube a 12px/20px */
+  font-size: 1.4rem;   /* antes 1.1rem, sube a 1.2rem */
+  margin-right: 10px;      /* separa del botón cerrar */
+  top: 25px; /* sube este valor para bajarlo más */
   }
-   
+    
+   /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
   .flyer-close-btn {
-  top: 50px; /* Ajusta la posición de "Cerrar" debajo de "Ver Colección" */
-  padding: 8px 16px;
-  font-size: 1.3rem;
-  color: white;
+  font-family: 'BurzumGothic', serif;
+  color: white;                  /* mismo texto */  
   background-color: transparent;
+  padding: 8px 16px;             /* igual tamaño */
+  text-decoration: none;
+  font-size: 1.4rem;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
   display: inline-block;
-  animation-delay: 0.5s; /* Retraso para que se mueva después */
+  top: 25px; /* sube este valor para bajarlo más */
   }
     
   header {
