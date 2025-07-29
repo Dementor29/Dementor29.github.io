@@ -145,8 +145,7 @@
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
 
-
-/* Asegura que los botones y la cruz estén centrados en la pantalla */
+/* Asegura que los botones y la cruz estén centrados */
 .flyer-footer {
   position: absolute;
   bottom: 80px;
@@ -155,20 +154,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 60px;
+  gap: 20px; /* Reduce la separación entre los botones y la cruz */
   z-index: 10;
   pointer-events: auto;
 }
    
-/* Estilo para los elementos de la animación de caída */
+/* Animación de caída de los botones y la cruz */
 .cruz-invertida-img,
 .ver-coleccion-btn,
 .flyer-close-btn {
-  opacity: 0; /* Comienza invisible */
+  opacity: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%); /* Centrado horizontal */
-  z-index: 10; /* Asegura que los botones y la cruz se muestren por encima de otros elementos */
+  z-index: 10;
   animation: caerY 2.5s ease-out forwards, parpadeoIntenso 0.8s ease-in-out 2.5s infinite; /* Animaciones */
 }
     
@@ -210,18 +209,18 @@
   to   { opacity:   0; }
   }
     
- /* Ajustes para la imagen del flyer */
-.flyer-img {
+  /* Animación de la imagen del flyer */
+  .flyer-img {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Centrado de la imagen */
+  transform: translate(-50%, -50%);
   max-width: 90vw;
   max-height: 90vh;
   width: auto;
   height: auto;
   object-fit: contain;
-  z-index: 5; /* Asegura que la imagen esté encima del fondo pero debajo de los botones */
+  z-index: 5;
   opacity: 0;
   animation: caerFlyer 2.5s ease-out forwards;
   }
@@ -239,33 +238,28 @@
   width: auto;
   }
 
-  /* Estilo para “Ver Colección” */
+  /* Posición de los botones */
   .ver-coleccion-btn {
-  font-family: 'BurzumGothic', serif;
+  top: 0; /* Los botones empiezan alineados en la parte superior */
+  padding: 12px 20px;
+  font-size: 1.3rem;
+  color: white;
   background-color: transparent;
-  color: white; 
   text-decoration: none;
-  transition: all 0.3s ease;
   display: inline-block;
-  padding: 12px 20px;  /* antes 8px/16px, sube a 12px/20px */
-  font-size: 1.3rem;   /* antes 1.1rem, sube a 1.2rem */
-  margin-right: 10px;      /* separa del botón cerrar */
-  top: 25px; /* sube este valor para bajarlo más */
+  animation-delay: 0s; /* Empieza con la animación de caída */
   }
    
-  /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
   .flyer-close-btn {
-  font-family: 'BurzumGothic', serif;
-  color: white;                  /* mismo texto */  
-  background-color: transparent;
-  padding: 8px 16px;             /* igual tamaño */
-  text-decoration: none;
+  top: 50px; /* Ajusta la posición de "Cerrar" debajo de "Ver Colección" */
+  padding: 8px 16px;
   font-size: 1.3rem;
+  color: white;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   display: inline-block;
-  top: 25px; /* sube este valor para bajarlo más */
+  animation-delay: 0.5s; /* Retraso para que se mueva después */
   }
     
   header {
@@ -506,11 +500,7 @@
 
    /* Posición de la cruz invertida */
     .cruz-invertida-img {
-    position: absolute;
-    top: 130px;  /* Ajusta la posición vertical */
-    left: 50%;
-    transform: translateX(-50%); /* Centrado horizontal */
-    animation: caerY 2.5s ease-out forwards;
+    top: 100px; /* Ajusta la cruz para que esté centrada entre los botones */
     animation-delay: 0.5s; /* Retraso para la cruz */
     }
     
@@ -533,10 +523,10 @@
     opacity: 0;
     }
     100% {
-    transform: translate(-50%, -50%); /* Llega al centro */
+    transform: translate(-50%, -50%); /* Se mueve a la posición central */
     opacity: 1;
     }
-    }   
+    }
     
     /* Animación de parpadeo */
     @keyframes parpadeoIntenso {
