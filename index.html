@@ -340,8 +340,6 @@
       padding: 15px;
       gap: 20px;
       color: inherit;
-      display: inline-block;
-      position: relative;
     }
     
     section {
@@ -542,6 +540,16 @@
     animation: parpadeoIntenso 0.8s ease-in-out infinite;
     }
 
+    /* Enlaces con efecto de subrayado animado */
+    nav a,
+    .secondary-nav a,
+    .submenu-toggle,
+    .submenu-items a {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    }    
+    
     /* Línea animada debajo de los enlaces */
     nav a::after,
     .secondary-nav a::after,
