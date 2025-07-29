@@ -65,16 +65,6 @@
   opacity: 0;
   animation: caerY 2.5s ease-out forwards;
   }
-
-  .ver-coleccion-btn,
-  .flyer-close-btn {
-  /* tal como en el snippet anterior */
-  opacity: 0;
-  animation-fill-mode: forwards;
-  animation:
-  caerY 2.5s ease-out forwards,
-  parpadeoIntenso 0.8s ease-in-out infinite 2.5s;
-  }
     
   @font-face {
   font-family: 'BurzumGothic';
@@ -176,7 +166,7 @@
   position: static !important;
   bottom: auto; left: auto; transform: none;
   z-index: auto;
-  margin-top: 50px; /* o el valor que necesites */
+  margin-top: 40px; /* o el valor que necesites */
 }
    
  #flyer-modal {
@@ -270,18 +260,6 @@
   transition: all 0.3s ease;
   display: inline-block;
   top: 20px; /* sube este valor para bajarlo más */
-  }
-    
-   /* 1) Oculta inicialmente los botones */
-  .ver-coleccion-btn,
-  .flyer-close-btn {
-  opacity: 0;
-  /* IMPORTANTE: mantenemos fill-mode en forwards para que conserven el estado final de cada animación */
-  animation-fill-mode: forwards;
-  /* 2) Definimos ambas animaciones: caerY (2.5s), luego parpadeo (inicia tras 2.5s) */
-  animation:
-    caerY 2.5s ease-out forwards,
-    parpadeoIntenso 0.8s ease-in-out infinite 2.5s;
   }
     
   header {
@@ -544,14 +522,16 @@
     }
     }
 
-    /* 1) Oculta inicialmente los botones y define las dos animaciones en cascada */
+   /* Oculta al inicio + 2 animaciones: caerY (1 vez), luego parpadeo (tras 2.5s, infinito) */
     .ver-coleccion-btn,
     .flyer-close-btn {
     opacity: 0;
-    animation-fill-mode: forwards;
-    animation:
-    caerY 2.5s ease-out forwards,                 /* 1ª: caída */
-    parpadeoIntenso 0.8s ease-in-out infinite 2.5s; /* 2ª: parpadeo tras 2.5s */
+    animation-name: caerY, parpadeoIntenso;
+    animation-duration: 2.5s, 0.8s;
+    animation-timing-function: ease-out, ease-in-out;
+    animation-delay: 0s, 2.5s;
+    animation-fill-mode: forwards, both;
+    animation-iteration-count: 1, infinite;
     }
 
     /* 2) Aplica la nueva animación */
@@ -674,11 +654,6 @@
   animation: caerY 2.5s ease-out forwards;
   animation-delay: 0.5s;  /* Retraso para la cruz */
 }
-}
-    
-@keyframes parpadeoSuave {
-  0%, 100% { opacity: 0.6; }
-  50%      { opacity: 1; }
 }
    
 @media (max-width: 768px) {
@@ -896,37 +871,22 @@
     }
   }
   
-  window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('DOMContentLoaded', () => {
   const flyer = document.getElementById("flyer-modal");
   const humo  = document.getElementById("humo-fondo");
 
   flyer.style.display = "block";
   humo.style.display  = "block";
-
   document.body.classList.add("modal-abierto");
-
-  // Mostrar el body completamente sin parpadeo
   document.body.style.visibility = "visible";
 
-  // Función para añadir la clase 'parpadea' después de que la animación termine
-  const botones = document.querySelectorAll('.ver-coleccion-btn, .flyer-close-btn');
-
-  botones.forEach((boton) => {
-    // Espera que la animación de caída termine
-    boton.addEventListener('animationend', function() {
-      // Añade la clase 'parpadea' después de la animación de caída
-      boton.classList.add('parpadea');
-    });
-  });
-
-  // Botón cerrar
-  window.cerrarFlyer = function () {
+  window.cerrarFlyer = () => {
     flyer.style.display = "none";
     humo.style.display  = "none";
     document.body.classList.remove("modal-abierto");
   };
 });
-  
+
 </script>
 </body>
 </html>
