@@ -515,16 +515,17 @@
   top: 60%; /* Ajusta este valor para mover la cruz hacia abajo */
   }
     
-  @keyframes parpadeoIntenso {
-  0%, 100% {
+    /* Animación de parpadeo */
+    @keyframes parpadeoIntenso {
+    0%, 100% {
     opacity: 0.2;
     filter: brightness(1);
-  }
-  50% {
+    }
+    50% {
     opacity: 1;
     filter: brightness(4);   /* Explosión de brillo */
-  }
-  }
+    }
+    }
     
     .ver-coleccion-btn,
     .flyer-close-btn {
@@ -630,14 +631,15 @@
   }
 }
 
+
 @keyframes caerY {
   0% {
     transform: translateY(-100vh); /* Empieza desde arriba */
-    opacity: 0;
+    opacity: 0;                    /* Invisible al principio */
   }
   100% {
-    transform: translateY(0); /* Se mueve a la posición final */
-    opacity: 1;
+    transform: translateY(0);      /* Se mueve a la posición final */
+    opacity: 1;                    /* Visible al final */
   }
 }
 
@@ -864,7 +866,7 @@
     }
   }
   
-  window.addEventListener('DOMContentLoaded', () => {
+ window.addEventListener('DOMContentLoaded', () => {
   const flyer = document.getElementById("flyer-modal");
   const humo = document.getElementById("humo-fondo");
   const closeButton = document.querySelector('.flyer-close-btn');
@@ -891,13 +893,13 @@
   // Evento para cerrar el modal con el botón de "Cerrar"
   closeButton.addEventListener('click', cerrarFlyer);
 
-  // Mostrar los botones después de la animación
+  // Mostrar los botones después de la animación (2.5 segundos)
   setTimeout(() => {
-    viewCollectionButton.style.visibility = 'visible';  // Mostrar el botón "Ver"
-    closeButton.style.visibility = 'visible';  // Mostrar el botón "Cerrar"
-    viewCollectionButton.style.opacity = 1;  // Asegura que tengan opacidad visible
-    closeButton.style.opacity = 1;  // Asegura que tengan opacidad visible
-  }, 2500);  // 2500ms para que coincida con el tiempo de animación de caída (2.5s)
+    viewCollectionButton.style.visibility = 'visible';  // Hacer el botón "Ver colección" visible
+    closeButton.style.visibility = 'visible';  // Hacer el botón "Cerrar" visible
+    viewCollectionButton.style.opacity = 1;  // Asegura que tenga opacidad visible
+    closeButton.style.opacity = 1;  // Asegura que tenga opacidad visible
+  }, 2500);  // 2500ms (2.5 segundos) es la duración de la animación
   });
   
   </script>
