@@ -160,16 +160,18 @@
   pointer-events: auto;
 }
    
-/* ya no necesitarás posicionar individualmente */
-.cruz-invertida,
+/* Estilo para los elementos de la animación de caída */
+.cruz-invertida-img,
 .ver-coleccion-btn,
 .flyer-close-btn {
-  position: static !important;
-  bottom: auto; left: auto; transform: none;
-  z-index: auto;
-  margin-top: 100px; /* o el valor que necesites */
+  opacity: 0; /* Comienza invisible */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Centrado horizontal */
+  z-index: 10; /* Asegura que los botones y la cruz se muestren por encima de otros elementos */
+  animation: caerY 2.5s ease-out forwards, parpadeoIntenso 0.8s ease-in-out 2.5s infinite; /* Animaciones */
 }
-   
+    
  #flyer-modal {
   position: fixed; /* no relative */
   top: 0;
@@ -208,19 +210,22 @@
   to   { opacity:   0; }
   }
     
- .flyer-img {
+ /* Ajustes para la imagen del flyer */
+.flyer-img {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
+  transform: translate(-50%, -50%); /* Centrado de la imagen */
   max-width: 90vw;
   max-height: 90vh;
   width: auto;
   height: auto;
   object-fit: contain;
-}
-   
+  z-index: 5; /* Asegura que la imagen esté encima del fondo pero debajo de los botones */
+  opacity: 0;
+  animation: caerFlyer 2.5s ease-out forwards;
+  }
+    
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
   position: absolute;         /* Asegura que z-index surta efecto */
@@ -521,19 +526,19 @@
     }
     }
 
-    /* Animación de caída de la cruz y botones */
-    @keyframes caerY {
+   /* Animación de caída de la imagen */
+    @keyframes caerFlyer {
     0% {
-    transform: translateY(-100vh); /* Comienza fuera de la pantalla (arriba) */
+    transform: translate(-50%, -150%); /* Empieza desde arriba */
     opacity: 0;
     }
     100% {
-    transform: translateY(0); /* Llega a la posición final (en su lugar) */
+    transform: translate(-50%, -50%); /* Llega al centro */
     opacity: 1;
     }
-    }
+    }   
     
-    /* Animación de parpadeo intenso */
+    /* Animación de parpadeo */
     @keyframes parpadeoIntenso {
     0%, 100% {
     opacity: 0.2;
@@ -544,7 +549,7 @@
     filter: brightness(4);   /* Explosión de brillo */
     }
     }
-
+    
     /* Estilo general de los botones */
     .ver-coleccion-btn,
     .flyer-close-btn {
