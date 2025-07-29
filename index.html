@@ -166,7 +166,7 @@
   position: static !important;
   bottom: auto; left: auto; transform: none;
   z-index: auto;
-  margin-top: 70px; /* o el valor que necesites */
+  margin-top: 100px; /* o el valor que necesites */
 }
    
  #flyer-modal {
@@ -522,7 +522,7 @@
     }
     }
 
-   /* Oculta al inicio + 2 animaciones: caerY (1 vez), luego parpadeo (tras 2.5s, infinito) */
+    /* 1) Oculta inicialmente los botones y define las dos animaciones en cascada */
     .ver-coleccion-btn,
     .flyer-close-btn {
     opacity: 0;
@@ -533,7 +533,7 @@
     animation-fill-mode: forwards, both;
     animation-iteration-count: 1, infinite;
     }
-
+    
     /* 2) Aplica la nueva animación */
     .parpadea {
     animation: parpadeoIntenso 0.8s ease-in-out infinite;
