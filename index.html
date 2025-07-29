@@ -510,7 +510,6 @@
   filter: brightness(0) invert(1); /* asegura que se vea blanca en fondo negro */
   }
     
-    /* 1) Animación de parpadeo con brillo intenso */
     @keyframes parpadeoIntenso {
     0%, 100% {
     opacity: 0.2;
@@ -518,10 +517,10 @@
     }
     50% {
     opacity: 1;
-    filter: brightness(4);   /* Explosión de brillo */
+    filter: brightness(4);
     }
     }
-
+    
    /* Oculta al inicio + 2 animaciones: caerY (1 vez), luego parpadeo (tras 2.5s, infinito) */
     .ver-coleccion-btn,
     .flyer-close-btn {
@@ -531,7 +530,7 @@
     animation-delay: 0s, 2.5s;
     animation-fill-mode: forwards, both;
     animation-iteration-count: 1, infinite;
-    animation: caerY 2.5s ease-out forwards, parpadeoIntenso;
+    animation: caerY 2.5s ease-out forwards, parpadeoIntenso 2.5s ease-in-out infinite;
     }
 
     /* 2) Aplica la nueva animación */
@@ -634,11 +633,11 @@
 /* Animación de caída de la cruz y botones */
 @keyframes caerY {
   0% {
-    transform: translateY(-100vh); /* Empieza desde arriba */
+    transform: translateY(-100vh);
     opacity: 0;
   }
   100% {
-    transform: translateY(0); /* Se mueve a la posición final */
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -734,20 +733,15 @@
   </head>
   <body>
 
-  <div id="flyer-modal">
+ <div id="flyer-modal">
   <div id="humo-fondo"></div>
   <img src="palmira.png" class="flyer-img" alt="Flyer Cinco Puntas" />
-
-  
-  <!-- NUEVO: contenedor footer -->
   <div class="flyer-footer">
-  
-    <a href="AvernoStore/" class="ver-coleccion-btn parpadea">
+    <a href="AvernoStore" class="ver-coleccion-btn parpadea">
       <i class="fa fa-eye"></i> Ver
     </a>
-  <img src="cruz.png" alt="cruz invertida" class="cruz-invertida-img"/>
-   
-  <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
+    <img src="cruz.png" alt="cruz invertida" class="cruz-invertida-img"/>
+    <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
       Cerrar
     </button>
   </div>
@@ -874,19 +868,31 @@
   window.addEventListener('DOMContentLoaded', () => {
   const flyer = document.getElementById("flyer-modal");
   const humo  = document.getElementById("humo-fondo");
-
+  const closeButton = document.querySelector('.flyer-close-btn');
+  const viewCollectionButton = document.querySelector('.ver-coleccion-btn');
+  
+  // Mostrar el modal y el fondo de humo al cargar la página
   flyer.style.display = "block";
   humo.style.display  = "block";
   document.body.classList.add("modal-abierto");
   document.body.style.visibility = "visible";
 
+  // Función para cerrar el flyer
   window.cerrarFlyer = () => {
     flyer.style.display = "none";
     humo.style.display  = "none";
     document.body.classList.remove("modal-abierto");
   };
-});
+  
+  // Agregar el evento al botón de "Ver colección" (esto lo puedes ajustar para que haga lo que necesites)
+  viewCollectionButton.addEventListener('click', () => {
+    window.location.href = 'AvernoStore'; // O cualquier enlace que se necesite
+  });
 
+  // Evento para cerrar el modal con el botón de "Cerrar"
+  closeButton.addEventListener('click', cerrarFlyer);
+});
+  
 </script>
 </body>
 </html>
