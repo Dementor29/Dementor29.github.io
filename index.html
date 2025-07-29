@@ -508,31 +508,27 @@
   align-items: center;
   justify-content: center;
   filter: brightness(0) invert(1); /* asegura que se vea blanca en fondo negro */
+  animation: caerY 2.5s ease-out forwards;
+  animation-delay: 0.5s; /* Retraso para la cruz */
   }
     
-    @keyframes parpadeoIntenso {
-    0%, 100% {
+  @keyframes parpadeoIntenso {
+  0%, 100% {
     opacity: 0.2;
     filter: brightness(1);
-    }
-    50% {
+  }
+  50% {
     opacity: 1;
-    filter: brightness(4);
-    }
-    }
+    filter: brightness(4);   /* Explosión de brillo */
+  }
+  }
     
-   /* Oculta al inicio + 2 animaciones: caerY (1 vez), luego parpadeo (tras 2.5s, infinito) */
     .ver-coleccion-btn,
     .flyer-close-btn {
     opacity: 0;
-    animation-duration: 2.5s, 0.8s;
-    animation-timing-function: ease-out, ease-in-out;
-    animation-delay: 0s, 2.5s;
-    animation-fill-mode: forwards, both;
-    animation-iteration-count: 1, infinite;
     animation: caerY 2.5s ease-out forwards, parpadeoIntenso 2.5s ease-in-out infinite;
     }
-
+    
     /* 2) Aplica la nueva animación */
     .parpadea {
     animation: parpadeoIntenso 0.8s ease-in-out infinite;
@@ -630,14 +626,13 @@
   }
 }
 
-/* Animación de caída de la cruz y botones */
 @keyframes caerY {
   0% {
-    transform: translateY(-100vh);
+    transform: translateY(-100vh); /* Empieza desde arriba */
     opacity: 0;
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(0); /* Se mueve a la posición final */
     opacity: 1;
   }
 }
@@ -883,16 +878,16 @@
     humo.style.display  = "none";
     document.body.classList.remove("modal-abierto");
   };
-  
-  // Agregar el evento al botón de "Ver colección" (esto lo puedes ajustar para que haga lo que necesites)
+
+  // Agregar el evento al botón de "Ver colección"
   viewCollectionButton.addEventListener('click', () => {
     window.location.href = 'AvernoStore'; // O cualquier enlace que se necesite
   });
 
   // Evento para cerrar el modal con el botón de "Cerrar"
   closeButton.addEventListener('click', cerrarFlyer);
-});
+  });
   
-</script>
-</body>
-</html>
+  </script>
+  </body>
+  </html>
