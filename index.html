@@ -60,14 +60,20 @@
   visibility: hidden;
   }
 
-  /* 0) Oculto todo hasta que empiece la animación */
   .flyer-img,
-  .cruz-invertida-img,
+  .cruz-invertida-img {
+  opacity: 0;
+  animation: caerY 2.5s ease-out forwards;
+  }
+
   .ver-coleccion-btn,
   .flyer-close-btn {
+  /* tal como en el snippet anterior */
   opacity: 0;
-  /* Asegúrate de que la animación mantenga el estado final */
   animation-fill-mode: forwards;
+  animation:
+  caerY 2.5s ease-out forwards,
+  parpadeoIntenso 0.8s ease-in-out infinite 2.5s;
   }
     
   @font-face {
@@ -265,16 +271,19 @@
   display: inline-block;
   top: 20px; /* sube este valor para bajarlo más */
   }
-   
-  .ver-coleccion-btn:hover,  
-  .flyer-close-btn:hover {
-  background-color: transparent;
-  color: white;
-  /* No cambies padding ni font-size */
-  cursor: pointer;
-  opacity: 0.9;
+    
+   /* 1) Oculta inicialmente los botones */
+  .ver-coleccion-btn,
+  .flyer-close-btn {
+  opacity: 0;
+  /* IMPORTANTE: mantenemos fill-mode en forwards para que conserven el estado final de cada animación */
+  animation-fill-mode: forwards;
+  /* 2) Definimos ambas animaciones: caerY (2.5s), luego parpadeo (inicia tras 2.5s) */
+  animation:
+    caerY 2.5s ease-out forwards,
+    parpadeoIntenso 0.8s ease-in-out infinite 2.5s;
   }
-   
+    
   header {
   display: flex;
   flex-direction: column;
