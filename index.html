@@ -145,7 +145,6 @@
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
 
-
 .flyer-footer {
   position: absolute;
   bottom: 80px;
@@ -160,18 +159,16 @@
   pointer-events: auto;
 }
    
-/* Animación de caída de los botones y la cruz */
-.cruz-invertida-img,
+/* ya no necesitarás posicionar individualmente */
+.cruz-invertida,
 .ver-coleccion-btn,
 .flyer-close-btn {
-  opacity: 0;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%); /* Centrado horizontal */
-  z-index: 10;
-  animation: caerY 2.5s ease-out forwards, parpadeoIntenso 0.8s ease-in-out 2.5s infinite; /* Animaciones */
+  position: static !important;
+  bottom: auto; left: auto; transform: none;
+  z-index: auto;
+  margin-top: 100px; /* o el valor que necesites */
 }
-    
+   
  #flyer-modal {
   position: fixed; /* no relative */
   top: 0;
@@ -210,7 +207,7 @@
   to   { opacity:   0; }
   }
     
-   .flyer-img {
+ .flyer-img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -221,8 +218,8 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  }
-    
+}
+   
   /* Asegura que los botones queden centrados */
   #flyer-modal .flyer-cta {
   position: absolute;         /* Asegura que z-index surta efecto */
@@ -236,7 +233,7 @@
   width: auto;
   }
 
-    /* Estilo para “Ver Colección” */
+  /* Estilo para “Ver Colección” */
   .ver-coleccion-btn {
   font-family: 'BurzumGothic', serif;
   background-color: transparent;
@@ -247,10 +244,10 @@
   padding: 12px 20px;  /* antes 8px/16px, sube a 12px/20px */
   font-size: 1.4rem;   /* antes 1.1rem, sube a 1.2rem */
   margin-right: 10px;      /* separa del botón cerrar */
-  top: 25px; /* sube este valor para bajarlo más */
+  top: 20px; /* sube este valor para bajarlo más */
   }
-    
-   /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
+   
+  /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
   .flyer-close-btn {
   font-family: 'BurzumGothic', serif;
   color: white;                  /* mismo texto */  
@@ -262,7 +259,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-block;
-  top: 25px; /* sube este valor para bajarlo más */
+  top: 20px; /* sube este valor para bajarlo más */
   }
     
   header {
@@ -501,37 +498,19 @@
   pointer-events: auto;       /* Que sigan clicables */
 }
 
-   /* Posición de la cruz invertida */
-    .cruz-invertida-img {
-    top: 100px; /* Ajusta la cruz para que esté centrada entre los botones */
-    animation-delay: 0.5s; /* Retraso para la cruz */
-    }
+  .cruz-invertida-img {
+  object-fit: contain;
+  display: block;
+  max-height: none;
+  max-width: none;
+  height: 350px;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0) invert(1); /* asegura que se vea blanca en fondo negro */
+  }
     
-    /* Animación de caída de la cruz y botones */
-    @keyframes caerY {
-    0% {
-    transform: translateY(-100vh); /* Empieza fuera de la pantalla (arriba) */
-    opacity: 0;
-    }
-    100% {
-    transform: translateY(0); /* Llega a la posición final (en su lugar) */
-    opacity: 1;
-    }
-    }
-
-   /* Animación de caída de la imagen */
-    @keyframes caerFlyer {
-    0% {
-    transform: translate(-50%, -150%); /* Empieza desde arriba */
-    opacity: 0;
-    }
-    100% {
-    transform: translate(-50%, -50%); /* Se mueve a la posición central */
-    opacity: 1;
-    }
-    }
-    
-    /* Animación de parpadeo */
+    /* 1) Animación de parpadeo con brillo intenso */
     @keyframes parpadeoIntenso {
     0%, 100% {
     opacity: 0.2;
@@ -542,23 +521,19 @@
     filter: brightness(4);   /* Explosión de brillo */
     }
     }
-    
-    /* Estilo general de los botones */
+
+   /* Oculta al inicio + 2 animaciones: caerY (1 vez), luego parpadeo (tras 2.5s, infinito) */
     .ver-coleccion-btn,
     .flyer-close-btn {
     opacity: 0;
-    position: absolute;  /* Asegura que estén fuera del flujo normal */
-    left: 50%;
-    transform: translateX(-50%); /* Centrado horizontal */
-    z-index: 10; /* Asegura que estén por encima de otros elementos */
     animation-name: caerY, parpadeoIntenso;
     animation-duration: 2.5s, 0.8s;
     animation-timing-function: ease-out, ease-in-out;
-    animation-delay: 0s, 2.5s; /* Primero la caída, luego el parpadeo */
+    animation-delay: 0s, 2.5s;
     animation-fill-mode: forwards, both;
-    animation-iteration-count: 1, infinite; /* Parpadeo infinito */
+    animation-iteration-count: 1, infinite;
     }
-   
+
     /* 2) Aplica la nueva animación */
     .parpadea {
     animation: parpadeoIntenso 0.8s ease-in-out infinite;
@@ -644,6 +619,30 @@
   margin-top: 60px;
 }
     
+/* Animación de caída de la imagen */
+@keyframes caerFlyer {
+  0% {
+    transform: translate(-50%, -150%); /* Empieza desde arriba */
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%); /* Se mueve a la posición central */
+    opacity: 1;
+  }
+}
+
+/* Animación de caída de la cruz y botones */
+@keyframes caerY {
+  0% {
+    transform: translateY(-100vh); /* Empieza desde arriba */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0); /* Se mueve a la posición final */
+    opacity: 1;
+  }
+}
+
 /* Aplica la animación con retraso */
 .flyer-img {
   animation: caerFlyer 2.5s ease-out forwards;
