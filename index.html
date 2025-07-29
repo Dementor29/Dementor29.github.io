@@ -530,6 +530,7 @@
     .flyer-close-btn {
     opacity: 0;
     animation: caerY 2.5s ease-out forwards, parpadeoIntenso 2.5s ease-in-out infinite;
+    visibility: hidden;  /* Oculta los botones al inicio */
     }
     
     /* 2) Aplica la nueva animación */
@@ -865,20 +866,20 @@
   
   window.addEventListener('DOMContentLoaded', () => {
   const flyer = document.getElementById("flyer-modal");
-  const humo  = document.getElementById("humo-fondo");
+  const humo = document.getElementById("humo-fondo");
   const closeButton = document.querySelector('.flyer-close-btn');
   const viewCollectionButton = document.querySelector('.ver-coleccion-btn');
-  
+
   // Mostrar el modal y el fondo de humo al cargar la página
   flyer.style.display = "block";
-  humo.style.display  = "block";
+  humo.style.display = "block";
   document.body.classList.add("modal-abierto");
   document.body.style.visibility = "visible";
 
   // Función para cerrar el flyer
   window.cerrarFlyer = () => {
     flyer.style.display = "none";
-    humo.style.display  = "none";
+    humo.style.display = "none";
     document.body.classList.remove("modal-abierto");
   };
 
@@ -889,6 +890,14 @@
 
   // Evento para cerrar el modal con el botón de "Cerrar"
   closeButton.addEventListener('click', cerrarFlyer);
+
+  // Mostrar los botones después de la animación
+  setTimeout(() => {
+    viewCollectionButton.style.visibility = 'visible';  // Mostrar el botón "Ver"
+    closeButton.style.visibility = 'visible';  // Mostrar el botón "Cerrar"
+    viewCollectionButton.style.opacity = 1;  // Asegura que tengan opacidad visible
+    closeButton.style.opacity = 1;  // Asegura que tengan opacidad visible
+  }, 2500);  // 2500ms para que coincida con el tiempo de animación de caída (2.5s)
   });
   
   </script>
