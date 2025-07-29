@@ -145,6 +145,8 @@
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
 
+
+/* Asegura que los botones y la cruz estén centrados en la pantalla */
 .flyer-footer {
   position: absolute;
   bottom: 80px;
@@ -155,7 +157,6 @@
   justify-content: center;
   gap: 60px;
   z-index: 10;
-  margin-top: 250px;
   pointer-events: auto;
 }
    
@@ -242,9 +243,9 @@
   transition: all 0.3s ease;
   display: inline-block;
   padding: 12px 20px;  /* antes 8px/16px, sube a 12px/20px */
-  font-size: 1.4rem;   /* antes 1.1rem, sube a 1.2rem */
+  font-size: 1.3rem;   /* antes 1.1rem, sube a 1.2rem */
   margin-right: 10px;      /* separa del botón cerrar */
-  top: 20px; /* sube este valor para bajarlo más */
+  top: 25px; /* sube este valor para bajarlo más */
   }
    
   /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
@@ -254,12 +255,12 @@
   background-color: transparent;
   padding: 8px 16px;             /* igual tamaño */
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-block;
-  top: 20px; /* sube este valor para bajarlo más */
+  top: 25px; /* sube este valor para bajarlo más */
   }
     
   header {
@@ -498,15 +499,16 @@
   pointer-events: auto;       /* Que sigan clicables */
 }
 
-   .cruz-invertida-img {
+   /* Posición de la cruz invertida */
+    .cruz-invertida-img {
     position: absolute;
-    top: 150px; /* Ajusta la posición de la cruz aquí */
+    top: 130px;  /* Ajusta la posición vertical */
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* Centrado horizontal */
     animation: caerY 2.5s ease-out forwards;
     animation-delay: 0.5s; /* Retraso para la cruz */
     }
-
+    
     /* Animación de caída de la cruz y botones */
     @keyframes caerY {
     0% {
@@ -519,18 +521,19 @@
     }
     }
 
-    /* Animación de caída de la imagen */
-    @keyframes caerFlyer {
+    /* Animación de caída de la cruz y botones */
+    @keyframes caerY {
     0% {
-    transform: translate(-50%, -150%); /* Empieza desde arriba */
+    transform: translateY(-100vh); /* Comienza fuera de la pantalla (arriba) */
     opacity: 0;
     }
     100% {
-    transform: translate(-50%, -50%); /* Se mueve a la posición central */
+    transform: translateY(0); /* Llega a la posición final (en su lugar) */
     opacity: 1;
     }
     }
     
+    /* Animación de parpadeo intenso */
     @keyframes parpadeoIntenso {
     0%, 100% {
     opacity: 0.2;
@@ -542,23 +545,22 @@
     }
     }
 
-    /* Posiciona los botones de forma estática antes de la animación */
+    /* Estilo general de los botones */
     .ver-coleccion-btn,
     .flyer-close-btn {
     opacity: 0;
-    position: absolute;
-    z-index: 10;
+    position: absolute;  /* Asegura que estén fuera del flujo normal */
+    left: 50%;
+    transform: translateX(-50%); /* Centrado horizontal */
+    z-index: 10; /* Asegura que estén por encima de otros elementos */
     animation-name: caerY, parpadeoIntenso;
     animation-duration: 2.5s, 0.8s;
     animation-timing-function: ease-out, ease-in-out;
-    animation-delay: 0s, 2.5s;
+    animation-delay: 0s, 2.5s; /* Primero la caída, luego el parpadeo */
     animation-fill-mode: forwards, both;
-    animation-iteration-count: 1, infinite;
-    top: 80px; /* Ajusta esto para mover la posición de los botones hacia abajo */
-    left: 50%;
-    transform: translateX(-50%);
+    animation-iteration-count: 1, infinite; /* Parpadeo infinito */
     }
-    
+   
     /* 2) Aplica la nueva animación */
     .parpadea {
     animation: parpadeoIntenso 0.8s ease-in-out infinite;
