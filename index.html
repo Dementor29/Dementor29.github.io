@@ -544,6 +544,16 @@
     }
     }
 
+    /* 1) Oculta inicialmente los botones y define las dos animaciones en cascada */
+    .ver-coleccion-btn,
+    .flyer-close-btn {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation:
+    caerY 2.5s ease-out forwards,                 /* 1ª: caída */
+    parpadeoIntenso 0.8s ease-in-out infinite 2.5s; /* 2ª: parpadeo tras 2.5s */
+    }
+
     /* 2) Aplica la nueva animación */
     .parpadea {
     animation: parpadeoIntenso 0.8s ease-in-out infinite;
@@ -664,19 +674,6 @@
   animation: caerY 2.5s ease-out forwards;
   animation-delay: 0.5s;  /* Retraso para la cruz */
 }
-
-/* Animación para botones */
-.ver-coleccion-btn,
-.flyer-close-btn {
-  animation: caerY 2.5s ease-out forwards;
-  animation-delay: 1s;  /* Retraso para los botones */
-}
-
-/* Para asegurarte de que no se trabe, usa el fill-mode para que mantengan su estado final */
-.cruz-invertida-img,
-.ver-coleccion-btn,
-.flyer-close-btn {
-  animation-fill-mode: forwards;
 }
     
 @keyframes parpadeoSuave {
