@@ -1218,23 +1218,23 @@ function cambiarPrecio(boton, nuevoPrecio, tipoSeleccion) {
   boton.classList.remove("bg-white", "text-black");
   boton.classList.add("bg-gray-700", "text-white");
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const closeBtn = document.getElementById('flyer-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        const overlay = document.getElementById('flyer-overlay');
-        if (overlay) overlay.style.display = 'none';
-      });
-    }
-   });  
     
-</script>
 <!-- Lightbox -->
 <div id="lightbox" onclick="closeLightbox()">
   <span class="close-btn">×</span>
   <img id="lightbox-img" src="" alt="Ampliación">
 </div>
-  
+
+document.addEventListener('DOMContentLoaded', () => {
+const closeBtn = document.getElementById('flyer-close');
+if (closeBtn) {
+closeBtn.addEventListener('click', () => {
+const overlay = document.getElementById('flyer-overlay');
+if (overlay) overlay.style.display = 'none';
+});
+}
+});  
+    
+</script>
 </body>
 </html>
