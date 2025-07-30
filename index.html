@@ -102,16 +102,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   }
-
-  body.modal-abierto main,
-  body.modal-abierto header,
-  body.modal-abierto nav,
-  body.modal-abierto .secondary-nav,
-  body.modal-abierto footer,
-  body.modal-abierto .bloque-reproductor,
-  body.modal-abierto #bandera-play {
-  display: none !important;
-  }
     
   input,
   textarea,
@@ -143,7 +133,7 @@
 /* Para mover los botones hacia abajo */
 .flyer-footer {
   position: absolute;
-  bottom: 20px;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -862,14 +852,12 @@
   // Mostrar el modal y el fondo de humo al cargar la página
   flyer.style.display = "block";
   humo.style.display = "block";
-  document.body.classList.add("modal-abierto");
   document.body.style.visibility = "visible";
 
   // Función para cerrar el flyer
   window.cerrarFlyer = () => {
     flyer.style.display = "none";
     humo.style.display = "none";
-    document.body.classList.remove("modal-abierto");
   };
 
   const barra = document.querySelector('.barra-cinco-puntas');
@@ -881,7 +869,14 @@
 
   // Evento para cerrar el modal con el botón de "Cerrar"
   closeButton.addEventListener('click', cerrarFlyer);
-  
+
+  setTimeout(() => {
+  document.querySelector('.ver-coleccion-btn').classList.add('visible');
+  document.querySelector('.flyer-close-btn').classList.add('visible');
+  // Asegura que la barra esté visible:
+  document.querySelector('.barra-cinco-puntas').style.display = 'block';
+  }, 2500);
+
   </script>
   </body>
   </html>
