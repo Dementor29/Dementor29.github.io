@@ -103,12 +103,10 @@
   -ms-user-select: none;
   }
 
-  /* Aplica D N E a todo lo que NO es el modal */
   body.modal-abierto main,
   body.modal-abierto header,
   body.modal-abierto nav,
   body.modal-abierto .secondary-nav,
-  /* QUITAMOS .barra-cinco-puntas de aquí para que no se oculte */
   body.modal-abierto footer,
   body.modal-abierto .bloque-reproductor,
   body.modal-abierto #bandera-play {
@@ -153,9 +151,7 @@
   justify-content: center;
   gap: 60px;
   z-index: 10;
-  margin-top: 250px;
   pointer-events: auto;
-  top: auto; /* Ajusta este valor para mover los botones hacia abajo */
 }
     
  #flyer-modal {
@@ -780,16 +776,15 @@
   <div class="separador"></div> 
    
  <div class="barra-cinco-puntas fade-in" style="
+  position: fixed;    /* sácala del flujo */
+  top: 0;
+  left: 0;
   width: 100%;
-  background: linear-gradient(to right, #000000, #330000, #000000);
-  text-align: center;
+  z-index: 10001;     /* por encima de #flyer-modal (9990) */
+  background: linear-gradient(to right, #000, #300, #000);
   padding: 14px 10px;
-  margin-top: -20px;
-  z-index: 99;
-  position: relative;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255,0,0,0.2);
   font-family: 'BurzumGothic', serif;
   animation: parpadeoSuave 3s infinite;
 ">
