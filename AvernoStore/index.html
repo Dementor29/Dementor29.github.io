@@ -984,15 +984,16 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     return item;
     }
 
+    // Asegúrate de que el contenedor de productos existe en el DOM
     function renderCatalogo(productos, contenedorId) {
-    const cont = document.getElementById(contenedorId); 
+    const cont = document.getElementById(contenedorId);
     if (cont) {
     cont.innerHTML = "";  // Limpiar el contenedor antes de agregar productos
     productos.forEach(producto => {
       cont.appendChild(crearItem(producto));  // Añadir cada producto al contenedor
     });
     } else {
-    console.log("El contenedor no fue encontrado.");
+    console.error("El contenedor con id '" + contenedorId + "' no existe.");
     }
     }
     
@@ -1245,6 +1246,11 @@ if (overlay) overlay.style.display = 'none';
 });
 }
 });  
+
+// Llama a la función renderCatalogo cuando el contenido esté listo
+document.addEventListener('DOMContentLoaded', function() {
+renderCatalogo(productosRopa, "catalogo-ropa");
+});
     
 </script>
 </body>
