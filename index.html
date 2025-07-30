@@ -651,21 +651,6 @@
   animation-delay: 0.5s;  /* Retraso para la cruz */
 }
 }
-
-.barra-cinco-puntas {
-  width: 100%;
-  background: linear-gradient(to right, #000000, #330000, #000000);
-  text-align: center;
-  padding: 14px 10px;
-  margin-top: -20px;
-  z-index: 1000;
-  position: fixed;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  font-family: 'BurzumGothic', serif;
-  animation: parpadeoSuave 3s infinite;
-}
     
 @media (max-width: 768px) {
   #bandera-play {
@@ -798,10 +783,23 @@
 -->
   <div class="separador"></div> 
    
-  <div class="barra-cinco-puntas">
+ <div class="barra-cinco-puntas fade-in" style="
+  width: 100%;
+  background: linear-gradient(to right, #000000, #330000, #000000);
+  text-align: center;
+  padding: 14px 10px;
+  margin-top: -20px;
+  z-index: 99;
+  position: relative;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  font-family: 'BurzumGothic', serif;
+  animation: parpadeoSuave 3s infinite;
+">
   ⚔️ NUEVA COLECCIÓN DISPONIBLE: <a href="AvernoStore/" style="color:#C10202; text-decoration:underline;">AVERNO △ STORE</a> ⚔️
 </div>
-   
+    
 <main>
   <section class="fade-in" id="alianza-cinco-puntas">
     <h2>AVERNO STORE</h2>
