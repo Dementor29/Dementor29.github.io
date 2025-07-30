@@ -913,12 +913,16 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los ca√≠dos‚
   </a>
 
   <script>
-    
-  // Cerrar overlay
-  document.getElementById('flyer-close')
-  .addEventListener('click', () => {
-  document.getElementById('flyer-overlay').style.display = 'none';
-  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('flyer-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        const overlay = document.getElementById('flyer-overlay');
+        if (overlay) overlay.style.display = 'none';
+      });
+    }
+   }); 
 
     const productosRopa = [
       { nombre: "CORPUS MORTIS", precio: 70000, imagen: "1.png" },
