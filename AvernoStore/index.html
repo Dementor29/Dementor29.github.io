@@ -825,6 +825,11 @@ strong {
   <img src="Port.png" alt="Flyer Averno"/>
 </div>
 
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close-btn">×</span>
+  <img id="lightbox-img" src="" alt="Ampliación">
+</div>
   
 <section class="bloque-manifiesto">
 <p><strong class="destacado">Averno Store</strong> es un refugio para la belleza infernal y abismal del ocultismo moderno. Cada diseño, una obra de arte oscuro que captura la esencia de lo prohibido y lo místico, fusionando simbolismos ocultistas con la fuerza visceral del metal. En cada estampado, se revela una visión de la oscuridad que no busca ser entendida, sino sentida. Una estética brutal y profunda que habla directamente al alma rebelde y la voluntad inquebrantable.</p>
@@ -1223,12 +1228,6 @@ function cambiarPrecio(boton, nuevoPrecio, tipoSeleccion) {
   boton.classList.add("bg-gray-700", "text-white");
 }
     
-<!-- Lightbox -->
-<div id="lightbox" onclick="closeLightbox()">
-  <span class="close-btn">×</span>
-  <img id="lightbox-img" src="" alt="Ampliación">
-</div>
-
 document.addEventListener('DOMContentLoaded', () => {
 const closeBtn = document.getElementById('flyer-close');
 if (closeBtn) {
