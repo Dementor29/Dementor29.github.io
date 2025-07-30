@@ -352,6 +352,17 @@
 .nequi-btn:hover i {
 color: var(--dorado-oscuro);               /* tu rojo de títulos */
 }
+
+  /* FLYER EMERGENTE */
+#flyer-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000; /* fondo transparente */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
     /* FLYER EMERGENTE */
 #flyer-overlay {
   position: fixed;
@@ -751,18 +762,6 @@ strong {
   width: calc(100vw - 40px); /* 20px padding por lado */
   }
 
-  .boton-talla {
-  background-color: white;
-  color: black;
-  transition: background-color .2s, color .2s;
-  margin-top: 4px;
-  }
-  .boton-talla:hover {
-  background-color: #f0f0f0;
-  }
-  .bg-gray-700 { background-color: #333 !important; }
-  .text-white   { color: white !important; }
-
   /* Responsivo */
   @media (max-width: 600px) {
   h2 {
@@ -816,21 +815,12 @@ strong {
 </head>
 <body>
   
-<div id="flyer-overlay">
-  <button id="flyer-close" title="Cerrar"
-          onclick="document.getElementById('flyer-overlay').style.display='none'">
-    𒉽
-  </button>
+  <div id="flyer-overlay">
+  <button id="flyer-close" title="Cerrar">𒉽</button>
   <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
   <img src="Port.png" alt="Flyer Averno"/>
-</div>
+  </div>
 
-<!-- Lightbox -->
-<div id="lightbox" onclick="closeLightbox()">
-  <span class="close-btn">×</span>
-  <img id="lightbox-img" src="" alt="Ampliación">
-</div>
-  
 <section class="bloque-manifiesto">
 <p><strong class="destacado">Averno Store</strong> es un refugio para la belleza infernal y abismal del ocultismo moderno. Cada diseño, una obra de arte oscuro que captura la esencia de lo prohibido y lo místico, fusionando simbolismos ocultistas con la fuerza visceral del metal. En cada estampado, se revela una visión de la oscuridad que no busca ser entendida, sino sentida. Una estética brutal y profunda que habla directamente al alma rebelde y la voluntad inquebrantable.</p>
 <blockquote class="frase-autor">
@@ -911,7 +901,6 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   </a>
 
   <script>
-    
     const productosRopa = [
       { nombre: "CORPUS MORTIS", precio: 70000, imagen: "1.png" },
       { nombre: "CRUCIFIXUS SANGUINIS", precio: 70000, imagen: "2.png" },
@@ -929,48 +918,33 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     item.className = "item";
     const id = producto.nombre.replace(/\s+/g, "_");
 
-    let tallaSelect = esRopa ? ` 
-    <label class="cantidad-label">Talla: 
+    let tallaSelect = esRopa ? `
+    <label class="cantidad-label">Talla:
       <select class="cantidad-input" id="talla-${id}">
         <option value="">Elige talla</option>
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
+        <option value="S">S</option><option value="M">M</option>
+        <option value="L">L</option><option value="XL">XL</option>
       </select>
     </label>
     <span id="error-${id}" class="error-msg"></span>
-    ` : "";
+    `: "";
 
     item.innerHTML = `
     <div class="item-marco">
-      <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
-      <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio}, ${esRopa})">⛧</span>
-      <img src="marco.svg" alt="Marco decorativo" class="marco-overlay">
-    </div>
-    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
-      <i class="fas fa-search"></i>
-    </div>
+    <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
+    <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span> 
+    <img src="marco.svg" alt="Marco decorativo" class="marco-overlay"></div>
+    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')"><i class="fas fa-search"></i></div>
     <div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
-
-    <div class="talla-switch flex gap-2">
-      <button class="cart-button px-4 py-2 w-1/2" onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')">Normal</button>
-      <button class="cart-button px-4 py-2 w-1/2" onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')">Oversize</button>
-    </div>
-
     <div class="cantidad-talla-wrapper">
-      <label class="cantidad-label">Cant:
-        <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> 
-      </label> 
-      <div class="separator"></div> 
-      ${tallaSelect}
-    </div>
+    <label class="cantidad-label">Cant:
+    <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> </label> <div class="separator"></div> ${tallaSelect} </div>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
-    `;
+  `;
 
-    // Aquí agregamos el listener para borrar el error al cambiar la talla
+    // Aquí agregamos el listener que borra el error al cambiar la talla:
     if (esRopa) {
     const select = item.querySelector(`#talla-${id}`);
     const errorSpan = item.querySelector(`#error-${id}`);
@@ -984,31 +958,19 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     return item;
     }
 
-    // Asegúrate de que el contenedor de productos existe en el DOM
-    function renderCatalogo(productos, contenedorId) {
-    const cont = document.getElementById(contenedorId);
-    if (cont) {
-    cont.innerHTML = "";  // Limpiar el contenedor antes de agregar productos
-    productos.forEach(producto => {
-      cont.appendChild(crearItem(producto));  // Añadir cada producto al contenedor
-    });
-    } else {
-    console.error("El contenedor con id '" + contenedorId + "' no existe.");
+    function renderCatalogo(productos, contenedorId, esRopa) {
+      const cont = document.getElementById(contenedorId);
+      cont.innerHTML = "";
+      productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
     }
-    }
-    
+
     function toggleFavorite(el, nombre, precio, esRopa) {
-    el.classList.toggle("active");
-    const tarjeta = el.closest(".item");
-    const tipo = tarjeta.dataset.tipo || 'Normal';
-    if (wishlistData[nombre]) {
-    delete wishlistData[nombre];
-    } else {
-    wishlistData[nombre] = { precio, esRopa, tipo };
+      el.classList.toggle("active");
+      if (wishlistData[nombre]) delete wishlistData[nombre];
+      else wishlistData[nombre] = { precio, esRopa };
+      renderWishlist();
     }
-    renderWishlist();
-    }
-    
+
     function renderWishlist() {
       const ul = document.getElementById("wishlist-items");
       ul.innerHTML = "";
@@ -1028,7 +990,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
 
     ul.innerHTML += `
           <li style="margin-bottom: 12px;">
-            <span>${nombre} (${producto.tipo}) — $${producto.precio.toLocaleString()}</span>
+            <span>${nombre} — $${producto.precio.toLocaleString()}</span>
             ${tallaSelect}
             <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
           </li>
@@ -1042,28 +1004,26 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       renderWishlist();
     }
 
-    function addToCart(nombre, precio, esRopa, tipo) {
-    const id = nombre.replace(/\s+/g, "_");
-    const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
-    let talla = "";
+ function addToCart(nombre, precio, esRopa) {
+  const id = nombre.replace(/\s+/g, "_");
+  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
+  let talla = "";
 
-    if (esRopa) {
+  if (esRopa) {
     talla = document.getElementById(`talla-${id}`).value;
     const errorEl = document.getElementById(`error-${id}`);
     if (!talla) {
-      errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+      if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
       errorEl.style.color = 'var(--dorado-oscuro)';
       return;
     } else {
-      errorEl.textContent = "";
+      if (errorEl) errorEl.textContent = "";
     }
-    }
+  }
 
-    // Guardamos también el tipo en cartData
-    cartData[nombre] = { precio, cantidad, talla, tipo };
-    renderCarrito();
-    }
-    
+  cartData[nombre] = { precio, cantidad, talla };
+  renderCarrito();
+}
     function moverWishlistACarrito() {
     for (let nombre in wishlistData) {
     const producto = wishlistData[nombre];
@@ -1090,17 +1050,16 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
     }
 
-  function renderCarrito() {
-  const ul = document.getElementById("cart-items");
-  ul.innerHTML = "";
-  for (let nombre in cartData) {
-    const it = cartData[nombre];
-    ul.innerHTML += `<li>${nombre} (${it.tipo}) x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
-  }
-  actualizarContadores();
-  }
-    
-  function eliminarDelCarrito(nombre) {
+    function renderCarrito() {
+      const ul = document.getElementById("cart-items");
+      ul.innerHTML = "";
+      for (let nombre in cartData) {
+        const it = cartData[nombre];
+        ul.innerHTML += `<li>${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+      }
+    }
+
+    function eliminarDelCarrito(nombre) {
       delete cartData[nombre];
       renderCarrito();
     }
@@ -1129,53 +1088,56 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   }
 
     function comprarPorWhatsapp() {
-    if (!Object.keys(cartData).length) {
-    alert("Carrito vacío");
-    return;
-    }
-    let msg = "Hola, quiero comprar:%0A";
-    for (let nombre in cartData) {
-    const it = cartData[nombre];
-    msg += `- ${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${...}%0A`;
-    msg += `- ${nombre} (${it.tipo}) x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
-    }
+      if (!Object.keys(cartData).length) {
+        alert("Carrito vacío");
+        return;
+      }
+      let msg = "Hola, quiero comprar:%0A";
+      for (let nombre in cartData) {
+        const it = cartData[nombre];
+        msg += `- ${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
+      }
       window.open(`https://wa.me/573181541064?text=${msg}`, '_blank');
     }
 
-  renderCatalogo(productosRopa, "catalogo-ropa", true);
+    renderCatalogo(productosRopa, "catalogo-ropa", true);
+    renderWishlist();
+    document.getElementById('flyer-close').onclick = function () {
+    document.getElementById('flyer-overlay').style.display = 'none';
+    };
     
-  //FUNCION NUEVA//
+//FUNCION NUEVA//
   function actualizarContadores() {
   document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
   document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
   }
 
-  // Llamar al actualizar contadores cuando se renderizan
+// Llamar al actualizar contadores cuando se renderizan
   function renderWishlist() {
   const ul = document.getElementById("wishlist-items");
   ul.innerHTML = "";
   for (let nombre in wishlistData) {
-    const producto = wishlistData[nombre];
-    const id = nombre.replace(/\s+/g, "_");
-    const tallaSelect = producto.esRopa ? `
-      <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-        <select id="wishlist-talla-${id}" class="cantidad-input">
-          <option value="">Elige talla</option>
-          <option value="S">S</option><option value="M">M</option>
-          <option value="L">L</option><option value="XL">XL</option>
-        </select>
-      </label>
-      <span id="error-wishlist-${id}" class="error-msg"></span>
+  const producto = wishlistData[nombre];
+  const id = nombre.replace(/\s+/g, "_");
+  const tallaSelect = producto.esRopa ? `
+    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+    <select id="wishlist-talla-${id}" class="cantidad-input">
+    <option value="">Elige talla</option>
+    <option value="S">S</option><option value="M">M</option>
+    <option value="L">L</option><option value="XL">XL</option>
+    </select>
+    </label>
+    <span id="error-wishlist-${id}" class="error-msg"></span>
     ` : "";
 
     ul.innerHTML += `
       <li style="margin-bottom: 12px;">
-        <span>${nombre} — $${producto.precio.toLocaleString()}</span>
-        ${tallaSelect}
-        <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+      <span>${nombre} — $${producto.precio.toLocaleString()}</span>
+       ${tallaSelect}
+      <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
       </li>
-    `;
-  }
+      `;
+    }
 
   actualizarContadores();
   }
@@ -1217,41 +1179,13 @@ function openLightbox(src) {
 function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
 }
-
-function cambiarPrecio(boton, nuevoPrecio, tipoSeleccion) {
-  const tarjeta = boton.closest(".item");
-  const precioEl = tarjeta.querySelector(".precio");
-  precioEl.textContent = `$${nuevoPrecio.toLocaleString("es-CO")}`;
-
-  // guarda el tipo en un data-atributo
-  tarjeta.dataset.tipo = tipoSeleccion;
-
-  // estilos activo/inactivo
-  tarjeta
-    .querySelectorAll(".talla-switch .cart-button")
-    .forEach(b => {
-      b.classList.remove("bg-gray-700", "text-white");
-      b.classList.add("bg-white", "text-black");
-    });
-  boton.classList.remove("bg-white", "text-black");
-  boton.classList.add("bg-gray-700", "text-white");
-}
-    
-document.addEventListener('DOMContentLoaded', () => {
-const closeBtn = document.getElementById('flyer-close');
-if (closeBtn) {
-closeBtn.addEventListener('click', () => {
-const overlay = document.getElementById('flyer-overlay');
-if (overlay) overlay.style.display = 'none';
-});
-}
-});  
-
-// Llama a la función renderCatalogo cuando el contenido esté listo
-document.addEventListener('DOMContentLoaded', function() {
-renderCatalogo(productosRopa, "catalogo-ropa");
-});
     
 </script>
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close-btn">×</span>
+  <img id="lightbox-img" src="" alt="Ampliación">
+</div>
+  
 </body>
 </html>
