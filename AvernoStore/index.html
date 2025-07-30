@@ -953,13 +953,13 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     <!-- SWITCH DE TALLA/PRECIO -->
     <div class="talla-switch flex gap-2 mb-4">
     <button
-    class="boton-talla px-4 py-2 rounded font-semibold"
+    class="cart-button px-4 py-2 rounded font-semibold"
     onclick="cambiarPrecio(this, ${producto.precio})"
     >
     Normal
     </button>
     <button
-    class="boton-talla px-4 py-2 rounded font-semibold"
+    class="cart-button px-4 py-2 rounded font-semibold"
     onclick="cambiarPrecio(this, ${producto.precio + 10000})"
     >
     Oversize
@@ -1216,11 +1216,16 @@ function cambiarPrecio(boton, nuevoPrecio) {
   // 3) Actualizo el texto con formato de miles
   precioEl.textContent = `$${nuevoPrecio.toLocaleString("es-CO")}`;
 
-  // 4) (Opcional) Resalto el botón activo
-  tarjeta.querySelectorAll(".boton-talla").forEach(b => {
-    b.classList.remove("bg-gray-700", "text-white");
-    b.classList.add("bg-white", "text-black");
-  });
+  // 4) Quito el estilo “activo” de TODOS los botones dentro de esa tarjeta
+  tarjeta
+    .querySelectorAll(".talla-switch .cart-button")
+    .forEach(b => {
+      b.classList.remove("bg-gray-700", "text-white");
+      // (Opcional) restaurar look por defecto si lo habías modificado:
+      b.classList.add("bg-white", "text-black");
+    });
+
+  // 5) Pinto el botón clicado como activo
   boton.classList.remove("bg-white", "text-black");
   boton.classList.add("bg-gray-700", "text-white");
 }
