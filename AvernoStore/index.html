@@ -766,6 +766,7 @@ strong {
   background-color: white;
   color: black;
   transition: background-color .2s, color .2s;
+  margin-top: 4px;
   }
   .boton-talla:hover {
   background-color: #f0f0f0;
@@ -951,21 +952,19 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     <div class="precio">$${producto.precio.toLocaleString()}</div>
     
     <!-- SWITCH DE TALLA/PRECIO -->
-    <div class="talla-switch flex gap-2 mb-4">
+    <div class="talla-switch flex gap-2">
     <button
-    class="cart-button px-4 py-2 rounded font-semibold"
+    class="cart-button px-4 py-2 w-1/2"
     onclick="cambiarPrecio(this, ${producto.precio})"
-    >
-    Normal
-    </button>
+    onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')"
+    >Normal</button>
     <button
-    class="cart-button px-4 py-2 rounded font-semibold"
+    class="cart-button px-4 py-2 w-1/2"
     onclick="cambiarPrecio(this, ${producto.precio + 10000})"
-    >
-    Oversize
-    </button>  
+    onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')"
+    >Oversize</button>
     </div>
-    
+
     <div class="cantidad-talla-wrapper">
     <label class="cantidad-label">Cant:
     <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> </label> <div class="separator"></div> ${tallaSelect} </div>
@@ -993,12 +992,17 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     }
 
     function toggleFavorite(el, nombre, precio, esRopa) {
-      el.classList.toggle("active");
-      if (wishlistData[nombre]) delete wishlistData[nombre];
-      else wishlistData[nombre] = { precio, esRopa };
-      renderWishlist();
+    el.classList.toggle("active");
+    const tarjeta = el.closest(".item");
+    const tipo = tarjeta.dataset.tipo || 'Normal';
+    if (wishlistData[nombre]) {
+    delete wishlistData[nombre];
+    } else {
+    wishlistData[nombre] = { precio, esRopa, tipo };
     }
-
+    renderWishlist();
+    }
+    
     function renderWishlist() {
       const ul = document.getElementById("wishlist-items");
       ul.innerHTML = "";
@@ -1018,7 +1022,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
 
     ul.innerHTML += `
           <li style="margin-bottom: 12px;">
-            <span>${nombre} — $${producto.precio.toLocaleString()}</span>
+            <span>${nombre} (${producto.tipo}) — $${producto.precio.toLocaleString()}</span>
             ${tallaSelect}
             <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
           </li>
@@ -1032,26 +1036,28 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       renderWishlist();
     }
 
- function addToCart(nombre, precio, esRopa) {
-  const id = nombre.replace(/\s+/g, "_");
-  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
-  let talla = "";
+    function addToCart(nombre, precio, esRopa, tipo) {
+    const id = nombre.replace(/\s+/g, "_");
+    const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
+    let talla = "";
 
-  if (esRopa) {
+    if (esRopa) {
     talla = document.getElementById(`talla-${id}`).value;
     const errorEl = document.getElementById(`error-${id}`);
     if (!talla) {
-      if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+      errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
       errorEl.style.color = 'var(--dorado-oscuro)';
       return;
     } else {
-      if (errorEl) errorEl.textContent = "";
+      errorEl.textContent = "";
     }
-  }
+    }
 
-  cartData[nombre] = { precio, cantidad, talla };
-  renderCarrito();
-}
+    // Guardamos también el tipo en cartData
+    cartData[nombre] = { precio, cantidad, talla, tipo };
+    renderCarrito();
+    }
+    
     function moverWishlistACarrito() {
     for (let nombre in wishlistData) {
     const producto = wishlistData[nombre];
@@ -1083,7 +1089,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       ul.innerHTML = "";
       for (let nombre in cartData) {
         const it = cartData[nombre];
-        ul.innerHTML += `<li>${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+       ul.innerHTML += `<li>${nombre} (${it.tipo}) x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`; 
       }
     }
 
@@ -1116,15 +1122,16 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   }
 
     function comprarPorWhatsapp() {
-      if (!Object.keys(cartData).length) {
-        alert("Carrito vacío");
-        return;
-      }
-      let msg = "Hola, quiero comprar:%0A";
-      for (let nombre in cartData) {
-        const it = cartData[nombre];
-        msg += `- ${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
-      }
+    if (!Object.keys(cartData).length) {
+    alert("Carrito vacío");
+    return;
+    }
+    let msg = "Hola, quiero comprar:%0A";
+    for (let nombre in cartData) {
+    const it = cartData[nombre];
+    msg += `- ${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${...}%0A`;
+    msg += `- ${nombre} (${it.tipo}) x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
+    }
       window.open(`https://wa.me/573181541064?text=${msg}`, '_blank');
     }
 
@@ -1208,24 +1215,21 @@ function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
 }
 
-function cambiarPrecio(boton, nuevoPrecio) {
-  // 1) Tomo el .item que contiene este botón
+function cambiarPrecio(boton, nuevoPrecio, tipoSeleccion) {
   const tarjeta = boton.closest(".item");
-  // 2) Localizo el <div class="precio">
   const precioEl = tarjeta.querySelector(".precio");
-  // 3) Actualizo el texto con formato de miles
   precioEl.textContent = `$${nuevoPrecio.toLocaleString("es-CO")}`;
 
-  // 4) Quito el estilo “activo” de TODOS los botones dentro de esa tarjeta
+  // guarda el tipo en un data-atributo
+  tarjeta.dataset.tipo = tipoSeleccion;
+
+  // estilos activo/inactivo
   tarjeta
     .querySelectorAll(".talla-switch .cart-button")
     .forEach(b => {
       b.classList.remove("bg-gray-700", "text-white");
-      // (Opcional) restaurar look por defecto si lo habías modificado:
       b.classList.add("bg-white", "text-black");
     });
-
-  // 5) Pinto el botón clicado como activo
   boton.classList.remove("bg-white", "text-black");
   boton.classList.add("bg-gray-700", "text-white");
 }
