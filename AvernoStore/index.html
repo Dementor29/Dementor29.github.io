@@ -1093,16 +1093,17 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
     }
 
-    function renderCarrito() {
-      const ul = document.getElementById("cart-items");
-      ul.innerHTML = "";
-      for (let nombre in cartData) {
-        const it = cartData[nombre];
-       ul.innerHTML += `<li>${nombre} (${it.tipo}) x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`; 
-      }
-    }
-
-    function eliminarDelCarrito(nombre) {
+  function renderCarrito() {
+  const ul = document.getElementById("cart-items");
+  ul.innerHTML = "";
+  for (let nombre in cartData) {
+    const it = cartData[nombre];
+    ul.innerHTML += `<li>${nombre} (${it.tipo}) x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+  }
+  actualizarContadores();
+  }
+    
+  function eliminarDelCarrito(nombre) {
       delete cartData[nombre];
       renderCarrito();
     }
@@ -1145,9 +1146,6 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     }
 
     renderCatalogo(productosRopa, "catalogo-ropa", true);
-    renderWishlist();{
-    document.getElementById('flyer-overlay').style.display = 'none';
-    };
     
   //FUNCION NUEVA//
   function actualizarContadores() {
@@ -1160,27 +1158,27 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   const ul = document.getElementById("wishlist-items");
   ul.innerHTML = "";
   for (let nombre in wishlistData) {
-  const producto = wishlistData[nombre];
-  const id = nombre.replace(/\s+/g, "_");
-  const tallaSelect = producto.esRopa ? `
-    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-    <select id="wishlist-talla-${id}" class="cantidad-input">
-    <option value="">Elige talla</option>
-    <option value="S">S</option><option value="M">M</option>
-    <option value="L">L</option><option value="XL">XL</option>
-    </select>
-    </label>
-    <span id="error-wishlist-${id}" class="error-msg"></span>
+    const producto = wishlistData[nombre];
+    const id = nombre.replace(/\s+/g, "_");
+    const tallaSelect = producto.esRopa ? `
+      <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
+        <select id="wishlist-talla-${id}" class="cantidad-input">
+          <option value="">Elige talla</option>
+          <option value="S">S</option><option value="M">M</option>
+          <option value="L">L</option><option value="XL">XL</option>
+        </select>
+      </label>
+      <span id="error-wishlist-${id}" class="error-msg"></span>
     ` : "";
 
     ul.innerHTML += `
       <li style="margin-bottom: 12px;">
-      <span>${nombre} — $${producto.precio.toLocaleString()}</span>
-       ${tallaSelect}
-      <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+        <span>${nombre} — $${producto.precio.toLocaleString()}</span>
+        ${tallaSelect}
+        <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
       </li>
-      `;
-    }
+    `;
+  }
 
   actualizarContadores();
   }
