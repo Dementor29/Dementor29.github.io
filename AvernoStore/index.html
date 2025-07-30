@@ -1373,12 +1373,36 @@ function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
 }
     
-</script>
 <!-- Lightbox -->
 <div id="lightbox" onclick="closeLightbox()">
   <span class="close-btn">×</span>
   <img id="lightbox-img" src="" alt="Ampliación">
 </div>
-  
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('flyer-overlay');
+    const closeBtn = document.getElementById('flyer-close');
+
+    // Cuando hagan click en la X, escondemos el overlay
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    // También escondemos si hacen click fuera de la imagen
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+  });
+
+  // Esta es la función de cierre del Lightbox
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+    
+</script>
 </body>
 </html>
+
