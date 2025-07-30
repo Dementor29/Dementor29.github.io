@@ -56,9 +56,7 @@
     padding: 0;
     }
    
-   body {
-  visibility: hidden;
-  }
+  - body { visibility: hidden; }
 
   .flyer-img,
   .cruz-invertida-img {
@@ -107,17 +105,18 @@
   -ms-user-select: none;
   }
 
+  /* Aplica D N E a todo lo que NO es el modal */
   body.modal-abierto main,
   body.modal-abierto header,
   body.modal-abierto nav,
   body.modal-abierto .secondary-nav,
-  body.modal-abierto .barra-cinco-puntas,
+  /* QUITAMOS .barra-cinco-puntas de aquí para que no se oculte */
   body.modal-abierto footer,
   body.modal-abierto .bloque-reproductor,
   body.modal-abierto #bandera-play {
   display: none !important;
   }
-   
+    
   input,
   textarea,
   select {
@@ -148,7 +147,7 @@
 /* Para mover los botones hacia abajo */
 .flyer-footer {
   position: absolute;
-  bottom: 80px;
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -158,7 +157,7 @@
   z-index: 10;
   margin-top: 250px;
   pointer-events: auto;
-  top: 75%; /* Ajusta este valor para mover los botones hacia abajo */
+  top: auto; /* Ajusta este valor para mover los botones hacia abajo */
 }
    
 /* ya no necesitarás posicionar individualmente */
@@ -180,6 +179,7 @@
   height: 100vh;
   z-index: 9990;
   overflow: hidden;
+  display: block;  
   }   
 
    /* Humo a pantalla completa */
@@ -262,6 +262,19 @@
   transition: all 0.3s ease;
   display: inline-block;
   top: 30%; /* sube este valor para bajarlo más */
+  }
+
+  .ver-coleccion-btn,
+  .flyer-close-btn {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s;
+  }
+
+  .ver-coleccion-btn.visible,
+  .flyer-close-btn.visible {
+  opacity: 1;
+  visibility: visible;
   }
     
   header {
