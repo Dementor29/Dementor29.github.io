@@ -929,46 +929,48 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     item.className = "item";
     const id = producto.nombre.replace(/\s+/g, "_");
 
-    let tallaSelect = esRopa ? `
-    <label class="cantidad-label">Talla:
+    let tallaSelect = esRopa ? ` 
+    <label class="cantidad-label">Talla: 
       <select class="cantidad-input" id="talla-${id}">
         <option value="">Elige talla</option>
-        <option value="S">S</option><option value="M">M</option>
-        <option value="L">L</option><option value="XL">XL</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
       </select>
     </label>
     <span id="error-${id}" class="error-msg"></span>
-    `: "";
+    ` : "";
 
     item.innerHTML = `
     <div class="item-marco">
-    <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
-    <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span> 
-    <img src="marco.svg" alt="Marco decorativo" class="marco-overlay"></div>
-    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')"><i class="fas fa-search"></i></div>
+      <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
+      <span class="heart-icon" onclick="toggleFavorite(this, '${producto.nombre}', ${producto.precio}, ${esRopa})">⛧</span>
+      <img src="marco.svg" alt="Marco decorativo" class="marco-overlay">
+    </div>
+    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
+      <i class="fas fa-search"></i>
+    </div>
     <div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
-    
-    <!-- SWITCH DE TALLA/PRECIO -->
+
     <div class="talla-switch flex gap-2">
-    <button
-    class="cart-button px-4 py-2 w-1/2"
-    onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')"
-    >Normal</button>
-    <button
-    class="cart-button px-4 py-2 w-1/2"
-    onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')"
-    >Oversize</button>
+      <button class="cart-button px-4 py-2 w-1/2" onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')">Normal</button>
+      <button class="cart-button px-4 py-2 w-1/2" onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')">Oversize</button>
     </div>
 
     <div class="cantidad-talla-wrapper">
-    <label class="cantidad-label">Cant:
-    <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> </label> <div class="separator"></div> ${tallaSelect} </div>
+      <label class="cantidad-label">Cant:
+        <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> 
+      </label> 
+      <div class="separator"></div> 
+      ${tallaSelect}
+    </div>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
-  `;
+    `;
 
-    // Aquí agregamos el listener que borra el error al cambiar la talla:
+    // Aquí agregamos el listener para borrar el error al cambiar la talla
     if (esRopa) {
     const select = item.querySelector(`#talla-${id}`);
     const errorSpan = item.querySelector(`#error-${id}`);
@@ -982,12 +984,18 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     return item;
     }
 
-    function renderCatalogo(productos, contenedorId, esRopa) {
-      const cont = document.getElementById(contenedorId);
-      cont.innerHTML = "";
-      productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
+    function renderCatalogo(productos, contenedorId) {
+    const cont = document.getElementById(contenedorId); 
+    if (cont) {
+    cont.innerHTML = "";  // Limpiar el contenedor antes de agregar productos
+    productos.forEach(producto => {
+      cont.appendChild(crearItem(producto));  // Añadir cada producto al contenedor
+    });
+    } else {
+    console.log("El contenedor no fue encontrado.");
     }
-
+    }
+    
     function toggleFavorite(el, nombre, precio, esRopa) {
     el.classList.toggle("active");
     const tarjeta = el.closest(".item");
@@ -1133,7 +1141,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       window.open(`https://wa.me/573181541064?text=${msg}`, '_blank');
     }
 
-    renderCatalogo(productosRopa, "catalogo-ropa", true);
+  renderCatalogo(productosRopa, "catalogo-ropa", true);
     
   //FUNCION NUEVA//
   function actualizarContadores() {
