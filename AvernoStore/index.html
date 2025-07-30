@@ -963,7 +963,8 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')"><i class="fas fa-search"></i></div>
     <div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>
     <h3>${producto.nombre}</h3>
-    <div class="precio" data-precio="${producto.precio}">$${producto.precio.toLocaleString()}</div>
+    <div class="precio" data-precio="${producto.precio}" data-precio-original="${producto.precio}" data-tipo="Normal">
+    $${producto.precio.toLocaleString()}</div>
     
     <div class="talla-switch flex gap-2 mb-4">
     <button
@@ -1120,29 +1121,57 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       renderCarrito();
     }
 
-  function vaciarWishlist() {
+    function vaciarWishlist() {
     wishlistData = {};
     renderWishlist();
-    document.querySelectorAll('.heart-icon.active')
-      .forEach(icon => icon.classList.remove('active'));
-    document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1;
-    else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-  }
 
-  function vaciarCarrito() {
+    // Restaurar precios en el catálogo
+    document.querySelectorAll(".item").forEach(item => {
+    const precioBase = parseInt(item.getAttribute("data-precio-original"));
+    const precioEl = item.querySelector(".precio");
+    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", precioBase);
+    precioEl.setAttribute("data-tipo", "Normal");
+
+    item.querySelectorAll(".boton-talla").forEach(btn => {
+      btn.classList.remove("bg-gray-700", "text-white");
+      btn.classList.add("bg-white", "text-black");
+    });
+
+    const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
+    if (normalBtn) {
+      normalBtn.classList.remove("bg-white", "text-black");
+      normalBtn.classList.add("bg-gray-700", "text-white");
+    }
+    });
+    }
+
+    function vaciarCarrito() {
     cartData = {};
     renderCarrito();
-   document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1;
-    else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-    
-  }
 
+    // Restaurar precios en el catálogo
+    document.querySelectorAll(".item").forEach(item => {
+    const precioBase = parseInt(item.getAttribute("data-precio-original")); // Este lo definiremos ahora
+    const precioEl = item.querySelector(".precio");
+    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", precioBase);
+    precioEl.setAttribute("data-tipo", "Normal");
+
+    // Restaurar botones
+    item.querySelectorAll(".boton-talla").forEach(btn => {
+      btn.classList.remove("bg-gray-700", "text-white");
+      btn.classList.add("bg-white", "text-black");
+    });
+
+    const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
+    if (normalBtn) {
+      normalBtn.classList.remove("bg-white", "text-black");
+      normalBtn.classList.add("bg-gray-700", "text-white");
+    }
+    });
+    }
+    
     function comprarPorWhatsapp() {
     if (!Object.keys(cartData).length) {
     alert("Carrito vacío");
