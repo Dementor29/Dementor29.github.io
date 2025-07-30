@@ -1007,21 +1007,20 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     }
 
     function toggleFavorite(el, nombre, precio, esRopa) {
-    el.classList.toggle("active");
+  el.classList.toggle("active");
 
     if (wishlistData[nombre]) {
     delete wishlistData[nombre];
     } else {
-    // Buscamos el contenedor .item usando el nombre del producto
     const id = nombre.replace(/\s+/g, "_");
     const item = document.getElementById(`cantidad-${id}`).closest(".item");
-
-    // Tomamos el precio actualizado desde el atributo data-precio
     const precioEl = item.querySelector(".precio");
-    const precioActual = parseInt(precioEl.getAttribute("data-precio"));
+    const precioActual = parseInt(precioEl.getAttribute("data-precio") || precio);
+    const tipo = precioEl.getAttribute("data-tipo") || "Normal";
 
-    wishlistData[nombre] = { precio: precioActual, esRopa };
+    wishlistData[nombre] = { precio: precioActual, esRopa, tipo };
     }
+
     renderWishlist();
     }
     
@@ -1044,7 +1043,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
 
     ul.innerHTML += `
           <li style="margin-bottom: 12px;">
-            <span>${nombre} — $${producto.precio.toLocaleString()}</span>
+            <span>${nombre} (${producto.tipo || "Normal"}) — $${producto.precio.toLocaleString()}</span>
             ${tallaSelect}
             <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
           </li>
@@ -1145,18 +1144,19 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   }
 
     function comprarPorWhatsapp() {
-      if (!Object.keys(cartData).length) {
-        alert("Carrito vacío");
-        return;
-      }
-      let msg = "Hola, quiero comprar:%0A";
-      for (let nombre in cartData) {
-        const it = cartData[nombre];
-        msg += `- ${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
-      }
-      window.open(`https://wa.me/573181541064?text=${msg}`, '_blank');
+    if (!Object.keys(cartData).length) {
+    alert("Carrito vacío");
+    return;
     }
-
+    let msg = "Hola, quiero comprar:%0A";
+    for (let nombre in cartData) {
+    const it = cartData[nombre];
+    const linea = `- ${nombre} (${it.tipo || 'Normal'}) x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
+    msg += linea;
+    }
+    window.open(`https://wa.me/573181541064?text=${msg}`, '_blank');
+    }
+    
     function cambiarPrecio(boton, nuevoPrecio) {
     const tarjeta = boton.closest(".item");
     const precioEl = tarjeta.querySelector(".precio");
