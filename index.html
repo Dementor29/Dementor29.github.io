@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
   <html lang="es">
   <head>
   
@@ -55,11 +55,19 @@
     margin: 0;
     padding: 0;
     }
-    
+   
+   body {
+  visibility: hidden;
+  }
+
+  /* 0) Oculto todo hasta que empiece la animación */
   .flyer-img,
-  .cruz-invertida-img {
+  .cruz-invertida-img,
+  .ver-coleccion-btn,
+  .flyer-close-btn {
   opacity: 0;
-  animation: caerY 2.5s ease-out forwards;
+  /* Asegúrate de que la animación mantenga el estado final */
+  animation-fill-mode: forwards;
   }
     
   @font-face {
@@ -102,7 +110,18 @@
   -moz-user-select: none;
   -ms-user-select: none;
   }
-    
+
+  body.modal-abierto main,
+  body.modal-abierto header,
+  body.modal-abierto nav,
+  body.modal-abierto .secondary-nav,
+  body.modal-abierto .barra-cinco-puntas,
+  body.modal-abierto footer,
+  body.modal-abierto .bloque-reproductor,
+  body.modal-abierto #bandera-play {
+  display: none !important;
+  }
+   
   input,
   textarea,
   select {
@@ -130,10 +149,9 @@
   50% { transform: translateY(-8px); opacity: 0.7; }
   }
 
-/* Para mover los botones hacia abajo */
 .flyer-footer {
   position: absolute;
-  bottom: 100px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -141,9 +159,20 @@
   justify-content: center;
   gap: 60px;
   z-index: 10;
+  margin-top: 250px;
   pointer-events: auto;
 }
-    
+   
+/* ya no necesitarás posicionar individualmente */
+.cruz-invertida,
+.ver-coleccion-btn,
+.flyer-close-btn {
+  position: static !important;
+  bottom: auto; left: auto; transform: none;
+  z-index: auto;
+  margin-top: 50px; /* o el valor que necesites */
+}
+   
  #flyer-modal {
   position: fixed; /* no relative */
   top: 0;
@@ -153,7 +182,6 @@
   height: 100vh;
   z-index: 9990;
   overflow: hidden;
-  display: block;  
   }   
 
    /* Humo a pantalla completa */
@@ -190,7 +218,7 @@
   transform: translate(-50%, -50%);
   z-index: 5;
   max-width: 90vw;
-  max-height: 70vh;
+  max-height: 90vh;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -220,6 +248,7 @@
   padding: 12px 20px;  /* antes 8px/16px, sube a 12px/20px */
   font-size: 1.4rem;   /* antes 1.1rem, sube a 1.2rem */
   margin-right: 10px;      /* separa del botón cerrar */
+  top: 20px; /* sube este valor para bajarlo más */
   }
    
   /* Igualar el estilo de “Cerrar” al de “Ver Colección” */
@@ -234,21 +263,18 @@
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-block;
+  top: 20px; /* sube este valor para bajarlo más */
   }
-
-  .ver-coleccion-btn,
-  .flyer-close-btn {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s;
+   
+  .ver-coleccion-btn:hover,  
+  .flyer-close-btn:hover {
+  background-color: transparent;
+  color: white;
+  /* No cambies padding ni font-size */
+  cursor: pointer;
+  opacity: 0.9;
   }
-
-  .ver-coleccion-btn.visible,
-  .flyer-close-btn.visible {
-  opacity: 1;
-  visibility: visible;
-  }
-    
+   
   header {
   display: flex;
   flex-direction: column;
@@ -372,8 +398,8 @@
     }
     
     .fade-in {
-      opacity: 1;
-      transform: none;
+      opacity: 0;
+      transform: translateY(20px);
       animation: fadeIn 1s ease-out forwards;
     }
 
@@ -495,12 +521,9 @@
   align-items: center;
   justify-content: center;
   filter: brightness(0) invert(1); /* asegura que se vea blanca en fondo negro */
-  animation: caerY 2.5s ease-out forwards;
-  animation-delay: 0.5s; /* Retraso para la cruz */
-  top: 60%; /* Ajusta este valor para mover la cruz hacia abajo */
   }
     
-    /* Animación de parpadeo */
+    /* 1) Animación de parpadeo con brillo intenso */
     @keyframes parpadeoIntenso {
     0%, 100% {
     opacity: 0.2;
@@ -511,7 +534,7 @@
     filter: brightness(4);   /* Explosión de brillo */
     }
     }
-     
+
     /* 2) Aplica la nueva animación */
     .parpadea {
     animation: parpadeoIntenso 0.8s ease-in-out infinite;
@@ -609,15 +632,15 @@
   }
 }
 
-
+/* Animación de caída de la cruz y botones */
 @keyframes caerY {
   0% {
     transform: translateY(-100vh); /* Empieza desde arriba */
-    opacity: 0;                    /* Invisible al principio */
+    opacity: 0;
   }
   100% {
-    transform: translateY(0);      /* Se mueve a la posición final */
-    opacity: 1;                    /* Visible al final */
+    transform: translateY(0); /* Se mueve a la posición final */
+    opacity: 1;
   }
 }
 
@@ -632,8 +655,26 @@
   animation: caerY 2.5s ease-out forwards;
   animation-delay: 0.5s;  /* Retraso para la cruz */
 }
+
+/* Animación para botones */
+.ver-coleccion-btn,
+.flyer-close-btn {
+  animation: caerY 2.5s ease-out forwards;
+  animation-delay: 1s;  /* Retraso para los botones */
+}
+
+/* Para asegurarte de que no se trabe, usa el fill-mode para que mantengan su estado final */
+.cruz-invertida-img,
+.ver-coleccion-btn,
+.flyer-close-btn {
+  animation-fill-mode: forwards;
 }
     
+@keyframes parpadeoSuave {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+   
 @media (max-width: 768px) {
   #bandera-play {
     width: 100%;
@@ -712,15 +753,20 @@
   </head>
   <body>
 
- <div id="flyer-modal">
+  <div id="flyer-modal">
   <div id="humo-fondo"></div>
   <img src="palmira.png" class="flyer-img" alt="Flyer Cinco Puntas" />
+
+  
+  <!-- NUEVO: contenedor footer -->
   <div class="flyer-footer">
-    <a href="AvernoStore" class="ver-coleccion-btn parpadea">
+  
+    <a href="AvernoStore/" class="ver-coleccion-btn parpadea">
       <i class="fa fa-eye"></i> Ver
     </a>
-    <img src="cruz.png" alt="cruz invertida" class="cruz-invertida-img"/>
-    <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
+  <img src="cruz.png" alt="cruz invertida" class="cruz-invertida-img"/>
+   
+  <button onclick="cerrarFlyer()" class="flyer-close-btn parpadea">
       Cerrar
     </button>
   </div>
@@ -765,22 +811,23 @@
 -->
   <div class="separador"></div> 
    
- <div class="barra-cinco-puntas fade-in" style="
-  position: fixed;    /* sácala del flujo */
-  top: 0;
-  left: 0;
+  <div class="barra-cinco-puntas fade-in" style="
   width: 100%;
-  z-index: 10001;     /* por encima de #flyer-modal (9990) */
-  background: linear-gradient(to right, #000, #300, #000);
-  padding: 14px 10px;
+  background: linear-gradient(to right, #000000, #330000, #000000);
   text-align: center;
-  box-shadow: 0 0 10px rgba(255,0,0,0.2);
+  padding: 14px 10px;
+  margin-top: -20px;
+  z-index: 99;
+  position: relative;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
   font-family: 'BurzumGothic', serif;
   animation: parpadeoSuave 3s infinite;
 ">
   ⚔️ NUEVA COLECCIÓN DISPONIBLE: <a href="AvernoStore/" style="color:#C10202; text-decoration:underline;">AVERNO △ STORE</a> ⚔️
 </div>
-    
+   
 <main>
   <section class="fade-in" id="alianza-cinco-puntas">
     <h2>AVERNO STORE</h2>
@@ -843,40 +890,37 @@
     }
   }
   
- window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('DOMContentLoaded', function () {
   const flyer = document.getElementById("flyer-modal");
-  const humo = document.getElementById("humo-fondo");
-  const closeButton = document.querySelector('.flyer-close-btn');
-  const viewCollectionButton = document.querySelector('.ver-coleccion-btn');
+  const humo  = document.getElementById("humo-fondo");
 
-  // Mostrar el modal y el fondo de humo al cargar la página
   flyer.style.display = "block";
-  humo.style.display = "block";
+  humo.style.display  = "block";
+
+  document.body.classList.add("modal-abierto");
+
+  // Mostrar el body completamente sin parpadeo
   document.body.style.visibility = "visible";
 
-  // Función para cerrar el flyer
-  window.cerrarFlyer = () => {
-    flyer.style.display = "none";
-    humo.style.display = "none";
-  };
+  // Función para añadir la clase 'parpadea' después de que la animación termine
+  const botones = document.querySelectorAll('.ver-coleccion-btn, .flyer-close-btn');
 
-  const barra = document.querySelector('.barra-cinco-puntas');
-  if (barra) barra.style.display = 'block';
-  // Agregar el evento al botón de "Ver colección"
-  viewCollectionButton.addEventListener('click', () => {
-    window.location.href = 'AvernoStore'; // O cualquier enlace que se necesite
+  botones.forEach((boton) => {
+    // Espera que la animación de caída termine
+    boton.addEventListener('animationend', function() {
+      // Añade la clase 'parpadea' después de la animación de caída
+      boton.classList.add('parpadea');
+    });
   });
 
-  // Evento para cerrar el modal con el botón de "Cerrar"
-  closeButton.addEventListener('click', cerrarFlyer);
-
-  setTimeout(() => {
-  document.querySelector('.ver-coleccion-btn').classList.add('visible');
-  document.querySelector('.flyer-close-btn').classList.add('visible');
-  // Asegura que la barra esté visible:
-  document.querySelector('.barra-cinco-puntas').style.display = 'block';
-  }, 2500);
-
-  </script>
-  </body>
-  </html>
+  // Botón cerrar
+  window.cerrarFlyer = function () {
+    flyer.style.display = "none";
+    humo.style.display  = "none";
+    document.body.classList.remove("modal-abierto");
+  };
+});
+  
+</script>
+</body>
+</html>
