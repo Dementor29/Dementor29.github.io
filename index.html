@@ -526,14 +526,7 @@
     filter: brightness(4);   /* Explosión de brillo */
     }
     }
-    
-    .ver-coleccion-btn,
-    .flyer-close-btn {
-    opacity: 0;
-    animation: caerY 2.5s ease-out forwards, parpadeoIntenso 2.5s ease-in-out infinite;
-    visibility: hidden;  /* Oculta los botones al inicio */
-    }
-    
+     
     /* 2) Aplica la nueva animación */
     .parpadea {
     animation: parpadeoIntenso 0.8s ease-in-out infinite;
@@ -655,7 +648,22 @@
   animation-delay: 0.5s;  /* Retraso para la cruz */
 }
 }
-   
+
+.barra-cinco-puntas {
+  width: 100%;
+  background: linear-gradient(to right, #000000, #330000, #000000);
+  text-align: center;
+  padding: 14px 10px;
+  margin-top: -20px;
+  z-index: 99;
+  position: relative;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  font-family: 'BurzumGothic', serif;
+  animation: parpadeoSuave 3s infinite;
+}
+    
 @media (max-width: 768px) {
   #bandera-play {
     width: 100%;
@@ -787,20 +795,7 @@
 -->
   <div class="separador"></div> 
    
-  <div class="barra-cinco-puntas fade-in" style="
-  width: 100%;
-  background: linear-gradient(to right, #000000, #330000, #000000);
-  text-align: center;
-  padding: 14px 10px;
-  margin-top: -20px;
-  z-index: 99;
-  position: relative;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  font-family: 'BurzumGothic', serif;
-  animation: parpadeoSuave 3s infinite;
-">
+  <div class="barra-cinco-puntas">
   ⚔️ NUEVA COLECCIÓN DISPONIBLE: <a href="AvernoStore/" style="color:#C10202; text-decoration:underline;">AVERNO △ STORE</a> ⚔️
 </div>
    
