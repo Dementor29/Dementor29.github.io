@@ -768,13 +768,17 @@ strong {
   }
 
   .boton-talla {
-  background-color: white;
-  color: black;
-  transition: background-color .2s, color .2s;
+  background-color: #0f0f0f;
+  color: #cccccc;
+  border: 1px solid #0f0f0f;
+  transition: background-color 0.3s ease, color 0.3s ease;
   }
+
   .boton-talla:hover {
-  background-color: #f0f0f0;  
-  }  
+  background-color: rgba(25, 25, 25, 0.8);
+  color: var(--dorado-claro);
+  }
+
   .bg-gray-700 { background-color: #333 !important; }
   .text-white   { color: white !important; }
 
@@ -962,13 +966,13 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los ca√≠dos‚
     
     <div class="talla-switch flex gap-2 mb-4">
     <button
-    class="cart-button px-4 py-2 rounded font-semibold"
+    class="cart-button boton-talla"
     onclick="cambiarPrecio(this, ${producto.precio})"
     >
     Normal
     </button>
     <button
-    class="cart-button px-4 py-2 rounded font-semibold"
+    class="cart-button boton-talla"
     onclick="cambiarPrecio(this, ${producto.precio + 10000})"
     >
     Oversize
@@ -1144,14 +1148,6 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los ca√≠dos‚
     const precioEl = tarjeta.querySelector(".precio");
     // 3) Actualizo el texto con formato de miles
     precioEl.textContent = `$${nuevoPrecio.toLocaleString("es-CO")}`;
-
-    // 4) (Opcional) Resalto el bot√≥n activo
-    tarjeta.querySelectorAll(".boton-talla").forEach(b => {
-    b.classList.remove("bg-gray-700", "text-white");
-    b.classList.add("bg-white", "text-black");
-    });
-    boton.classList.remove("bg-white", "text-black");
-    boton.classList.add("bg-gray-700", "text-white");
     }
 
     renderCatalogo(productosRopa, "catalogo-ropa", true);
