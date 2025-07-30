@@ -762,6 +762,17 @@ strong {
   width: calc(100vw - 40px); /* 20px padding por lado */
   }
 
+  .boton-talla {
+  background-color: white;
+  color: black;
+  transition: background-color .2s, color .2s;
+  }
+  .boton-talla:hover {
+  background-color: #f0f0f0;  
+  }  
+  .bg-gray-700 { background-color: #333 !important; }
+  .text-white   { color: white !important; }
+
   /* Responsivo */
   @media (max-width: 600px) {
   h2 {
@@ -938,6 +949,22 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     <div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>
     <h3>${producto.nombre}</h3>
     <div class="precio">$${producto.precio.toLocaleString()}</div>
+    
+    <div class="talla-switch flex gap-2 mb-4">
+    <button
+    class="cart-button px-4 py-2 rounded font-semibold"
+    onclick="cambiarPrecio(this, ${producto.precio})"
+    >
+    Normal
+    </button>
+    <button
+    class="cart-button px-4 py-2 rounded font-semibold"
+    onclick="cambiarPrecio(this, ${producto.precio + 10000})"
+    >
+    Oversize
+    </button>
+    </div>
+    
     <div class="cantidad-talla-wrapper">
     <label class="cantidad-label">Cant:
     <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> </label> <div class="separator"></div> ${tallaSelect} </div>
@@ -1098,6 +1125,23 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
         msg += `- ${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} = $${(it.precio * it.cantidad).toLocaleString()}%0A`;
       }
       window.open(`https://wa.me/573181541064?text=${msg}`, '_blank');
+    }
+
+    function cambiarPrecio(boton, nuevoPrecio) {
+    // 1) Tomo el .item que contiene este botón
+    const tarjeta = boton.closest(".item");
+    // 2) Localizo el <div class="precio">
+    const precioEl = tarjeta.querySelector(".precio");
+    // 3) Actualizo el texto con formato de miles
+    precioEl.textContent = `$${nuevoPrecio.toLocaleString("es-CO")}`;
+
+    // 4) (Opcional) Resalto el botón activo
+    tarjeta.querySelectorAll(".boton-talla").forEach(b => {
+    b.classList.remove("bg-gray-700", "text-white");
+    b.classList.add("bg-white", "text-black");
+    });
+    boton.classList.remove("bg-white", "text-black");
+    boton.classList.add("bg-gray-700", "text-white");
     }
 
     renderCatalogo(productosRopa, "catalogo-ropa", true);
