@@ -352,17 +352,6 @@
 .nequi-btn:hover i {
 color: var(--dorado-oscuro);               /* tu rojo de títulos */
 }
-
-  /* FLYER EMERGENTE */
-#flyer-overlay {
-  position: fixed;
-  inset: 0;
-  background: #000000; /* fondo transparente */
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
     /* FLYER EMERGENTE */
 #flyer-overlay {
   position: fixed;
@@ -913,17 +902,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   </a>
 
   <script>
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const closeBtn = document.getElementById('flyer-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        const overlay = document.getElementById('flyer-overlay');
-        if (overlay) overlay.style.display = 'none';
-      });
-    }
-   }); 
-
+    
     const productosRopa = [
       { nombre: "CORPUS MORTIS", precio: 70000, imagen: "1.png" },
       { nombre: "CRUCIFIXUS SANGUINIS", precio: 70000, imagen: "2.png" },
@@ -1239,6 +1218,16 @@ function cambiarPrecio(boton, nuevoPrecio, tipoSeleccion) {
   boton.classList.remove("bg-white", "text-black");
   boton.classList.add("bg-gray-700", "text-white");
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('flyer-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        const overlay = document.getElementById('flyer-overlay');
+        if (overlay) overlay.style.display = 'none';
+      });
+    }
+   });  
     
 </script>
 <!-- Lightbox -->
