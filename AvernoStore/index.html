@@ -1058,12 +1058,12 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caÃ­dosâ
       renderWishlist();
     }
 
- function addToCart(nombre, precio, esRopa) {
-  const id = nombre.replace(/\s+/g, "_");
-  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
-  let talla = "";
+    function addToCart(nombre, precio, esRopa) {
+    const id = nombre.replace(/\s+/g, "_");
+    const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
+    let talla = "";
 
-  if (esRopa) {
+    if (esRopa) {
     talla = document.getElementById(`talla-${id}`).value;
     const errorEl = document.getElementById(`error-${id}`);
     if (!talla) {
@@ -1073,13 +1073,16 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caÃ­dosâ
     } else {
       if (errorEl) errorEl.textContent = "";
     }
-  }
+    }
 
-  const precioActual = parseInt(document.querySelector(`#cantidad-${id}`).closest(".item").querySelector(".precio").getAttribute("data-precio"));
-  cartData[nombre] = { precio: precioActual, cantidad, talla };
-   
-  renderCarrito();
-  }
+    const item = document.querySelector(`#cantidad-${id}`).closest(".item");
+    const precioActual = parseInt(item.querySelector(".precio").getAttribute("data-precio"));
+    const tipo = item.querySelector(".precio").getAttribute("data-tipo") || "Normal";
+
+    cartData[nombre] = { precio: precioActual, cantidad, talla, tipo };
+
+    renderCarrito();
+    }
     
     function moverWishlistACarrito() {
     for (let nombre in wishlistData) {
@@ -1124,7 +1127,8 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caÃ­dosâ
     function vaciarWishlist() {
     wishlistData = {};
     renderWishlist();
-
+    resetearPrecios();
+      
     // Restaurar precios en el catÃ¡logo
     document.querySelectorAll(".item").forEach(item => {
     const precioBase = parseInt(item.getAttribute("data-precio-original"));
@@ -1149,6 +1153,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caÃ­dosâ
     function vaciarCarrito() {
     cartData = {};
     renderCarrito();
+    resetearPrecios();
 
     // Restaurar precios en el catÃ¡logo
     document.querySelectorAll(".item").forEach(item => {
@@ -1198,6 +1203,16 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caÃ­dosâ
     document.getElementById('flyer-close').onclick = function () {
     document.getElementById('flyer-overlay').style.display = 'none';
     };
+
+  function resetearPrecios() {
+  document.querySelectorAll(".item").forEach(item => {
+    const precioEl = item.querySelector(".precio");
+    const precioBase = 70000; // precio base normal
+    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", precioBase);
+    precioEl.setAttribute("data-tipo", "Normal");
+  });
+  }
     
 //FUNCION NUEVA//
   function actualizarContadores() {
