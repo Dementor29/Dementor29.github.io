@@ -143,7 +143,7 @@
 /* Para mover los botones hacia abajo */
 .flyer-footer {
   position: absolute;
-  bottom: 80px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -200,7 +200,7 @@
   transform: translate(-50%, -50%);
   z-index: 5;
   max-width: 90vw;
-  max-height: 90vh;
+  max-height: 70vh;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -257,6 +257,10 @@
   .flyer-close-btn.visible {
   opacity: 1;
   visibility: visible;
+  }
+
+  body.modal-abierto .barra-cinco-puntas {
+  display: none !important;
   }
     
   header {
@@ -872,6 +876,8 @@
     document.body.classList.remove("modal-abierto");
   };
 
+  const barra = document.querySelector('.barra-cinco-puntas');
+  if (barra) barra.style.display = 'block';
   // Agregar el evento al botón de "Ver colección"
   viewCollectionButton.addEventListener('click', () => {
     window.location.href = 'AvernoStore'; // O cualquier enlace que se necesite
