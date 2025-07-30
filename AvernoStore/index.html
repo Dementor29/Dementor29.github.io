@@ -832,17 +832,7 @@ strong {
   <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
   <img src="Port.png" alt="Flyer Averno"/>
 </div>
-
-<script>
-  document
-    .getElementById('flyer-close')
-    .addEventListener('click', () => {
-      document
-        .getElementById('flyer-overlay')
-        .style.display = 'none';
-    });
-</script>
-
+  
 <section class="bloque-manifiesto">
 <p><strong class="destacado">Averno Store</strong> es un refugio para la belleza infernal y abismal del ocultismo moderno. Cada diseño, una obra de arte oscuro que captura la esencia de lo prohibido y lo místico, fusionando simbolismos ocultistas con la fuerza visceral del metal. En cada estampado, se revela una visión de la oscuridad que no busca ser entendida, sino sentida. Una estética brutal y profunda que habla directamente al alma rebelde y la voluntad inquebrantable.</p>
 <blockquote class="frase-autor">
@@ -923,6 +913,13 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   </a>
 
   <script>
+    
+  // Cerrar overlay
+  document.getElementById('flyer-close')
+  .addEventListener('click', () => {
+  document.getElementById('flyer-overlay').style.display = 'none';
+  });
+
     const productosRopa = [
       { nombre: "CORPUS MORTIS", precio: 70000, imagen: "1.png" },
       { nombre: "CRUCIFIXUS SANGUINIS", precio: 70000, imagen: "2.png" },
@@ -1149,13 +1146,13 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     document.getElementById('flyer-overlay').style.display = 'none';
     };
     
-//FUNCION NUEVA//
+  //FUNCION NUEVA//
   function actualizarContadores() {
   document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
   document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
   }
 
-// Llamar al actualizar contadores cuando se renderizan
+  // Llamar al actualizar contadores cuando se renderizan
   function renderWishlist() {
   const ul = document.getElementById("wishlist-items");
   ul.innerHTML = "";
