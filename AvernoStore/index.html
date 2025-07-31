@@ -1208,29 +1208,21 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   document.querySelectorAll(".item").forEach(item => {
     const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10);
     const precioEl  = item.querySelector(".precio");
-
-    // 1) Restablecer precio y tipo
+    // restablecer texto y atributo data-precio
     precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
     precioEl.setAttribute("data-precio", precioBase);
-    precioEl.setAttribute("data-tipo", "Normal");
 
-    // 2) Quitar estado activo de Oversize/Normal
+    // opcional: si usas classes para “activo” en botones, quítalas aquí
     item.querySelectorAll(".boton-talla").forEach(btn => {
       btn.classList.remove("bg-gray-700","text-white");
     });
-
-    // 3) Quitar corazón “activo”
-    const heart = item.querySelector(".heart-icon");
-    if (heart) heart.classList.remove("active");
   });
 
-  // 4) Limpiar inputs y errores como ya hacías
-  document.querySelectorAll(".cantidad-input").forEach(i => {
-    if (i.type === "number") i.value = 1;
-    else i.value = "";
-  });
+  // ya tienes esto para tallas, cantidades, corazones, etc.
+  document.querySelectorAll(".cantidad-input").forEach(i => i.type==="number" ? i.value = 1 : i.value = "");
   document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
-}
+  document.querySelectorAll(".heart-icon.active").forEach(h => h.classList.remove("active"));
+  }
     
   function vaciarCarrito() {
   cartData = {};
@@ -1239,27 +1231,14 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   document.querySelectorAll(".item").forEach(item => {
     const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10);
     const precioEl  = item.querySelector(".precio");
-
-    // Restablecer precio y tipo
     precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
     precioEl.setAttribute("data-precio", precioBase);
-    precioEl.setAttribute("data-tipo", "Normal");
-
-    // Quitar estado activo de Oversize/Normal
     item.querySelectorAll(".boton-talla").forEach(btn => {
       btn.classList.remove("bg-gray-700","text-white");
     });
-
-    // Quitar corazón “activo”
-    const heart = item.querySelector(".heart-icon");
-    if (heart) heart.classList.remove("active");
   });
 
-  // Limpiar inputs y errores
-  document.querySelectorAll(".cantidad-input").forEach(i => {
-    if (i.type === "number") i.value = 1;
-    else i.value = "";
-  });
+  document.querySelectorAll(".cantidad-input").forEach(i => i.type==="number" ? i.value = 1 : i.value = "");
   document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
 }
     
@@ -1337,19 +1316,13 @@ function openLightbox(src) {
 function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
 }
-
-document
-.getElementById('flyer-close')
-.addEventListener('click', () => {
-document.getElementById('flyer-overlay').style.display = 'none';
-});   
     
+</script>
 <!-- Lightbox -->
 <div id="lightbox" onclick="closeLightbox()">
   <span class="close-btn">×</span>
   <img id="lightbox-img" src="" alt="Ampliación">
 </div>
-
-</script>
+  
 </body>
 </html>
