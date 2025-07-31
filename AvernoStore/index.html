@@ -1072,27 +1072,45 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       renderWishlist();
     }
 
- function addToCart(nombre, precio, esRopa) {
+  function addToCart(nombre, precio, esRopa) {
   const id = nombre.replace(/\s+/g, "_");
-  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1");
+  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1", 10);
   let talla = "";
 
+  // Validación de talla si es prenda de ropa
   if (esRopa) {
     talla = document.getElementById(`talla-${id}`).value;
     const errorEl = document.getElementById(`error-${id}`);
     if (!talla) {
-      if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
-      errorEl.style.color = 'var(--dorado-oscuro)';
+      if (errorEl) {
+        errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+        errorEl.style.color = 'var(--dorado-oscuro)';
+      }
       return;
     } else {
       if (errorEl) errorEl.textContent = "";
     }
   }
 
-  const precioActual = parseInt(document.querySelector(`#cantidad-${id}`).closest(".item").querySelector(".precio").getAttribute("data-precio"));
-  cartData[nombre] = { precio: precioActual, cantidad, talla };
-   
+  // Tomamos el elemento .item para extraer su precio y tipo actuales
+  const itemEl = document.querySelector(`#cantidad-${id}`).closest(".item");
+  const precioEl = itemEl.querySelector(".precio");
+
+  // Leemos el precio y el tipo desde los atributos data-* que puso cambiarPrecio()
+  const precioActual = parseInt(precioEl.getAttribute("data-precio"), 10);
+  const tipoSeleccionado = precioEl.getAttribute("data-tipo") || "Normal";
+
+  // Guardamos en el carrito
+  cartData[nombre] = {
+    precio: precioActual,
+    cantidad: cantidad,
+    talla: talla,
+    tipo: tipoSeleccionado
+  };
+
+  // Renderizamos de nuevo carrito y actualizamos contador
   renderCarrito();
+  actualizarContadores();
   }
     
     function moverWishlistACarrito() {
