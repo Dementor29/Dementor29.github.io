@@ -354,27 +354,19 @@
 color: var(--dorado-oscuro);               /* tu rojo de títulos */
 }
 
-  /* FLYER EMERGENTE */
 #flyer-overlay {
-  position: fixed;
-  inset: 0;
-  background: #000000; /* fondo transparente */
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 10000; /* Asegúrate de que el flyer esté encima de todo */
 }
-    /* FLYER EMERGENTE */
-#flyer-overlay {
-  position: fixed;
-  inset: 0;
-  background: #000000; /* fondo transparente */
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+    
 #flyer-overlay img {
   width: auto;
   height: auto;
@@ -386,17 +378,17 @@ color: var(--dorado-oscuro);               /* tu rojo de títulos */
 }
 
 #flyer-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 22px;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10001;
+position: absolute;
+top: 20px;
+right: 20px;
+font-size: 30px;
+color: white;
+background: none;
+border: none;
+cursor: pointer;
+z-index: 10001; /* El botón debe estar encima del flyer */
 }
-
+    
 #flyer-close:hover {
 color: var(--dorado-oscuro); 
 }
@@ -1380,22 +1372,23 @@ function closeLightbox() {
 </div>
 
 <script>
- document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('flyer-overlay'); // Asegúrate que este ID sea único en la página
-    const closeBtn = document.getElementById('flyer-close');
+document.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('flyer-overlay');  // Asegúrate que este ID sea único en la página
+      const closeBtn = document.getElementById('flyer-close');
 
-    // Aseguramos que el botón de cerrar funcione correctamente
-    closeBtn.addEventListener('click', () => {
-      overlay.style.display = 'none';
-    });
-
-    // También cerramos el overlay si se hace clic fuera de la imagen
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
+      // Función para cerrar el flyer al hacer clic en el botón de cierre
+      closeBtn.addEventListener('click', () => {
+        console.log("Cerrando flyer..."); // Verifica si se dispara el evento
         overlay.style.display = 'none';
-      }
+      });
+
+      // También cierra el overlay si se hace clic fuera de la imagen
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {  // Asegúrate de que clic en el fondo cierre el flyer
+          overlay.style.display = 'none';
+        }
+      });
     });
-  });
     
 </script>
 </body>
