@@ -1161,27 +1161,35 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     function vaciarWishlist() {
     wishlistData = {};
     renderWishlist();
-  
+
     // Restaurar precios en el catálogo
     document.querySelectorAll(".item").forEach(item => {
-    const precioBase = parseInt(item.getAttribute("data-precio-original"));
-    const precioEl = item.querySelector(".precio");
-    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
-    precioEl.setAttribute("data-precio", precioBase);
-    precioEl.setAttribute("data-tipo", "Normal");
+    const precioBase = parseInt(item.getAttribute("data-precio-original"), 10);
+    
+    // Verifica que el precio base sea un número válido
+    if (!isNaN(precioBase)) {
+      const precioEl = item.querySelector(".precio");
+      precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+      precioEl.setAttribute("data-precio", precioBase);
+      precioEl.setAttribute("data-tipo", "Normal");
+    } else {
+      console.error("Error: data-precio-original no es válido", item);
+    }
 
     item.querySelectorAll(".boton-talla").forEach(btn => {
-      btn.classList.remove("bg-gray-700", "text-white");
-      btn.classList.add("bg-white", "text-black");
+      // Elimina las clases que dan el efecto de botón presionado
+      btn.classList.remove("bg-gray-700", "text-white"); 
+      btn.classList.add("bg-white", "text-black");  // Restablece el estilo normal
     });
-
+    
     const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
     if (normalBtn) {
       normalBtn.classList.remove("bg-white", "text-black");
-      normalBtn.classList.add("bg-gray-700", "text-white");
+      normalBtn.classList.add("bg-gray-700", "text-white");  // Restablece el estilo "Normal"
     }
     });
 
+    // Limpia los elementos visualmente
     document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
     document.querySelectorAll(".cantidad-input").forEach(input => {
     if (input.type === "number") input.value = 1;
@@ -1193,27 +1201,35 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     function vaciarCarrito() {
     cartData = {};
     renderCarrito();
-  
+
     // Restaurar precios en el catálogo
     document.querySelectorAll(".item").forEach(item => {
-    const precioBase = parseInt(item.getAttribute("data-precio-original"));
-    const precioEl = item.querySelector(".precio");
-    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
-    precioEl.setAttribute("data-precio", precioBase);
-    precioEl.setAttribute("data-tipo", "Normal");
+    const precioBase = parseInt(item.getAttribute("data-precio-original"), 10);
+    
+    // Verifica que el precio base sea un número válido
+    if (!isNaN(precioBase)) {
+      const precioEl = item.querySelector(".precio");
+      precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+      precioEl.setAttribute("data-precio", precioBase);
+      precioEl.setAttribute("data-tipo", "Normal");
+    } else {
+      console.error("Error: data-precio-original no es válido", item);
+    }
 
     item.querySelectorAll(".boton-talla").forEach(btn => {
-      btn.classList.remove("bg-gray-700", "text-white");
-      btn.classList.add("bg-white", "text-black");
+      // Elimina las clases que dan el efecto de botón presionado
+      btn.classList.remove("bg-gray-700", "text-white"); 
+      btn.classList.add("bg-white", "text-black");  // Restablece el estilo normal
     });
-
+    
     const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
     if (normalBtn) {
       normalBtn.classList.remove("bg-white", "text-black");
-      normalBtn.classList.add("bg-gray-700", "text-white");
+      normalBtn.classList.add("bg-gray-700", "text-white");  // Restablece el estilo "Normal"
     }
     });
 
+    // Limpia los elementos visualmente
     document.querySelectorAll(".cantidad-input").forEach(input => {
     if (input.type === "number") input.value = 1;
     else input.value = "";
