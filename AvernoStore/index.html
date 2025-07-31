@@ -1004,7 +1004,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     }
 
     function toggleFavorite(el, nombre, precio, esRopa) {
-  el.classList.toggle("active");
+    el.classList.toggle("active");
 
     if (wishlistData[nombre]) {
     delete wishlistData[nombre];
@@ -1158,29 +1158,69 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       renderCarrito();
     }
 
-  function vaciarWishlist() {
+    function vaciarWishlist() {
     wishlistData = {};
     renderWishlist();
-    document.querySelectorAll('.heart-icon.active')
-      .forEach(icon => icon.classList.remove('active'));
+  
+    // Restaurar precios en el catálogo
+    document.querySelectorAll(".item").forEach(item => {
+    const precioBase = parseInt(item.getAttribute("data-precio-original"));
+    const precioEl = item.querySelector(".precio");
+    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", precioBase);
+    precioEl.setAttribute("data-tipo", "Normal");
+
+    item.querySelectorAll(".boton-talla").forEach(btn => {
+      btn.classList.remove("bg-gray-700", "text-white");
+      btn.classList.add("bg-white", "text-black");
+    });
+
+    const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
+    if (normalBtn) {
+      normalBtn.classList.remove("bg-white", "text-black");
+      normalBtn.classList.add("bg-gray-700", "text-white");
+    }
+    });
+
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
     document.querySelectorAll(".cantidad-input").forEach(input => {
     if (input.type === "number") input.value = 1;
     else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-  }
+    });
+    document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+    }
 
-  function vaciarCarrito() {
+    function vaciarCarrito() {
     cartData = {};
     renderCarrito();
-   document.querySelectorAll(".cantidad-input").forEach(input => {
+  
+    // Restaurar precios en el catálogo
+    document.querySelectorAll(".item").forEach(item => {
+    const precioBase = parseInt(item.getAttribute("data-precio-original"));
+    const precioEl = item.querySelector(".precio");
+    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", precioBase);
+    precioEl.setAttribute("data-tipo", "Normal");
+
+    item.querySelectorAll(".boton-talla").forEach(btn => {
+      btn.classList.remove("bg-gray-700", "text-white");
+      btn.classList.add("bg-white", "text-black");
+    });
+
+    const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
+    if (normalBtn) {
+      normalBtn.classList.remove("bg-white", "text-black");
+      normalBtn.classList.add("bg-gray-700", "text-white");
+    }
+    });
+
+    document.querySelectorAll(".cantidad-input").forEach(input => {
     if (input.type === "number") input.value = 1;
     else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+    });
+    document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+    }
     
-  }
-
     function comprarPorWhatsapp() {
     // 1) Si el carrito está vacío, mostramos alerta y salimos
     if (Object.keys(cartData).length === 0) {
