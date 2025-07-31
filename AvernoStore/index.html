@@ -1043,14 +1043,14 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caÃ­dosâ
       productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
     }
 
-    unction toggleFavorite(el, nombre, precio, esRopa) {
+    function toggleFavorite(el, nombre, precio, esRopa) {
     el.classList.toggle("active");
 
     if (wishlistData[nombre]) {
     delete wishlistData[nombre];
     } else {
     const id = nombre.replace(/\s+/g, "_");
-    const item = document.getElementById(cantidad-${id}).closest(".item");
+    const item = document.getElementById(`cantidad-${id}`).closest(".item");
     const precioEl = item.querySelector(".precio");
     const precioActual = parseInt(precioEl.getAttribute("data-precio") || precio);
     const tipo = precioEl.getAttribute("data-tipo") || "Normal";
