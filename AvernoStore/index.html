@@ -965,17 +965,14 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los ca√≠dos‚
     <h3>${producto.nombre}</h3>
     <div class="precio" data-precio="${producto.precio}">$${producto.precio.toLocaleString()}</div>
     
-    <div class="talla-switch flex gap-2 mb-4">
-    <button
+    <div class="talla-switch flex gap-2 mb-4"><button
     class="cart-button boton-talla"
-    onclick="cambiarPrecio(this, ${producto.precio})"
-    >
+    onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')">
     Normal
     </button>
     <button
     class="cart-button boton-talla"
-    onclick="cambiarPrecio(this, ${producto.precio + 10000})"
-    >
+    onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')">
     Oversize
     </button>
     </div>
