@@ -799,7 +799,7 @@ strong {
   /* Para wishlist (dentro de <span>) y para carrito (directo en <li>) */
   #wishlist-items li span strong,
   #cart-items li strong {
-  font-size: 14px;                   /* mismo tamaño que el resto */
+  font-size: 20px;                   /* mismo tamaño que el resto */
   font-family: 'BurzumGothic', serif;/* misma fuente */
   font-weight: normal;
   margin: 0 4px;
@@ -1142,30 +1142,35 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   actualizarContadores();
   }
     
-    function moverWishlistACarrito() {
+   function moverWishlistACarrito() {
     for (let nombre in wishlistData) {
     const producto = wishlistData[nombre];
     const id = nombre.replace(/\s+/g, "_");
+
     let talla = "";
     if (producto.esRopa) {
-    talla = document.getElementById(`wishlist-talla-${id}`).value;
-
-    const errorEl = document.getElementById(`error-wishlist-${id}`);
-    if (!talla) {
-    if (errorEl) errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
-    errorEl.style.color = 'var(--dorado-oscuro)'; 
-    return;
-    } else {
-    if (errorEl) errorEl.textContent = "";
-    }
-    }
-
-   cartData[nombre] = { precio: producto.precio, cantidad: 1, talla };
+      talla = document.getElementById(`wishlist-talla-${id}`).value;
+      const errorEl = document.getElementById(`error-wishlist-${id}`);
+      if (!talla) {
+        errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+        errorEl.style.color = 'var(--dorado-oscuro)';
+        return;
       }
-      wishlistData = {};
-      renderWishlist();
-      renderCarrito();
-      document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+      errorEl.textContent = "";
+    }
+
+    cartData[nombre] = {
+      precio: producto.precio,
+      cantidad: 1,
+      talla: talla,
+      tipo: producto.tipo  // ← aquí duplicas el tipo
+    };
+    }
+
+    wishlistData = {};
+    renderWishlist();
+    renderCarrito();
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
     }
 
     function renderCarrito() {
