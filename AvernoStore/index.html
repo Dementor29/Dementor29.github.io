@@ -1159,83 +1159,76 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     }
 
     function vaciarWishlist() {
-    wishlistData = {};
-    renderWishlist();
+  wishlistData = {}; // Limpiar la lista de deseos
+  renderWishlist();
 
-    // Restaurar precios en el catálogo
-    document.querySelectorAll(".item").forEach(item => {
-    const precioBase = parseInt(item.getAttribute("data-precio-original"), 10);
-    
-    // Verifica que el precio base sea un número válido
+  // Restaurar precios al valor original
+  document.querySelectorAll(".item").forEach(item => {
+    const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10); // Obtener el precio base
     if (!isNaN(precioBase)) {
       const precioEl = item.querySelector(".precio");
       precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
-      precioEl.setAttribute("data-precio", precioBase);
+      precioEl.setAttribute("data-precio", precioBase); // Restablecer el precio
       precioEl.setAttribute("data-tipo", "Normal");
-    } else {
-      console.error("Error: data-precio-original no es válido", item);
     }
 
+    // Restaurar el estilo de los botones
     item.querySelectorAll(".boton-talla").forEach(btn => {
-      // Elimina las clases que dan el efecto de botón presionado
-      btn.classList.remove("bg-gray-700", "text-white"); 
-      btn.classList.add("bg-white", "text-black");  // Restablece el estilo normal
+      btn.classList.remove("bg-gray-700", "text-white");  // Eliminar clases de presionado
+      btn.classList.add("bg-white", "text-black"); // Botones en estilo normal
     });
-    
+
+    // Asegurar que el botón 'Normal' esté activo por defecto
     const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
     if (normalBtn) {
       normalBtn.classList.remove("bg-white", "text-black");
-      normalBtn.classList.add("bg-gray-700", "text-white");  // Restablece el estilo "Normal"
+      normalBtn.classList.add("bg-gray-700", "text-white"); // Activar el botón 'Normal'
     }
-    });
+  });
 
-    // Limpia los elementos visualmente
-    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-    document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1;
+  // Limpiar elementos visuales como el corazón activo y el valor en los inputs
+  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+  document.querySelectorAll(".cantidad-input").forEach(input => {
+    if (input.type === "number") input.value = 1; // Restablecer cantidad
     else input.value = "";
-    });
-    document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-    }
+  });
+  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+}
+  function vaciarCarrito() {
+  cartData = {}; // Limpiar el carrito
+  renderCarrito();
 
-    function vaciarCarrito() {
-    cartData = {};
-    renderCarrito();
-
-    // Restaurar precios en el catálogo
-    document.querySelectorAll(".item").forEach(item => {
-    const precioBase = parseInt(item.getAttribute("data-precio-original"), 10);
-    
-    // Verifica que el precio base sea un número válido
+  // Restaurar precios al valor original
+  document.querySelectorAll(".item").forEach(item => {
+    const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10); // Obtener el precio base
     if (!isNaN(precioBase)) {
       const precioEl = item.querySelector(".precio");
       precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
-      precioEl.setAttribute("data-precio", precioBase);
+      precioEl.setAttribute("data-precio", precioBase); // Restablecer el precio
       precioEl.setAttribute("data-tipo", "Normal");
-    } else {
-      console.error("Error: data-precio-original no es válido", item);
     }
 
+    // Restaurar el estilo de los botones
     item.querySelectorAll(".boton-talla").forEach(btn => {
-      // Elimina las clases que dan el efecto de botón presionado
-      btn.classList.remove("bg-gray-700", "text-white"); 
-      btn.classList.add("bg-white", "text-black");  // Restablece el estilo normal
+      btn.classList.remove("bg-gray-700", "text-white");  // Eliminar clases de presionado
+      btn.classList.add("bg-white", "text-black"); // Botones en estilo normal
     });
-    
+
+    // Asegurar que el botón 'Normal' esté activo por defecto
     const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
     if (normalBtn) {
       normalBtn.classList.remove("bg-white", "text-black");
-      normalBtn.classList.add("bg-gray-700", "text-white");  // Restablece el estilo "Normal"
+      normalBtn.classList.add("bg-gray-700", "text-white"); // Activar el botón 'Normal'
     }
-    });
+  });
 
-    // Limpia los elementos visualmente
-    document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1;
+  // Limpiar elementos visuales como el corazón activo y el valor en los inputs
+  document.querySelectorAll(".cantidad-input").forEach(input => {
+    if (input.type === "number") input.value = 1; // Restablecer cantidad
     else input.value = "";
-    });
-    document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-    }
+  });
+  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+}
     
     function comprarPorWhatsapp() {
     // 1) Si el carrito está vacío, mostramos alerta y salimos
