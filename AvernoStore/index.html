@@ -1210,11 +1210,14 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     window.open(url, "_blank");
     }
     
-    function cambiarPrecio(boton, nuevoPrecio) {
+    function cambiarPrecio(boton, nuevoPrecio, tipo) {
     const tarjeta = boton.closest(".item");
     const precioEl = tarjeta.querySelector(".precio");
     precioEl.textContent = `$${nuevoPrecio.toLocaleString("es-CO")}`;
-    precioEl.setAttribute("data-precio", nuevoPrecio); // ✅ esto guarda el nuevo valor
+    precioEl.setAttribute("data-precio", nuevoPrecio);
+    precioEl.setAttribute("data-tipo", tipo);        // <- guardamos el tipo
+  
+    // actualizar clases de botón activo…
     }
     
     renderCatalogo(productosRopa, "catalogo-ropa", true);
