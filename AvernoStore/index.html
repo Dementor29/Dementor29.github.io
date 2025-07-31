@@ -796,12 +796,13 @@ strong {
   color: white !important;
   }
 
+  /* Para wishlist (dentro de <span>) y para carrito (directo en <li>) */
   #wishlist-items li span strong,
-  #cart-items li span strong {
-  font-size: 25px;                   /* igual que el resto de textos */
+  #cart-items li strong {
+  font-size: 14px;                   /* mismo tamaño que el resto */
   font-family: 'BurzumGothic', serif;/* misma fuente */
-  font-weight: normal;               /* o el peso que uses */
-  margin: 0 4px;                     /* mantén el espacio si quieres */
+  font-weight: normal;
+  margin: 0 4px;
   }
     
   /* Responsivo */
@@ -1170,18 +1171,23 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     function renderCarrito() {
     const ul = document.getElementById("cart-items");
     ul.innerHTML = "";
+
     for (let nombre in cartData) {
     const it = cartData[nombre];
     ul.innerHTML += `
       <li style="margin-bottom:8px;">
-        ${nombre} — <strong>${it.tipo || "Normal"}</strong> 
-        x${it.cantidad}
-        ${it.talla ? `(Talla ${it.talla})` : ''} 
-        — $${(it.precio * it.cantidad).toLocaleString("es-CO")}
+        <span>
+          ${nombre} — 
+          <span><strong>${it.tipo || "Normal"}</strong></span> 
+          x${it.cantidad}
+          ${it.talla ? `(Talla ${it.talla})` : ""} 
+          — $${(it.precio * it.cantidad).toLocaleString("es-CO")}
+        </span>
         <button onclick="eliminarDelCarrito('${nombre}')">✖</button>
       </li>
     `;
     }
+
     actualizarContadores();
     }
     
