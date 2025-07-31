@@ -1021,47 +1021,39 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     renderWishlist();
     }
     
-  function renderWishlist() {
-  const ul = document.getElementById("wishlist-items");
-  ul.innerHTML = "";
+    function renderWishlist() {
+    const ul = document.getElementById("wishlist-items");
+    ul.innerHTML = "";
 
-  for (let nombre in wishlistData) {
+    for (let nombre in wishlistData) {
     const producto = wishlistData[nombre];
     const id = nombre.replace(/\s+/g, "_");
 
-    // Control de selección de talla en la lista de deseos
     const tallaSelect = producto.esRopa
-      ? `
-    <label style="display: inline-flex; align-items: center; gap: 8px; margin-left: 12px;">
-      <select id="wishlist-talla-${id}" class="cantidad-input">
-        <option value="">Elige talla</option>
-        <option value="S"${producto.talla==="S" ? " selected" : ""}>S</option>
-        <option value="M"${producto.talla==="M" ? " selected" : ""}>M</option>
-        <option value="L"${producto.talla==="L" ? " selected" : ""}>L</option>
-        <option value="XL"${producto.talla==="XL" ? " selected" : ""}>XL</option>
-      </select>
-    </label>
-    <span id="error-wishlist-${id}" class="error-msg"></span>
-    `
+      ? `<label style="display:inline-flex;align-items:center;gap:8px;margin-left:12px;">
+           <select id="wishlist-talla-${id}" class="cantidad-input">
+             <option value="">Elige talla</option>
+             <option value="S"${producto.talla==="S"?" selected":""}>S</option>
+             <option value="M"${producto.talla==="M"?" selected":""}>M</option>
+             <option value="L"${producto.talla==="L"?" selected":""}>L</option>
+             <option value="XL"${producto.talla==="XL"?" selected":""}>XL</option>
+           </select>
+         </label>
+         <span id="error-wishlist-${id}" class="error-msg"></span>`
       : "";
 
-    // Creamos el <li> con nombre, tipo, precio formateado y selector de talla
     ul.innerHTML += `
-      <li style="margin-bottom: 12px;">
+      <li style="margin-bottom:12px;">
         <span>
-          ${nombre} 
-          <strong>(${producto.tipo || "Normal"})</strong> — 
-          $${producto.precio.toLocaleString("es-CO")}
+          ${nombre} — <strong>${producto.tipo || "Normal"}</strong> — $${producto.precio.toLocaleString("es-CO")}
         </span>
         ${tallaSelect}
         <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
       </li>
     `;
-  }
-
-  // Actualiza el contador de elementos en la cabecera
-  actualizarContadores();
-  }
+    }
+    actualizarContadores();
+    }
     
     function eliminarDeWishlist(nombre) {
       delete wishlistData[nombre];
@@ -1116,7 +1108,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     const id = nombre.replace(/\s+/g, "_");
     let talla = "";
     if (producto.esRopa) {
-  talla = document.getElementById(`wishlist-talla-${id}`).value;
+    talla = document.getElementById(`wishlist-talla-${id}`).value;
 
     const errorEl = document.getElementById(`error-wishlist-${id}`);
     if (!talla) {
@@ -1136,22 +1128,23 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
     }
 
-  function renderCarrito() {
-  const ul = document.getElementById("cart-items");
-  ul.innerHTML = "";
-  for (let nombre in cartData) {
+    function renderCarrito() {
+    const ul = document.getElementById("cart-items");
+    ul.innerHTML = "";
+    for (let nombre in cartData) {
     const it = cartData[nombre];
     ul.innerHTML += `
-      <li>
-        ${nombre} (${it.tipo}) x${it.cantidad}
-        ${it.talla ? `(Talla ${it.talla})` : ''}
-        — $${(it.precio * it.cantidad).toLocaleString()}
+      <li style="margin-bottom:8px;">
+        ${nombre} — <strong>${it.tipo || "Normal"}</strong> 
+        x${it.cantidad}
+        ${it.talla ? `(Talla ${it.talla})` : ''} 
+        — $${(it.precio * it.cantidad).toLocaleString("es-CO")}
         <button onclick="eliminarDelCarrito('${nombre}')">✖</button>
       </li>
     `;
-  }
-  actualizarContadores();
-  }
+    }
+    actualizarContadores();
+    }
     
     function eliminarDelCarrito(nombre) {
       delete cartData[nombre];
