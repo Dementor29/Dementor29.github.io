@@ -841,11 +841,11 @@ strong {
 </head>
 <body>
   
-  <div id="flyer-overlay">
+ <div id="flyer-overlay">
   <button id="flyer-close" title="Cerrar">𒉽</button>
   <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
   <img src="Port.png" alt="Flyer Averno"/>
-  </div>
+</div>
 
 <section class="bloque-manifiesto">
 <p><strong class="destacado">Averno Store</strong> es un refugio para la belleza infernal y abismal del ocultismo moderno. Cada diseño, una obra de arte oscuro que captura la esencia de lo prohibido y lo místico, fusionando simbolismos ocultistas con la fuerza visceral del metal. En cada estampado, se revela una visión de la oscuridad que no busca ser entendida, sino sentida. Una estética brutal y profunda que habla directamente al alma rebelde y la voluntad inquebrantable.</p>
@@ -1380,27 +1380,22 @@ function closeLightbox() {
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('flyer-overlay');
+ document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('flyer-overlay'); // Asegúrate que este ID sea único en la página
     const closeBtn = document.getElementById('flyer-close');
 
-    // Cuando hagan click en la X, escondemos el overlay
+    // Aseguramos que el botón de cerrar funcione correctamente
     closeBtn.addEventListener('click', () => {
       overlay.style.display = 'none';
     });
 
-    // También escondemos si hacen click fuera de la imagen
+    // También cerramos el overlay si se hace clic fuera de la imagen
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
         overlay.style.display = 'none';
       }
     });
   });
-
-  // Esta es la función de cierre del Lightbox
-  function closeLightbox() {
-    document.getElementById('lightbox').style.display = 'none';
-  }
     
 </script>
 </body>
