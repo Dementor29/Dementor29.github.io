@@ -1139,15 +1139,23 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
     }
 
-    function renderCarrito() {
-      const ul = document.getElementById("cart-items");
-      ul.innerHTML = "";
-      for (let nombre in cartData) {
-        const it = cartData[nombre];
-        ul.innerHTML += `<li>${nombre} x${it.cantidad} ${it.talla ? `(Talla ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString()}<button class="remove-button" onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
-      }
-    }
-
+  function renderCarrito() {
+  const ul = document.getElementById("cart-items");
+  ul.innerHTML = "";
+  for (let nombre in cartData) {
+    const it = cartData[nombre];
+    ul.innerHTML += `
+      <li>
+        ${nombre} (${it.tipo}) x${it.cantidad}
+        ${it.talla ? `(Talla ${it.talla})` : ''}
+        — $${(it.precio * it.cantidad).toLocaleString()}
+        <button onclick="eliminarDelCarrito('${nombre}')">✖</button>
+      </li>
+    `;
+  }
+  actualizarContadores();
+  }
+    
     function eliminarDelCarrito(nombre) {
       delete cartData[nombre];
       renderCarrito();
