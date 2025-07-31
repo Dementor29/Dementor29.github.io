@@ -156,7 +156,7 @@
     font-family: 'BurzumGothic', serif;
     color: var(--dorado-claro); 
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: -2px;
     font-size: 20px; 
   }
     
@@ -763,9 +763,17 @@ strong {
   width: calc(100vw - 40px); /* 20px padding por lado */
   }
 
+  /* Mueve la fila de botones “Normal / Oversize” hacia arriba */
   .talla-switch {
-  margin-top: 0px;
-  margin-bottom: 4px;
+  position: relative;
+  top: -8px;    /* sube 8px, ajusta a tu gusto */
+  margin-bottom: 4px; /* opcional: reduce el espacio bajo los botones */
+  }
+
+  /* Mueve la fila Cant / Talla también un poco */
+  .cantidad-talla-wrapper {
+  position: relative;
+  top: -4px;    /* sube 4px */
   }
     
   .boton-talla {
