@@ -1337,13 +1337,19 @@ function openLightbox(src) {
 function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
 }
+
+document
+.getElementById('flyer-close')
+.addEventListener('click', () => {
+document.getElementById('flyer-overlay').style.display = 'none';
+});   
     
-</script>
 <!-- Lightbox -->
 <div id="lightbox" onclick="closeLightbox()">
   <span class="close-btn">×</span>
   <img id="lightbox-img" src="" alt="Ampliación">
 </div>
-  
+
+</script>
 </body>
 </html>
