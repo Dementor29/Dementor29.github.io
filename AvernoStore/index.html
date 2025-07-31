@@ -1043,21 +1043,24 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
     }
 
-    function toggleFavorite(el, nombre, precio, esRopa) {
+    unction toggleFavorite(el, nombre, precio, esRopa) {
     el.classList.toggle("active");
 
     if (wishlistData[nombre]) {
     delete wishlistData[nombre];
     } else {
-    const item = el.closest(".item");
-    const precioInicial = parseInt(item.getAttribute("data-precio-inicial"), 10);
-    // Siempre lo guardo como Normal al pinchar corazón
-    wishlistData[nombre] = { precio: precioInicial, esRopa, tipo: "Normal" };
+    const id = nombre.replace(/\s+/g, "_");
+    const item = document.getElementById(cantidad-${id}).closest(".item");
+    const precioEl = item.querySelector(".precio");
+    const precioActual = parseInt(precioEl.getAttribute("data-precio") || precio);
+    const tipo = precioEl.getAttribute("data-tipo") || "Normal";
+
+    wishlistData[nombre] = { precio: precioActual, esRopa, tipo };
     }
 
     renderWishlist();
     }
-
+    
     function renderWishlist() {
     const ul = document.getElementById("wishlist-items");
     ul.innerHTML = "";
