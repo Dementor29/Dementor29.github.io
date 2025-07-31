@@ -940,10 +940,15 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     let cartData = {};
 
     function crearItem(producto, esRopa = true) {
+    // 1) Crear el contenedor y guardar el precio base:
     const item = document.createElement("div");
     item.className = "item";
+    item.setAttribute("data-precio-inicial", producto.precio);
+
+    // 2) Identificador único
     const id = producto.nombre.replace(/\s+/g, "_");
 
+    // 3) HTML del selector de talla (si aplica)
     let tallaSelect = esRopa ? `
     <label class="cantidad-label">Talla:
       <select class="cantidad-input" id="talla-${id}">
@@ -953,44 +958,39 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       </select>
     </label>
     <span id="error-${id}" class="error-msg"></span>
-    `: "";
+    ` : "";
 
+    // 4) Contenido interno
     item.innerHTML = `
     <div class="item-marco">
-    <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
-    <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span> 
-    <img src="marco.svg" alt="Marco decorativo" class="marco-overlay"></div>
+      <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
+      <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio}, ${esRopa})">⛧</span> 
+      <img src="marco.svg" alt="Marco decorativo" class="marco-overlay">
+    </div>
     <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')"><i class="fas fa-search"></i></div>
     <div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>
     <h3>${producto.nombre}</h3>
     <div class="precio" data-precio="${producto.precio}">$${producto.precio.toLocaleString()}</div>
-    
-    <div class="talla-switch flex gap-2 mb-4"><button
-    class="cart-button boton-talla"
-    onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')">
-    Normal
-    </button>
-    <button
-    class="cart-button boton-talla"
-    onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')">
-    Oversize
-    </button>
+    <div class="talla-switch flex gap-2 mb-4">
+      <button class="cart-button boton-talla" onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')">Normal</button>
+      <button class="cart-button boton-talla" onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')">Oversize</button>
     </div>
-    
     <div class="cantidad-talla-wrapper">
-    <label class="cantidad-label">Cant:
-    <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1"> </label> <div class="separator"></div> ${tallaSelect} </div>
+      <label class="cantidad-label">Cant:
+        <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1">
+      </label>
+      <div class="separator"></div>
+      ${tallaSelect}
+    </div>
     <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
-  `;
+    `;
 
-    // Aquí agregamos el listener que borra el error al cambiar la talla:
+    // 5) Listener para limpiar mensaje de error al cambiar talla
     if (esRopa) {
     const select = item.querySelector(`#talla-${id}`);
     const errorSpan = item.querySelector(`#error-${id}`);
     select.addEventListener('change', () => {
-      if (select.value) {
-        errorSpan.textContent = "";
-      }
+      if (select.value) errorSpan.textContent = "";
     });
     }
 
@@ -1158,76 +1158,45 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       renderCarrito();
     }
 
-    function vaciarWishlist() {
-  wishlistData = {}; // Limpiar la lista de deseos
+  function vaciarWishlist() {
+  wishlistData = {};
   renderWishlist();
 
-  // Restaurar precios al valor original
   document.querySelectorAll(".item").forEach(item => {
-    const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10); // Obtener el precio base
-    if (!isNaN(precioBase)) {
-      const precioEl = item.querySelector(".precio");
-      precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
-      precioEl.setAttribute("data-precio", precioBase); // Restablecer el precio
-      precioEl.setAttribute("data-tipo", "Normal");
-    }
+    const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10);
+    const precioEl  = item.querySelector(".precio");
+    // restablecer texto y atributo data-precio
+    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", precioBase);
 
-    // Restaurar el estilo de los botones
+    // opcional: si usas classes para “activo” en botones, quítalas aquí
     item.querySelectorAll(".boton-talla").forEach(btn => {
-      btn.classList.remove("bg-gray-700", "text-white");  // Eliminar clases de presionado
-      btn.classList.add("bg-white", "text-black"); // Botones en estilo normal
+      btn.classList.remove("bg-gray-700","text-white");
     });
-
-    // Asegurar que el botón 'Normal' esté activo por defecto
-    const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
-    if (normalBtn) {
-      normalBtn.classList.remove("bg-white", "text-black");
-      normalBtn.classList.add("bg-gray-700", "text-white"); // Activar el botón 'Normal'
-    }
   });
 
-  // Limpiar elementos visuales como el corazón activo y el valor en los inputs
-  document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
-  document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1; // Restablecer cantidad
-    else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
-}
+  // ya tienes esto para tallas, cantidades, corazones, etc.
+  document.querySelectorAll(".cantidad-input").forEach(i => i.type==="number" ? i.value = 1 : i.value = "");
+  document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
+  document.querySelectorAll(".heart-icon.active").forEach(h => h.classList.remove("active"));
+  }
+    
   function vaciarCarrito() {
-  cartData = {}; // Limpiar el carrito
+  cartData = {};
   renderCarrito();
 
-  // Restaurar precios al valor original
   document.querySelectorAll(".item").forEach(item => {
-    const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10); // Obtener el precio base
-    if (!isNaN(precioBase)) {
-      const precioEl = item.querySelector(".precio");
-      precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
-      precioEl.setAttribute("data-precio", precioBase); // Restablecer el precio
-      precioEl.setAttribute("data-tipo", "Normal");
-    }
-
-    // Restaurar el estilo de los botones
+    const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10);
+    const precioEl  = item.querySelector(".precio");
+    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", precioBase);
     item.querySelectorAll(".boton-talla").forEach(btn => {
-      btn.classList.remove("bg-gray-700", "text-white");  // Eliminar clases de presionado
-      btn.classList.add("bg-white", "text-black"); // Botones en estilo normal
+      btn.classList.remove("bg-gray-700","text-white");
     });
-
-    // Asegurar que el botón 'Normal' esté activo por defecto
-    const normalBtn = item.querySelector(".boton-talla:nth-child(1)");
-    if (normalBtn) {
-      normalBtn.classList.remove("bg-white", "text-black");
-      normalBtn.classList.add("bg-gray-700", "text-white"); // Activar el botón 'Normal'
-    }
   });
 
-  // Limpiar elementos visuales como el corazón activo y el valor en los inputs
-  document.querySelectorAll(".cantidad-input").forEach(input => {
-    if (input.type === "number") input.value = 1; // Restablecer cantidad
-    else input.value = "";
-  });
-  document.querySelectorAll(".error-msg").forEach(span => span.textContent = "");
+  document.querySelectorAll(".cantidad-input").forEach(i => i.type==="number" ? i.value = 1 : i.value = "");
+  document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
 }
     
     function comprarPorWhatsapp() {
