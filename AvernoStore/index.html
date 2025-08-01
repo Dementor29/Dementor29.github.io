@@ -824,10 +824,19 @@ object-fit: cover !important;
     
   /* O incluso específico para cada uno: */
   footer#contacto i.fa-instagram,
-  footer#contacto i.fa-facebook,
+  footer#contacto i.fa-facebook {
+  position: relative;      /* permite desplazarlo */
+  left: -4px;              /* muévelo 4px a la izquierda */
+  },
   footer#contacto i.fa-whatsapp {
   font-size: 1.4rem;
   vertical-align: middle; /* asegúrate que queden bien alineados */
+  }
+
+  /* Sólo para el icono de Facebook en el footer */
+  footer#contacto i.fa-facebook {
+  position: relative;      /* permite desplazarlo */
+  left: -4px;              /* muévelo 4px a la izquierda */
   }
 
   /* Responsivo */
