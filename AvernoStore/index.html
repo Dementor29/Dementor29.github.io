@@ -821,7 +821,20 @@ object-fit: cover !important;
   font-size: 1.2em;   /* ajústalo a tu gusto */
   font-family: 'BurzumGothic', serif;
   }
-    
+
+  /* Eleva todos los iconos de marcas en el footer */
+footer#contacto i.fab {
+  font-size: 1.2rem;    /* antes tenías 1rem */
+  vertical-align: middle; /* asegúrate que queden bien alineados */
+}
+
+  /* O incluso específico para cada uno: */
+  footer#contacto i.fa-instagram,
+  footer#contacto i.fa-facebook,
+  footer#contacto i.fa-whatsapp {
+  font-size: 1.3rem;
+  }
+
   /* Responsivo */
   @media (max-width: 600px) {
   h2 {
