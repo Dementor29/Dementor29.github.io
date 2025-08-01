@@ -1201,47 +1201,69 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       renderCarrito();
     }
 
-  function vaciarWishlist() {
-  wishlistData = {};
-  renderWishlist();
+    function vaciarWishlist() {
+    // 1) Limpiar datos y re-render
+    wishlistData = {};
+    renderWishlist();
 
-  document.querySelectorAll(".item").forEach(item => {
+    // 2) Resetear precios y tipos en catálogo
+    document.querySelectorAll(".item").forEach(item => {
     const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10);
-    const precioEl  = item.querySelector(".precio");
-    // restablecer texto y atributo data-precio
+    const precioEl   = item.querySelector(".precio");
+
+    // Texto y atributo data-precio
     precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
     precioEl.setAttribute("data-precio", precioBase);
 
-    // opcional: si usas classes para “activo” en botones, quítalas aquí
+    // ¡Aquí reseteas el tipo a Normal!
+    precioEl.setAttribute("data-tipo", "Normal");
+
+    // Quitar marcas de botón activo (oversize/normal)
     item.querySelectorAll(".boton-talla").forEach(btn => {
-      btn.classList.remove("bg-gray-700","text-white");
+      btn.classList.remove("bg-gray-700", "text-white");
     });
-  });
+    });
 
-  // ya tienes esto para tallas, cantidades, corazones, etc.
-  document.querySelectorAll(".cantidad-input").forEach(i => i.type==="number" ? i.value = 1 : i.value = "");
-  document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
-  document.querySelectorAll(".heart-icon.active").forEach(h => h.classList.remove("active"));
-  }
+    // 3) Resetear inputs, errores y corazones
+    document.querySelectorAll(".cantidad-input").forEach(i => {
+    if (i.type === "number") i.value = 1;
+    else i.value = "";
+    });
+    document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
+    document.querySelectorAll(".heart-icon.active").forEach(h => h.classList.remove("active"));
+    }
     
-  function vaciarCarrito() {
-  cartData = {};
-  renderCarrito();
+    function vaciarCarrito() {
+    // 1) Limpiar datos y re-render
+    cartData = {};
+    renderCarrito();
 
-  document.querySelectorAll(".item").forEach(item => {
+    // 2) Resetear precios y tipos en catálogo
+    document.querySelectorAll(".item").forEach(item => {
     const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10);
-    const precioEl  = item.querySelector(".precio");
+    const precioEl   = item.querySelector(".precio");
+
+    // Texto y atributo data-precio
     precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
     precioEl.setAttribute("data-precio", precioBase);
-    item.querySelectorAll(".boton-talla").forEach(btn => {
-      btn.classList.remove("bg-gray-700","text-white");
-    });
-  });
 
-  document.querySelectorAll(".cantidad-input").forEach(i => i.type==="number" ? i.value = 1 : i.value = "");
-  document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
-}
-    
+    // ¡Aquí también reseteas el tipo a Normal!
+    precioEl.setAttribute("data-tipo", "Normal");
+
+    // Quitar marcas de botón activo (oversize/normal)
+    item.querySelectorAll(".boton-talla").forEach(btn => {
+      btn.classList.remove("bg-gray-700", "text-white");
+    });
+    });
+
+    // 3) Resetear inputs y errores
+    document.querySelectorAll(".cantidad-input").forEach(i => {
+    if (i.type === "number") i.value = 1;
+    else i.value = "";
+    });
+    document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
+    }
+  
     function comprarPorWhatsapp() {
     // 1) Si el carrito está vacío, mostramos alerta y salimos
     if (Object.keys(cartData).length === 0) {
