@@ -608,14 +608,14 @@ strong {
     
 .item-marco img.marco-overlay {
   position: absolute;
-  top: 0; /* en vez de 50% */
-  left: 0; /* en vez de 50% */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: none;
-  z-index: 2;
-  pointer-events: none;
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  width: 100%; /* Ajusta al 100% del ancho del contenedor */
+  height: 100%; /* Ajusta al 100% del alto del contenedor */
+  object-fit: contain; /* Asegura que la imagen del marco no se recorte */
+  transform: translate(-50%, -50%); /* Centra la imagen dentro del marco */
+  z-index: 2; /* Imagen del marco por encima de la camiseta */
+  pointer-events: none; /* La imagen del marco no bloquea interacciones */
 }
     
  .heart-icon, .zoom-icon {
