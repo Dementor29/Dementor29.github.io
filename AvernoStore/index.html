@@ -579,22 +579,20 @@ strong {
     
 .item-marco {
   position: relative;
-  width: 370px; /* Aumenta el ancho del marco */
-  height: 365px; /* Aumenta la altura del marco */
+  width: 370px;
+  height: 365px;
   overflow: hidden;
-  margin: 0 26px; /* Menos espacio entre los items */
+  margin: 0 26px;
 }
-
+    
 .item-marco img.producto-imagen {
-  position: relative; /* ya no absolute */
-  width: auto;         /* usar el ancho natural */
-  height: auto;        /* usar la altura natural */
-  max-width: 100%;     /* no sobresalir del marco */
-  max-height: 100%;    /* no sobresalir del marco */
-  object-fit: contain; /* mantener proporción */
-  top: auto;
-  left: auto;
-  transform: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;      /* se ajusta al ancho disponible */
+  max-height: 100%;     /* se ajusta a la altura disponible */
+  transform: translate(-50%, -50%);
+  object-fit: contain;  /* mantiene la proporción original */
 }
     
 .item-marco .heart-icon {
