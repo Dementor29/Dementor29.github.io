@@ -139,7 +139,7 @@
   }
     
   .item h3 {
-  font-size: 16px;
+  font-size: 17px;
   text-align: center;
   min-height: 40px;
   margin: 10px 0;
@@ -599,10 +599,11 @@ strong {
 .item-marco img.producto-imagen[src="1.png"],
 .item-marco img.producto-imagen[src="2.png"],
 .item-marco img.producto-imagen[src="7.png"] {
-position: absolute;          /* por si no está */
-top: -49px !important;       /* súbelas 47px */
-object-position: 80% 20% !important; /* mueve todo un poco a la derecha y arriba */
-object-fit: cover !important;
+position: absolute;  
+top: -49px !important;
+left: 10px !important;            /* aquí lo mueves a la derecha */
+transform: none !important;       /* anula cualquier translate anterior */
+object-fit: cover !important;     
 }
 
 .item-marco .heart-icon {
