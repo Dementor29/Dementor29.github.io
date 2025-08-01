@@ -580,19 +580,20 @@ strong {
 .item-marco {
   position: relative;
   width: 370px;
-  height: 365px;
+  height: auto; /* antes estaba 365px */
+  aspect-ratio: 1 / 1; /* asegura forma cuadrada */
   overflow: hidden;
   margin: 0 26px;
 }
     
 .item-marco img.producto-imagen {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  max-width: 100%;      /* se ajusta al ancho disponible */
-  max-height: 100%;     /* se ajusta a la altura disponible */
-  transform: translate(-50%, -50%);
-  object-fit: contain;  /* mantiene la proporción original */
+  top: 0; /* en vez de 50% */
+  left: 0; /* en vez de 50% */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* en vez de contain para llenar */
+  transform: none; /* quita translate */
 }
     
 .item-marco .heart-icon {
@@ -607,14 +608,14 @@ strong {
     
 .item-marco img.marco-overlay {
   position: absolute;
-  top: 50%; /* Centrado vertical */
-  left: 50%; /* Centrado horizontal */
-  width: 100%; /* Ajusta al 100% del ancho del contenedor */
-  height: 100%; /* Ajusta al 100% del alto del contenedor */
-  object-fit: contain; /* Asegura que la imagen del marco no se recorte */
-  transform: translate(-50%, -50%); /* Centra la imagen dentro del marco */
-  z-index: 2; /* Imagen del marco por encima de la camiseta */
-  pointer-events: none; /* La imagen del marco no bloquea interacciones */
+  top: 0; /* en vez de 50% */
+  left: 0; /* en vez de 50% */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+  z-index: 2;
+  pointer-events: none;
 }
     
  .heart-icon, .zoom-icon {
