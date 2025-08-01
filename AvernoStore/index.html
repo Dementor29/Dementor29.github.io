@@ -804,6 +804,12 @@ strong {
   font-weight: normal;
   margin: 0 4px;
   }
+
+  /* Tamaño de la palabra Talla */
+  .talla-texto {
+  font-size: 1.2em;   /* ajústalo a tu gusto */
+  font-family: 'BurzumGothic', serif;
+  }
     
   /* Responsivo */
   @media (max-width: 600px) {
@@ -1061,16 +1067,18 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     renderWishlist();
     }
     
-    function renderWishlist() {
-    const ul = document.getElementById("wishlist-items");
-    ul.innerHTML = "";
+  function renderWishlist() {
+  const ul = document.getElementById("wishlist-items");
+  ul.innerHTML = "";
 
-    for (let nombre in wishlistData) {
+  for (let nombre in wishlistData) {
     const producto = wishlistData[nombre];
     const id = nombre.replace(/\s+/g, "_");
 
+    // Aquí añadimos el <span class="talla-texto">Talla:</span>
     const tallaSelect = producto.esRopa
       ? `<label style="display:inline-flex;align-items:center;gap:8px;margin-left:12px;">
+           <span class="talla-texto">Talla:</span>
            <select id="wishlist-talla-${id}" class="cantidad-input">
              <option value="">Elige talla</option>
              <option value="S"${producto.talla==="S"?" selected":""}>S</option>
@@ -1091,9 +1099,9 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
         <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
       </li>
     `;
-    }
-    actualizarContadores();
-    }
+  }
+  actualizarContadores();
+  }  
     
     function eliminarDeWishlist(nombre) {
       delete wishlistData[nombre];
@@ -1182,10 +1190,11 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     ul.innerHTML += `
       <li style="margin-bottom:8px;">
         <span>
-          ${nombre} — 
-          <span><strong>${it.tipo || "Normal"}</strong></span> 
+          ${nombre} — <strong>${it.tipo || "Normal"}</strong> 
           x${it.cantidad}
-          ${it.talla ? `(Talla ${it.talla})` : ""} 
+          ${it.talla 
+            ? `(<span class="talla-texto">Talla</span> ${it.talla})` 
+            : ""} 
           — $${(it.precio * it.cantidad).toLocaleString("es-CO")}
         </span>
         <button onclick="eliminarDelCarrito('${nombre}')">✖</button>
@@ -1194,7 +1203,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     }
 
     actualizarContadores();
-    }
+    }  
     
     function eliminarDelCarrito(nombre) {
       delete cartData[nombre];
