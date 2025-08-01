@@ -580,7 +580,7 @@ strong {
 /* Contenedor cuadrado y centrado */
 .item-marco {
   position: relative;
-  width: 370px;
+  width: 350px;
   aspect-ratio: 1 / 1;  /* fuerza forma cuadrada */
   overflow: hidden;
   margin: 0 26px;
@@ -588,7 +588,7 @@ strong {
     
 .item-marco img.producto-imagen {
   position: absolute;
-  top: -25px; /* en vez de 50% */
+  top: -30px; /* en vez de 50% */
   left: 0; /* en vez de 50% */
   width: 100%;
   height: 100%;
@@ -599,13 +599,14 @@ strong {
 .item-marco img.producto-imagen[src="1.png"],
 .item-marco img.producto-imagen[src="2.png"],
 .item-marco img.producto-imagen[src="7.png"] {
-top: -31px;  /* sube 10px sólo esas tres */
+top: -36px;  /* sube 10px sólo esas tres */
 position: absolute;
 left: 0; /* en vez de 50% */
 width: 100%;
 height: 100%;
 object-fit: cover; /* en vez de contain para llenar */
 transform: none; /* quita translate */
+object-position: 60%;
 }
 
 .item-marco .heart-icon {
@@ -667,8 +668,8 @@ transform: none; /* quita translate */
 }
 
 #lightbox img {
-  max-width: 60%; /* Limita el ancho máximo de la imagen */
-  max-height: 60%; /* Limita la altura máxima de la imagen */
+  max-width: 80%; /* Limita el ancho máximo de la imagen */
+  max-height: 80%; /* Limita la altura máxima de la imagen */
   object-fit: contain; /* Mantiene la proporción de la imagen sin recortes */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra para mejorar el contraste */
 }
