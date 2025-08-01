@@ -586,14 +586,15 @@ strong {
 }
 
 .item-marco img.producto-imagen {
-  position: absolute;
-  top: 50%; /* Centra la imagen verticalmente */
-  left: 50%; /* Centra la imagen horizontalmente */
-  width: 70%; /* Mantén el 90% del ancho del marco */
-  height: auto; /* Mantén la proporción de la imagen */
-  transform: translate(-50%, -50%); /* Ajusta la imagen al centro */
-  object-fit: contain; /* Asegura que la imagen de la camiseta no se recorte */
-  z-index: 1;
+  position: relative; /* ya no absolute */
+  width: auto;         /* usar el ancho natural */
+  height: auto;        /* usar la altura natural */
+  max-width: 100%;     /* no sobresalir del marco */
+  max-height: 100%;    /* no sobresalir del marco */
+  object-fit: contain; /* mantener proporción */
+  top: auto;
+  left: auto;
+  transform: none;
 }
     
 .item-marco .heart-icon {
