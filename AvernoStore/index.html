@@ -515,6 +515,7 @@ footer#contacto div p {
   font-size: 1rem;
   display: flex;
   align-items: center; /* 🧲 alinea ícono + texto verticalmente */
+  gap: 6px;
 }
 
 footer#contacto i {
@@ -826,23 +827,15 @@ object-fit: cover !important;
   font-family: 'BurzumGothic', serif;
   }
     
-  /* O incluso específico para cada uno: */
+  footer#contacto i.fa-facebook,
   footer#contacto i.fa-instagram,
-  footer#contacto i.fa-facebook {
-  position: relative;      /* permite desplazarlo */
-  left: -4px;              /* muévelo 4px a la izquierda */
-  },
   footer#contacto i.fa-whatsapp {
-  font-size: 1.4rem;
-  vertical-align: middle; /* asegúrate que queden bien alineados */
+  font-size: 1rem;
+  vertical-align: middle;
+  position: static;
+  left: 0;
   }
-
-  /* Sólo para el icono de Facebook en el footer */
-  footer#contacto i.fa-facebook {
-  position: relative;      /* permite desplazarlo */
-  left: -4px;              /* muévelo 4px a la izquierda */
-  }
-
+    
   /* Responsivo */
   @media (max-width: 600px) {
   h2 {
