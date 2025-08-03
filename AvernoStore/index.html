@@ -920,20 +920,18 @@ object-fit: cover !important;
   }
 
 @media (max-width: 768px) {
-  img.zoom {
+  .lightbox img,
+  .fancybox-image,
+  .zoom-overlay img,
+  .zoomed-image {
     max-width: 100vw !important;
     max-height: 100vh !important;
-    width: auto !important;
+    width: 90vw !important; /* o 100vw si quieres al tope */
     height: auto !important;
     object-fit: contain !important;
   }
-
-  .zoomContainer, .zoomWindow {
-    max-width: 100vw !important;
-    max-height: 100vh !important;
-  }
 }
-
+  
 </style>
 </head>
 <body>
