@@ -851,31 +851,21 @@ object-fit: cover !important;
   }
     
   @media (max-width: 600px) {
-  footer#contacto {
-    flex-direction: column;        /* cambia de horizontal a vertical */
-    align-items: flex-start;       /* alinea cada columna a la izquierda */
-  }
-
-  footer#contacto div {
-    width: 100%;                   /* cada columna ocupa todo el ancho */
-  }
-
-  footer#contacto div p {
-    font-size: 3rem !important; 
-  }
-
-  footer#contacto i {
-    font-size: 3rem !important; 
-  }
-    
-   /* Aquí aumentamos solo los íconos sociales */
   footer#contacto i.fa-facebook,
   footer#contacto i.fa-instagram,
   footer#contacto i.fa-whatsapp {
-  font-size: 1.5rem !important; 
-  }
+    font-size: 2.2rem !important;
   }
 
+  footer#contacto div p {
+    font-size: 1.1rem;
+  }
+
+  footer#contacto {
+    padding: 3rem 1.5rem;
+  }
+  }
+    
   @media (max-width: 600px) {
   body {
     padding-left: 12px;
