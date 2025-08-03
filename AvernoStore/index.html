@@ -920,14 +920,23 @@ object-fit: cover !important;
   }
 
 @media (max-width: 768px) {
+  #lightbox {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden;
+  }
+
   #lightbox img {
-  max-width: 120%; /* Limita el ancho máximo de la imagen */
-  max-height: 120%; /* Limita la altura máxima de la imagen */
-  transform: none;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra para mejorar el contraste */
-  display: block;
-  margin: auto;
-}
+    position: static !important; /* quita top/left heredados */
+    max-width: 120% !important;
+    max-height: 120% !important;
+    transform: none !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    display: block !important;
+    margin: auto !important;
+    object-fit: contain !important;
+  }
 }
   
 </style>
