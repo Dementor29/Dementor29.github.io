@@ -850,19 +850,30 @@ object-fit: cover !important;
   }
   }
     
-  @media (max-width: 600px) {
-  footer#contacto i.fa-facebook,
-  footer#contacto i.fa-instagram,
-  footer#contacto i.fa-whatsapp {
-    font-size: 2.2rem !important;
+  @media (max-width: 768px) {
+  footer#contacto {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 50px 20px !important;
+    text-align: left !important;
+  }
+
+  footer#contacto div {
+    width: 100% !important;
   }
 
   footer#contacto div p {
-    font-size: 1.1rem;
+    font-size: 1.2rem !important;
+    line-height: 1.8 !important;
+    margin-left: 0 !important;
   }
 
-  footer#contacto {
-    padding: 3rem 1.5rem;
+  footer#contacto i.fa-facebook,
+  footer#contacto i.fa-instagram,
+  footer#contacto i.fa-whatsapp {
+    font-size: 1.5rem !important;
+    line-height: 1.4 !important;
+    display: inline-block;
   }
   }
     
