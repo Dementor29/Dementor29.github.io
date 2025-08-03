@@ -920,16 +920,13 @@ object-fit: cover !important;
   }
 
 @media (max-width: 768px) {
-  .lightbox img,
-  .fancybox-image,
-  .zoom-overlay img,
-  .zoomed-image {
-    max-width: 100vw !important;
-    max-height: 100vh !important;
-    width: 90vw !important; /* o 100vw si quieres al tope */
-    height: auto !important;
-    object-fit: contain !important;
-  }
+  #lightbox img {
+  max-width: 80%; /* Limita el ancho máximo de la imagen */
+  max-height: 80%; /* Limita la altura máxima de la imagen */
+  object-fit: contain; /* Mantiene la proporción de la imagen sin recortes */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra para mejorar el contraste */
+  transform: translateY(-50px);
+}
 }
   
 </style>
