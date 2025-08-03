@@ -720,23 +720,32 @@
   }
 
   @media (max-width: 768px) {
-  footer#contacto i.fa-facebook,
-  footer#contacto i.fa-instagram,
-  footer#contacto i.fa-whatsapp {
-    font-size: 1.5rem !important;
-    line-height: 1.8 !important;
+  footer#contacto {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 50px 20px !important;
+    text-align: left !important;
+  }
+
+  footer#contacto div {
+    width: 100% !important;
   }
 
   footer#contacto div p {
     font-size: 1.2rem !important;
     line-height: 1.8 !important;
+    margin-left: 0 !important;
   }
 
-  footer#contacto {
-    padding: 50px 20px !important;
+  footer#contacto i.fa-facebook,
+  footer#contacto i.fa-instagram,
+  footer#contacto i.fa-whatsapp {
+    font-size: 1.5rem !important;
+    line-height: 1.4 !important;
+    display: inline-block;
   }
   }
-
+    
   @media (max-width: 768px) {
   /* Aumenta la imagen y súbela un poco */
   .flyer-img {
@@ -943,6 +952,7 @@
 </script>
 </body>
 </html>
+
 
 
 
