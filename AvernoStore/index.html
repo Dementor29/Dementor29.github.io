@@ -916,7 +916,16 @@ object-fit: cover !important;
   .item-marco .heart-icon {
     bottom: 20px !important;
   }
-  
+
+@media (max-width: 768px) {
+  .zoom-container img,
+  .lightbox img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+}
+
 </style>
 </head>
 <body>
