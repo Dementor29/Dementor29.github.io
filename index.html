@@ -719,8 +719,8 @@
   }
   }
 
-  @media (max-width: 768px) {
-  footer#contacto {
+    @media (max-width: 768px) {
+    footer#contacto {
     flex-direction: column !important;
     align-items: flex-start !important;
     padding: 50px 20px !important;
@@ -744,6 +744,19 @@
     line-height: 1.4 !important;
     display: inline-block;
   }
+
+  footer#contacto p {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center;
+    gap: 6px;
+    word-break: break-word;
+  }
+
+  footer#contacto {
+    overflow-x: hidden; /* evita que se salga horizontalmente */
+  }
+    
   }
     
   @media (max-width: 768px) {
@@ -952,6 +965,7 @@
 </script>
 </body>
 </html>
+
 
 
 
