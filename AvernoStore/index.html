@@ -893,16 +893,18 @@ object-fit: cover !important;
   }
   }
     
-  @media (max-width: 600px) {
-  /* En móviles más pequeños, aprovechamos casi todo el ancho/alto */
-  #flyer-overlay img {
-    width: 95vw;       /* casi todo el ancho de la pantalla */
-    height: auto;      /* mantiene proporción */
-    max-width: 95vw;   /* evita que exceda ese ancho */
-    max-height: 95vh;  /* evita que exceda la altura visible */
+  @media (max-width: 768px) {
+  .flyer-img {
+    max-width: 95vw !important;   /* ocupa casi todo el ancho visible */
+    max-height: 85vh !important;  /* ocupa casi todo el alto visible */
+    width: auto !important;
+    height: auto !important;
+    top: 45% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
   }
   }
-
+    
 </style>
 </head>
 <body>
