@@ -583,6 +583,23 @@ strong {
   font-family: 'BurzumGothic', serif;
   z-index: 1;
 }
+
+/* Etiqueta para productos infernales (lado derecho) */
+.etiqueta-infernal {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(255, 120, 0, 0.14); /* sutil naranja/llama */
+  color: #ff9a2a;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-family: 'BurzumGothic', serif;
+  z-index: 2;
+  border: 1px solid rgba(255,154,42,0.12);
+  text-shadow: 0 0 6px rgba(255,154,42,0.06);
+}
     
 /* Contenedor cuadrado y centrado */
 .item-marco {
@@ -838,23 +855,52 @@ object-fit: cover !important;
   left: 0;
   }
 
-  /* Botones filtro */
-.filter {
-  background: #0f0f0f;
-  color: #ccc;
-  border: 1px solid #222;
-  padding: 8px 16px;
-  margin: 0 6px;
-  cursor: pointer;
-  border-radius: 6px;
-  font-family: 'BurzumGothic', serif;
+ .filter {
+  padding: 14px 26px;
+  font-size: 19px;
+  min-width: 150px;
+  border-radius: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  transition: transform .12s ease, box-shadow .12s ease;
 }
-.filter:hover { color: var(--dorado-claro); }
+
+.filter:hover { transform: translateY(-2px); }
+
 .filter.active {
-  background: var(--dorado-oscuro);
-  color: white;
-  border-color: var(--dorado-oscuro);
-  box-shadow: 0 0 8px rgba(139,0,0,0.25);
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+/* contenedor de botones: centra y separa verticalmente del texto */
+.filtros-wrapper {
+  text-align: center;
+  margin-bottom: 18px; /* espacio debajo de los botones */
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* separación horizontal entre botones */
+}
+
+/* párrafo de instrucciones (usa márgenes positivos, no negativos) */
+.instruccion {
+  text-align: center;
+  color: #777;
+  font-size: 15px;
+  margin: 6px 0 36px; /* margin: top right/left bottom */
+  line-height: 1.25;
+}
+
+/* opcional: añadir separación arriba del catálogo si aún falta */
+.catalogo {
+  margin-top: 8px;
+}
+
+  @media (max-width: 480px) {
+  .filter {
+    padding: 10px 14px;
+    font-size: 16px;
+    min-width: 110px;
+  }
 }
 
   /* Responsivo */
@@ -987,13 +1033,13 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   
     <h2>¡EDICION <img src="skull.gif" class="gif-fuego" alt="fuego"> INFERNAL!</h2>
 
-  <!-- FILTROS: INFERNAL / EXCLUSIVO -->
-  <div style="text-align:center; margin-top: 10px; margin-bottom: 10px;">
-    <button id="btn-infernal" class="filter active">Infernal</button>
-    <button id="btn-exclusivo" class="filter">Exclusivo</button>
+  <div class="filtros-wrapper">
+  <button id="btn-infernal" class="filter active">INFERNAL</button>
+  <button id="btn-exclusivo" class="filter">EXCLUSIVO</button>
   </div>
 
-  <p style="text-align:center; color:#777; font-size:15px; margin-top:-20px; margin-bottom:80px;">> HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA <</p>
+  <p class="instruccion">> HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA <</p>
+
   <div class="catalogo" id="catalogo-ropa"></div>
   
   <div id="wishlist">
@@ -1115,7 +1161,10 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
       <i class="fas fa-search"></i>
     </div>
-    ${producto.exclusivo ? '<div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>' : ''}
+    ${ producto.exclusivo
+    ? '<div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>'
+    : '<div class="etiqueta-infernal">🔥 INFERNAL</div>'
+    }
     <h3>${producto.nombre}</h3>
     <div
       class="precio"
@@ -1475,10 +1524,15 @@ let filtroActual = 'infernal'; // 'infernal' | 'exclusivo'
 function applyFilter() {
   const contenedor = 'catalogo-ropa';
   if (filtroActual === 'infernal') {
-    renderCatalogo(productosRopa, contenedor, true);
+    // Mostrar sólo los productos que NO son exclusivos (inicio + cuando se pulsa Infernal)
+    const infernales = productosRopa.filter(p => !p.exclusivo);
+    if (infernales.length === 0) {
+      document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>';
+      return;
+    }
+    renderCatalogo(infernales, contenedor, true);
   } else if (filtroActual === 'exclusivo') {
     const exclusivos = productosRopa.filter(p => p.exclusivo);
-    // muestra mensaje si no hay exclusivos
     if (exclusivos.length === 0) {
       document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>';
       return;
@@ -1486,23 +1540,6 @@ function applyFilter() {
     renderCatalogo(exclusivos, contenedor, true);
   }
 }
-
-// listeners para botones
-document.getElementById('btn-infernal').addEventListener('click', function () {
-  filtroActual = 'infernal';
-  document.getElementById('btn-infernal').classList.add('active');
-  document.getElementById('btn-exclusivo').classList.remove('active');
-  applyFilter();
-});
-document.getElementById('btn-exclusivo').addEventListener('click', function () {
-  filtroActual = 'exclusivo';
-  document.getElementById('btn-exclusivo').classList.add('active');
-  document.getElementById('btn-infernal').classList.remove('active');
-  applyFilter();
-});
-
-// inicializar con el filtro actual
-applyFilter();
     
 </script>
 <!-- Lightbox -->
