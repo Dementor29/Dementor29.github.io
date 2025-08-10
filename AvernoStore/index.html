@@ -837,7 +837,26 @@ object-fit: cover !important;
   position: static;
   left: 0;
   }
-    
+
+  /* Botones filtro */
+.filter {
+  background: #0f0f0f;
+  color: #ccc;
+  border: 1px solid #222;
+  padding: 8px 16px;
+  margin: 0 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-family: 'BurzumGothic', serif;
+}
+.filter:hover { color: var(--dorado-claro); }
+.filter.active {
+  background: var(--dorado-oscuro);
+  color: white;
+  border-color: var(--dorado-oscuro);
+  box-shadow: 0 0 8px rgba(139,0,0,0.25);
+}
+
   /* Responsivo */
   @media (max-width: 600px) {
   h2 {
@@ -966,7 +985,14 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   </div>
 </header>
   
-  <h2>¡EDICION <img src="skull.gif" class="gif-fuego" alt="fuego"> INFERNAL!</h2>
+    <h2>¡EDICION <img src="skull.gif" class="gif-fuego" alt="fuego"> INFERNAL!</h2>
+
+  <!-- FILTROS: INFERNAL / EXCLUSIVO -->
+  <div style="text-align:center; margin-top: 10px; margin-bottom: 10px;">
+    <button id="btn-infernal" class="filter active">Infernal</button>
+    <button id="btn-exclusivo" class="filter">Exclusivo</button>
+  </div>
+
   <p style="text-align:center; color:#777; font-size:15px; margin-top:-20px; margin-bottom:80px;">> HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA <</p>
   <div class="catalogo" id="catalogo-ropa"></div>
   
@@ -1024,27 +1050,27 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
 
   <script>
     const productosRopa = [
-      { nombre: "VOX INFERNI", precio: 70000, imagen: "1.png" },
-      { nombre: "LUPUS NOCTIS", precio: 70000, imagen: "2.png" },
-      { nombre: "PALMIRA OBSCURA", precio: 70000, imagen: "3.png" },
-      { nombre: "ANGELUS OCCISUS", precio: 70000, imagen: "4.png" },
-      { nombre: "CULTUS LUXURIAE", precio: 70000, imagen: "5.png" },
-      { nombre: "CORNUA TENEBRIS", precio: 70000, imagen: "6.png" },
-      { nombre: "AVERNO STORE", precio: 70000, imagen: "7.png" },
-      { nombre: "OBSCURA FIDES", precio: 70000, imagen: "8.png" },
-      { nombre: "CRUCIFIXUS SANGUINIS", precio: 70000, imagen: "9.png" },
-      { nombre: "CORPUS MORTIS", precio: 70000, imagen: "10.png" },
-      { nombre: "REDEMPTOR TENEBRIS", precio: 70000, imagen: "11.png" },
-      { nombre: "THRONUS MORTIS", precio: 70000, imagen: "12.png" },
-      { nombre: "ALTARE SANGUINIS", precio: 70000, imagen: "13.png" },
-      { nombre: "HELVETE", precio: 70000, imagen: "14.png" },
-      { nombre: "LUCIFERUS", precio: 70000, imagen: "15.png" },
-      { nombre: "ODIN KRIGENS GUD", precio: 70000, imagen: "16.png" },
-      { nombre: "MALEDICTUS XII", precio: 70000, imagen: "17.png" },
-      { nombre: "DOMINUS MORTIS", precio: 70000, imagen: "18.png" },
-      { nombre: "DOMINUS BAPHOMET", precio: 70000, imagen: "19.png" },
-      { nombre: "PONTIFEX MALEFICUS", precio: 70000, imagen: "20.png" },
-      { nombre: "MASK HANNYA", precio: 70000, imagen: "21.png" }
+      { nombre: "VOX INFERNI", precio: 70000, imagen: "1.png", exclusivo: false },
+      { nombre: "LUPUS NOCTIS", precio: 70000, imagen: "2.png", exclusivo: false },
+      { nombre: "PALMIRA OBSCURA", precio: 70000, imagen: "3.png", exclusivo: false },
+      { nombre: "ANGELUS OCCISUS", precio: 70000, imagen: "4.png", exclusivo: false },
+      { nombre: "CULTUS LUXURIAE", precio: 70000, imagen: "5.png", exclusivo: false },
+      { nombre: "CORNUA TENEBRIS", precio: 70000, imagen: "6.png", exclusivo: false },
+      { nombre: "AVERNO STORE", precio: 70000, imagen: "7.png", exclusivo: false },
+      { nombre: "OBSCURA FIDES", precio: 70000, imagen: "8.png", exclusivo: false },
+      { nombre: "CRUCIFIXUS SANGUINIS", precio: 70000, imagen: "9.png", exclusivo: false },
+      { nombre: "CORPUS MORTIS", precio: 70000, imagen: "10.png", exclusivo: false },
+      { nombre: "REDEMPTOR TENEBRIS", precio: 70000, imagen: "11.png", exclusivo: false },
+      { nombre: "THRONUS MORTIS", precio: 70000, imagen: "12.png", exclusivo: false },
+      { nombre: "ALTARE SANGUINIS", precio: 70000, imagen: "13.png", exclusivo: false },
+      { nombre: "HELVETE", precio: 70000, imagen: "14.png", exclusivo: false },
+      { nombre: "LUCIFERUS", precio: 70000, imagen: "15.png", exclusivo: false },
+      { nombre: "ODIN KRIGENS GUD", precio: 70000, imagen: "16.png", exclusivo: false },
+      { nombre: "MALEDICTUS XII", precio: 70000, imagen: "17.png", exclusivo: false },
+      { nombre: "DOMINUS MORTIS", precio: 70000, imagen: "18.png", exclusivo: false },
+      { nombre: "DOMINUS BAPHOMET", precio: 70000, imagen: "19.png", exclusivo: false },
+      { nombre: "PONTIFEX MALEFICUS", precio: 70000, imagen: "20.png", exclusivo: false },
+      { nombre: "MASK HANNYA", precio: 70000, imagen: "21.png", exclusivo: true }
     ];
     
     let wishlistData = {};
@@ -1089,7 +1115,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
       <i class="fas fa-search"></i>
     </div>
-    <div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>
+    ${producto.exclusivo ? '<div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>' : ''}
     <h3>${producto.nombre}</h3>
     <div
       class="precio"
@@ -1397,7 +1423,6 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     // actualizar clases de botón activo…
     }
     
-    renderCatalogo(productosRopa, "catalogo-ropa", true);
     renderWishlist();
     document.getElementById('flyer-close').onclick = function () {
     document.getElementById('flyer-overlay').style.display = 'none';
@@ -1442,6 +1467,42 @@ function closeLightbox() {
       closeLightbox();
     }
 });
+
+// Estado actual de filtro
+let filtroActual = 'infernal'; // 'infernal' | 'exclusivo'
+
+// función que aplica el filtro y renderiza
+function applyFilter() {
+  const contenedor = 'catalogo-ropa';
+  if (filtroActual === 'infernal') {
+    renderCatalogo(productosRopa, contenedor, true);
+  } else if (filtroActual === 'exclusivo') {
+    const exclusivos = productosRopa.filter(p => p.exclusivo);
+    // muestra mensaje si no hay exclusivos
+    if (exclusivos.length === 0) {
+      document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>';
+      return;
+    }
+    renderCatalogo(exclusivos, contenedor, true);
+  }
+}
+
+// listeners para botones
+document.getElementById('btn-infernal').addEventListener('click', function () {
+  filtroActual = 'infernal';
+  document.getElementById('btn-infernal').classList.add('active');
+  document.getElementById('btn-exclusivo').classList.remove('active');
+  applyFilter();
+});
+document.getElementById('btn-exclusivo').addEventListener('click', function () {
+  filtroActual = 'exclusivo';
+  document.getElementById('btn-exclusivo').classList.add('active');
+  document.getElementById('btn-infernal').classList.remove('active');
+  applyFilter();
+});
+
+// inicializar con el filtro actual
+applyFilter();
     
 </script>
 <!-- Lightbox -->
