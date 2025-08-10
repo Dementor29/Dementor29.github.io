@@ -586,18 +586,18 @@ strong {
 
 .etiqueta-infernal {
   position: absolute;
-  top: 6px;               /* misma altura que exclusiva */
-  right: 6px;             /* al otro lado */
-  background: rgba(200, 200, 200, 0.14); /* gris metalico claro translúcido */
-  color: #d9d9d9;         /* gris metalico claro */
+  top: 6px;                 /* misma altura que exclusiva */
+  right: 6px;               /* al otro lado */
+  background: #bfbfbf;      /* gris metálico sólido */
+  color: #1a1a1a;           /* texto oscuro para contraste */
   font-size: 12px;
   font-weight: bold;
   padding: 3px 6px;
   border-radius: 3px;
   font-family: 'BurzumGothic', serif;
   z-index: 2;
-  border: 1px solid rgba(217, 217, 217, 0.12);
-  text-shadow: 0 0 6px rgba(217, 217, 217, 0.06);
+  border: 1px solid #a6a6a6; /* borde gris */
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
 }
     
 /* Contenedor cuadrado y centrado */
@@ -1160,7 +1160,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     </div>
     ${ producto.exclusivo
     ? '<div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>'
-    : '<div class="etiqueta-infernal">🔥 INFERNAL</div>'
+    : '<div class="etiqueta-infernal">INFERNAL 🔥</div>'
     }
     <h3>${producto.nombre}</h3>
     <div
