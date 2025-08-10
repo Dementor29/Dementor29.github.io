@@ -856,13 +856,11 @@ object-fit: cover !important;
   }
 
  .filter {
-  padding: 14px 26px;
-  font-size: 19px;
-  min-width: 150px;
+  padding: 10px 18px;
+  font-size: 16px;
+  min-width: 130px;
   border-radius: 10px;
   font-weight: 800;
-  letter-spacing: 0.5px;
-  transition: transform .12s ease, box-shadow .12s ease;
 }
 
 .filter:hover { transform: translateY(-2px); }
@@ -1212,23 +1210,27 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
     }
 
-    function toggleFavorite(el, nombre, precio, esRopa) {
-    el.classList.toggle("active");
+  function toggleFavorite(el, nombre, precio, esRopa) {
+  el.classList.toggle("active");
 
-    if (wishlistData[nombre]) {
+  if (wishlistData[nombre]) {
     delete wishlistData[nombre];
-    } else {
-    const id = nombre.replace(/\s+/g, "_");
-    const item = document.getElementById(`cantidad-${id}`).closest(".item");
+  } else {
+    // usar el.closest para no depender de getElementById
+    const item = el.closest(".item");
+    if (!item) {
+      console.warn("No se encontró la tarjeta del producto para:", nombre);
+      return;
+    }
     const precioEl = item.querySelector(".precio");
-    const precioActual = parseInt(precioEl.getAttribute("data-precio") || precio);
-    const tipo = precioEl.getAttribute("data-tipo") || "Normal";
+    const precioActual = parseInt(precioEl?.getAttribute("data-precio") || precio, 10);
+    const tipo = precioEl?.getAttribute("data-tipo") || "Normal";
 
     wishlistData[nombre] = { precio: precioActual, esRopa, tipo };
-    }
+  }
 
-    renderWishlist();
-    }
+  renderWishlist();
+  }
     
   function renderWishlist() {
   const ul = document.getElementById("wishlist-items");
@@ -1292,9 +1294,17 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     }
   }
 
-  // Tomamos el elemento .item para extraer su precio y tipo actuales
-  const itemEl = document.querySelector(`#cantidad-${id}`).closest(".item");
-  const precioEl = itemEl.querySelector(".precio");
+  const cantidadEl = document.getElementById(`cantidad-${id}`);
+  if (!cantidadEl) {
+    console.warn('No se encontró el input de cantidad para', id);
+    return;
+  }
+  const itemEl = cantidadEl.closest('.item');
+  if (!itemEl) {
+    console.warn('No se encontró la tarjeta del producto para', id);
+    return;
+  }
+  const precioEl = itemEl.querySelector('.precio');
 
   // Leemos el precio y el tipo desde los atributos data-* que puso cambiarPrecio()
   const precioActual = parseInt(precioEl.getAttribute("data-precio"), 10);
@@ -1472,11 +1482,6 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     // actualizar clases de botón activo…
     }
     
-    renderWishlist();
-    document.getElementById('flyer-close').onclick = function () {
-    document.getElementById('flyer-overlay').style.display = 'none';
-    };
-    
 //FUNCION NUEVA//
   function actualizarContadores() {
   document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
@@ -1540,6 +1545,44 @@ function applyFilter() {
     renderCatalogo(exclusivos, contenedor, true);
   }
 }
+document.addEventListener('DOMContentLoaded', function () {
+  // botones
+  const btnInfernal = document.getElementById('btn-infernal');
+  const btnExclusivo = document.getElementById('btn-exclusivo');
+
+  if (btnInfernal && btnExclusivo) {
+    btnInfernal.addEventListener('click', function () {
+      filtroActual = 'infernal';
+      btnInfernal.classList.add('active');
+      btnExclusivo.classList.remove('active');
+      applyFilter();
+    });
+
+    btnExclusivo.addEventListener('click', function () {
+      filtroActual = 'exclusivo';
+      btnExclusivo.classList.add('active');
+      btnInfernal.classList.remove('active');
+      applyFilter();
+    });
+  } else {
+    console.warn('Faltan #btn-infernal o #btn-exclusivo en el DOM.');
+  }
+
+  // Render inicial del catálogo según filtroActual
+  applyFilter();
+
+  // Render wishlist (seguro, después del DOM)
+  if (typeof renderWishlist === 'function') renderWishlist();
+
+  // Handler del flyer (seguro)
+  const flyerClose = document.getElementById('flyer-close');
+  if (flyerClose) {
+    flyerClose.addEventListener('click', function () {
+      const overlay = document.getElementById('flyer-overlay');
+      if (overlay) overlay.style.display = 'none';
+    });
+  }
+});
     
 </script>
 <!-- Lightbox -->
