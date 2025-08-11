@@ -598,32 +598,55 @@ strong {
   z-index: 1;
 }
 
-/* Para los botones de filtro (Infernal y Exclusivo) */
+/* Botones Infernal y Exclusivo */
 .filter.infernal,
 .filter.exclusivo {
-  background-color: #0f0f0f;  /* Fondo oscuro similar al de "Agregar al carrito" */
+  background-color: #0f0f0f;  /* Fondo oscuro */
   color: #cccccc;              /* Texto claro */
   font-size: 14px;
   font-weight: bold;
-  padding: 10px 18px;
-  font-family: 'BurzumGothic', serif;
-  min-width: 130px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 8px 12px;           /* Ajustar el espaciado */
+  min-width: 130px;             /* Tamaño mínimo */
+  border: 1px solid #0f0f0f;   /* Bordes oscuros para consistencia */
+  border-radius: 4px;          /* Bordes redondeados */
+  transition: background-color 0.3s ease, color 0.3s ease;  /* Transición suave */
+  cursor: pointer;            /* Hacerlo clickeable */
+  font-family: 'BurzumGothic', serif; /* Usar la misma tipografía */
 }
 
 .filter.infernal:hover,
 .filter.exclusivo:hover {
-  background-color: rgba(25, 25, 25, 0.8); /* Efecto hover similar a los botones */
-  color: var(--dorado-claro); /* Rojo para los botones de filtro */
+  background-color: rgba(25, 25, 25, 0.8); /* Fondo más oscuro al pasar el ratón */
+  color: var(--dorado-claro); /* Rojo en el texto al hacer hover */
 }
 
 /* Hover cuando el botón está activo */
 .filter.active {
-  transform: scale(1.04);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45); /* Sombra sutil */
+  transform: scale(1.04);      /* Efecto de escala cuando está activo */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);  /* Sombra sutil */
 }
 
+/* Estilo de los otros botones (Normal, Oversize, Agregar al carrito) */
+.cart-button,
+.boton-talla {
+  background-color: #0f0f0f;  /* Fondo oscuro */
+  color: #cccccc;              /* Texto claro */
+  border: 1px solid #0f0f0f;   /* Bordes oscuros */
+  padding: 8px 12px;           /* Espaciado ajustado */
+  font-size: 14px;             /* Tamaño de fuente */
+  font-weight: bold;
+  border-radius: 4px;          /* Bordes redondeados */
+  transition: background-color 0.3s ease, color 0.3s ease;  /* Transición suave */
+  cursor: pointer;            /* Clickeable */
+  font-family: 'BurzumGothic', serif; /* Tipografía consistente */
+}
+
+.cart-button:hover,
+.boton-talla:hover {
+  background-color: rgba(25, 25, 25, 0.8);  /* Fondo más oscuro al hacer hover */
+  color: var(--dorado-claro); /* Rojo en el texto al hacer hover */
+}
+    
 /* Contenedor cuadrado y centrado */
 .item-marco {
   position: relative;
