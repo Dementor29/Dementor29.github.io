@@ -599,39 +599,22 @@ strong {
 }
 
 /* Para los botones de filtro (Infernal y Exclusivo) */
-.filter.infernal {
-  background-color: #e0e0e0;  /* Gris metálico claro */
-  color: #333333;              /* Texto oscuro para contraste */
-  font-size: 12px;
-  font-weight: 800;
-  padding: 10px 18px;
-  min-width: 130px;
-  border-radius: 1px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
+.filter.infernal,
 .filter.exclusivo {
-  background-color: var(--dorado-oscuro);  /* Gris metálico oscuro para Exclusivo */
-  color: white;                             /* Texto blanco */
-  font-size: 12px;
-  font-weight: 800;
+  background-color: #0f0f0f;  /* Fondo oscuro similar al de "Agregar al carrito" */
+  color: #cccccc;              /* Texto claro */
+  font-size: 14px;
+  font-weight: bold;
   padding: 10px 18px;
   min-width: 130px;
-  border-radius: 1px;
+  border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Hover para los botones de filtro */
-.filter.infernal:hover {
-  background-color: #d1d1d1; /* Gris metálico más oscuro */
-  color: var(--dorado-oscuro);
-  transform: translateY(-2px); /* Efecto hover */
-}
-
+.filter.infernal:hover,
 .filter.exclusivo:hover {
-  background-color: #b8b8b8;  /* Gris metálico más oscuro para hover */
-  color: white;
-  transform: translateY(-2px); /* Efecto hover */
+  background-color: rgba(25, 25, 25, 0.8); /* Efecto hover similar a los botones */
+  color: var(--dorado-claro); /* Rojo para los botones de filtro */
 }
 
 /* Hover cuando el botón está activo */
