@@ -597,7 +597,51 @@ strong {
   font-family: 'BurzumGothic', serif;
   z-index: 1;
 }
-    
+
+/* Para los botones de filtro (Infernal y Exclusivo) */
+.filter.infernal {
+  background-color: #e0e0e0;  /* Gris metálico claro */
+  color: #333333;              /* Texto oscuro para contraste */
+  font-size: 16px;
+  font-weight: 800;
+  padding: 10px 18px;
+  min-width: 130px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;   /* Borde gris suave */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter.exclusivo {
+  background-color: var(--dorado-oscuro);  /* Gris metálico oscuro para Exclusivo */
+  color: white;                             /* Texto blanco */
+  font-size: 16px;
+  font-weight: 800;
+  padding: 10px 18px;
+  min-width: 130px;
+  border-radius: 10px;
+  border: 1px solid var(--dorado-oscuro);   /* Borde color oscuro */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover para los botones de filtro */
+.filter.infernal:hover {
+  background-color: #d1d1d1; /* Gris metálico más oscuro */
+  color: #333333;
+  transform: translateY(-2px); /* Efecto hover */
+}
+
+.filter.exclusivo:hover {
+  background-color: #b8b8b8;  /* Gris metálico más oscuro para hover */
+  color: white;
+  transform: translateY(-2px); /* Efecto hover */
+}
+
+/* Hover cuando el botón está activo */
+.filter.active {
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45); /* Sombra sutil */
+}
+
 /* Contenedor cuadrado y centrado */
 .item-marco {
   position: relative;
@@ -889,6 +933,7 @@ object-fit: cover !important;
 .catalogo {
   margin-top: 8px;
 }
+    
 
   @media (max-width: 480px) {
   .filter {
