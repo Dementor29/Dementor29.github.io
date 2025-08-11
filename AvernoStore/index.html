@@ -1205,7 +1205,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     </div>
     ${ producto.exclusivo
     ? '<div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>'
-    : '<div class="etiqueta-infernal">INFERNAL 🔥</div>'
+    : '<div class="etiqueta-infernal">🔥 INFERNAL</div>'
     }
     <h3>${producto.nombre}</h3>
     <div
@@ -1619,6 +1619,15 @@ if (flyerClose) {
       if (overlay) overlay.style.display = 'none';
     });
 }
+
+function preloadImages(productos) {
+  productos.forEach(producto => {
+    const img = new Image();
+    img.src = producto.imagen; // Cambia esto a la ruta de tu imagen
+  });
+}
+
+preloadImages(productosRopa);
     
 </script>
 <!-- Lightbox -->
