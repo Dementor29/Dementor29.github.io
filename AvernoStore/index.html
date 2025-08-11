@@ -604,7 +604,7 @@ strong {
 /* Para los botones de filtro (Infernal y Exclusivo) */
 .filter.infernal,
 .filter.exclusivo {
-  background-color: #0f0f0f;  /* Fondo oscuro similar al de "Agregar al carrito" */
+  background-color: #0f0f0f;  /* Fondo oscuro similar al de los botones generales */
   color: #cccccc;              /* Texto claro */
   font-size: 14px;
   font-weight: bold;
@@ -613,6 +613,7 @@ strong {
   min-width: 130px;
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #cccccc; /* Asegúrate de que tenga borde como los otros botones */
 }
 
 .filter.infernal:hover,
@@ -621,12 +622,24 @@ strong {
   color: var(--dorado-claro); /* Rojo para los botones de filtro */
 }
 
-/* Hover cuando el botón está activo */
-.filter.active {
-  transform: scale(1.04);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45); /* Sombra sutil */
+/* Para los botones generales */
+.cart-button {
+  background-color: #0f0f0f; 
+  color: #cccccc;      
+  border: 1px solid #0f0f0f;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'BurzumGothic', serif;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.cart-button:hover {
+  background-color: rgba(25, 25, 25, 0.8);
+  color: var(--dorado-claro); 
+}
+    
 /* Contenedor cuadrado y centrado */
 .item-marco {
   position: relative;
