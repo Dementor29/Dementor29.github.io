@@ -112,7 +112,7 @@
   color: #cccccc;
   }
     
-  .catalogo {
+ .catalogo {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -601,55 +601,32 @@ strong {
   z-index: 1;
 }
 
-/* Botones Infernal y Exclusivo */
+/* Para los botones de filtro (Infernal y Exclusivo) */
 .filter.infernal,
 .filter.exclusivo {
-  background-color: #0f0f0f;  /* Fondo oscuro */
+  background-color: #0f0f0f;  /* Fondo oscuro similar al de "Agregar al carrito" */
   color: #cccccc;              /* Texto claro */
   font-size: 14px;
   font-weight: bold;
-  padding: 8px 12px;           /* Ajustar el espaciado */
-  min-width: 130px;             /* Tamaño mínimo */
-  border: 1px solid #0f0f0f;   /* Bordes oscuros para consistencia */
-  border-radius: 4px;          /* Bordes redondeados */
-  transition: background-color 0.3s ease, color 0.3s ease;  /* Transición suave */
-  cursor: pointer;            /* Hacerlo clickeable */
-  font-family: 'BurzumGothic', serif; /* Usar la misma tipografía */
+  padding: 10px 18px;
+  font-family: 'BurzumGothic', serif;
+  min-width: 130px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .filter.infernal:hover,
 .filter.exclusivo:hover {
-  background-color: rgba(25, 25, 25, 0.8); /* Fondo más oscuro al pasar el ratón */
-  color: var(--dorado-claro); /* Rojo en el texto al hacer hover */
+  background-color: rgba(25, 25, 25, 0.8); /* Efecto hover similar a los botones */
+  color: var(--dorado-claro); /* Rojo para los botones de filtro */
 }
 
 /* Hover cuando el botón está activo */
 .filter.active {
-  transform: scale(1.04);      /* Efecto de escala cuando está activo */
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);  /* Sombra sutil */
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45); /* Sombra sutil */
 }
 
-/* Estilo de los otros botones (Normal, Oversize, Agregar al carrito) */
-.cart-button,
-.boton-talla {
-  background-color: #0f0f0f;  /* Fondo oscuro */
-  color: #cccccc;              /* Texto claro */
-  border: 1px solid #0f0f0f;   /* Bordes oscuros */
-  padding: 8px 12px;           /* Espaciado ajustado */
-  font-size: 14px;             /* Tamaño de fuente */
-  font-weight: bold;
-  border-radius: 4px;          /* Bordes redondeados */
-  transition: background-color 0.3s ease, color 0.3s ease;  /* Transición suave */
-  cursor: pointer;            /* Clickeable */
-  font-family: 'BurzumGothic', serif; /* Tipografía consistente */
-}
-
-.cart-button:hover,
-.boton-talla:hover {
-  background-color: rgba(25, 25, 25, 0.8);  /* Fondo más oscuro al hacer hover */
-  color: var(--dorado-claro); /* Rojo en el texto al hacer hover */
-}
-    
 /* Contenedor cuadrado y centrado */
 .item-marco {
   position: relative;
@@ -942,11 +919,8 @@ object-fit: cover !important;
 .catalogo {
   margin-top: 8px;
 }
-
-#catalogo-ropa {
-  transition: opacity 0.5s ease; /* Esto aplica la transición suave de 0.5 segundos */
-}
     
+
   @media (max-width: 480px) {
   .filter {
     padding: 10px 14px;
@@ -1576,62 +1550,48 @@ function closeLightbox() {
     }
 });
 
-function applyFilter() {
-  const contenedor = document.getElementById('catalogo-ropa');
-
-  // Empezamos con la opacidad a 0 para iniciar la transición
-  contenedor.style.opacity = 0;
-
-  // Después de un pequeño retraso (500ms), cambiamos el contenido
+  function applyFilter() {
+  const contenedor = 'catalogo-ropa';
+  const cont = document.getElementById(contenedor);
+  
+  // Primero aplicamos un desvanecimiento
+  cont.style.opacity = 0;
+  
+  // Esperamos que termine la animación de desvanecimiento
   setTimeout(() => {
+    // Ahora cambiamos los productos visibles según el filtro
     if (filtroActual === 'infernal') {
-      // Mostrar sólo los productos que NO son exclusivos
       const infernales = productosRopa.filter(p => !p.exclusivo);
       if (infernales.length === 0) {
-        contenedor.innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>';
+        document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>';
         return;
       }
       renderCatalogo(infernales, contenedor, true);
     } else if (filtroActual === 'exclusivo') {
       const exclusivos = productosRopa.filter(p => p.exclusivo);
       if (exclusivos.length === 0) {
-        contenedor.innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>';
+        document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>';
         return;
       }
       renderCatalogo(exclusivos, contenedor, true);
     }
-
-    // Después de renderizar los nuevos productos, restauramos la opacidad a 1
-    contenedor.style.opacity = 1;
-
-  }, 500);  // Este es el tiempo en que el catálogo se "desvanecerá" (500ms)
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  // botones
-  const btnInfernal = document.getElementById('btn-infernal');
-  const btnExclusivo = document.getElementById('btn-exclusivo');
-
-  if (btnInfernal && btnExclusivo) {
-    btnInfernal.addEventListener('click', function () {
-      filtroActual = 'infernal';
-      btnInfernal.classList.add('active');
-      btnExclusivo.classList.remove('active');
-      applyFilter();  // Aplicar filtro con transición
-    });
-
-    btnExclusivo.addEventListener('click', function () {
-      filtroActual = 'exclusivo';
-      btnExclusivo.classList.add('active');
-      btnInfernal.classList.remove('active');
-      applyFilter();  // Aplicar filtro con transición
-    });
-  } else {
-    console.warn('Faltan #btn-infernal o #btn-exclusivo en el DOM.');
+    
+    // Después de que los productos se han renderizado, los hacemos visibles
+    cont.style.opacity = 1;  // Desvanecemos para hacer visible
+  }, 500);  // Tiempo de transición de 0.5s (el mismo que el tiempo de la transición CSS)
   }
 
-  // Render inicial del catálogo según filtroActual
-  applyFilter();  // Mostrar productos según el filtro actual
+  let filtroActual = 'infernal'; // valor inicial del filtro
+
+  document.getElementById('btn-infernal').addEventListener('click', function() {
+  filtroActual = 'infernal';  // Actualiza el filtro a 'infernal'
+  applyFilter();  // Aplica el filtro
+  });
+
+  document.getElementById('btn-exclusivo').addEventListener('click', function() {
+  filtroActual = 'exclusivo';  // Actualiza el filtro a 'exclusivo'
+  applyFilter();  // Aplica el filtro
+  });
 
   // Render wishlist (seguro, después del DOM)
   if (typeof renderWishlist === 'function') renderWishlist();
@@ -1639,7 +1599,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // Handler del flyer (seguro)
   const flyerClose = document.getElementById('flyer-close');
   if (flyerClose) {
-    flyerClose.addEventListener
+    flyerClose.addEventListener('click', function () {
+      const overlay = document.getElementById('flyer-overlay');
+      if (overlay) overlay.style.display = 'none';
+    });
+  }
+});
     
 </script>
 <!-- Lightbox -->
