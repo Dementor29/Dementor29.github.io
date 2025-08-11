@@ -601,7 +601,6 @@ strong {
   z-index: 1;
 }
 
-/* Para los botones de filtro (Infernal y Exclusivo) */
 .filter.infernal,
 .filter.exclusivo {
   background-color: #0f0f0f;  /* Fondo oscuro similar al de los botones generales */
@@ -613,7 +612,7 @@ strong {
   min-width: 130px;
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid #cccccc; /* Asegúrate de que tenga borde como los otros botones */
+  border: 1px solid #0f0f0f;   /* Asegúrate de que tenga borde como los otros botones */
 }
 
 .filter.infernal:hover,
@@ -622,6 +621,10 @@ strong {
   color: var(--dorado-claro); /* Rojo para los botones de filtro */
 }
 
+.filter.infernal,
+.filter.exclusivo {
+  border: 1px solid #0f0f0f;  /* Esto es clave */
+}
 /* Para los botones generales */
 .cart-button {
   background-color: #0f0f0f; 
