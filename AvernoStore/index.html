@@ -120,6 +120,9 @@
   margin-top: 30px;   /* Separar el catálogo de los títulos */
   width: 100%;
   max-width: 100%;
+  
+  opacity: 0;          /* Inicialmente invisible */
+  transition: opacity 0.5s ease, transform 0.5s ease;  /* Transición suave */
   }
     
   .item {
@@ -939,8 +942,11 @@ object-fit: cover !important;
 .catalogo {
   margin-top: 8px;
 }
-    
 
+#catalogo-ropa {
+  transition: opacity 0.5s ease; /* Esto aplica la transición suave de 0.5 segundos */
+}
+    
   @media (max-width: 480px) {
   .filter {
     padding: 10px 14px;
@@ -1570,29 +1576,37 @@ function closeLightbox() {
     }
 });
 
-// Estado actual de filtro
-let filtroActual = 'infernal'; // 'infernal' | 'exclusivo'
-
-// función que aplica el filtro y renderiza
 function applyFilter() {
-  const contenedor = 'catalogo-ropa';
-  if (filtroActual === 'infernal') {
-    // Mostrar sólo los productos que NO son exclusivos (inicio + cuando se pulsa Infernal)
-    const infernales = productosRopa.filter(p => !p.exclusivo);
-    if (infernales.length === 0) {
-      document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>';
-      return;
+  const contenedor = document.getElementById('catalogo-ropa');
+
+  // Empezamos con la opacidad a 0 para iniciar la transición
+  contenedor.style.opacity = 0;
+
+  // Después de un pequeño retraso (500ms), cambiamos el contenido
+  setTimeout(() => {
+    if (filtroActual === 'infernal') {
+      // Mostrar sólo los productos que NO son exclusivos
+      const infernales = productosRopa.filter(p => !p.exclusivo);
+      if (infernales.length === 0) {
+        contenedor.innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>';
+        return;
+      }
+      renderCatalogo(infernales, contenedor, true);
+    } else if (filtroActual === 'exclusivo') {
+      const exclusivos = productosRopa.filter(p => p.exclusivo);
+      if (exclusivos.length === 0) {
+        contenedor.innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>';
+        return;
+      }
+      renderCatalogo(exclusivos, contenedor, true);
     }
-    renderCatalogo(infernales, contenedor, true);
-  } else if (filtroActual === 'exclusivo') {
-    const exclusivos = productosRopa.filter(p => p.exclusivo);
-    if (exclusivos.length === 0) {
-      document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>';
-      return;
-    }
-    renderCatalogo(exclusivos, contenedor, true);
-  }
+
+    // Después de renderizar los nuevos productos, restauramos la opacidad a 1
+    contenedor.style.opacity = 1;
+
+  }, 500);  // Este es el tiempo en que el catálogo se "desvanecerá" (500ms)
 }
+
 document.addEventListener('DOMContentLoaded', function () {
   // botones
   const btnInfernal = document.getElementById('btn-infernal');
@@ -1603,21 +1617,21 @@ document.addEventListener('DOMContentLoaded', function () {
       filtroActual = 'infernal';
       btnInfernal.classList.add('active');
       btnExclusivo.classList.remove('active');
-      applyFilter();
+      applyFilter();  // Aplicar filtro con transición
     });
 
     btnExclusivo.addEventListener('click', function () {
       filtroActual = 'exclusivo';
       btnExclusivo.classList.add('active');
       btnInfernal.classList.remove('active');
-      applyFilter();
+      applyFilter();  // Aplicar filtro con transición
     });
   } else {
     console.warn('Faltan #btn-infernal o #btn-exclusivo en el DOM.');
   }
 
   // Render inicial del catálogo según filtroActual
-  applyFilter();
+  applyFilter();  // Mostrar productos según el filtro actual
 
   // Render wishlist (seguro, después del DOM)
   if (typeof renderWishlist === 'function') renderWishlist();
@@ -1625,12 +1639,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Handler del flyer (seguro)
   const flyerClose = document.getElementById('flyer-close');
   if (flyerClose) {
-    flyerClose.addEventListener('click', function () {
-      const overlay = document.getElementById('flyer-overlay');
-      if (overlay) overlay.style.display = 'none';
-    });
-  }
-});
+    flyerClose.addEventListener
     
 </script>
 <!-- Lightbox -->
