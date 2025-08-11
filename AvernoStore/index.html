@@ -1596,15 +1596,13 @@ function closeLightbox() {
   // Render wishlist (seguro, después del DOM)
   if (typeof renderWishlist === 'function') renderWishlist();
 
-  // Handler del flyer (seguro)
-  const flyerClose = document.getElementById('flyer-close');
-  if (flyerClose) {
+const flyerClose = document.getElementById('flyer-close');
+if (flyerClose) {
     flyerClose.addEventListener('click', function () {
       const overlay = document.getElementById('flyer-overlay');
       if (overlay) overlay.style.display = 'none';
     });
-  }
-});
+}
     
 </script>
 <!-- Lightbox -->
