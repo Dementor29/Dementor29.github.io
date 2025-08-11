@@ -121,7 +121,7 @@
   width: 100%;
   max-width: 100%;
   
-  opacity: 0;          /* Inicialmente invisible */
+  opacity: 1;          /* Inicialmente invisible */
   transition: opacity 0.5s ease, transform 0.5s ease;  /* Transición suave */
   }
     
@@ -1628,7 +1628,21 @@ function preloadImages(productos) {
 }
 
 preloadImages(productosRopa);
-    
+
+function renderAsync(items, container) {
+  let index = 0;
+  
+  function renderNext() {
+    if (index < items.length) {
+      container.appendChild(items[index]);
+      index++;
+      requestAnimationFrame(renderNext);  // Llámalo en el siguiente frame
+    }
+  }
+  
+  renderNext();
+}
+
 </script>
 <!-- Lightbox -->
 <div id="lightbox" onclick="closeLightbox()">
