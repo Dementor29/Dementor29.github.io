@@ -595,6 +595,24 @@ nav a:hover::after,
   opacity: 1;
 }    
 
+/* Colores del texto */
+.link-red {
+  color: #C10202;
+}
+
+.link-light {
+  color: #cccccc;
+}
+
+/* Subrayado con color según tipo */
+.link-red::after {
+  background-color: #cccccc;  /* subrayado claro para texto rojo */
+}
+
+.link-light::after {
+  background-color: #C10202;  /* subrayado rojo para texto claro */
+}
+
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
   max-width: 200px;
@@ -828,15 +846,15 @@ nav a:hover::after,
  <div class="secondary-nav fade-in"> 
   <a href="" style="color: #cccccc;">PROXIMAMENTE</a>
 
-  <div class="submenu">
-  <span id="submenu-toggle" class="submenu-toggle" style="color: #C10202;" tabindex="0"
+<div class="submenu">
+  <span id="submenu-toggle" class="submenu-toggle link-red" tabindex="0"
         aria-expanded="false" onclick="toggleSubmenu(event)">
     AVERNO STORE ▾
   </span>
 
   <div id="submenu-items" class="submenu-items" role="menu" aria-hidden="true">
-    <a href="AvernoStore/" style="color: #cccccc;" role="menuitem">CAMISETAS</a>
-    <a href="AvernoStoreH/" style="color: #C10202;" role="menuitem">HOODIES</a>
+    <a href="AvernoStore/" class="link-light" role="menuitem">CAMISETAS</a>
+    <a href="AvernoStoreH/" class="link-red" role="menuitem">HOODIES</a>
   </div>
 </div>
    
@@ -1012,6 +1030,7 @@ nav a:hover::after,
 </script>
 </body>
 </html>
+
 
 
 
