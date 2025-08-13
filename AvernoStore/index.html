@@ -538,12 +538,16 @@ footer#contacto i {
   line-height: 1;
 }
 
+/* Reemplaza tu bloque actual */
 #top-bar,
 footer#contacto {
   position: relative;
-  width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;               /* usar 100% en lugar de 100vw */
+  box-sizing: border-box;    /* importante para que padding no aumente ancho */
+  left: 0;
+  transform: none;
+  padding-left: 20px;        /* opcional: mantener separación igual que body */
+  padding-right: 20px;
 }
     
 .bloque-manifiesto {
@@ -840,9 +844,11 @@ object-fit: cover !important;
   height: 1px;
   background-color: var(--dorado-claro);
   margin: 40px auto 20px auto;
-  width: calc(100vw - 40px); /* 20px padding por lado */
+  width: calc(100% - 40px); /* más seguro que usar 100vw */
+  max-width: 100%;
+  box-sizing: border-box;
   }
-
+    
   /* Mueve la fila de botones “Normal / Oversize” hacia arriba */
   .talla-switch {
   position: relative;
@@ -1161,7 +1167,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       { nombre: "DOMINUS MORTIS", precio: 64990, imagen: "18.png", exclusivo: false },
       { nombre: "DOMINUS BAPHOMET", precio: 64990, imagen: "19.png", exclusivo: false },
       { nombre: "PONTIFEX MALEFICUS", precio: 64990, imagen: "20.png", exclusivo: false },
-      { nombre: "MASK HANNYA", precio: 64990, imagen: "21.png", exclusivo: true },
+      { nombre: "MASK HANNYA", precio: 79990, imagen: "21.png", exclusivo: true },
       { nombre: "SKULL IN ACID", precio: 79990, imagen: "22.png", exclusivo: true },
       { nombre: "ALIEN PLAGUE", precio: 79990, imagen: "23.png", exclusivo: true },
       { nombre: "ALIEN SACRIFICE", precio: 79990, imagen: "24.png", exclusivo: true }
