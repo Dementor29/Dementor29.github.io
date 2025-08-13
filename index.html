@@ -611,12 +611,23 @@ nav a:hover::after,
   background-color: #C10202; /* subrayado rojo para texto claro */
 }
 
-.secondary-nav .link-light {
+/* Forzar los colores tal como los definiste (mayor especificidad) */
+.secondary-nav > a.link-red,
+.secondary-nav .submenu-toggle.link-red,
+.secondary-nav .submenu-items a.link-red {
+  color: #C10202 !important; /* rojo */
+}
+
+.secondary-nav > a.link-light,
+.secondary-nav .submenu-toggle.link-light,
+.secondary-nav .submenu-items a.link-light {
   color: #cccccc !important; /* gris metálico */
 }
-.submenu-items a.link-light {
-  color: #cccccc !important; /* gris metálico para el menú desplegable */
-}
+
+/* Opcional: mantener el subrayado rojo para .link-light (ya lo tienes, pero por si acaso) */
+.secondary-nav .link-light::after { background-color: #C10202; }
+.secondary-nav .link-red::after  { background-color: #cccccc; }
+
 
 #bandera-play {
   margin: 30px auto 20px; /* ⬅️ margen superior de 30px, inferior de 20px */
@@ -848,7 +859,8 @@ nav a:hover::after,
   <a href="#contacto" class="link-light">CONTACTO</a>
   </nav>
     
-  <div class="secondary-nav fade-in"> 
+  <!-- BLOQUE: secondary-nav con colores intercalados -->
+<div class="secondary-nav fade-in"> 
   <a href="" class="link-red">PRÓXIMAMENTE</a>
 
   <div class="submenu">
@@ -859,12 +871,12 @@ nav a:hover::after,
 
     <div id="submenu-items" class="submenu-items" role="menu" aria-hidden="true">
       <a href="AvernoStore/" class="link-red" role="menuitem">CAMISETAS</a>
-      <a href="AvernoStoreH/" class="link-red" role="menuitem">HOODIES</a>
+      <a href="AvernoStoreH/" class="link-light" role="menuitem">HOODIES</a>
     </div>
   </div>
    
-  <a href="" class="link-light">PRÓXIMAMENTE</a>
-  </div>
+  <a href="" class="link-red">PRÓXIMAMENTE</a>
+</div>
     
   <div class="barra-cinco-puntas fade-in" style="
   width: 100%;
@@ -1035,6 +1047,7 @@ nav a:hover::after,
 </script>
 </body>
 </html>
+
 
 
 
