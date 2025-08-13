@@ -482,6 +482,7 @@
   cursor: pointer;
 }
 
+/* controlado por JS: no mostrar por hover, solo con la clase .visible */
 .submenu-items {
   position: absolute;
   background: rgba(0, 0, 0, 0.9);
@@ -489,33 +490,32 @@
   max-height: 300px;
   overflow-y: auto;
   padding: 8px 0;
-  z-index: 999; /* 🔺 Más alto que otros elementos */
+  z-index: 999; /* alto */
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
   border-radius: 0px;
   text-align: left;
   margin-top: 14px;
+
+  /* oculto por defecto */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transform-origin: top center;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
 }
 
-/* 👇 Esta es la parte CLAVE */
-.submenu:hover .submenu-items {
+/* clase que mostramos desde JS */
+.submenu-items.visible {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transform: translateY(0);
 }
 
 .submenu-items a {
   display: inline-block !important;
   padding: 6px 12px;
-}
-
-.submenu-items.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
 }
 
 .flyer-cta a.ver-coleccion-btn,
@@ -839,13 +839,17 @@
   <a href="" style="color: #cccccc;">PROXIMAMENTE</a>
 
   <div class="submenu">
-    <span class="submenu-toggle" style="color: #C10202;" onclick="toggleSubmenu()">AVERNO STORE ▾</span>
-    <div class="submenu-items">
-      <a href="AvernoStore/" style="color: #cccccc;">CAMISETAS</a>
-      <a href="AvernoStoreH/" style="color: #C10202;">HOODIES</a>
-    </div>
-  </div>
+  <span id="submenu-toggle" class="submenu-toggle" style="color: #C10202;" tabindex="0"
+        aria-expanded="false" onclick="toggleSubmenu(event)">
+    AVERNO STORE ▾
+  </span>
 
+  <div id="submenu-items" class="submenu-items" role="menu" aria-hidden="true">
+    <a href="AvernoStore/" style="color: #cccccc;" role="menuitem">CAMISETAS</a>
+    <a href="AvernoStoreH/" style="color: #C10202;" role="menuitem">HOODIES</a>
+  </div>
+</div>
+   
   <a href="" style="color: #cccccc;">PROXIMAMENTE</a>
 </div>
     
@@ -960,10 +964,66 @@
     document.body.classList.remove("modal-abierto");
   };
 });
-  
+
+<script>
+/* CONTROLES DEL SUBMENU: abrir/ cerrar por CLICK y cerrar al hacer click fuera */
+(function(){
+  const toggle = document.getElementById('submenu-toggle');
+  const items  = document.getElementById('submenu-items');
+
+  if (!toggle || !items) return;
+
+  // abrir/cerrar por click
+  window.toggleSubmenu = function (event) {
+    // evita que el click en el toggle se propague al documento y cierre inmediatamente
+    if (event) event.stopPropagation();
+
+    const open = items.classList.toggle('visible');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    items.setAttribute('aria-hidden', open ? 'false' : 'true');
+  };
+
+  // cerrar submenu (función reutilizable)
+  function closeSubmenu() {
+    if (!items.classList.contains('visible')) return;
+    items.classList.remove('visible');
+    toggle.setAttribute('aria-expanded', 'false');
+    items.setAttribute('aria-hidden', 'true');
+  }
+
+  // click en documento cierra el submenu si haces click fuera (.submenu)
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.submenu')) {
+      closeSubmenu();
+    }
+  });
+
+  // evita cierre cuando se hace click dentro del menu (links, etc.)
+  items.addEventListener('click', function (e) {
+    // si quieres que un click en los links cierre el menú, comenta la siguiente línea
+    e.stopPropagation();
+  });
+
+  // cerrar con teclado ESC
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+      closeSubmenu();
+    }
+  });
+
+  // soporte para abrir con Enter / Space cuando el toggle está enfocado (accesibilidad)
+  toggle.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      toggleSubmenu(e);
+    }
+  });
+})();
+
 </script>
 </body>
 </html>
+
 
 
 
