@@ -438,20 +438,48 @@
   function openLightbox(src) { const lb = document.getElementById('lightbox'); const img = document.getElementById('lightbox-img'); img.src = src; lb.style.display = 'flex'; }
   function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
   document.addEventListener('keydown', function(event){ if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) closeLightbox(); });
+  
+  // --- Atajos: ESC para lightbox y para cerrar flyer ---
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) {
+      // cerrar lightbox si está abierto
+      try { closeLightbox(); } catch(e) {}
+      // cerrar flyer si está abierto
+      const flyer = document.getElementById('flyer-overlay');
+      if (flyer) flyer.style.display = 'none';
+    }
+  });
 
-  function // Mejoras cierre del flyer
-    (function(){
-      const flyerOverlay = document.getElementById('flyer-overlay');
-      const fc = document.getElementById('flyer-close');
-      if (fc) fc.addEventListener('click', ()=>{ if (flyerOverlay) flyerOverlay.style.display='none'; });
-      if (flyerOverlay) {
-        flyerOverlay.addEventListener('click', (e)=>{ if (e.target === flyerOverlay) flyerOverlay.style.display='none'; });
-      }
-      // cierre extra por ESC (asegura cierre si no funciona el botón)
-      document.addEventListener('keydown', function(evt){ if (evt.key === 'Escape' || evt.keyCode === 27) { if (flyerOverlay) flyerOverlay.style.display='none'; }});
-    })();
+  // --- Manejadores del flyer (botón, click fuera, ESC) ---
+  (function() {
+    const flyerOverlay = document.getElementById('flyer-overlay');
+    const fc = document.getElementById('flyer-close');
 
-    preloadImages(urls=[]) { const unique = Array.from(new Set(urls)); return Promise.all(unique.map(url => new Promise(resolve => { if (!url) return resolve(); const img = new Image(); img.src = url; if (img.complete) return resolve(); img.onload = () => resolve(); img.onerror = () => { console.warn('Error al cargar imagen:', url); resolve(); }; })));
+    if (fc) {
+      fc.addEventListener('click', function() {
+        if (flyerOverlay) flyerOverlay.style.display = 'none';
+      });
+    }
+
+    // cerrar al hacer clic fuera de la imagen (en el overlay)
+    if (flyerOverlay) {
+      flyerOverlay.addEventListener('click', function(e) {
+        if (e.target === flyerOverlay) flyerOverlay.style.display = 'none';
+      });
+    }
+  })();
+
+  // --- Función correcta de preloadImages ---
+  function preloadImages(urls = []) {
+    const unique = Array.from(new Set(urls));
+    return Promise.all(unique.map(url => new Promise(resolve => {
+      if (!url) return resolve();
+      const img = new Image();
+      img.src = url;
+      if (img.complete) return resolve();
+      img.onload = () => resolve();
+      img.onerror = () => { console.warn('Error al cargar imagen:', url); resolve(); };
+    })));
   }
 
   // ===== Filtros simples (INFERNAL / EXCLUSIVO) =====
