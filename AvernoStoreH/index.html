@@ -377,7 +377,7 @@
     const ul = document.getElementById('cart-items'); ul.innerHTML = '';
     for (let nombre in cartData) {
       const it = cartData[nombre];
-      ul.innerHTML += `<li style="margin-bottom:8px;"><span>${nombre} — <strong>${it.tipo || 'Normal'}</strong> x${it.cantidad} ${it.talla ? `(<span class="talla-texto">Talla</span> ${it.talla>)` : ''} — $${(it.precio * it.cantidad).toLocaleString('es-CO')}</span> <button onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+      ul.innerHTML += `<li style="margin-bottom:8px;"><span>${nombre} — <strong>${it.tipo || 'Normal'}</strong> x${it.cantidad} ${it.talla ? `(<span class="talla-texto">Talla</span> ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString('es-CO')}</span> <button onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
     }
     actualizarContadores();
   }
@@ -445,9 +445,8 @@
       // cerrar lightbox si está abierto
       try { closeLightbox(); } catch(e) {}
       // cerrar flyer si está abierto
-      const flyer = document.getElementById('flyer-overlay').remove()
-      if (flyer) flyer.style.display = 'none';
-    }
+     const flyer = document.getElementById('flyer-overlay');
+    if (flyer) flyer.remove(); }
   });
 
   // --- Manejadores del flyer (botón, click fuera, ESC) ---
