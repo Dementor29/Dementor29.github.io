@@ -5,157 +5,196 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Averno △ Store</title>
   <link rel="preload" as="image" href="Port.png">
+  <link rel="preload" as="image" href="marco.svg">
+  <link rel="preload" as="image" href="skull.gif">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
 
-  <!-- Tipografía (usa la tuya si está instalada) -->
   <style>
+    /* ======= Variables y tipografía ======= */
     :root{
       --bg:#000;
       --muted:#cccccc;
       --accent:#C10202;
       --card:#0f0f0f;
+      --dorado-oscuro: #8B0000;
+      --dorado-claro: #8B0000;
     }
+
+    @font-face {
+      font-family: 'BurzumGothic';
+      src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
+    }
+
     html,body{height:100%;margin:0;font-family:BurzumGothic,serif;background:var(--bg);color:var(--muted);}
 
-    /* Layout similar a la página de referencia: header limpio, título de colección, filtros arriba y grid de productos */
-    header.collection-header{
-      display:flex;flex-direction:column;align-items:center;gap:12px;padding:28px 20px 18px;border-bottom:1px solid rgba(255,255,255,0.05);
-    }
-    header.collection-header .breadcrumb{font-size:13px;opacity:.7}
-    header.collection-header h1{font-size:28px;margin:6px 0;color:var(--muted)}
-
-    .controls{
-      width:100%;max-width:1200px;display:flex;justify-content:space-between;gap:12px;align-items:center;padding:8px 16px;box-sizing:border-box;
-      margin:8px auto 20px;
-    }
-
-    .filters{
-      display:flex;gap:12px;align-items:center;flex-wrap:wrap;
-    }
-    .filters button, .filters select{
-      background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:8px 12px;border-radius:4px;cursor:pointer;font-family:BurzumGothic,serif
+    /* ======= Reglas principales (fusionadas desde index.html) ======= */
+    /* Top bar (wishlist + cart) */
+    #top-bar {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      padding: 10px 20px;
+      background-color: #111;
+      border-bottom: 1px solid var(--dorado-claro);
+      color: var(--dorado-claro);
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      text-align: center;
     }
 
-    .products-wrap{max-width:1200px;margin:0 auto;padding:0 16px 80px;box-sizing:border-box}
+    .icono-acceso,
+    .icono-acceso * {
+      cursor: pointer !important;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      text-align: center;
+    }
+
+    .icono-acceso span {
+      position: absolute;
+      top: 0;
+      right: -8px;
+      background-color: transparent;
+      color: #cccccc;
+      padding: 2px 6px;
+      border-radius: 50%;
+      font-size: 18px;
+      font-family: 'BurzumGothic', serif;
+    }
+
+    .icono-acceso div { font-size: 16px; color: var(--dorado-oscuro); transition: color 0.3s ease; font-family: 'BurzumGothic', serif; }
+
+    .zoom-focus { transform: scale(1.05); transition: transform 0.9s ease; }
+
+    /* GIF, filtros e instrucciones */
+    .gif-fuego { width: 100px; height: auto; vertical-align: middle; margin: 0 6px; }
+    .filtros-wrapper { text-align: center; margin-bottom: 18px; display:flex; justify-content:center; gap:10px; }
+    .filter.infernal, .filter.exclusivo { background-color: #0f0f0f; color: #cccccc; font-size: 14px; font-weight: bold; padding: 10px 18px; font-family: 'BurzumGothic', serif; min-width: 130px; border-radius: 4px; border:1px solid #0f0f0f; }
+    .instruccion { text-align:center; color:#777; font-size:15px; margin:6px 0 36px; }
+
+    /* Catalogo / grid */
+    .products-wrap, .catalogo { max-width:1200px; margin:0 auto; padding:0 16px 80px; box-sizing:border-box }
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-
-    .product-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:12px;border-radius:4px;text-align:center}
+    .product-card, .item { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); padding:12px; border-radius:4px; text-align:center }
     .product-card .thumb{width:100%;height:300px;overflow:hidden;display:block;background:#111}
-    .product-card img{width:100%;height:100%;object-fit:cover;display:block}
-    .product-card h3{font-size:15px;margin:10px 0;color:var(--muted)}
-    .product-card .price{color:var(--muted);font-weight:700}
-    .product-card .soldout{color:#777;font-size:13px}
+    .product-card img, .item img { width:100%; height:100%; object-fit:cover; display:block }
 
-    /* Footer — estilo exacto */
-  footer#contacto {
-  background: #111;
-  color: #cccccc;
-  padding: 2.5rem 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px;
-  text-align: left;
-  border-top: 2px solid #8B0000; /* --dorado-claro */
-  animation: pulseFooter 10s ease-in-out infinite;
-  will-change: box-shadow;
-  }
+    /* Bloque manifiesto / sugerencias */
+    .bloque-manifiesto{ background: rgba(20,20,20,0.85); font-size:15px; color:#cccccc; border-left:3px solid var(--dorado-claro); padding:20px; max-width:800px; margin:20px auto; font-family: 'BurzumGothic', serif; text-align: justify; }
+    .frase-autor{ background: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'), rgba(0,0,0,0.5); background-blend-mode: overlay; padding:15px 20px; font-style: italic; color:#ccc; font-size:1.2rem; text-align:center; margin:30px auto 0; max-width:800px; }
 
-  footer#contacto div p {
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  }
+    .linea-dorada { border:none; height:1px; background-color:var(--dorado-claro); margin:40px auto 20px; width:calc(100% - 40px); max-width:100%; box-sizing:border-box; }
 
-  footer#contacto i {
-  margin-right: 0.5rem;
-  color: #8B0000; /* --dorado-oscuro */
-  font-size: 1.5rem;
-  vertical-align: middle;
-  line-height: 1;
-  }
+    /* Wishlist / cart blocks */
+    #wishlist, #cart { background:#000; padding:20px; border-radius:8px; max-width:800px; margin:40px auto; text-align:center; box-sizing:border-box; }
+    #wishlist ul, #cart ul { list-style:none; padding:0; margin:0 0 20px 0; text-align:left }
 
-  /* Iconos tamaño móvil / responsivo */
-  @media (max-width: 768px) {
-  footer#contacto {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 50px 20px;
-    text-align: left;
-  }
-  footer#contacto div { width: 100%; }
-  }
-    
-  /* pequeño detalle hover */
-  .product-card:hover{transform:translateY(-4px);transition:transform .18s ease}
+    .precio { font-family: 'BurzumGothic', serif; color: var(--dorado-claro); font-weight:bold; margin-bottom:-2px; font-size:20px; }
+    .heart-icon { font-size:40px; color:white; text-shadow:-0.5px -0.5px 0 black,0.5px -0.5px 0 black,-0.5px 0.5px 0 black,0.5px 0.5px 0 black; position:absolute; top:8px; right:8px; display:inline-block; cursor:pointer; user-select:none; z-index:3; }
+    .heart-icon.active { color: var(--dorado-claro); text-shadow:0 0 6px var(--dorado-claro); }
 
-  /* Mantener footer y otros elementos del sitio originales más abajo */
-  footer#contacto{margin-top:40px}
+    .cart-button{ margin-top:20px; background-color:#0f0f0f; color:#cccccc; border:1px solid #0f0f0f; padding:8px 12px; cursor:pointer; border-radius:4px; font-family:'BurzumGothic',serif; font-size:14px }
+    .cart-button:hover{ background-color:rgba(25,25,25,0.8); color:var(--dorado-claro); }
 
-  /* Mantener utilidades del catálogo anterior (botones talla, wishlist) pero ocultos aquí para simplificar visualmente) */
-  .item .talla-switch{display:none}
-  
-/* --- estilos añadidos: bloque de sugerencias y botón flotante de WhatsApp --- */
-.bloque-manifiesto{ background: rgba(20,20,20,0.85); font-size:15px; color:#cccccc; border-left:3px solid var(--dorado-claro); padding:20px; max-width:800px; margin:20px auto; font-family: 'BurzumGothic', serif; text-align: justify; }
+    .volver-btn{ background-color:#e0e0e0; color:black; border:none; padding:10px 20px; font-size:1em; border-radius:4px; cursor:pointer; transition:background-color 0.3s ease; margin-top:1em }
+    .volver-btn:hover{ background-color:#e0e0e0; color:var(--dorado-oscuro) }
 
-.nequi-btn{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 64px;
-  height: 64px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: var(--accent); /* rojo principal */
-  border-radius: 50%;
-  text-decoration:none;
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-  z-index: 999;
-  box-shadow: 0 8px 22px rgba(193,2,2,0.18), 0 2px 6px rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.04);
-}
-.nequi-btn i{ font-size:1.6rem; color:#ffffff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-.nequi-btn:hover{ transform: translateY(-3px); box-shadow: 0 12px 30px rgba(193,2,2,0.28), 0 4px 8px rgba(0,0,0,0.5); background: #9b0000; }
+    /* Flyer emergente */
+    #flyer-overlay{ position:fixed; inset:0; background:#000000; z-index:10000; display:flex; align-items:center; justify-content:center }
+    #flyer-overlay img{ width:100vw; height:auto; max-height:100vh; object-fit:contain; animation:parpadeo-led 2.5s infinite }
+    #flyer-close{ position:absolute; top:20px; right:30px; font-size:22px; color:white; background:none; border:none; cursor:pointer; z-index:10001 }
+    #flyer-close:hover{ color:var(--dorado-oscuro) }
+    .flyer-hint{ position:absolute; top:50px; right:30px; font-size:13px; color:#ccc; font-family:'BurzumGothic',serif }
 
-/* Responsive */
-@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:560px){.grid{grid-template-columns:1fr}.product-card .thumb{height:420px}}
-    
-</style>
+    /* Lightbox */
+    #lightbox{ display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; z-index:9999 }
+    #lightbox img{ max-width:80%; max-height:80%; object-fit:contain; box-shadow:0 0 20px rgba(0,0,0,0.8) }
+    #lightbox .close-btn{ position:absolute; top:20px; right:30px; font-size:3rem; color:#cccc; cursor:pointer; font-family:'BurzumGothic',serif }
+
+    /* Botón WhatsApp flotante */
+    .nequi-btn{ position: fixed; bottom: 20px; right: 20px; width: 64px; height: 64px; display:flex; align-items:center; justify-content:center; background: var(--accent); border-radius: 50%; text-decoration:none; z-index: 999; box-shadow: 0 8px 22px rgba(193,2,2,0.18), 0 2px 6px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04); }
+    .nequi-btn i{ font-size:1.6rem; color:#ffffff }
+    .nequi-btn:hover{ transform: translateY(-3px); box-shadow: 0 12px 30px rgba(193,2,2,0.28); background:#9b0000 }
+
+    /* Responsivo */
+    @media (max-width:980px){ .grid{ grid-template-columns:repeat(2,1fr) } }
+    @media (max-width:560px){ .grid{ grid-template-columns:1fr } .product-card .thumb{ height:420px } .gif-fuego{ width:130px } }
+
+  </style>
 </head>
 <body>
 
-  <h2 id="coleccion-title">HOODIES</h2>
-
-  <!-- Controles (simplificados): solo selector de orden -->
+  <!-- FLYER (copiado de index.html) -->
+  <div id="flyer-overlay">
+    <button id="flyer-close" title="Cerrar">𒉽</button>
+    <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
+    <img src="Port.png" alt="Flyer Averno"/>
   </div>
 
-  <main class="products-wrap">
-    <div id="products-grid" class="grid">
-      <!-- Productos renderizados por JS -->
+  <!-- TOP BAR: contador wishlist + carrito (copiado de index.html) -->
+  <header id="top-bar">
+    <div class="icono-acceso" onclick="irYZoom('wishlist')" data-descripcion="Ver Tus Productos Infernales">🤘🏻<div>Lista de Deseos</div>
+      <span id="contador-wishlist">0</span>
     </div>
+
+    <div class="icono-acceso" onclick="irYZoom('cart')" data-descripcion="Revisa Tus Compras Del Averno">🛒<div>Carrito de Compras</div>
+      <span id="contador-cart">0</span>
+    </div>
+  </header>
+
+  <!-- Título + GIF y filtros (copiados) -->
+  <h2 id="coleccion-title">HOODIES</h2>
+
+  <h2 style="text-align:center">¡ELIGE TU <img src="skull.gif" class="gif-fuego" alt="fuego"> EDICION!</h2>
+
+  <div class="filtros-wrapper">
+    <button id="btn-infernal" class="filter infernal">INFERNAL</button>
+    <button id="btn-exclusivo" class="filter exclusivo">EXCLUSIVO</button>
+  </div>
+
+  <p class="instruccion">&gt; HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA &lt;</p>
+
+  <!-- Productos: usaré el contenedor tipo catalogo como en index.html -->
+  <main class="products-wrap">
+    <div id="catalogo-ropa" class="catalogo grid"></div>
   </main>
 
-  <!-- Sugerencias △ Comentarios (usa el mismo estilo .bloque-manifiesto que ya está en CSS) -->
+  <!-- Lista de deseos y carrito (copiados) -->
+  <div id="wishlist">
+    <h3>Lista de deseos</h3>
+    <ul id="wishlist-items"></ul>
+    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+  </div>
+
+  <div id="cart">
+    <h3>Carrito de compras</h3>
+    <ul id="cart-items"></ul>
+    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+  </div>
+
   <hr class="linea-dorada">
+
+  <!-- Sugerencias △ Comentarios (bloque-manifiesto) -->
   <section class="bloque-manifiesto">
-  <h2>Sugerencias △ Comentarios</h2>
-  <form action="https://formspree.io/f/xvgqpgpl" method="POST" novalidate>
-    <label for="email">Tu correo:</label><br>
-    <input type="email" name="email" id="email" required placeholder="tucorreo@ejemplo.com"><br><br>
+    <h2>Sugerencias △ Comentarios</h2>
+    <form action="https://formspree.io/f/xvgqpgpl" method="POST" novalidate>
+      <label for="email">Tu correo:</label><br>
+      <input type="email" name="email" id="email" required placeholder="tucorreo@ejemplo.com"><br><br>
 
-    <label for="mensaje">Tu mensaje:</label><br>
-    <textarea name="message" id="mensaje" rows="6" required placeholder="Escribe tu sugerencia o comentario aquí..."></textarea><br><br>
+      <label for="mensaje">Tu mensaje:</label><br>
+      <textarea name="message" id="mensaje" rows="6" required placeholder="Escribe tu sugerencia o comentario aquí..."></textarea><br><br>
 
-    <button type="submit">Enviar</button>
-  </form>
+      <button type="submit">Enviar</button>
+    </form>
   </section>
 
-  <div class="volver-container">
-  <button class="volver-btn" onclick="location.href='/'">VOLVER</button>
+  <div class="volver-container" style="text-align:center;margin:40px 0">
+    <button class="volver-btn" onclick="location.href='/'">VOLVER</button>
   </div>
 
   <footer id="contacto" data-aos="fade-up" data-aos-delay="600">
@@ -173,62 +212,270 @@
     </div>
   </footer>
 
-  <a class="nequi-btn" href="https://wa.me/message/7GNMDBFX4L6IJ1"
-   target="_blank">
-  <i class="fab fa-whatsapp"></i>
+  <a class="nequi-btn" href="https://wa.me/message/7GNMDBFX4L6IJ1" target="_blank">
+    <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <div class="close-btn" onclick="closeLightbox()">✖</div>
+    <img id="lightbox-img" src="" alt="ampliada">
+  </div>
+
 <script>
-  // Reutilizo tu array de productos (si quieres limitar a 6 como la página de referencia, cambialo aquí)
+  // ===== Datos (copiados/ajustados) =====
   const productosRopa = [
-      { nombre: "MASK HANNYA", precio: 174990, imagen: "1.png", tipo: 'Hoodie' },
-      { nombre: "ALIEN SACRIFICE", precio: 174990, imagen: "2.png", tipo: 'Hoodie' },
-      { nombre: "ALIEN PLAGUE", precio: 174990, imagen: "3.png", tipo: 'Hoodie' },
-      { nombre: "SKULL IN ACID", precio: 174990, imagen: "4.png", tipo: 'Hoodie' }
-      // si quieres, añade más items o usa tu array completo
+      { nombre: "VOX INFERNI", precio: 64990, imagen: "1.png", exclusivo: false },
+      { nombre: "LUPUS NOCTIS", precio: 64990, imagen: "2.png", exclusivo: false },
+      { nombre: "PALMIRA OBSCURA", precio: 64990, imagen: "3.png", exclusivo: false },
+      { nombre: "ANGELUS OCCISUS", precio: 64990, imagen: "4.png", exclusivo: false },
+      { nombre: "CULTUS LUXURIAE", precio: 64990, imagen: "5.png", exclusivo: false },
+      { nombre: "CORNUA TENEBRIS", precio: 64990, imagen: "6.png", exclusivo: false },
+      { nombre: "AVERNO STORE", precio: 64990, imagen: "7.png", exclusivo: false },
+      { nombre: "OBSCURA FIDES", precio: 64990, imagen: "8.png", exclusivo: false },
+      { nombre: "CRUCIFIXUS SANGUINIS", precio: 64990, imagen: "9.png", exclusivo: false },
+      { nombre: "CORPUS MORTIS", precio: 64990, imagen: "10.png", exclusivo: false },
+      { nombre: "REDEMPTOR TENEBRIS", precio: 64990, imagen: "11.png", exclusivo: false },
+      { nombre: "THRONUS MORTIS", precio: 64990, imagen: "12.png", exclusivo: false },
+      { nombre: "ALTARE SANGUINIS", precio: 64990, imagen: "13.png", exclusivo: false },
+      { nombre: "HELVETE", precio: 64990, imagen: "14.png", exclusivo: false },
+      { nombre: "LUCIFERUS", precio: 64990, imagen: "15.png", exclusivo: false },
+      { nombre: "ODIN KRIGENS GUD", precio: 64990, imagen: "16.png", exclusivo: false },
+      { nombre: "MALEDICTUS XII", precio: 64990, imagen: "17.png", exclusivo: false },
+      { nombre: "DOMINUS MORTIS", precio: 64990, imagen: "18.png", exclusivo: false },
+      { nombre: "DOMINUS BAPHOMET", precio: 64990, imagen: "19.png", exclusivo: false },
+      { nombre: "PONTIFEX MALEFICUS", precio: 64990, imagen: "20.png", exclusivo: false },
+      { nombre: "MASK HANNYA", precio: 79990, imagen: "21.png", exclusivo: true },
+      { nombre: "SKULL IN ACID", precio: 79990, imagen: "22.png", exclusivo: true },
+      { nombre: "ALIEN PLAGUE", precio: 79990, imagen: "23.png", exclusivo: true },
+      { nombre: "ALIEN SACRIFICE", precio: 79990, imagen: "24.png", exclusivo: true }
   ];
 
-  const grid = document.getElementById('products-grid');
+  // Estado
+  let wishlistData = {};
+  let cartData = {};
+  let filtroActual = 'todos';
 
-  function createCard(p){
-    const wrap = document.createElement('article');
-    wrap.className = 'product-card';
+  // ===== Helper: crear tarjeta (basado en index.html) =====
+  function crearItem(producto, esRopa = true) {
+    const item = document.createElement('div');
+    item.className = 'item';
+    item.setAttribute('data-precio-inicial', producto.precio);
 
-    wrap.innerHTML = `
-      <a class="thumb-link" href="#">
-        <div class="thumb"><img src="${p.imagen}" alt="${p.nombre}"></div>
-      </a>
-      <h3>${p.nombre}</h3>
-      <div class="price">$${p.precio.toLocaleString('es-CO')}</div>
+    const id = producto.nombre.replace(/\s+/g,'_');
+
+    let tallaSelect = '';
+    if (esRopa) {
+      tallaSelect = `\n      <label class="cantidad-label">Talla:\n        <select class="cantidad-input" id="talla-${id}">\n          <option value="">Elige talla</option>\n          <option value="S">S</option>\n          <option value="M">M</option>\n          <option value="L">L</option>\n          <option value="XL">XL</option>\n        </select>\n      </label>\n      <span id="error-${id}" class="error-msg"></span>\n    `;
+    }
+
+    item.innerHTML = `
+      <div class="item-marco" style="position:relative; width:100%; height:280px; overflow:hidden;">
+        <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover">
+        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})">⛧</span>
+      </div>
+      <h3>${producto.nombre}</h3>
+      <div class="precio" data-precio="${producto.precio}" data-tipo="Normal">$${producto.precio.toLocaleString()}</div>
+      <div class="talla-switch" style="margin-top:8px;">
+        <button class="cart-button boton-talla" onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')">Normal</button>
+        <button class="cart-button boton-talla" onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')">Oversize</button>
+      </div>
+      <div class="cantidad-talla-wrapper" style="display:flex;align-items:center;gap:12px;margin-top:10px;">
+        <label class="cantidad-label">Cant:\n          <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1" style="width:60px;padding:6px;background:#111;color:#ccc;border-radius:4px;border:1px solid transparent">
+        </label>
+        <div class="separator" style="width:4px;height:1.1em;background-color:var(--dorado-oscuro);opacity:0.6"></div>
+        ${tallaSelect}
+      </div>
+      <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
     `;
 
-    return wrap;
+    if (esRopa) {
+      const select = item.querySelector(`#talla-${id}`);
+      const errorSpan = item.querySelector(`#error-${id}`);
+      if (select) select.addEventListener('change', () => { if (select.value) errorSpan.textContent = ''; });
+    }
+
+    return item;
   }
 
-  function renderProducts(list){
-    grid.innerHTML = '';
-    list.forEach(p => grid.appendChild(createCard(p)));
+  function renderCatalogo(productos, contenedorId='catalogo-ropa', esRopa=true) {
+    const cont = document.getElementById(contenedorId);
+    cont.innerHTML = '';
+    productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
   }
 
-  // Render inicial (limitado a 6 como el ejemplo de la referencia)
-  renderProducts(productosRopa.slice(0,6));
+  // ===== Wishlist / cart functions =====
+  function toggleFavorite(el, nombre, precio, esRopa) {
+    el.classList.toggle('active');
 
-  // Filtros simples
-  
+    if (wishlistData[nombre]) delete wishlistData[nombre];
+    else {
+      const item = el.closest('.item');
+      if (!item) return;
+      const precioEl = item.querySelector('.precio');
+      const precioActual = parseInt(precioEl?.getAttribute('data-precio') || precio, 10);
+      const tipo = precioEl?.getAttribute('data-tipo') || 'Normal';
+      wishlistData[nombre] = { precio: precioActual, esRopa, tipo };
+    }
+    renderWishlist();
+  }
 
-  // Orden (básico)
-  
-  document.getElementById('sort-select').addEventListener('change', function(){
-    const v = this.value;
-    const copy = [...productosRopa];
-    if(v==='az') copy.sort((a,b)=>a.nombre.localeCompare(b.nombre));
-    if(v==='za') copy.sort((a,b)=>b.nombre.localeCompare(a.nombre));
-    if(v==='price-asc') copy.sort((a,b)=>a.precio-b.precio);
-    if(v==='price-desc') copy.sort((a,b)=>b.precio-a.precio);
-    renderProducts(copy.slice(0,12));
+  function renderWishlist() {
+    const ul = document.getElementById('wishlist-items'); ul.innerHTML = '';
+    for (let nombre in wishlistData) {
+      const producto = wishlistData[nombre];
+      const id = nombre.replace(/\s+/g,'_');
+      const tallaSelect = producto.esRopa ? ` <label style="display:inline-flex;align-items:center;gap:8px;margin-left:12px;"><span class="talla-texto">Talla:</span><select id="wishlist-talla-${id}" class="cantidad-input"><option value="">Elige talla</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></label><span id="error-wishlist-${id}" class="error-msg"></span>` : '';
+      ul.innerHTML += `<li style="margin-bottom:12px;"><span>${nombre} — <strong>${producto.tipo || 'Normal'}</strong> — $${producto.precio.toLocaleString('es-CO')}</span>${tallaSelect}<button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button></li>`;
+    }
+    actualizarContadores();
+  }
+
+  function eliminarDeWishlist(nombre) {
+    delete wishlistData[nombre];
+    document.querySelectorAll('.heart-icon').forEach(h => { if (h.getAttribute('onclick') && h.getAttribute('onclick').includes(nombre)) h.classList.remove('active'); });
+    renderWishlist();
+  }
+
+  function addToCart(nombre, precio, esRopa) {
+    const id = nombre.replace(/\s+/g,'_');
+    const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || '1', 10);
+    let talla = '';
+    if (esRopa) {
+      talla = document.getElementById(`talla-${id}`).value;
+      const errorEl = document.getElementById(`error-${id}`);
+      if (!talla) { if (errorEl) { errorEl.textContent = 'POR FAVOR SELECCIONA ⛧ UNA TALLA.'; errorEl.style.color = 'var(--dorado-oscuro)'; } return; }
+      if (errorEl) errorEl.textContent = '';
+    }
+    const cantidadEl = document.getElementById(`cantidad-${id}`);
+    if (!cantidadEl) return;
+    const itemEl = cantidadEl.closest('.item'); if (!itemEl) return;
+    const precioEl = itemEl.querySelector('.precio');
+    const precioActual = parseInt(precioEl.getAttribute('data-precio'), 10);
+    const tipoSeleccionado = precioEl.getAttribute('data-tipo') || 'Normal';
+    cartData[nombre] = { precio: precioActual, cantidad: cantidad, talla: talla, tipo: tipoSeleccionado };
+    renderCarrito(); actualizarContadores();
+  }
+
+  function moverWishlistACarrito() {
+    for (let nombre in wishlistData) {
+      const producto = wishlistData[nombre];
+      const id = nombre.replace(/\s+/g,'_');
+      let talla = '';
+      if (producto.esRopa) {
+        const el = document.getElementById(`wishlist-talla-${id}`);
+        const errorEl = document.getElementById(`error-wishlist-${id}`);
+        if (!el || !el.value) { if (errorEl) { errorEl.textContent = 'POR FAVOR SELECCIONA ⛧ UNA TALLA.'; errorEl.style.color = 'var(--dorado-oscuro)'; } return; }
+        talla = el.value; if (errorEl) errorEl.textContent = '';
+      }
+      cartData[nombre] = { precio: producto.precio, cantidad:1, talla: talla, tipo: producto.tipo };
+    }
+    wishlistData = {}; renderWishlist(); renderCarrito(); document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+  }
+
+  function renderCarrito() {
+    const ul = document.getElementById('cart-items'); ul.innerHTML = '';
+    for (let nombre in cartData) {
+      const it = cartData[nombre];
+      ul.innerHTML += `<li style="margin-bottom:8px;"><span>${nombre} — <strong>${it.tipo || 'Normal'}</strong> x${it.cantidad} ${it.talla ? `(<span class="talla-texto">Talla</span> ${it.talla>)` : ''} — $${(it.precio * it.cantidad).toLocaleString('es-CO')}</span> <button onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+    }
+    actualizarContadores();
+  }
+
+  function eliminarDelCarrito(nombre) { delete cartData[nombre]; renderCarrito(); }
+
+  function vaciarWishlist() {
+    wishlistData = {}; renderWishlist();
+    document.querySelectorAll('.item').forEach(item => {
+      const precioBase = parseInt(item.getAttribute('data-precio-inicial'),10);
+      const precioEl = item.querySelector('.precio');
+      if (precioEl) { precioEl.textContent = `$${precioBase.toLocaleString('es-CO')}`; precioEl.setAttribute('data-precio', precioBase); precioEl.setAttribute('data-tipo','Normal'); }
+      item.querySelectorAll('.boton-talla').forEach(btn => btn.classList.remove('bg-gray-700','text-white'));
+    });
+    document.querySelectorAll('.cantidad-input').forEach(i => { if (i.type === 'number') i.value = 1; else i.value = ''; });
+    document.querySelectorAll('.error-msg').forEach(e => e.textContent = '');
+    document.querySelectorAll('.heart-icon.active').forEach(h => h.classList.remove('active'));
+  }
+
+  function vaciarCarrito() {
+    cartData = {}; renderCarrito();
+    document.querySelectorAll('.item').forEach(item => {
+      const precioBase = parseInt(item.getAttribute('data-precio-inicial'),10);
+      const precioEl = item.querySelector('.precio');
+      if (precioEl) { precioEl.textContent = `$${precioBase.toLocaleString('es-CO')}`; precioEl.setAttribute('data-precio', precioBase); precioEl.setAttribute('data-tipo','Normal'); }
+      item.querySelectorAll('.boton-talla').forEach(btn => btn.classList.remove('bg-gray-700','text-white'));
+    });
+    document.querySelectorAll('.cantidad-input').forEach(i => { if (i.type === 'number') i.value = 1; else i.value = ''; });
+    document.querySelectorAll('.error-msg').forEach(e => e.textContent = '');
+  }
+
+  function comprarPorWhatsapp() {
+    if (Object.keys(cartData).length === 0) { alert('Carrito vacío'); return; }
+    const lineas = Object.entries(cartData).map(([nombre,it]) => { const tipo = it.tipo; const cantidad = it.cantidad; const talla = it.talla ? ` (Talla ${it.talla})` : ''; const subtotal = (it.precio * cantidad).toLocaleString('es-CO'); return `- ${nombre} (${tipo}) x${cantidad}${talla} = $${subtotal}`; });
+    const texto = `¡Hola!, Quiero Comprar:\n${lineas.join('\n')}`;
+    const encoded = encodeURIComponent(texto);
+    const url = `https://wa.me/573181541064?text=${encoded}`;
+    window.open(url,'_blank');
+  }
+
+  function cambiarPrecio(boton, nuevoPrecio, tipo) {
+    const tarjeta = boton.closest('.item');
+    const precioEl = tarjeta.querySelector('.precio');
+    precioEl.textContent = `$${nuevoPrecio.toLocaleString('es-CO')}`;
+    precioEl.setAttribute('data-precio', nuevoPrecio);
+    precioEl.setAttribute('data-tipo', tipo);
+  }
+
+  function actualizarContadores() {
+    document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
+    document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
+  }
+
+  function irYZoom(seccionId) {
+    const el = document.getElementById(seccionId); if (!el) return; el.scrollIntoView({ behavior:'smooth', block:'center' }); el.classList.add('zoom-focus'); setTimeout(()=>el.classList.remove('zoom-focus'),1500);
+  }
+
+  function openLightbox(src) { const lb = document.getElementById('lightbox'); const img = document.getElementById('lightbox-img'); img.src = src; lb.style.display = 'flex'; }
+  function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+  document.addEventListener('keydown', function(event){ if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) closeLightbox(); });
+
+  function preloadImages(urls=[]) { const unique = Array.from(new Set(urls)); return Promise.all(unique.map(url => new Promise(resolve => { if (!url) return resolve(); const img = new Image(); img.src = url; if (img.complete) return resolve(); img.onload = () => resolve(); img.onerror = () => { console.warn('Error al cargar imagen:', url); resolve(); }; })));
+  }
+
+  // ===== Filtros simples (INFERNAL / EXCLUSIVO) =====
+  function applyFilter() {
+    const cont = document.getElementById('catalogo-ropa');
+    cont.style.opacity = 0; setTimeout(()=>{
+      if (filtroActual === 'infernal') {
+        const infernales = productosRopa.filter(p => !p.exclusivo);
+        if (infernales.length === 0) { cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>'; cont.style.opacity=1; return; }
+        renderCatalogo(infernales,'catalogo-ropa',true);
+      } else if (filtroActual === 'exclusivo') {
+        const exclusivos = productosRopa.filter(p => p.exclusivo);
+        if (exclusivos.length === 0) { cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>'; cont.style.opacity=1; return; }
+        renderCatalogo(exclusivos,'catalogo-ropa',true);
+      } else {
+        renderCatalogo(productosRopa,'catalogo-ropa',true);
+      }
+      cont.style.opacity = 1;
+    },200);
+  }
+
+  // Botones de filtro
+  document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('btn-infernal').addEventListener('click', function(){ filtroActual = 'infernal'; applyFilter(); });
+    document.getElementById('btn-exclusivo').addEventListener('click', function(){ filtroActual = 'exclusivo'; applyFilter(); });
+
+    // Render inicial
+    renderCatalogo(productosRopa.slice(0,12),'catalogo-ropa',true);
+
+    // Cerrar flyer
+    const fc = document.getElementById('flyer-close'); if (fc) fc.addEventListener('click', ()=>{ document.getElementById('flyer-overlay').style.display='none'; });
+
+    // Preload imágenes (mejora al mostrar)
+    preloadImages(productosRopa.map(p=>p.imagen).concat(['marco.svg','Port.png','skull.gif']));
   });
 
 </script>
 </body>
 </html>
-
