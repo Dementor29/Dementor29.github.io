@@ -333,10 +333,6 @@
       '</div>' +
       '<h3>'+producto.nombre+'</h3>' +
       '<div class="precio" data-precio="'+producto.precio+'" data-tipo="Normal">$'+producto.precio.toLocaleString('es-CO')+'</div>' +
-      '<div class="talla-switch" style="margin-top:8px;">' +
-        '<button class="cart-button boton-talla" onclick="cambiarPrecio(this, '+producto.precio+', \'Normal\')">Normal</button>' +
-        '<button class="cart-button boton-talla" onclick="cambiarPrecio(this, '+(producto.precio + 10000)+', \'Oversize\')">Oversize</button>' +
-      '</div>' +
       '<div class="cantidad-talla-wrapper" style="display:flex;align-items:center;gap:12px;margin-top:10px;">' +
         '<label class="cantidad-label">Cant:' +
           '<input type="number" class="cantidad-input" id="cantidad-'+id+'" value="1" min="1" style="width:60px;padding:6px;background:#111;color:#ccc;border-radius:4px;border:1px solid transparent">' +
@@ -486,15 +482,7 @@
     const url = 'https://wa.me/573181541064?text='+encoded;
     window.open(url,'_blank');
   }
-
-  function cambiarPrecio(boton, nuevoPrecio, tipo) {
-    const tarjeta = boton.closest('.item');
-    const precioEl = tarjeta.querySelector('.precio');
-    precioEl.textContent = '$'+nuevoPrecio.toLocaleString('es-CO');
-    precioEl.setAttribute('data-precio', nuevoPrecio);
-    precioEl.setAttribute('data-tipo', tipo);
-  }
-
+  
   function actualizarContadores() {
     const w = document.getElementById('contador-wishlist');
     const c = document.getElementById('contador-cart');
