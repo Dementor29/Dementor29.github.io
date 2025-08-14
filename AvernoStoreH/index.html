@@ -71,8 +71,6 @@
 
     /* GIF, filtros e instrucciones */
     .gif-fuego { width: 100px; height: auto; vertical-align: middle; margin: 0 6px; }
-    .filtros-wrapper { text-align: center; margin-bottom: 18px; display:flex; justify-content:center; gap:10px; }
-    .filter.infernal, .filter.exclusivo { background-color: #0f0f0f; color: #cccccc; font-size: 14px; font-weight: bold; padding: 10px 18px; font-family: 'BurzumGothic', serif; min-width: 130px; border-radius: 4px; border:1px solid #0f0f0f; }
     .instruccion { text-align:center; color:#777; font-size:15px; margin:6px 0 36px; }
 
     /* Catalogo / grid */
@@ -114,11 +112,86 @@
     #lightbox img{ max-width:80%; max-height:80%; object-fit:contain; box-shadow:0 0 20px rgba(0,0,0,0.8) }
     #lightbox .close-btn{ position:absolute; top:20px; right:30px; font-size:3rem; color:#cccc; cursor:pointer; font-family:'BurzumGothic',serif }
 
-    /* Botón WhatsApp flotante */
-    .nequi-btn{ position: fixed; bottom: 20px; right: 20px; width: 64px; height: 64px; display:flex; align-items:center; justify-content:center; background: var(--accent); border-radius: 50%; text-decoration:none; z-index: 999; box-shadow: 0 8px 22px rgba(193,2,2,0.18), 0 2px 6px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04); }
-    .nequi-btn i{ font-size:1.6rem; color:#ffffff }
-    .nequi-btn:hover{ transform: translateY(-3px); box-shadow: 0 12px 30px rgba(193,2,2,0.28); background:#9b0000 }
+  /* Botón flotante WhatsApp - idéntico a tu original */
+  .nequi-btn{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 64px;
+  height: 64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--accent); /* usa tu variable --accent definida en :root */
+  border-radius: 50%;
+  text-decoration:none;
+  z-index: 999;
+  box-shadow: 0 8px 22px rgba(193,2,2,0.18), 0 2px 6px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .nequi-btn i{
+  font-size:1.6rem;
+  color:#ffffff;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  pointer-events: none; /* evita que el icono capture clicks */
+  }
+  .nequi-btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(193,2,2,0.28), 0 4px 8px rgba(0,0,0,0.5);
+  background: #9b0000; /* tono ligeramente más oscuro al hover */
+  }
 
+  /* Responsivo: mantiene tamaño en móviles */
+  @media (max-width:420px){
+  .nequi-btn{ width:56px; height:56px; bottom:14px; right:14px; }
+  .nequi-btn i{ font-size:1.4rem; }
+  }
+
+
+    /* Aplica al footer clonado para que tenga el mismo estilo que #contacto */
+  #contacto-mirror {
+  background: #111;
+  color: #cccccc;
+  padding: 2.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  text-align: left;
+  border-top: 2px solid var(--dorado-claro);
+  animation: pulseFooter 10s ease-in-out infinite;
+  will-change: box-shadow;
+  box-sizing: border-box;
+  margin-top: 20px;
+  }
+  #contacto-mirror div p {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  }
+  #contacto-mirror i {
+  margin-right: 0.5rem;
+  color: var(--dorado-oscuro);
+  font-size: 1.5rem;
+  vertical-align: middle;
+  line-height: 1;
+  }
+
+  /* responsivo (igual que tu footer original) */
+  @media (max-width: 768px) {
+  #contacto-mirror {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px 20px;
+    text-align: left;
+  }
+  #contacto-mirror div { width: 100%; }
+  }
+    
     /* Responsivo */
     @media (max-width:980px){ .grid{ grid-template-columns:repeat(2,1fr) } }
     @media (max-width:560px){ .grid{ grid-template-columns:1fr } .product-card .thumb{ height:420px } .gif-fuego{ width:130px } }
@@ -146,11 +219,6 @@
   </header>
 
   <h2 style="text-align:center">HOODIES<img src="skull.gif" class="gif-fuego" alt="fuego"></h2>
-
-  <div class="filtros-wrapper">
-    <button id="btn-infernal" class="filter infernal">INFERNAL</button>
-    <button id="btn-exclusivo" class="filter exclusivo">EXCLUSIVO</button>
-  </div>
 
   <p class="instruccion">&gt; HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA &lt;</p>
 
@@ -193,26 +261,30 @@
   <div class="volver-container" style="text-align:center;margin:40px 0">
     <button class="volver-btn" onclick="location.href='/'">VOLVER</button>
   </div>
+  
+<footer id="contacto-mirror" data-aos="fade-up" data-aos-delay="600">
+  <div>
+    <p><i class="fas fa-envelope"></i><strong> Correo:</strong> averno_store@despertardelaverno.com </p>
+    <p><i class="fab fa-facebook"></i> <strong>Facebook:</strong> https://www.facebook.com/AvrnoStore</p>
+  </div>
+  <div>
+    <p><i class="fab fa-instagram"></i><strong> Instagram:</strong> Averno_Store</p>
+    <p><i class="fab fa-whatsapp"></i><strong> WhatsApp:</strong> +57 3181541064</p>
+  </div>
+  <div>
+    <p><i class="fas fa-map-marker-alt"></i><strong> Dirección:</strong> Palmira - Valle del Cauca</p>
+    <p><i class="fas fa-copyright"></i> 2025 ₳VⱤ₦Ø ₴₮ØⱤɆ </p>
+  </div>
+</footer>
 
-  <footer id="contacto" data-aos="fade-up" data-aos-delay="600">
-    <div>
-      <p><i class="fas fa-envelope"></i><strong> Correo:</strong> averno_store@despertardelaverno.com </p>
-      <p><i class="fab fa-facebook"></i> <strong>Facebook:</strong> https://www.facebook.com/AvrnoStore</p>
-    </div>
-    <div>
-      <p><i class="fab fa-instagram"></i><strong> Instagram:</strong> Averno_Store</p>
-      <p><i class="fab fa-whatsapp"></i><strong> WhatsApp:</strong> +57 3181541064</p>
-    </div>
-    <div>
-      <p><i class="fas fa-map-marker-alt"></i><strong> Dirección:</strong> Palmira - Valle del Cauca</p>
-      <p><i class="fas fa-copyright"></i> 2025 ₳VⱤ₦Ø ₴₮ØⱤɆ </p>
-    </div>
-  </footer>
-
-  <a class="nequi-btn" href="https://wa.me/message/7GNMDBFX4L6IJ1" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
+<a class="nequi-btn"
+   href="https://wa.me/message/7GNMDBFX4L6IJ1"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Contactar por WhatsApp">
+  <i class="fab fa-whatsapp" aria-hidden="true"></i>
+</a>
+  
   <!-- Lightbox -->
   <div id="lightbox">
     <div class="close-btn" onclick="closeLightbox()">✖</div>
@@ -228,10 +300,11 @@
       { nombre: "SKULL IN ACID", precio: 174990, imagen: "4.png", exclusivo: false }
   ];
 
+  <hr class="linea-dorada">
+
   // Estado
   let wishlistData = {};
   let cartData = {};
-  let filtroActual = 'todos';
 
   // ===== Helper: crear tarjeta (basado en index.html) =====
   function crearItem(producto, esRopa = true) {
@@ -457,31 +530,7 @@
       img.onerror = () => { console.warn('Error al cargar imagen:', url); resolve(); };
     })));
   }
-
-  // ===== Filtros simples (INFERNAL / EXCLUSIVO) =====
-  function applyFilter() {
-    const cont = document.getElementById('catalogo-ropa');
-    cont.style.opacity = 0; setTimeout(()=>{
-      if (filtroActual === 'infernal') {
-        const infernales = productosRopa.filter(p => !p.exclusivo);
-        if (infernales.length === 0) { cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>'; cont.style.opacity=1; return; }
-        renderCatalogo(infernales,'catalogo-ropa',true);
-      } else if (filtroActual === 'exclusivo') {
-        const exclusivos = productosRopa.filter(p => p.exclusivo);
-        if (exclusivos.length === 0) { cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>'; cont.style.opacity=1; return; }
-        renderCatalogo(exclusivos,'catalogo-ropa',true);
-      } else {
-        renderCatalogo(productosRopa,'catalogo-ropa',true);
-      }
-      cont.style.opacity = 1;
-    },200);
-  }
-
-  // Botones de filtro
-  document.addEventListener('DOMContentLoaded', function(){
-    document.getElementById('btn-infernal').addEventListener('click', function(){ filtroActual = 'infernal'; applyFilter(); });
-    document.getElementById('btn-exclusivo').addEventListener('click', function(){ filtroActual = 'exclusivo'; applyFilter(); });
-
+  
     // Render inicial
     renderCatalogo(productosRopa.slice(0,12),'catalogo-ropa',true);
 
