@@ -445,7 +445,7 @@
       // cerrar lightbox si está abierto
       try { closeLightbox(); } catch(e) {}
       // cerrar flyer si está abierto
-      const flyer = document.getElementById('flyer-overlay');
+      const flyer = document.getElementById('flyer-overlay').remove()
       if (flyer) flyer.style.display = 'none';
     }
   });
