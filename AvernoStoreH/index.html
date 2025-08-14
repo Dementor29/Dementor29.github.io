@@ -292,19 +292,19 @@
   </div>
 
 <script>
-  // ===== Datos (copiados/ajustados) =====
+  // ===== Datos =====
   const productosRopa = [
-      { nombre: "MASK HANNYA", precio: 174990, imagen: "1.png", exclusivo: false },
-      { nombre: "ALIEN SACRIFICE", precio: 174990, imagen: "2.png", exclusivo: false },
-      { nombre: "ALIEN PLAGUE", precio: 174990, imagen: "3.png", exclusivo: false },
-      { nombre: "SKULL IN ACID", precio: 174990, imagen: "4.png", exclusivo: false }
+    { nombre: "MASK HANNYA", precio: 174990, imagen: "1.png", exclusivo: false },
+    { nombre: "ALIEN SACRIFICE", precio: 174990, imagen: "2.png", exclusivo: false },
+    { nombre: "ALIEN PLAGUE", precio: 174990, imagen: "3.png", exclusivo: false },
+    { nombre: "SKULL IN ACID", precio: 174990, imagen: "4.png", exclusivo: false }
   ];
 
   // Estado
   let wishlistData = {};
   let cartData = {};
 
-  // ===== Helper: crear tarjeta (basado en index.html) =====
+  // ===== Helper: crear tarjeta =====
   function crearItem(producto, esRopa = true) {
     const item = document.createElement('div');
     item.className = 'item';
@@ -314,32 +314,41 @@
 
     let tallaSelect = '';
     if (esRopa) {
-      tallaSelect = `\n      <label class="cantidad-label">Talla:\n        <select class="cantidad-input" id="talla-${id}">\n          <option value="">Elige talla</option>\n          <option value="S">S</option>\n          <option value="M">M</option>\n          <option value="L">L</option>\n          <option value="XL">XL</option>\n        </select>\n      </label>\n      <span id="error-${id}" class="error-msg"></span>\n    `;
+      tallaSelect =
+        '<label class="cantidad-label">Talla:' +
+        '<select class="cantidad-input" id="talla-'+id+'">' +
+        '<option value="">Elige talla</option>' +
+        '<option value="S">S</option>' +
+        '<option value="M">M</option>' +
+        '<option value="L">L</option>' +
+        '<option value="XL">XL</option>' +
+        '</select></label>' +
+        '<span id="error-'+id+'" class="error-msg"></span>';
     }
 
-    item.innerHTML = `
-      <div class="item-marco" style="position:relative; width:100%; height:280px; overflow:hidden;">
-        <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover">
-        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})">⛧</span>
-      </div>
-      <h3>${producto.nombre}</h3>
-      <div class="precio" data-precio="${producto.precio}" data-tipo="Normal">$${producto.precio.toLocaleString()}</div>
-      <div class="talla-switch" style="margin-top:8px;">
-        <button class="cart-button boton-talla" onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')">Normal</button>
-        <button class="cart-button boton-talla" onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')">Oversize</button>
-      </div>
-      <div class="cantidad-talla-wrapper" style="display:flex;align-items:center;gap:12px;margin-top:10px;">
-        <label class="cantidad-label">Cant:\n          <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1" style="width:60px;padding:6px;background:#111;color:#ccc;border-radius:4px;border:1px solid transparent">
-        </label>
-        <div class="separator" style="width:4px;height:1.1em;background-color:var(--dorado-oscuro);opacity:0.6"></div>
-        ${tallaSelect}
-      </div>
-      <button class="cart-button" onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
-    `;
+    item.innerHTML =
+      '<div class="item-marco" style="position:relative; width:100%; height:280px; overflow:hidden;">' +
+        '<img src="'+producto.imagen+'" alt="'+producto.nombre+'" class="producto-imagen" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover">' +
+        '<span class="heart-icon" onclick="toggleFavorite(this,\''+producto.nombre+'\','+producto.precio+','+esRopa+')">⛧</span>' +
+      '</div>' +
+      '<h3>'+producto.nombre+'</h3>' +
+      '<div class="precio" data-precio="'+producto.precio+'" data-tipo="Normal">$'+producto.precio.toLocaleString('es-CO')+'</div>' +
+      '<div class="talla-switch" style="margin-top:8px;">' +
+        '<button class="cart-button boton-talla" onclick="cambiarPrecio(this, '+producto.precio+', \'Normal\')">Normal</button>' +
+        '<button class="cart-button boton-talla" onclick="cambiarPrecio(this, '+(producto.precio + 10000)+', \'Oversize\')">Oversize</button>' +
+      '</div>' +
+      '<div class="cantidad-talla-wrapper" style="display:flex;align-items:center;gap:12px;margin-top:10px;">' +
+        '<label class="cantidad-label">Cant:' +
+          '<input type="number" class="cantidad-input" id="cantidad-'+id+'" value="1" min="1" style="width:60px;padding:6px;background:#111;color:#ccc;border-radius:4px;border:1px solid transparent">' +
+        '</label>' +
+        '<div class="separator" style="width:4px;height:1.1em;background-color:var(--dorado-oscuro);opacity:0.6"></div>' +
+        tallaSelect +
+      '</div>' +
+      '<button class="cart-button" onclick="addToCart(\''+producto.nombre+'\','+producto.precio+','+esRopa+')">Agregar al carrito</button>';
 
     if (esRopa) {
-      const select = item.querySelector(`#talla-${id}`);
-      const errorSpan = item.querySelector(`#error-${id}`);
+      const select = item.querySelector('#talla-'+id);
+      const errorSpan = item.querySelector('#error-'+id);
       if (select) select.addEventListener('change', () => { if (select.value) errorSpan.textContent = ''; });
     }
 
@@ -352,7 +361,7 @@
     productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
   }
 
-  // ===== Wishlist / cart functions =====
+  // ===== Wishlist / cart =====
   function toggleFavorite(el, nombre, precio, esRopa) {
     el.classList.toggle('active');
 
@@ -361,8 +370,8 @@
       const item = el.closest('.item');
       if (!item) return;
       const precioEl = item.querySelector('.precio');
-      const precioActual = parseInt(precioEl?.getAttribute('data-precio') || precio, 10);
-      const tipo = precioEl?.getAttribute('data-tipo') || 'Normal';
+      const precioActual = parseInt((precioEl && precioEl.getAttribute('data-precio')) || precio, 10);
+      const tipo = (precioEl && precioEl.getAttribute('data-tipo')) || 'Normal';
       wishlistData[nombre] = { precio: precioActual, esRopa, tipo };
     }
     renderWishlist();
@@ -373,29 +382,34 @@
     for (let nombre in wishlistData) {
       const producto = wishlistData[nombre];
       const id = nombre.replace(/\s+/g,'_');
-      const tallaSelect = producto.esRopa ? ` <label style="display:inline-flex;align-items:center;gap:8px;margin-left:12px;"><span class="talla-texto">Talla:</span><select id="wishlist-talla-${id}" class="cantidad-input"><option value="">Elige talla</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></label><span id="error-wishlist-${id}" class="error-msg"></span>` : '';
-      ul.innerHTML += `<li style="margin-bottom:12px;"><span>${nombre} — <strong>${producto.tipo || 'Normal'}</strong> — $${producto.precio.toLocaleString('es-CO')}</span>${tallaSelect}<button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button></li>`;
+      const tallaSelect = producto.esRopa
+        ? ' <label style="display:inline-flex;align-items:center;gap:8px;margin-left:12px;"><span class="talla-texto">Talla:</span><select id="wishlist-talla-'+id+'" class="cantidad-input"><option value="">Elige talla</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></label><span id="error-wishlist-'+id+'" class="error-msg"></span>'
+        : '';
+      ul.innerHTML += '<li style="margin-bottom:12px;"><span>'+nombre+' — <strong>'+(producto.tipo || 'Normal')+'</strong> — $'+producto.precio.toLocaleString('es-CO')+'</span>'+tallaSelect+'<button class="remove-button" onclick="eliminarDeWishlist(\''+nombre+'\')">✖</button></li>';
     }
     actualizarContadores();
   }
 
   function eliminarDeWishlist(nombre) {
     delete wishlistData[nombre];
-    document.querySelectorAll('.heart-icon').forEach(h => { if (h.getAttribute('onclick') && h.getAttribute('onclick').includes(nombre)) h.classList.remove('active'); });
+    document.querySelectorAll('.heart-icon').forEach(h => {
+      if (h.getAttribute('onclick') && h.getAttribute('onclick').includes(nombre)) h.classList.remove('active');
+    });
     renderWishlist();
   }
 
   function addToCart(nombre, precio, esRopa) {
     const id = nombre.replace(/\s+/g,'_');
-    const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || '1', 10);
+    const cantidadEl = document.getElementById('cantidad-'+id);
+    const cantidad = parseInt((cantidadEl && cantidadEl.value) || '1', 10);
     let talla = '';
     if (esRopa) {
-      talla = document.getElementById(`talla-${id}`).value;
-      const errorEl = document.getElementById(`error-${id}`);
+      const tallaEl = document.getElementById('talla-'+id);
+      const errorEl = document.getElementById('error-'+id);
+      talla = (tallaEl && tallaEl.value) || '';
       if (!talla) { if (errorEl) { errorEl.textContent = 'POR FAVOR SELECCIONA ⛧ UNA TALLA.'; errorEl.style.color = 'var(--dorado-oscuro)'; } return; }
       if (errorEl) errorEl.textContent = '';
     }
-    const cantidadEl = document.getElementById(`cantidad-${id}`);
     if (!cantidadEl) return;
     const itemEl = cantidadEl.closest('.item'); if (!itemEl) return;
     const precioEl = itemEl.querySelector('.precio');
@@ -411,8 +425,8 @@
       const id = nombre.replace(/\s+/g,'_');
       let talla = '';
       if (producto.esRopa) {
-        const el = document.getElementById(`wishlist-talla-${id}`);
-        const errorEl = document.getElementById(`error-wishlist-${id}`);
+        const el = document.getElementById('wishlist-talla-'+id);
+        const errorEl = document.getElementById('error-wishlist-'+id);
         if (!el || !el.value) { if (errorEl) { errorEl.textContent = 'POR FAVOR SELECCIONA ⛧ UNA TALLA.'; errorEl.style.color = 'var(--dorado-oscuro)'; } return; }
         talla = el.value; if (errorEl) errorEl.textContent = '';
       }
@@ -425,7 +439,10 @@
     const ul = document.getElementById('cart-items'); ul.innerHTML = '';
     for (let nombre in cartData) {
       const it = cartData[nombre];
-      ul.innerHTML += `<li style="margin-bottom:8px;"><span>${nombre} — <strong>${it.tipo || 'Normal'}</strong> x${it.cantidad} ${it.talla ? `(<span class="talla-texto">Talla</span> ${it.talla})` : ''} — $${(it.precio * it.cantidad).toLocaleString('es-CO')}</span> <button onclick="eliminarDelCarrito('${nombre}')">✖</button></li>`;
+      ul.innerHTML += '<li style="margin-bottom:8px;"><span>'+nombre+' — <strong>'+(it.tipo || 'Normal')+'</strong> x'+it.cantidad+' ' +
+        (it.talla ? '(<span class="talla-texto">Talla</span> '+it.talla+')' : '') +
+        ' — $'+(it.precio * it.cantidad).toLocaleString('es-CO')+
+        '</span> <button onclick="eliminarDelCarrito(\''+nombre+'\')">✖</button></li>';
     }
     actualizarContadores();
   }
@@ -437,7 +454,7 @@
     document.querySelectorAll('.item').forEach(item => {
       const precioBase = parseInt(item.getAttribute('data-precio-inicial'),10);
       const precioEl = item.querySelector('.precio');
-      if (precioEl) { precioEl.textContent = `$${precioBase.toLocaleString('es-CO')}`; precioEl.setAttribute('data-precio', precioBase); precioEl.setAttribute('data-tipo','Normal'); }
+      if (precioEl) { precioEl.textContent = '$'+precioBase.toLocaleString('es-CO'); precioEl.setAttribute('data-precio', precioBase); precioEl.setAttribute('data-tipo','Normal'); }
       item.querySelectorAll('.boton-talla').forEach(btn => btn.classList.remove('bg-gray-700','text-white'));
     });
     document.querySelectorAll('.cantidad-input').forEach(i => { if (i.type === 'number') i.value = 1; else i.value = ''; });
@@ -450,7 +467,7 @@
     document.querySelectorAll('.item').forEach(item => {
       const precioBase = parseInt(item.getAttribute('data-precio-inicial'),10);
       const precioEl = item.querySelector('.precio');
-      if (precioEl) { precioEl.textContent = `$${precioBase.toLocaleString('es-CO')}`; precioEl.setAttribute('data-precio', precioBase); precioEl.setAttribute('data-tipo','Normal'); }
+      if (precioEl) { precioEl.textContent = '$'+precioBase.toLocaleString('es-CO'); precioEl.setAttribute('data-precio', precioBase); precioEl.setAttribute('data-tipo','Normal'); }
       item.querySelectorAll('.boton-talla').forEach(btn => btn.classList.remove('bg-gray-700','text-white'));
     });
     document.querySelectorAll('.cantidad-input').forEach(i => { if (i.type === 'number') i.value = 1; else i.value = ''; });
@@ -459,64 +476,77 @@
 
   function comprarPorWhatsapp() {
     if (Object.keys(cartData).length === 0) { alert('Carrito vacío'); return; }
-    const lineas = Object.entries(cartData).map(([nombre,it]) => { const tipo = it.tipo; const cantidad = it.cantidad; const talla = it.talla ? ` (Talla ${it.talla})` : ''; const subtotal = (it.precio * cantidad).toLocaleString('es-CO'); return `- ${nombre} (${tipo}) x${cantidad}${talla} = $${subtotal}`; });
-    const texto = `¡Hola!, Quiero Comprar:\n${lineas.join('\n')}`;
+    const lineas = Object.entries(cartData).map(([nombre,it]) => {
+      const talla = it.talla ? ' (Talla '+it.talla+')' : '';
+      const subtotal = (it.precio * it.cantidad).toLocaleString('es-CO');
+      return '- '+nombre+' ('+it.tipo+') x'+it.cantidad+ talla +' = $'+subtotal;
+    });
+    const texto = '¡Hola!, Quiero Comprar:\n'+lineas.join('\n');
     const encoded = encodeURIComponent(texto);
-    const url = `https://wa.me/573181541064?text=${encoded}`;
+    const url = 'https://wa.me/573181541064?text='+encoded;
     window.open(url,'_blank');
   }
 
   function cambiarPrecio(boton, nuevoPrecio, tipo) {
     const tarjeta = boton.closest('.item');
     const precioEl = tarjeta.querySelector('.precio');
-    precioEl.textContent = `$${nuevoPrecio.toLocaleString('es-CO')}`;
+    precioEl.textContent = '$'+nuevoPrecio.toLocaleString('es-CO');
     precioEl.setAttribute('data-precio', nuevoPrecio);
     precioEl.setAttribute('data-tipo', tipo);
   }
 
   function actualizarContadores() {
-    document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
-    document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
+    const w = document.getElementById('contador-wishlist');
+    const c = document.getElementById('contador-cart');
+    if (w) w.textContent = Object.keys(wishlistData).length;
+    if (c) c.textContent = Object.keys(cartData).length;
   }
 
   function irYZoom(seccionId) {
-    const el = document.getElementById(seccionId); if (!el) return; el.scrollIntoView({ behavior:'smooth', block:'center' }); el.classList.add('zoom-focus'); setTimeout(()=>el.classList.remove('zoom-focus'),1500);
+    const el = document.getElementById(seccionId); if (!el) return;
+    el.scrollIntoView({ behavior:'smooth', block:'center' });
+    el.classList.add('zoom-focus');
+    setTimeout(()=>el.classList.remove('zoom-focus'),1500);
   }
 
-  function openLightbox(src) { const lb = document.getElementById('lightbox'); const img = document.getElementById('lightbox-img'); img.src = src; lb.style.display = 'flex'; }
-  function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
-  document.addEventListener('keydown', function(event){ if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) closeLightbox(); });
-  
-  // --- Atajos: ESC para lightbox y para cerrar flyer ---
-  document.addEventListener('keydown', function(event) {
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src; lb.style.display = 'flex';
+  }
+  function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    if (lb) lb.style.display = 'none';
+  }
+
+  // --- Cerrar flyer: botón, click fuera y ESC ---
+  function cerrarFlyer() {
+    const ov = document.getElementById('flyer-overlay');
+    if (ov) ov.style.display = 'none';
+  }
+
+  document.addEventListener('keydown', function(event){
     if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) {
-      // cerrar lightbox si está abierto
-      try { closeLightbox(); } catch(e) {}
-      // cerrar flyer si está abierto
-     const flyer = document.getElementById('flyer-overlay');
-    if (flyer) flyer.remove(); }
+      closeLightbox();
+      cerrarFlyer();
+    }
   });
 
-  // --- Manejadores del flyer (botón, click fuera, ESC) ---
   (function() {
     const flyerOverlay = document.getElementById('flyer-overlay');
     const fc = document.getElementById('flyer-close');
 
     if (fc) {
-      fc.addEventListener('click', function() {
-        if (flyerOverlay) flyerOverlay.style.display = 'none';
-      });
+      fc.addEventListener('click', cerrarFlyer);
     }
-
-    // cerrar al hacer clic fuera de la imagen (en el overlay)
     if (flyerOverlay) {
       flyerOverlay.addEventListener('click', function(e) {
-        if (e.target === flyerOverlay) flyerOverlay.style.display = 'none';
+        if (e.target === flyerOverlay) cerrarFlyer();
       });
     }
   })();
 
-  // --- Función correcta de preloadImages ---
+  // --- Preload imágenes ---
   function preloadImages(urls = []) {
     const unique = Array.from(new Set(urls));
     return Promise.all(unique.map(url => new Promise(resolve => {
@@ -525,20 +555,16 @@
       img.src = url;
       if (img.complete) return resolve();
       img.onload = () => resolve();
-      img.onerror = () => { console.warn('Error al cargar imagen:', url); resolve(); };
+      img.onerror = () => resolve();
     })));
   }
-  
-    // Render inicial
-    renderCatalogo(productosRopa.slice(0,12),'catalogo-ropa',true);
 
-    // Cerrar flyer
-    const fc = document.getElementById('flyer-close'); if (fc) fc.addEventListener('click', ()=>{ document.getElementById('flyer-overlay').style.display='none'; });
-
-    // Preload imágenes (mejora al mostrar)
+  // --- Inicio ---
+  document.addEventListener('DOMContentLoaded', function(){
+    renderCatalogo(productosRopa, 'catalogo-ropa', true);
     preloadImages(productosRopa.map(p=>p.imagen).concat(['marco.svg','Port.png','skull.gif']));
   });
-
+  
 </script>
 </body>
 </html>
