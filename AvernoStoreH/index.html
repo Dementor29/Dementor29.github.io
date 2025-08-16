@@ -1,157 +1,510 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="AV STORE" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta charset="UTF-8" />
   <title>Averno △ Store</title>
-  <link rel="preload" as="image" href="Port.png">
-  <link rel="preload" as="image" href="marco.svg">
-  <link rel="preload" as="image" href="skull.gif">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
+
+  <!-- SEO METAETIQUETAS -->
+  <meta name="title" content="Averno Store | Moda Oscura y Arte Infernales">
+  <meta name="description" content="Sumérgete en el abismo de Averno Store. Descubre ropa metalera, estampados exclusivos y arte oscuro inspirado en la belleza infernal y el ocultismo moderno. Conquista tu estilo rebelde.">
+  <meta name="keywords" content="Averno Store, moda oscura, ropa metalera, arte oscuro, diseño independiente, ocultismo moderno, camisetas metaleras, estética alternativa, estilo rebelde, Colombia">
+  <meta name="author" content="Juan Camilo Heredia (Averno)">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="es">
+
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Averno Store | La Esencia Oscura del Metal y el Arte">
+  <meta property="og:description" content="Averno Store es un refugio para el estilo más oscuro y la estética rebelde. Ropa y arte exclusivos para almas inconformistas que buscan una expresión auténtica y profunda.">
+  <meta property="og:image" content="https://despertardelaverno.com/favicon-96x96.png">
+  <meta property="og:url" content="https://despertardelaverno.com">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Averno Store | Moda y Arte para Almas Rebeldes">
+  <meta name="twitter:description" content="Explora la tienda Averno Store. Ropa y arte que capturan la oscuridad y la rebelión. Únete al estilo único que solo Averno puede ofrecerte.">
+  <meta name="twitter:image" content="https://despertardelaverno.com/favicon-96x96.png">
 
   <style>
-    /* ======= Variables y tipografía ======= */
-    :root{
-      --bg:#000;
-      --muted:#cccccc;
-      --accent:#C10202;
-      --card:#0f0f0f;
-      --dorado-oscuro: #8B0000;
-      --dorado-claro: #8B0000;
-    }
+    
+    :root {
+  --dorado-oscuro: #8B0000;
+  --dorado-claro: #8B0000;
+}
+
+.volver-btn {
+  background-color: #e0e0e0;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1em;
+}
+
+.volver-btn:hover {
+  background-color: #e0e0e0;
+  color: var(--dorado-oscuro);
+}
 
     @font-face {
       font-family: 'BurzumGothic';
       src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
     }
 
-    html,body{height:100%;margin:0;font-family:BurzumGothic,serif;background:var(--bg);color:var(--muted);}
-
-    /* ======= Reglas principales (fusionadas desde index.html) ======= */
-    /* Top bar (wishlist + cart) */
-    #top-bar {
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      padding: 10px 20px;
-      background-color: #111;
-      border-bottom: 1px solid var(--dorado-claro);
-      color: var(--dorado-claro);
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-      text-align: center;
-    }
-
-    .icono-acceso,
-    .icono-acceso * {
-      cursor: pointer !important;
-      padding: 10px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      position: relative;
-      text-align: center;
-    }
-
-    .icono-acceso span {
-      position: absolute;
-      top: 0;
-      right: -8px;
-      background-color: transparent;
-      color: #cccccc;
-      padding: 2px 6px;
-      border-radius: 50%;
-      font-size: 18px;
+    * {
+    box-sizing: border-box;
+  }
+    
+ body {
+      background-color: #000000;
       font-family: 'BurzumGothic', serif;
+      color: white;
+      margin: 0;
+      padding: 20px;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
 
-    .icono-acceso div { font-size: 16px; color: var(--dorado-oscuro); transition: color 0.3s ease; font-family: 'BurzumGothic', serif; }
+    input,
+    textarea,
+    select {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    }
 
-    .zoom-focus { transform: scale(1.05); transition: transform 0.9s ease; }
+  h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-family: 'BurzumGothic', serif;
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
 
-    /* GIF, filtros e instrucciones */
-    .gif-fuego { width: 100px; height: auto; vertical-align: middle; margin: 0 6px; }
-    .instruccion { text-align:center; color:#777; font-size:15px; margin:6px 0 36px; }
+ h2 {
+  color: #cccccc;
+  font-family: 'BurzumGothic', serif;
+  margin-bottom: 30px;  /* Añadido margen inferior */
+  margin-top: 60px;     /* Añadido margen superior para separarlo de la barra */
+  }
 
-    /* Catalogo / grid */
-    .products-wrap, .catalogo { max-width:1200px; margin:0 auto; padding:0 16px 80px; box-sizing:border-box }
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .product-card, .item { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); padding:12px; border-radius:4px; text-align:center }
-    .product-card .thumb{width:100%;height:300px;overflow:hidden;display:block;background:#111}
-    .product-card img, .item img { width:100%; height:100%; object-fit:cover; display:block }
+  p {
+  font-size: 1.1rem;
+  font-family: 'BurzumGothic', serif;
+  color: #cccccc;
+  }
+    
+ .catalogo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;   /* Separar el catálogo de los títulos */
+  width: 100%;
+  max-width: 100%;
+  
+  opacity: 1;          /* Inicialmente invisible */
+  transition: opacity 0.5s ease, transform 0.5s ease;  /* Transición suave */
+  }
+    
+  .item {
+    font-size: 1.1rem;
+    border-radius: 1px;
+    padding: 10px;
+    width: 260px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 0 15px;
+  }
 
-    /* Bloque manifiesto / sugerencias */
-    .bloque-manifiesto{ background: rgba(20,20,20,0.85); font-size:15px; color:#cccccc; border-left:3px solid var(--dorado-claro); padding:20px; max-width:800px; margin:20px auto; font-family: 'BurzumGothic', serif; text-align: justify; }
-    .frase-autor{ background: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'), rgba(0,0,0,0.5); background-blend-mode: overlay; padding:15px 20px; font-style: italic; color:#ccc; font-size:1.2rem; text-align:center; margin:30px auto 0; max-width:800px; }
+  .item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover; /* antes estaba en "contain" */
+  border-radius: 0px;
+  margin-bottom: 10px;
+  aspect-ratio: 1 / 1; /* fuerza a mantener proporción cuadrada */
+  }
+    
+  .item h3 {
+  font-size: 17px;
+  text-align: center;
+  min-height: 40px;
+  margin: 10px 0;
+  color: #cccccc;
+  font-family: 'BurzumGothic', serif;
+  }
+  
+  #wishlist h3, #cart h3 {
+  color: #cccccc;  /* rojo del footer */
+  font-family: 'BurzumGothic', serif;
+  }
+    
+  .precio {
+    font-family: 'BurzumGothic', serif;
+    color: var(--dorado-claro); 
+    font-weight: bold;
+    margin-bottom: -2px;
+    font-size: 20px; 
+  }
+    
+    .heart-icon {
+      font-size: 40px;
+      color: white;
+      text-shadow: 
+      -0.5px -0.5px 0 black,
+      0.5px -0.5px 0 black,
+      -0.5px  0.5px 0 black,
+      0.5px  0.5px 0 black;
+      position: absolute;
+      top: 10px;
+      right: 8px;
+      display: inline-block;  /* para que el cursor funcione siempre bien */
+      cursor: pointer;        /* ¡la clave! */
+      user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
+      z-index: 3;  
+    }
+    
+    .heart-icon.active {
+    color: var(--dorado-claro);
+    text-shadow: 0 0 6px var(--dorado-claro);
+    opacity: 1;
+    }
+    
+    .cantidad-label {
+    font-family: 'BurzumGothic', serif;
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #cccccc; 
+    }
 
-    .linea-dorada { border:none; height:1px; background-color:var(--dorado-claro); margin:40px auto 20px; width:calc(100% - 40px); max-width:100%; box-sizing:border-box; }
+  .cantidad-talla-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* ⇠ espacio entre Cantidad y Talla */
+  margin-top: 10px;
+  flex-wrap: wrap; /* para que no se rompa en pantallas pequeñas */
+  }
 
-    /* Wishlist / cart blocks */
-    #wishlist, #cart { background:#000; padding:20px; border-radius:8px; max-width:800px; margin:40px auto; text-align:center; box-sizing:border-box; }
-    #wishlist ul, #cart ul { list-style:none; padding:0; margin:0 0 20px 0; text-align:left }
+  .cantidad-input {
+    width: 50px;
+    margin-left: 8px;
+    padding: 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #111;
+    color: #cccccc;      
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
 
-    .precio { font-family: 'BurzumGothic', serif; color: var(--dorado-claro); font-weight:bold; margin-bottom:-2px; font-size:20px; }
-    .heart-icon { font-size:40px; color:white; text-shadow:-0.5px -0.5px 0 black,0.5px -0.5px 0 black,-0.5px 0.5px 0 black,0.5px 0.5px 0 black; position:absolute; top:8px; right:8px; display:inline-block; cursor:pointer; user-select:none; z-index:3; }
-    .heart-icon.active { color: var(--dorado-claro); text-shadow:0 0 6px var(--dorado-claro); }
+  .cantidad-input:focus {
+  border-color: var(--dorado-claro);
+  box-shadow: 0 0 5px color: var(--dorado-claro);
+  outline: none;
+  }
+    
+  select.cantidad-input {
+  background-color: black;
+  color: #cccccc; 
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 14px;
+  }
 
-    .cart-button{ margin-top:20px; background-color:#0f0f0f; color:#cccccc; border:1px solid #0f0f0f; padding:8px 12px; cursor:pointer; border-radius:4px; font-family:'BurzumGothic',serif; font-size:14px }
-    .cart-button:hover{ background-color:rgba(25,25,25,0.8); color:var(--dorado-claro); }
+  select.cantidad-input:hover {
+  border-color: var(--dorado-claro);
+  box-shadow: 0 0 6px color: var(--dorado-claro);
+  }
 
-    .volver-btn{ background-color:#e0e0e0; color:black; border:none; padding:10px 20px; font-size:1em; border-radius:4px; cursor:pointer; transition:background-color 0.3s ease; margin-top:1em }
-    .volver-btn:hover{ background-color:#e0e0e0; color:var(--dorado-oscuro) }
+  select.cantidad-input option {
+  background-color: black;
+  color: #cccccc; 
+  }
+    
+  .cart-button {
+    margin-top: 20px;
+    background-color: #0f0f0f; 
+    color: #cccccc;      
+    border: 1px solid #0f0f0f;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'BurzumGothic', serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-    /* Flyer emergente */
-    #flyer-overlay{ position:fixed; inset:0; background:#000000; z-index:10000; display:flex; align-items:center; justify-content:center }
-    #flyer-overlay img{ width:100vw; height:auto; max-height:100vh; object-fit:contain; animation:parpadeo-led 2.5s infinite }
-    #flyer-close{ position:absolute; top:20px; right:30px; font-size:22px; color:white; background:none; border:none; cursor:pointer; z-index:10001 }
-    #flyer-close:hover{ color:var(--dorado-oscuro) }
-    .flyer-hint{ position:absolute; top:50px; right:30px; font-size:13px; color:#ccc; font-family:'BurzumGothic',serif }
+    .cart-button:hover {
+    background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
+    color: var(--dorado-claro); 
+    }
+    
+    #wishlist .cart-button,
+    #cart .cart-button {
+    margin-top: 10px;
+    background-color: #0f0f0f; 
+    color: var(--dorado-claro);
+    border: 1px solid #0f0f0f;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'BurzumGothic', serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;  
+    }  
 
-    /* Lightbox */
-    #lightbox{ display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; z-index:9999 }
-    #lightbox img{ max-width:80%; max-height:80%; object-fit:contain; box-shadow:0 0 20px rgba(0,0,0,0.8) }
-    #lightbox .close-btn{ position:absolute; top:20px; right:30px; font-size:3rem; color:#cccc; cursor:pointer; font-family:'BurzumGothic',serif }
+    #wishlist .cart-button:hover,
+    #cart .cart-button:hover {
+    background-color: rgba(25, 25, 25, 0.8); /* un poco más sólido al hacer hover */
+    color: #cccccc; 
+    }
 
-  /* Botón flotante WhatsApp - idéntico a tu original */
-  .nequi-btn{
+    #wishlist button.cart-button,
+    #cart button.cart-button {
+    display: inline-block;
+    margin: 10px 5px;
+    }
+
+    /* CONTENEDORES wishlist y carrito alineados con el catálogo */
+    #wishlist,  
+    #cart {
+    background: #000;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 40px auto; /* centrado con márgenes arriba y abajo */
+    text-align: center;
+    box-sizing: border-box;
+    }
+
+    /* LISTAS UL SIN VIÑETAS NI DESALINEACIÓN */
+    #wishlist ul,
+    #cart ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0; /* margen inferior para separar botones */
+    text-align: left; /* texto alineado a la izquierda */
+    }
+
+    /* CADA ITEM DE LA LISTA (LI) CON FORMATO CLARO */
+    #wishlist ul li,
+    #cart ul li {
+    margin-bottom: 8px;
+    color: #cccccc;  
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    }
+    
+    .volver-container {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .back-link {
+      font-family: 'BurzumGothic', serif;
+      font-size: 20px;
+      color: white; 
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+    .back-link:hover {
+      background-color: #ff0000;
+    }
+    
+.nequi-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 64px;
-  height: 64px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: var(--accent); /* usa tu variable --accent definida en :root */
+  background: none;
+  padding: 10px;
   border-radius: 50%;
-  text-decoration:none;
+  text-decoration: none;
+  transition: color 0.3s ease, background 0.3s ease;
   z-index: 999;
-  box-shadow: 0 8px 22px rgba(193,2,2,0.18), 0 2px 6px rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.04);
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-  }
-  .nequi-btn i{
-  font-size:1.6rem;
-  color:#ffffff;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  pointer-events: none; /* evita que el icono capture clicks */
-  }
-  .nequi-btn:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(193,2,2,0.28), 0 4px 8px rgba(0,0,0,0.5);
-  background: #9b0000; /* tono ligeramente más oscuro al hover */
-  }
+}
 
-  /* Responsivo: mantiene tamaño en móviles */
-  @media (max-width:420px){
-  .nequi-btn{ width:56px; height:56px; bottom:14px; right:14px; }
-  .nequi-btn i{ font-size:1.4rem; }
-  }
+.nequi-btn i {
+  font-size: 3rem;              /* grande y vectorial */
+  color: #cccccc;                 /* blanco por defecto */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+.nequi-btn:hover {
+  background-color: rgba(0,0,0,0.3);
+}
 
-    /* Aplica al footer clonado para que tenga el mismo estilo que #contacto */
-  #contacto-mirror {
+.nequi-btn:hover i {
+color: var(--dorado-oscuro);               /* tu rojo de títulos */
+}
+
+  /* FLYER EMERGENTE */
+#flyer-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000; /* fondo transparente */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+    /* FLYER EMERGENTE */
+#flyer-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000000; /* fondo transparente */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#flyer-overlay img {
+  width: auto;
+  height: auto;
+  max-width: 75vw;
+  max-height: 80vh;
+  object-fit: contain;
+  animation: parpadeo-led 2.5s infinite;
+  border-radius: 0;
+}
+
+#flyer-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 22px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+#flyer-close:hover {
+color: var(--dorado-oscuro); 
+}
+
+.flyer-hint {
+  position: absolute;
+  top: 50px;
+  right: 30px;
+  font-size: 13px;
+  color: #ccc;
+  font-family: 'BurzumGothic', serif;
+}
+
+#flyer-overlay img {
+  width: 100vw;
+  height: auto;
+  max-height: 100vh;
+  object-fit: contain;
+  animation: parpadeo-led 2.5s infinite;
+  border-radius: 0;
+}
+    
+.error-msg {
+  color: red;
+  font-size: 13px;
+  display: block;
+  margin-top: 4px;
+}
+  
+  #top-bar {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 10px 20px;
+  background-color: #111;
+  border-bottom: 1px solid var(--dorado-claro);
+  color: var(--dorado-claro);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  text-align: center;
+
+}
+
+.icono-acceso,
+.icono-acceso * {
+  cursor: pointer !important;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  text-align: center;
+}
+    
+.icono-acceso span {
+  position: absolute;
+  top: 0;
+  right: -8px;
+  background-color: transparent;
+  color: #cccccc;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-family: 'BurzumGothic', serif;
+}
+
+.icono-acceso div {
+  font-size: 16px;
+  color: var(--dorado-oscuro); /* Cambia este valor si quieres otro color para el texto */
+  transition: color 0.3s ease;
+  font-family: 'BurzumGothic', serif;
+  position: relative;
+  text-align: center;
+}
+    
+.icono-acceso:hover,
+.icono-acceso:hover * {
+  color: #cccccc;
+}
+
+.icono-acceso::after {
+  content: attr(data-descripcion);
+  display: block;
+  font-size: 13px;
+  color: #cccccc; /* Cambia este color si quieres otro para la descripción */
+  margin-top: 5px;
+  font-family: 'BurzumGothic', serif;
+}
+
+/* efecto “zoom-focus” al clic en los iconos */
+.zoom-focus {
+  position: relative;
+  z-index: 1000;
+  transform: scale(1.05);
+  transition: transform 0.9s ease;
+}
+
+/* …tu bloque footer#contacto tal como lo tienes… */
+footer#contacto {
   background: #111;
   color: #cccccc;
   padding: 2.5rem 1rem;
@@ -163,396 +516,1142 @@
   border-top: 2px solid var(--dorado-claro);
   animation: pulseFooter 10s ease-in-out infinite;
   will-change: box-shadow;
-  box-sizing: border-box;
-  margin-top: 20px;
-  }
-  #contacto-mirror div p {
+}
+
+/* A continuación tus reglas para los <p> e <i> dentro */
+footer#contacto div p {
   margin-bottom: 0.75rem;
   font-size: 1rem;
   display: flex;
-  align-items: center;
+  align-items: center; /* 🧲 alinea ícono + texto verticalmente */
   gap: 6px;
-  }
-  #contacto-mirror i {
+}
+
+footer#contacto i {
   margin-right: 0.5rem;
   color: var(--dorado-oscuro);
   font-size: 1.5rem;
-  vertical-align: middle;
+  vertical-align: middle; /* 🔧 esta es clave */
   line-height: 1;
+}
+
+#top-bar,
+footer#contacto {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+    
+.bloque-manifiesto {
+  background: rgba(20, 20, 20, 0.85);
+  font-size: 15px;
+  color: #cccccc;
+  border-left: 3px solid var(--dorado-claro);
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  font-family: 'BurzumGothic', serif;
+  text-align: justify;
+}
+
+.frase-autor {
+  background: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'), rgba(0, 0, 0, 0.5);
+  background-blend-mode: overlay;
+  background-size: cover;
+  padding: 15px 20px;
+  font-style: italic;
+  color: #ccc;
+  font-family: 'BurzumGothic', serif;
+  font-size: 1.2rem; /* ↖️ Aumenta aquí el tamaño */
+  text-align: center;
+  margin: 30px auto 0;
+  max-width: 800px;
+}
+
+strong {
+  color: var(--dorado-claro); /* o reemplaza por otro color como #C10202 */
+}
+
+.etiqueta-exclusivo {
+  position: absolute;
+  top: 0px;
+  left: 6px;
+  background: var(--dorado-oscuro);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 1px;
+  font-family: 'BurzumGothic', serif;
+  z-index: 1;
+}
+
+.etiqueta-infernal {
+  position: absolute;
+  top: 0px;                 /* misma altura que exclusiva */
+  left: 6px;             /* al otro lado */
+  background: #e0e0e0;        /* gris metálico sólido */
+  color: #333333;           /* texto oscuro para contraste */
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 1px;
+  font-family: 'BurzumGothic', serif;
+  z-index: 1;
+}
+
+.filter.infernal,
+.filter.exclusivo {
+  background-color: #0f0f0f;  /* Fondo oscuro similar al de los botones generales */
+  color: #cccccc;              /* Texto claro */
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 18px;
+  font-family: 'BurzumGothic', serif;
+  min-width: 130px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #0f0f0f;   /* Asegúrate de que tenga borde como los otros botones */
+}
+
+.filter.infernal:hover,
+.filter.exclusivo:hover {
+  background-color: rgba(25, 25, 25, 0.8); /* Efecto hover similar a los botones */
+  color: var(--dorado-claro); /* Rojo para los botones de filtro */
+}
+
+.filter.infernal,
+.filter.exclusivo {
+  border: 1px solid #0f0f0f;  /* Esto es clave */
+}
+/* Para los botones generales */
+.cart-button {
+  background-color: #0f0f0f; 
+  color: #cccccc;      
+  border: 1px solid #0f0f0f;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'BurzumGothic', serif;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cart-button:hover {
+  background-color: rgba(25, 25, 25, 0.8);
+  color: var(--dorado-claro); 
+}
+    
+/* Contenedor cuadrado y centrado */
+.item-marco {
+  position: relative;
+  width: 350px;
+  aspect-ratio: 1 / 1;  /* fuerza forma cuadrada */
+  overflow: hidden;
+  margin: 0 26px;
+}
+    
+.item-marco img.producto-imagen {
+  position: absolute;
+  top: -40px; /* en vez de 50% */
+  left: 0; /* en vez de 50% */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* en vez de contain para llenar */
+  transform: none; /* quita translate */
+}
+
+.item-marco img.producto-imagen[src="1.png"],
+.item-marco img.producto-imagen[src="2.png"],
+.item-marco img.producto-imagen[src="7.png"] {
+position: absolute;  
+top: -49px !important;
+left: 8px !important;            /* aquí lo mueves a la derecha */
+transform: none !important;       /* anula cualquier translate anterior */
+object-fit: cover !important;     
+}
+
+.item-marco .heart-icon {
+  position: absolute;
+  top: auto;          /* anula reglas globales */
+  right: auto;
+  bottom: 27px;        /* 8px del borde inferior */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+    
+.item-marco img.marco-overlay {
+  position: absolute;
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  width: 100%; /* Ajusta al 100% del ancho del contenedor */
+  height: 100%; /* Ajusta al 100% del alto del contenedor */
+  object-fit: contain; /* Asegura que la imagen del marco no se recorte */
+  transform: translate(-50%, -50%); /* Centra la imagen dentro del marco */
+  z-index: 2; /* Imagen del marco por encima de la camiseta */
+  pointer-events: none; /* La imagen del marco no bloquea interacciones */
+}
+    
+ .heart-icon, .zoom-icon {
+  cursor: pointer;
+  padding: 5px;
+}
+   
+.item-marco .zoom-icon {
+  position: absolute;
+  bottom: -16px;    /* fuera del marco */
+  left: -16px;      /* fuera del marco */
+  font-size: 2rem;
+  color: #ccc;
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+  z-index: 5;
+}
+
+.zoom-icon:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+  color: var(--dorado-claro); /* o cualquier color que quieras */
+}
+    
+/* Lightbox para la imagen ampliada */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85); /* Fondo oscuro */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#lightbox img {
+  max-width: 80%; /* Limita el ancho máximo de la imagen */
+  max-height: 80%; /* Limita la altura máxima de la imagen */
+  object-fit: contain; /* Mantiene la proporción de la imagen sin recortes */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra para mejorar el contraste */
+  transform: translateY(-50px);
+}
+
+/* Close button (botón para cerrar el lightbox) */
+#lightbox .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 3rem;
+  color: #cccc;
+  cursor: pointer;
+  font-family: 'BurzumGothic', serif;
+}
+
+#lightbox .close-btn:hover {
+  color: var(--dorado-claro);
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+    
+.cantidad-y-talla {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espacio horizontal entre elementos */
+}
+
+.separator {
+  width: 4px;
+  display: inline-block;
+  height: 1.1em; /* del tamaño del texto */
+  background-color: var(--dorado-oscuro); /* color de la línea */
+  opacity: 0.6; /* hace la línea más sutil */
+  position: relative;
+  top: 4px; /* mueve hacia abajo */
+}
+
+.gif-fuego {
+  width: 100px;
+  height: auto;
+  vertical-align: middle;
+  margin: 0 6px;
+  vertical-align: text-bottom;
   }
 
-  /* responsivo (igual que tu footer original) */
-  @media (max-width: 768px) {
-  #contacto-mirror {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 50px 20px;
-    text-align: left;
+ form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: black;
+  padding: 20px;
+  border: none;
+  border-radius: 1px;
   }
-  #contacto-mirror div { width: 100%; }
+
+  form label {
+  color: var(--dorado-claro);
+  font-family: 'BurzumGothic', serif;
+  }
+
+  form input,
+  form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  background: black;
+  color: #ccc;
+  border: 1px solid #333;
+  border-radius: 1px;
+  }
+
+  form button {
+  background: var(--dorado-claro);
+  color: #000;
+  font-family: 'BurzumGothic', serif;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: background 0.3s;
+  }
+
+  form button:hover {
+  background: var(--dorado-oscuro);
+  color: white;
+  }
+
+  .bloque-manifiesto {
+  background: transparent;                  /* elimina el fondo gris */
+  border-left: none;                        /* elimina la línea amarilla */
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  font-family: 'BurzumGothic', serif;
+  text-align: justify;
+  color: #cccccc;
+  }
+
+  .linea-dorada {
+  border: none;
+  height: 1px;
+  background-color: var(--dorado-claro);
+  margin: 40px auto 20px auto;
+  width: calc(100vw - 40px); /* 20px padding por lado */
+  }
+
+  /* Mueve la fila de botones “Normal / Oversize” hacia arriba */
+  .talla-switch {
+  position: relative;
+  top: -6px;    /* sube 8px, ajusta a tu gusto */
+  margin-bottom: 4px; /* opcional: reduce el espacio bajo los botones */
+  }
+
+  /* Mueve la fila Cant / Talla también un poco */
+  .cantidad-talla-wrapper {
+  position: relative;
+  top: -4px;    /* sube 4px */
   }
     
-    /* Responsivo */
-    @media (max-width:980px){ .grid{ grid-template-columns:repeat(2,1fr) } }
-    @media (max-width:560px){ .grid{ grid-template-columns:1fr } .product-card .thumb{ height:420px } .gif-fuego{ width:130px } }
+  .boton-talla {
+  background-color: #0f0f0f;
+  color: #cccccc;
+  border: 1px solid #0f0f0f;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-  </style>
+  .boton-talla:hover {
+  background-color: rgba(25, 25, 25, 0.8);
+  color: var(--dorado-claro);
+  }
+
+  .bg-gray-700 { background-color: #333 !important; }
+  .text-white   { color: white !important; }
+
+  .talla-switch .cart-button.bg-gray-700:hover {
+  background-color: #333 !important;
+  color: white !important;
+  }
+
+  /* Para wishlist (dentro de <span>) y para carrito (directo en <li>) */
+  #wishlist-items li span strong,
+  #cart-items li strong {
+  font-size: 19px;                   /* mismo tamaño que el resto */
+  font-family: 'BurzumGothic', serif;/* misma fuente */
+  font-weight: normal;
+  margin: 0 4px;
+  }
+
+  /* Tamaño de la palabra Talla */
+  .talla-texto {
+  font-size: 1.2em;   /* ajústalo a tu gusto */
+  font-family: 'BurzumGothic', serif;
+  }
+    
+  footer#contacto i.fa-facebook,
+  footer#contacto i.fa-instagram,
+  footer#contacto i.fa-whatsapp {
+  font-size: 1.7rem;
+  vertical-align: middle;
+  position: static;
+  left: 0;
+  }
+
+ .filter {
+  padding: 10px 18px;
+  font-size: 16px;
+  min-width: 130px;
+  border-radius: 10px;
+  font-family: 'BurzumGothic', serif;
+  font-weight: 800;
+}
+
+.filter:hover { transform: translateY(-2px); }
+
+.filter.active {
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+/* contenedor de botones: centra y separa verticalmente del texto */
+.filtros-wrapper {
+  text-align: center;
+  margin-bottom: 18px; /* espacio debajo de los botones */
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* separación horizontal entre botones */
+}
+
+/* párrafo de instrucciones (usa márgenes positivos, no negativos) */
+.instruccion {
+  text-align: center;
+  color: #777;
+  font-size: 15px;
+  margin: 6px 0 36px; /* margin: top right/left bottom */
+  line-height: 1.25;
+}
+
+/* opcional: añadir separación arriba del catálogo si aún falta */
+.catalogo {
+  margin-top: 8px;
+}
+    
+
+  @media (max-width: 480px) {
+  .filter {
+    padding: 10px 14px;
+    font-size: 16px;
+    min-width: 110px;
+  }
+}
+
+  /* Responsivo */
+  @media (max-width: 600px) {
+  h2 {
+    font-size: 26px; /* o menos si quieres */
+    line-height: 1.2;
+    text-align: center;
+  }
+  }
+    
+  @media (max-width: 768px) {
+  footer#contacto {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 50px 20px !important;
+    text-align: left !important;
+  }
+
+  footer#contacto div {
+    width: 100% !important;
+  }
+
+  footer#contacto div p {
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    margin-left: 0 !important;
+  }
+
+  footer#contacto i.fa-facebook,
+  footer#contacto i.fa-instagram,
+  footer#contacto i.fa-whatsapp {
+    font-size: 1.4rem !important;
+    line-height: 1.4 !important;
+    display: inline-block;
+  }
+
+  footer#contacto p {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center;
+    gap: 6px;
+    word-break: break-word;
+  }
+
+  footer#contacto {
+    overflow-x: hidden; /* evita que se salga horizontalmente */
+  }
+    
+  }
+    
+  @media (max-width: 600px) {
+  body {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  }
+    
+ @media (max-width: 768px) {
+  #flyer-overlay img {
+    max-width: 100vw !important;
+    max-height: 200vh !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Aumentar tamaño del GIF de fuego en móviles */
+  .gif-fuego {
+    width: 130px !important;
+    height: auto !important;
+    margin: 0 6px !important;
+}
+
+ /* Ajuste del corazón de lista de deseos en móviles */
+  .item-marco .heart-icon {
+    bottom: 20px !important;
+  }
+
+@media (max-width: 768px) {
+
+  #lightbox img {
+    position: static !important; /* quita top/left heredados */
+    max-width: 120% !important;
+    max-height: 120% !important;
+    transform: none !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    display: block !important;
+    margin: auto !important;
+    object-fit: contain !important;
+  }
+}
+  
+</style>
 </head>
 <body>
-
-  <!-- FLYER (copiado de index.html) -->
+  
   <div id="flyer-overlay">
-    <button id="flyer-close" title="Cerrar">𒉽</button>
-    <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
-    <img src="Port.png" alt="Flyer Averno"/>
+  <button id="flyer-close" title="Cerrar">𒉽</button>
+  <small class="flyer-hint">Haz clic en ✖ para cerrar</small>
+  <img src="Port.png" alt="Flyer Averno"/>
   </div>
 
-  <!-- TOP BAR: contador wishlist + carrito (copiado de index.html) -->
-  <header id="top-bar">
-    <div class="icono-acceso" onclick="irYZoom('wishlist')" data-descripcion="Ver Tus Productos Infernales">🤘🏻<div>Lista de Deseos</div>
-      <span id="contador-wishlist">0</span>
-    </div>
+<section class="bloque-manifiesto">
+<p><strong class="destacado">Averno Store</strong> es un refugio para la belleza infernal y abismal del ocultismo moderno. Cada diseño, una obra de arte oscuro que captura la esencia de lo prohibido y lo místico, fusionando simbolismos ocultistas con la fuerza visceral del metal. En cada estampado, se revela una visión de la oscuridad que no busca ser entendida, sino sentida. Una estética brutal y profunda que habla directamente al alma rebelde y la voluntad inquebrantable.</p>
+<blockquote class="frase-autor">
+  “En las entrañas de la oscuridad la sangre gotea en la tierra, Empieza el ritual,
+La muerte eterna te consume y en su averno resuenan los lamentos de los caídos”
+</blockquote>
+   
+</section>
 
-    <div class="icono-acceso" onclick="irYZoom('cart')" data-descripcion="Revisa Tus Compras Del Averno">🛒<div>Carrito de Compras</div>
-      <span id="contador-cart">0</span>
-    </div>
-  </header>
+ <header id="top-bar">
+  <div class="icono-acceso"
+       onclick="irYZoom('wishlist')"
+       data-descripcion="Ver Tus Productos Infernales">🤘🏻<strong>Lista de Deseos</strong>
+    <span id="contador-wishlist">0</span>
+  </div>
 
-  <h2 style="text-align:center">HOODIES<img src="skull.gif" class="gif-fuego" alt="fuego"></h2>
+  <div class="icono-acceso"
+       onclick="irYZoom('cart')"
+       data-descripcion="Revisa Tus Compras Del Averno">🛒<strong>Carrito de Compras</strong>
+    <span id="contador-cart">0</span>
+  </div>
+</header>
+  
+    <h2>¡ELIGE TU<img src="skull.gif" class="gif-fuego" alt="fuego"> HOODIE!</h2>
 
-  <p class="instruccion">&gt; HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA &lt;</p>
+  <div class="filtros-wrapper">
+  <button id="btn-infernal" class="filter infernal">INFERNAL</button>
+  <button id="btn-exclusivo" class="filter exclusivo">EXCLUSIVO</button>
+  </div>
 
-  <!-- Productos: usaré el contenedor tipo catalogo como en index.html -->
-  <main class="products-wrap">
-    <div id="catalogo-ropa" class="catalogo grid"></div>
-  </main>
+  <p class="instruccion">> HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA <</p>
 
-  <!-- Lista de deseos y carrito (copiados) -->
+  <div class="catalogo" id="catalogo-ropa"></div>
+  
   <div id="wishlist">
-    <h3>Lista de deseos</h3>
-    <ul id="wishlist-items"></ul>
-    <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
-    <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
+  <h3>Lista de deseos</h3>
+  <ul id="wishlist-items"></ul>
+  <button class="cart-button" onclick="moverWishlistACarrito()">Iniciar compra</button>
+  <button class="cart-button" onclick="vaciarWishlist()">Vaciar lista de deseos</button>
   </div>
 
   <div id="cart">
-    <h3>Carrito de compras</h3>
-    <ul id="cart-items"></ul>
-    <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
-    <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
+  <h3>Carrito de compras</h3>
+  <ul id="cart-items"></ul>
+  <button class="cart-button" onclick="comprarPorWhatsapp()">Comprar</button>
+  <button class="cart-button" onclick="vaciarCarrito()">Vaciar carrito</button>
   </div>
 
-  <hr class="linea-dorada">
+  <hr class="linea-dorada"> 
+  <section class="bloque-manifiesto"> 
+  <h2>Sugerencias △ Comentarios</h2>
+  <form action="https://formspree.io/f/xvgqpgpl" method="POST">
+    <label for="email">Tu correo:</label><br>
+    <input type="email" name="email" id="email" required><br><br>
 
-  <!-- Sugerencias △ Comentarios (bloque-manifiesto) -->
-  <section class="bloque-manifiesto">
-    <h2>Sugerencias △ Comentarios</h2>
-    <form action="https://formspree.io/f/xvgqpgpl" method="POST" novalidate>
-      <label for="email">Tu correo:</label><br>
-      <input type="email" name="email" id="email" required placeholder="tucorreo@ejemplo.com"><br><br>
+    <label for="mensaje">Tu mensaje:</label><br>
+    <textarea name="message" id="mensaje" rows="6" required></textarea><br><br>
 
-      <label for="mensaje">Tu mensaje:</label><br>
-      <textarea name="message" id="mensaje" rows="6" required placeholder="Escribe tu sugerencia o comentario aquí..."></textarea><br><br>
-
-      <button type="submit">Enviar</button>
-    </form>
+    <button type="submit">Enviar</button>
+  </form>
   </section>
 
-  <div class="volver-container" style="text-align:center;margin:40px 0">
-    <button class="volver-btn" onclick="location.href='/'">VOLVER</button>
-  </div>
-  
-<footer id="contacto-mirror" data-aos="fade-up" data-aos-delay="600">
-  <div>
-    <p><i class="fas fa-envelope"></i><strong> Correo:</strong> averno_store@despertardelaverno.com </p>
-    <p><i class="fab fa-facebook"></i> <strong>Facebook:</strong> https://www.facebook.com/AvrnoStore</p>
-  </div>
-  <div>
-    <p><i class="fab fa-instagram"></i><strong> Instagram:</strong> Averno_Store</p>
-    <p><i class="fab fa-whatsapp"></i><strong> WhatsApp:</strong> +57 3181541064</p>
-  </div>
-  <div>
-    <p><i class="fas fa-map-marker-alt"></i><strong> Dirección:</strong> Palmira - Valle del Cauca</p>
-    <p><i class="fas fa-copyright"></i> 2025 ₳VⱤ₦Ø ₴₮ØⱤɆ </p>
-  </div>
-</footer>
-
-<a class="nequi-btn"
-   href="https://wa.me/message/7GNMDBFX4L6IJ1"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Contactar por WhatsApp">
-  <i class="fab fa-whatsapp" aria-hidden="true"></i>
-</a>
-  
-  <!-- Lightbox -->
-  <div id="lightbox">
-    <div class="close-btn" onclick="closeLightbox()">✖</div>
-    <img id="lightbox-img" src="" alt="ampliada">
+  <div class="volver-container">
+  <button class="volver-btn" onclick="location.href='/'">VOLVER</button>
   </div>
 
-<script>
-  // ===== Datos =====
-  const productosRopa = [
-    { nombre: "MASK HANNYA", precio: 174990, imagen: "1.png", exclusivo: false },
-    { nombre: "ALIEN SACRIFICE", precio: 174990, imagen: "2.png", exclusivo: false },
-    { nombre: "ALIEN PLAGUE", precio: 174990, imagen: "3.png", exclusivo: false },
-    { nombre: "SKULL IN ACID", precio: 174990, imagen: "4.png", exclusivo: false }
-  ];
+  <footer id="contacto" data-aos="fade-up" data-aos-delay="600">
+    <div>
+      <p><i class="fas fa-envelope"></i><strong> Correo:</strong> averno_store@despertardelaverno.com </p>
+      <p><i class="fab fa-facebook"></i> <strong>Facebook:</strong> https://www.facebook.com/AvrnoStore</p>
+    </div>
+    <div>
+      <p><i class="fab fa-instagram"></i><strong> Instagram:</strong> Averno_Store</p>
+      <p><i class="fab fa-whatsapp"></i><strong> WhatsApp:</strong> +57 3181541064</p>
+    </div>
+    <div>
+      <p><i class="fas fa-map-marker-alt"></i><strong> Dirección:</strong> Palmira - Valle del Cauca</p>
+      <p><i class="fas fa-copyright"></i> 2025 ₳VⱤ₦Ø ₴₮ØⱤɆ </p>
+    </div>
+  </footer>
 
-  // Estado
-  let wishlistData = {};
-  let cartData = {};
+  <a class="nequi-btn" href="https://wa.me/message/7GNMDBFX4L6IJ1"
+   target="_blank">
+  <i class="fab fa-whatsapp"></i>
+  </a>
 
-  // ===== Helper: crear tarjeta =====
-  function crearItem(producto, esRopa = true) {
-    const item = document.createElement('div');
-    item.className = 'item';
-    item.setAttribute('data-precio-inicial', producto.precio);
+  <script>
+    const productosRopa = [
+      { nombre: "VOX INFERNI", precio: 70000, imagen: "1.png", exclusivo: false },
+      { nombre: "LUPUS NOCTIS", precio: 70000, imagen: "2.png", exclusivo: false },
+      { nombre: "PALMIRA OBSCURA", precio: 70000, imagen: "3.png", exclusivo: false },
+      { nombre: "ANGELUS OCCISUS", precio: 70000, imagen: "4.png", exclusivo: false },
+      { nombre: "CULTUS LUXURIAE", precio: 70000, imagen: "5.png", exclusivo: false },
+      { nombre: "CORNUA TENEBRIS", precio: 70000, imagen: "6.png", exclusivo: false },
+      { nombre: "AVERNO STORE", precio: 70000, imagen: "7.png", exclusivo: false },
+      { nombre: "OBSCURA FIDES", precio: 70000, imagen: "8.png", exclusivo: false },
+      { nombre: "CRUCIFIXUS SANGUINIS", precio: 70000, imagen: "9.png", exclusivo: false },
+      { nombre: "CORPUS MORTIS", precio: 70000, imagen: "10.png", exclusivo: false },
+      { nombre: "REDEMPTOR TENEBRIS", precio: 70000, imagen: "11.png", exclusivo: false },
+      { nombre: "THRONUS MORTIS", precio: 70000, imagen: "12.png", exclusivo: false },
+      { nombre: "ALTARE SANGUINIS", precio: 70000, imagen: "13.png", exclusivo: false },
+      { nombre: "HELVETE", precio: 70000, imagen: "14.png", exclusivo: false },
+      { nombre: "LUCIFERUS", precio: 70000, imagen: "15.png", exclusivo: false },
+      { nombre: "ODIN KRIGENS GUD", precio: 70000, imagen: "16.png", exclusivo: false },
+      { nombre: "MALEDICTUS XII", precio: 70000, imagen: "17.png", exclusivo: false },
+      { nombre: "DOMINUS MORTIS", precio: 70000, imagen: "18.png", exclusivo: false },
+      { nombre: "DOMINUS BAPHOMET", precio: 70000, imagen: "19.png", exclusivo: false },
+      { nombre: "PONTIFEX MALEFICUS", precio: 70000, imagen: "20.png", exclusivo: false },
+      { nombre: "MASK HANNYA", precio: 70000, imagen: "21.png", exclusivo: true },
+      { nombre: "SKULL IN ACID", precio: 70000, imagen: "22.png", exclusivo: true },
+      { nombre: "ALIEN PLAGUE", precio: 70000, imagen: "23.png", exclusivo: true },
+      { nombre: "ALIEN SACRIFICE", precio: 70000, imagen: "24.png", exclusivo: true }
+    ];
+    
+    let wishlistData = {};
+    let cartData = {};
 
-    const id = producto.nombre.replace(/\s+/g,'_');
+    function crearItem(producto, esRopa = true) {
+    // 1) Crear el contenedor y guardar el precio base
+    const item = document.createElement("div");
+    item.className = "item";
+    item.setAttribute("data-precio-inicial", producto.precio);
 
-    let tallaSelect = '';
+    // 2) Identificador único para IDs
+    const id = producto.nombre.replace(/\s+/g, "_");
+
+    // 3) Selector de talla si es prenda
+    let tallaSelect = "";
     if (esRopa) {
-      tallaSelect =
-        '<label class="cantidad-label">Talla:' +
-        '<select class="cantidad-input" id="talla-'+id+'">' +
-        '<option value="">Elige talla</option>' +
-        '<option value="S">S</option>' +
-        '<option value="M">M</option>' +
-        '<option value="L">L</option>' +
-        '<option value="XL">XL</option>' +
-        '</select></label>' +
-        '<span id="error-'+id+'" class="error-msg"></span>';
+    tallaSelect = `
+      <label class="cantidad-label">Talla:
+        <select class="cantidad-input" id="talla-${id}">
+          <option value="">Elige talla</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </label>
+      <span id="error-${id}" class="error-msg"></span>
+    `;
     }
 
-    item.innerHTML =
-      '<div class="item-marco" style="position:relative; width:100%; height:340px; overflow:hidden;">' +
-        '<img src="'+producto.imagen+'" alt="'+producto.nombre+'" class="producto-imagen" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover">' +
-        '<span class="heart-icon" onclick="toggleFavorite(this,\''+producto.nombre+'\','+producto.precio+','+esRopa+')">⛧</span>' +
-      '</div>' +
-      '<h3>'+producto.nombre+'</h3>' +
-      '<div class="precio" data-precio="'+producto.precio+'" data-tipo="Normal">$'+producto.precio.toLocaleString('es-CO')+'</div>' +
-      '<div class="cantidad-talla-wrapper" style="display:flex;align-items:center;gap:12px;margin-top:10px;">' +
-        '<label class="cantidad-label">Cant:' +
-          '<input type="number" class="cantidad-input" id="cantidad-'+id+'" value="1" min="1" style="width:60px;padding:6px;background:#111;color:#ccc;border-radius:4px;border:1px solid transparent">' +
-        '</label>' +
-        '<div class="separator" style="width:4px;height:1.1em;background-color:var(--dorado-oscuro);opacity:0.6"></div>' +
-        tallaSelect +
-      '</div>' +
-      '<button class="cart-button" onclick="addToCart(\''+producto.nombre+'\','+producto.precio+','+esRopa+')">Agregar al carrito</button>';
+    // 4) HTML interno del item
+    item.innerHTML = `
+    <div class="item-marco">
+      <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen" loading="lazy">
+      <span
+        class="heart-icon"
+        onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})"
+      >⛧</span>
+      <img src="marco.svg" alt="Marco" class="marco-overlay">
+    </div>
+    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
+      <i class="fas fa-search"></i>
+    </div>
+    ${ producto.exclusivo
+    ? '<div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>'
+    : '<div class="etiqueta-infernal">🔥 INFERNAL</div>'
+    }
+    <h3>${producto.nombre}</h3>
+    <div
+      class="precio"
+      data-precio="${producto.precio}"
+      data-tipo="Normal"
+    >$${producto.precio.toLocaleString()}</div>
+    <div class="talla-switch flex gap-2 mb-4">
+      <button
+        class="cart-button boton-talla"
+        onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')"
+      >Normal</button>
+      <button
+        class="cart-button boton-talla"
+        onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')"
+      >Oversize</button>
+    </div>
+    <div class="cantidad-talla-wrapper">
+      <label class="cantidad-label">Cant:
+        <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1">
+      </label>
+      <div class="separator"></div>
+      ${tallaSelect}
+    </div>
+    <button
+      class="cart-button"
+      onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})"
+    >Agregar al carrito</button>
+    `;
 
+    // 5) Limpiar mensajes de error al cambiar talla
     if (esRopa) {
-      const select = item.querySelector('#talla-'+id);
-      const errorSpan = item.querySelector('#error-'+id);
-      if (select) select.addEventListener('change', () => { if (select.value) errorSpan.textContent = ''; });
+    const select = item.querySelector(`#talla-${id}`);
+    const errorSpan = item.querySelector(`#error-${id}`);
+    select.addEventListener("change", () => {
+      if (select.value) errorSpan.textContent = "";
+    });
     }
 
     return item;
-  }
+    }
+    
+    function renderCatalogo(productos, contenedorId, esRopa) {
+      const cont = document.getElementById(contenedorId);
+      cont.innerHTML = "";
+      productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
+    }
 
-  function renderCatalogo(productos, contenedorId='catalogo-ropa', esRopa=true) {
-    const cont = document.getElementById(contenedorId);
-    cont.innerHTML = '';
-    productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
-  }
-
-  // ===== Wishlist / cart =====
   function toggleFavorite(el, nombre, precio, esRopa) {
-    el.classList.toggle('active');
+  el.classList.toggle("active");
 
-    if (wishlistData[nombre]) delete wishlistData[nombre];
-    else {
-      const item = el.closest('.item');
-      if (!item) return;
-      const precioEl = item.querySelector('.precio');
-      const precioActual = parseInt((precioEl && precioEl.getAttribute('data-precio')) || precio, 10);
-      const tipo = (precioEl && precioEl.getAttribute('data-tipo')) || 'Normal';
-      wishlistData[nombre] = { precio: precioActual, esRopa, tipo };
-    }
-    renderWishlist();
-  }
-
-  function renderWishlist() {
-    const ul = document.getElementById('wishlist-items'); ul.innerHTML = '';
-    for (let nombre in wishlistData) {
-      const producto = wishlistData[nombre];
-      const id = nombre.replace(/\s+/g,'_');
-      const tallaSelect = producto.esRopa
-        ? ' <label style="display:inline-flex;align-items:center;gap:8px;margin-left:12px;"><span class="talla-texto">Talla:</span><select id="wishlist-talla-'+id+'" class="cantidad-input"><option value="">Elige talla</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></label><span id="error-wishlist-'+id+'" class="error-msg"></span>'
-        : '';
-      ul.innerHTML += '<li style="margin-bottom:12px;"><span>'+nombre+' — <strong>'+(producto.tipo || 'Normal')+'</strong> — $'+producto.precio.toLocaleString('es-CO')+'</span>'+tallaSelect+'<button class="remove-button" onclick="eliminarDeWishlist(\''+nombre+'\')">✖</button></li>';
-    }
-    actualizarContadores();
-  }
-
-  function eliminarDeWishlist(nombre) {
+  if (wishlistData[nombre]) {
     delete wishlistData[nombre];
-    document.querySelectorAll('.heart-icon').forEach(h => {
-      if (h.getAttribute('onclick') && h.getAttribute('onclick').includes(nombre)) h.classList.remove('active');
-    });
-    renderWishlist();
+  } else {
+    // usar el.closest para no depender de getElementById
+    const item = el.closest(".item");
+    if (!item) {
+      console.warn("No se encontró la tarjeta del producto para:", nombre);
+      return;
+    }
+    const precioEl = item.querySelector(".precio");
+    const precioActual = parseInt(precioEl?.getAttribute("data-precio") || precio, 10);
+    const tipo = precioEl?.getAttribute("data-tipo") || "Normal";
+
+    wishlistData[nombre] = { precio: precioActual, esRopa, tipo };
   }
+
+  renderWishlist();
+  }
+    
+  function renderWishlist() {
+  const ul = document.getElementById("wishlist-items");
+  ul.innerHTML = "";
+
+  for (let nombre in wishlistData) {
+    const producto = wishlistData[nombre];
+    const id = nombre.replace(/\s+/g, "_");
+
+    // Aquí añadimos el <span class="talla-texto">Talla:</span>
+    const tallaSelect = producto.esRopa
+      ? `<label style="display:inline-flex;align-items:center;gap:8px;margin-left:12px;">
+           <span class="talla-texto">Talla:</span>
+           <select id="wishlist-talla-${id}" class="cantidad-input">
+             <option value="">Elige talla</option>
+             <option value="S"${producto.talla==="S"?" selected":""}>S</option>
+             <option value="M"${producto.talla==="M"?" selected":""}>M</option>
+             <option value="L"${producto.talla==="L"?" selected":""}>L</option>
+             <option value="XL"${producto.talla==="XL"?" selected":""}>XL</option>
+           </select>
+         </label>
+         <span id="error-wishlist-${id}" class="error-msg"></span>`
+      : "";
+
+    ul.innerHTML += `
+      <li style="margin-bottom:12px;">
+        <span>
+          ${nombre} — <strong>${producto.tipo || "Normal"}</strong> — $${producto.precio.toLocaleString("es-CO")}
+        </span>
+        ${tallaSelect}
+        <button class="remove-button" onclick="eliminarDeWishlist('${nombre}')">✖</button>
+      </li>
+    `;
+  }
+  actualizarContadores();
+  }  
+    
+    function eliminarDeWishlist(nombre) {
+      delete wishlistData[nombre];
+      document.querySelector(`.heart-icon[onclick*='${nombre}']`)?.classList.remove("active");
+      renderWishlist();
+    }
 
   function addToCart(nombre, precio, esRopa) {
-    const id = nombre.replace(/\s+/g,'_');
-    const cantidadEl = document.getElementById('cantidad-'+id);
-    const cantidad = parseInt((cantidadEl && cantidadEl.value) || '1', 10);
-    let talla = '';
-    if (esRopa) {
-      const tallaEl = document.getElementById('talla-'+id);
-      const errorEl = document.getElementById('error-'+id);
-      talla = (tallaEl && tallaEl.value) || '';
-      if (!talla) { if (errorEl) { errorEl.textContent = 'POR FAVOR SELECCIONA ⛧ UNA TALLA.'; errorEl.style.color = 'var(--dorado-oscuro)'; } return; }
-      if (errorEl) errorEl.textContent = '';
-    }
-    if (!cantidadEl) return;
-    const itemEl = cantidadEl.closest('.item'); if (!itemEl) return;
-    const precioEl = itemEl.querySelector('.precio');
-    const precioActual = parseInt(precioEl.getAttribute('data-precio'), 10);
-    const tipoSeleccionado = precioEl.getAttribute('data-tipo') || 'Normal';
-    cartData[nombre] = { precio: precioActual, cantidad: cantidad, talla: talla, tipo: tipoSeleccionado };
-    renderCarrito(); actualizarContadores();
-  }
+  const id = nombre.replace(/\s+/g, "_");
+  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1", 10);
+  let talla = "";
 
-  function moverWishlistACarrito() {
-    for (let nombre in wishlistData) {
-      const producto = wishlistData[nombre];
-      const id = nombre.replace(/\s+/g,'_');
-      let talla = '';
-      if (producto.esRopa) {
-        const el = document.getElementById('wishlist-talla-'+id);
-        const errorEl = document.getElementById('error-wishlist-'+id);
-        if (!el || !el.value) { if (errorEl) { errorEl.textContent = 'POR FAVOR SELECCIONA ⛧ UNA TALLA.'; errorEl.style.color = 'var(--dorado-oscuro)'; } return; }
-        talla = el.value; if (errorEl) errorEl.textContent = '';
+  // Validación de talla si es prenda de ropa
+  if (esRopa) {
+    talla = document.getElementById(`talla-${id}`).value;
+    const errorEl = document.getElementById(`error-${id}`);
+    if (!talla) {
+      if (errorEl) {
+        errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+        errorEl.style.color = 'var(--dorado-oscuro)';
       }
-      cartData[nombre] = { precio: producto.precio, cantidad:1, talla: talla, tipo: producto.tipo };
+      return;
+    } else {
+      if (errorEl) errorEl.textContent = "";
     }
-    wishlistData = {}; renderWishlist(); renderCarrito(); document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
   }
 
-  function renderCarrito() {
-    const ul = document.getElementById('cart-items'); ul.innerHTML = '';
+  const cantidadEl = document.getElementById(`cantidad-${id}`);
+  if (!cantidadEl) {
+    console.warn('No se encontró el input de cantidad para', id);
+    return;
+  }
+  const itemEl = cantidadEl.closest('.item');
+  if (!itemEl) {
+    console.warn('No se encontró la tarjeta del producto para', id);
+    return;
+  }
+  const precioEl = itemEl.querySelector('.precio');
+
+  // Leemos el precio y el tipo desde los atributos data-* que puso cambiarPrecio()
+  const precioActual = parseInt(precioEl.getAttribute("data-precio"), 10);
+  const tipoSeleccionado = precioEl.getAttribute("data-tipo") || "Normal";
+
+  // Guardamos en el carrito
+  cartData[nombre] = {
+    precio: precioActual,
+    cantidad: cantidad,
+    talla: talla,
+    tipo: tipoSeleccionado
+  };
+
+  // Renderizamos de nuevo carrito y actualizamos contador
+  renderCarrito();
+  actualizarContadores();
+  }
+    
+   function moverWishlistACarrito() {
+    for (let nombre in wishlistData) {
+    const producto = wishlistData[nombre];
+    const id = nombre.replace(/\s+/g, "_");
+
+    let talla = "";
+    if (producto.esRopa) {
+      talla = document.getElementById(`wishlist-talla-${id}`).value;
+      const errorEl = document.getElementById(`error-wishlist-${id}`);
+      if (!talla) {
+        errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
+        errorEl.style.color = 'var(--dorado-oscuro)';
+        return;
+      }
+      errorEl.textContent = "";
+    }
+
+    cartData[nombre] = {
+      precio: producto.precio,
+      cantidad: 1,
+      talla: talla,
+      tipo: producto.tipo  // ← aquí duplicas el tipo
+    };
+    }
+
+    wishlistData = {};
+    renderWishlist();
+    renderCarrito();
+    document.querySelectorAll('.heart-icon.active').forEach(icon => icon.classList.remove('active'));
+    }
+
+    function renderCarrito() {
+    const ul = document.getElementById("cart-items");
+    ul.innerHTML = "";
+
     for (let nombre in cartData) {
-      const it = cartData[nombre];
-      ul.innerHTML += '<li style="margin-bottom:8px;"><span>'+nombre+' — <strong>'+(it.tipo || 'Normal')+'</strong> x'+it.cantidad+' ' +
-        (it.talla ? '(<span class="talla-texto">Talla</span> '+it.talla+')' : '') +
-        ' — $'+(it.precio * it.cantidad).toLocaleString('es-CO')+
-        '</span> <button onclick="eliminarDelCarrito(\''+nombre+'\')">✖</button></li>';
+    const it = cartData[nombre];
+    ul.innerHTML += `
+      <li style="margin-bottom:8px;">
+        <span>
+          ${nombre} — <strong>${it.tipo || "Normal"}</strong> 
+          x${it.cantidad}
+          ${it.talla 
+            ? `(<span class="talla-texto">Talla</span> ${it.talla})` 
+            : ""} 
+          — $${(it.precio * it.cantidad).toLocaleString("es-CO")}
+        </span>
+        <button onclick="eliminarDelCarrito('${nombre}')">✖</button>
+      </li>
+    `;
     }
+
     actualizarContadores();
-  }
+    }  
+    
+    function eliminarDelCarrito(nombre) {
+      delete cartData[nombre];
+      renderCarrito();
+    }
 
-  function eliminarDelCarrito(nombre) { delete cartData[nombre]; renderCarrito(); }
+    function vaciarWishlist() {
+    // 1) Limpiar datos y re-render
+    wishlistData = {};
+    renderWishlist();
 
-  function vaciarWishlist() {
-    wishlistData = {}; renderWishlist();
-    document.querySelectorAll('.item').forEach(item => {
-      const precioBase = parseInt(item.getAttribute('data-precio-inicial'),10);
-      const precioEl = item.querySelector('.precio');
-      if (precioEl) { precioEl.textContent = '$'+precioBase.toLocaleString('es-CO'); precioEl.setAttribute('data-precio', precioBase); precioEl.setAttribute('data-tipo','Normal'); }
-      item.querySelectorAll('.boton-talla').forEach(btn => btn.classList.remove('bg-gray-700','text-white'));
+    // 2) Resetear precios y tipos en catálogo
+    document.querySelectorAll(".item").forEach(item => {
+    const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10);
+    const precioEl   = item.querySelector(".precio");
+
+    // Texto y atributo data-precio
+    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", precioBase);
+
+    // ¡Aquí reseteas el tipo a Normal!
+    precioEl.setAttribute("data-tipo", "Normal");
+
+    // Quitar marcas de botón activo (oversize/normal)
+    item.querySelectorAll(".boton-talla").forEach(btn => {
+      btn.classList.remove("bg-gray-700", "text-white");
     });
-    document.querySelectorAll('.cantidad-input').forEach(i => { if (i.type === 'number') i.value = 1; else i.value = ''; });
-    document.querySelectorAll('.error-msg').forEach(e => e.textContent = '');
-    document.querySelectorAll('.heart-icon.active').forEach(h => h.classList.remove('active'));
-  }
-
-  function vaciarCarrito() {
-    cartData = {}; renderCarrito();
-    document.querySelectorAll('.item').forEach(item => {
-      const precioBase = parseInt(item.getAttribute('data-precio-inicial'),10);
-      const precioEl = item.querySelector('.precio');
-      if (precioEl) { precioEl.textContent = '$'+precioBase.toLocaleString('es-CO'); precioEl.setAttribute('data-precio', precioBase); precioEl.setAttribute('data-tipo','Normal'); }
-      item.querySelectorAll('.boton-talla').forEach(btn => btn.classList.remove('bg-gray-700','text-white'));
     });
-    document.querySelectorAll('.cantidad-input').forEach(i => { if (i.type === 'number') i.value = 1; else i.value = ''; });
-    document.querySelectorAll('.error-msg').forEach(e => e.textContent = '');
-  }
 
-  function comprarPorWhatsapp() {
-    if (Object.keys(cartData).length === 0) { alert('Carrito vacío'); return; }
-    const lineas = Object.entries(cartData).map(([nombre,it]) => {
-      const talla = it.talla ? ' (Talla '+it.talla+')' : '';
-      const subtotal = (it.precio * it.cantidad).toLocaleString('es-CO');
-      return '- '+nombre+' ('+it.tipo+') x'+it.cantidad+ talla +' = $'+subtotal;
+    // 3) Resetear inputs, errores y corazones
+    document.querySelectorAll(".cantidad-input").forEach(i => {
+    if (i.type === "number") i.value = 1;
+    else i.value = "";
     });
-    const texto = '¡Hola!, Quiero Comprar:\n'+lineas.join('\n');
-    const encoded = encodeURIComponent(texto);
-    const url = 'https://wa.me/573181541064?text='+encoded;
-    window.open(url,'_blank');
-  }
+    document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
+    document.querySelectorAll(".heart-icon.active").forEach(h => h.classList.remove("active"));
+    }
+    
+    function vaciarCarrito() {
+    // 1) Limpiar datos y re-render
+    cartData = {};
+    renderCarrito();
+
+    // 2) Resetear precios y tipos en catálogo
+    document.querySelectorAll(".item").forEach(item => {
+    const precioBase = parseInt(item.getAttribute("data-precio-inicial"), 10);
+    const precioEl   = item.querySelector(".precio");
+
+    // Texto y atributo data-precio
+    precioEl.textContent = `$${precioBase.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", precioBase);
+
+    // ¡Aquí también reseteas el tipo a Normal!
+    precioEl.setAttribute("data-tipo", "Normal");
+
+    // Quitar marcas de botón activo (oversize/normal)
+    item.querySelectorAll(".boton-talla").forEach(btn => {
+      btn.classList.remove("bg-gray-700", "text-white");
+    });
+    });
+
+    // 3) Resetear inputs y errores
+    document.querySelectorAll(".cantidad-input").forEach(i => {
+    if (i.type === "number") i.value = 1;
+    else i.value = "";
+    });
+    document.querySelectorAll(".error-msg").forEach(e => e.textContent = "");
+    }
   
+    function comprarPorWhatsapp() {
+    // 1) Si el carrito está vacío, mostramos alerta y salimos
+    if (Object.keys(cartData).length === 0) {
+    alert("Carrito vacío");
+    return;
+    }
+
+    // 2) Construimos el cuerpo del mensaje línea por línea
+    const líneas = Object.entries(cartData).map(([nombre, it]) => {
+    // it.tipo siempre estará definido gracias a addToCart
+    const tipo = it.tipo;
+    const cantidad = it.cantidad;
+    const talla = it.talla ? ` (Talla ${it.talla})` : "";
+    const subtotal = (it.precio * cantidad).toLocaleString("es-CO");
+    return `- ${nombre} (${tipo}) x${cantidad}${talla} = $${subtotal}`;
+    });
+
+    // 3) Unimos todas las líneas e insertamos cabecera
+    const texto = `¡Hola!, Quiero Comprar:\n${líneas.join("\n")}`;
+
+    // 4) Url-encodeamos el mensaje para WhatsApp y abrimos la ventana
+    const encoded = encodeURIComponent(texto);
+    const url = `https://wa.me/573181541064?text=${encoded}`;
+    window.open(url, "_blank");
+    }
+    
+    function cambiarPrecio(boton, nuevoPrecio, tipo) {
+    const tarjeta = boton.closest(".item");
+    const precioEl = tarjeta.querySelector(".precio");
+    precioEl.textContent = `$${nuevoPrecio.toLocaleString("es-CO")}`;
+    precioEl.setAttribute("data-precio", nuevoPrecio);
+    precioEl.setAttribute("data-tipo", tipo);        // <- guardamos el tipo
+  
+    // actualizar clases de botón activo…
+    }
+    
+//FUNCION NUEVA//
   function actualizarContadores() {
-    const w = document.getElementById('contador-wishlist');
-    const c = document.getElementById('contador-cart');
-    if (w) w.textContent = Object.keys(wishlistData).length;
-    if (c) c.textContent = Object.keys(cartData).length;
-  }
+  document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
+  document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
+  }  
 
-  function irYZoom(seccionId) {
-    const el = document.getElementById(seccionId); if (!el) return;
-    el.scrollIntoView({ behavior:'smooth', block:'center' });
-    el.classList.add('zoom-focus');
-    setTimeout(()=>el.classList.remove('zoom-focus'),1500);
-  }
+function irYZoom(seccionId) {
+  const el = document.getElementById(seccionId);
+  if (!el) return;
+  // 1) Desplaza y centra
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // 2) Aplica zoom-focus
+  el.classList.add('zoom-focus');
+  // 3) Quita el zoom al cabo de 600 ms
+  setTimeout(() => el.classList.remove('zoom-focus'), 1500);
+}
 
-  function openLightbox(src) {
-    const lb = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    img.src = src; lb.style.display = 'flex';
-  }
-  function closeLightbox() {
-    const lb = document.getElementById('lightbox');
-    if (lb) lb.style.display = 'none';
-  }
+function scrollCarrusel(direccion) {
+  const carrusel = document.querySelector('.carrusel');
+  const scrollAmount = 300; // ajusta el desplazamiento según tu gusto
+  carrusel.scrollBy({ left: direccion * scrollAmount, behavior: 'smooth' });
+}
 
-  // --- Cerrar flyer: botón, click fuera y ESC ---
-  function cerrarFlyer() {
-    const ov = document.getElementById('flyer-overlay');
-    if (ov) ov.style.display = 'none';
-  }
-
-  document.addEventListener('keydown', function(event){
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  img.src = src;
+  lb.style.display = 'flex';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+  // ▼ añade esto al final del <script> ▼
+  document.addEventListener('keydown', function(event) {
+    // Si presionan ESC (Escape)
     if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) {
       closeLightbox();
-      cerrarFlyer();
     }
-  });
+});
 
-  (function() {
-    const flyerOverlay = document.getElementById('flyer-overlay');
-    const fc = document.getElementById('flyer-close');
-
-    if (fc) {
-      fc.addEventListener('click', cerrarFlyer);
+  function applyFilter() {
+  const contenedor = 'catalogo-ropa';
+  const cont = document.getElementById(contenedor);
+  
+  // Primero aplicamos un desvanecimiento
+  cont.style.opacity = 0;
+  
+  // Esperamos que termine la animación de desvanecimiento
+  setTimeout(() => {
+    // Ahora cambiamos los productos visibles según el filtro
+    if (filtroActual === 'infernal') {
+      const infernales = productosRopa.filter(p => !p.exclusivo);
+      if (infernales.length === 0) {
+        document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>';
+        return;
+      }
+      renderCatalogo(infernales, contenedor, true);
+    } else if (filtroActual === 'exclusivo') {
+      const exclusivos = productosRopa.filter(p => p.exclusivo);
+      if (exclusivos.length === 0) {
+        document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>';
+        return;
+      }
+      renderCatalogo(exclusivos, contenedor, true);
     }
-    if (flyerOverlay) {
-      flyerOverlay.addEventListener('click', function(e) {
-        if (e.target === flyerOverlay) cerrarFlyer();
-      });
-    }
-  })();
-
-  // --- Preload imágenes ---
-  function preloadImages(urls = []) {
-    const unique = Array.from(new Set(urls));
-    return Promise.all(unique.map(url => new Promise(resolve => {
-      if (!url) return resolve();
-      const img = new Image();
-      img.src = url;
-      if (img.complete) return resolve();
-      img.onload = () => resolve();
-      img.onerror = () => resolve();
-    })));
+    
+    // Después de que los productos se han renderizado, los hacemos visibles
+    cont.style.opacity = 1;  // Desvanecemos para hacer visible
+  }, 500);  // Tiempo de transición de 0.5s (el mismo que el tiempo de la transición CSS)
   }
 
-  // --- Inicio ---
-  document.addEventListener('DOMContentLoaded', function(){
-    renderCatalogo(productosRopa, 'catalogo-ropa', true);
-    preloadImages(productosRopa.map(p=>p.imagen).concat(['marco.svg','Port.png','skull.gif']));
+  let filtroActual = 'infernal'; // valor inicial del filtro
+
+  document.getElementById('btn-infernal').addEventListener('click', function() {
+  filtroActual = 'infernal';  // Actualiza el filtro a 'infernal'
+  applyFilter();  // Aplica el filtro
   });
+
+  document.getElementById('btn-exclusivo').addEventListener('click', function() {
+  filtroActual = 'exclusivo';  // Actualiza el filtro a 'exclusivo'
+  applyFilter();  // Aplica el filtro
+  });
+
+  // Render wishlist (seguro, después del DOM)
+  if (typeof renderWishlist === 'function') renderWishlist();
+
+const flyerClose = document.getElementById('flyer-close');
+if (flyerClose) {
+    flyerClose.addEventListener('click', function () {
+      const overlay = document.getElementById('flyer-overlay');
+      if (overlay) overlay.style.display = 'none';
+    });
+}
+
+function preloadImages(productos) {
+  productos.forEach(producto => {
+    const img = new Image();
+    img.src = producto.imagen; // Cambia esto a la ruta de tu imagen
+  });
+}
+
+preloadImages(productosRopa);
+
+function renderAsync(items, container) {
+  let index = 0;
   
+  function renderNext() {
+    if (index < items.length) {
+      container.appendChild(items[index]);
+      index++;
+      requestAnimationFrame(renderNext);  // Llámalo en el siguiente frame
+    }
+  }
+  
+  renderNext();
+}
+
 </script>
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close-btn">×</span>
+  <img id="lightbox-img" src="" alt="Ampliación">
+</div>
+  
 </body>
 </html>
