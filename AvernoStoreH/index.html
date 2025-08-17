@@ -1176,9 +1176,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
       <div class="item-marco">
         <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen" loading="lazy">
         <span
-          class="heart-icon"
-          onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})"
-        >𓂀</span>
+        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})">𓂀</span>
         <img src="marco.png" alt="Marco" class="marco-overlay">
       </div>
       <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
@@ -1193,7 +1191,6 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
         class="precio"
         data-precio="${producto.precio}"
       >$${producto.precio.toLocaleString()}</div>
-
       <div class="cantidad-talla-wrapper">
         <label class="cantidad-label">Cant:
           <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1">
