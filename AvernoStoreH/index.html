@@ -387,8 +387,8 @@ color: var(--dorado-oscuro);               /* tu rojo de títulos */
 #flyer-overlay img {
   width: auto;
   height: auto;
-  max-width: 75vw;
-  max-height: 75vh;
+  max-width: 80vw;
+  max-height: 80vh;
   object-fit: contain;
   animation: parpadeo-led 2.5s infinite;
   border-radius: 0;
@@ -566,7 +566,7 @@ strong {
 
 .etiqueta-exclusivo {
   position: absolute;
-  top: -5px;
+  top: -10px;
   left: 6px;
   background: var(--dorado-oscuro);
   color: white;
@@ -580,7 +580,7 @@ strong {
 
 .etiqueta-infernal {
   position: absolute;
-  top: -5px;                 /* misma altura que exclusiva */
+  top: -10px;                 /* misma altura que exclusiva */
   left: 6px;             /* al otro lado */
   background: #e0e0e0;        /* gris metálico sólido */
   color: #333333;           /* texto oscuro para contraste */
@@ -651,7 +651,7 @@ strong {
   height: 100%;
   object-fit: contain;     /* show the hoodie fully */
   top: 0;
-  left: -4px;
+  left: -5px;
   transform: translateY(-06%);   /* <- sube el 10% (ajusta aquí) */
   pointer-events: auto;
 }
@@ -1174,7 +1174,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
         <span
           class="heart-icon"
           onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})"
-        >⛧</span>
+        >𓂀</span>
         <img src="marco.png" alt="Marco" class="marco-overlay">
       </div>
       <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
@@ -1189,8 +1189,6 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
         class="precio"
         data-precio="${producto.precio}"
       >$${producto.precio.toLocaleString()}</div>
-
-      <!-- SE QUITARON LOS BOTONES Normal / Oversize -->
 
       <div class="cantidad-talla-wrapper">
         <label class="cantidad-label">Cant:
