@@ -566,7 +566,7 @@ strong {
 
 .etiqueta-exclusivo {
   position: absolute;
-  top: 2px;
+  top: -1px;
   left: 6px;
   background: var(--dorado-oscuro);
   color: white;
@@ -580,7 +580,7 @@ strong {
 
 .etiqueta-infernal {
   position: absolute;
-  top: 0px;                 /* misma altura que exclusiva */
+  top: -1px;                 /* misma altura que exclusiva */
   left: 6px;             /* al otro lado */
   background: #e0e0e0;        /* gris metálico sólido */
   color: #333333;           /* texto oscuro para contraste */
@@ -651,8 +651,8 @@ strong {
   height: 100%;
   object-fit: contain;     /* show the hoodie fully */
   top: 0;
-  left: 0;
-  transform: translateY(-08%);   /* <- sube el 10% (ajusta aquí) */
+  left: 2px;
+  transform: translateY(-06%);   /* <- sube el 10% (ajusta aquí) */
   pointer-events: auto;
 }
 
