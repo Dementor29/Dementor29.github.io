@@ -177,13 +177,13 @@
       0.5px -0.5px 0 black,
       -0.5px  0.5px 0 black,
       0.5px  0.5px 0 black;
-      position: absolute;
-      top: 15%;
+      position: absolute !important;  /* forzar modo absoluto */
+      top: -5%;
       right: 8px;
       display: inline-block;  /* para que el cursor funcione siempre bien */
       cursor: pointer;        /* ¡la clave! */
       user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
-      z-index: 3;  
+      z-index: 2;  
     }
     
     .heart-icon.active {
@@ -566,7 +566,7 @@ strong {
 
 .etiqueta-exclusivo {
   position: absolute;
-  top: -10px;
+  top: -12px;
   left: 6px;
   background: var(--dorado-oscuro);
   color: white;
@@ -580,7 +580,7 @@ strong {
 
 .etiqueta-infernal {
   position: absolute;
-  top: -10px;                 /* misma altura que exclusiva */
+  top: -12px;                 /* misma altura que exclusiva */
   left: 6px;             /* al otro lado */
   background: #e0e0e0;        /* gris metálico sólido */
   color: #333333;           /* texto oscuro para contraste */
