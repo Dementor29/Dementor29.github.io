@@ -677,32 +677,46 @@ strong {
 .item-marco img.marco-overlay.scale-lg {
   width: 170%;
 }
-    
-/* variante: centrado debajo/encima del producto (dentro del marco) */
+
 .item-marco .heart-icon.heart-inside {
+  position: absolute;      /* por si no lo tiene */
   left: 50%;
   transform: translateX(-50%);
-  bottom: 27px;   /* sube o baja cambiando este valor */
-  top: auto;
+  top: 34px;               /* ← mueve este valor: más alto = menor px, más bajo = mayor px */
+  bottom: auto;
   right: auto;
+  z-index: 30;
+  pointer-events: auto;
 }
 
-/* variante: fuera/encima del marco, esquina superior derecha */
+/* variante: fuera/encima del marco, esquina superior derecha (sin cambios) */
 .item-marco .heart-icon.heart-outside {
-  top: -18px;     /* negativo sube fuera del marco */
-  right: 12px;    /* distancia desde el borde derecho del marco */
+  position: absolute;
+  top: -18px;
+  right: 12px;
   left: auto;
   bottom: auto;
   transform: none;
+  z-index: 30;
 }
 
-/* otra opción: esquina superior izquierda */
+/* variante: esquina superior izquierda (sin cambios) */
 .item-marco .heart-icon.heart-outside-left {
+  position: absolute;
   top: -18px;
   left: 12px;
   right: auto;
   bottom: auto;
   transform: none;
+  z-index: 30;
+}
+
+/* Mobile: baja un poco menos en pantallas pequeñas */
+@media (max-width: 768px) {
+  .item-marco .heart-icon.heart-inside {
+    top: 30px; /* ajusta si se ve muy abajo en móvil */
+    font-size: 38px; /* opcional si quieres reducir tamaño */
+  }
 }
     
  .heart-icon, .zoom-icon {
@@ -1193,7 +1207,7 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     item.innerHTML = `
       <div class="item-marco">
         <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen" loading="lazy">
-        <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})">𓂀</span>
+        <span class="heart-icon heart-inside" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})">𓂀</span>
         <img src="marco.png" alt="Marco" class="marco-overlay">
       </div>
       <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
