@@ -178,12 +178,12 @@
       -0.5px  0.5px 0 black,
       0.5px  0.5px 0 black;
       position: absolute !important;  /* forzar modo absoluto */
-      top: 50%;
+      top: 10%;
       right: 8px;
       display: inline-block;  /* para que el cursor funcione siempre bien */
       cursor: pointer;        /* ¡la clave! */
       user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
-      z-index: 2;  
+      z-index: 6;  
     }
     
     .heart-icon.active {
@@ -657,7 +657,7 @@ strong {
 }
 
 /* marco: centrado, más grande y detrás (z-index menor) */
-.item-marco img.marco-overlay {
+. img.marco-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -673,11 +673,11 @@ strong {
 }
 
 /* Si quieres forzar que el marco cubra más alto que la caja */
-.item-marco img.marco-overlay.scale-lg {
+. img.marco-overlay.scale-lg {
   width: 170%;
 }
     
-.item-marco .heart-icon {
+. .heart-icon {
   position: absolute;
   top: auto;          /* anula reglas globales */
   right: auto;
@@ -692,7 +692,7 @@ strong {
   padding: 5px;
 }
    
-.item-marco .zoom-icon {
+. .zoom-icon {
   position: absolute;
   bottom: -16px;    /* fuera del marco */
   left: -16px;      /* fuera del marco */
@@ -765,7 +765,7 @@ strong {
 }
 
 .gif-fuego {
-  width: 100px;
+  width: 120px;
   height: auto;
   vertical-align: middle;
   margin: 0 6px;
@@ -931,8 +931,8 @@ strong {
 
 /* Ajustes responsive: reduce tamaño de marco en pantallas pequeñas */
 @media (max-width: 600px) {
-  .item-marco { width: 300px; }
-  .item-marco img.marco-overlay { width: 120%; }
+  . { width: 300px; }
+  . img.marco-overlay { width: 120%; }
 }
 
   @media (max-width: 480px) {
@@ -1020,7 +1020,7 @@ strong {
 }
 
  /* Ajuste del corazón de lista de deseos en móviles */
-  .item-marco .heart-icon {
+  . .heart-icon {
     bottom: 20px !important;
   }
 
