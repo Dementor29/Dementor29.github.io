@@ -186,10 +186,11 @@
   transition: transform 0.12s ease, top 0.12s ease, right 0.12s ease, bottom 0.12s ease;
   }
     
+    /* estado activo (estilo cuando está marcado) */
     .heart-icon.active {
     color: var(--dorado-claro);
     text-shadow: 0 0 6px var(--dorado-claro);
-    opacity: 1;
+    transform: scale(1.08);
     }
     
     .cantidad-label {
@@ -677,14 +678,31 @@ strong {
   width: 170%;
 }
     
-.item-marco .heart-icon {
-  position: absolute;
-  top: auto;          /* anula reglas globales */
-  right: auto;
-  bottom: 27px;        /* 8px del borde inferior */
+/* variante: centrado debajo/encima del producto (dentro del marco) */
+.item-marco .heart-icon.heart-inside {
   left: 50%;
   transform: translateX(-50%);
-  z-index: 5;
+  bottom: 27px;   /* sube o baja cambiando este valor */
+  top: auto;
+  right: auto;
+}
+
+/* variante: fuera/encima del marco, esquina superior derecha */
+.item-marco .heart-icon.heart-outside {
+  top: -18px;     /* negativo sube fuera del marco */
+  right: 12px;    /* distancia desde el borde derecho del marco */
+  left: auto;
+  bottom: auto;
+  transform: none;
+}
+
+/* otra opción: esquina superior izquierda */
+.item-marco .heart-icon.heart-outside-left {
+  top: -18px;
+  left: 12px;
+  right: auto;
+  bottom: auto;
+  transform: none;
 }
     
  .heart-icon, .zoom-icon {
