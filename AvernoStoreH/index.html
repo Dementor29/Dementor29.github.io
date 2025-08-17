@@ -169,22 +169,22 @@
     font-size: 20px; 
   }
     
-    .heart-icon {
-      font-size: 40px;
-      color: white;
-      text-shadow: 
-      -0.5px -0.5px 0 black,
-      0.5px -0.5px 0 black,
-      -0.5px  0.5px 0 black,
-      0.5px  0.5px 0 black;
-      position: absolute !important;  /* forzar modo absoluto */
-      top: -50px;
-      right: 8px;
-      display: inline-block;  /* para que el cursor funcione siempre bien */
-      cursor: pointer;        /* ¡la clave! */
-      user-select: none;      /* opcional: evita que se seleccione texto al hacer doble‑clic */
-      z-index: 2;  
-    }
+   /* base */
+  .heart-icon {
+  font-size: 40px;
+  color: white;
+  text-shadow:
+    -0.5px -0.5px 0 black,
+     0.5px -0.5px 0 black,
+    -0.5px  0.5px 0 black,
+     0.5px  0.5px 0 black;
+  position: absolute;   /* ya no usamos !important */
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  z-index: 6;
+  transition: transform 0.12s ease, top 0.12s ease, right 0.12s ease, bottom 0.12s ease;
+  }
     
     .heart-icon.active {
     color: var(--dorado-claro);
@@ -1175,7 +1175,6 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
     item.innerHTML = `
       <div class="item-marco">
         <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen" loading="lazy">
-        <span
         <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})">𓂀</span>
         <img src="marco.png" alt="Marco" class="marco-overlay">
       </div>
