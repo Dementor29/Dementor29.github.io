@@ -1740,12 +1740,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
     
-    // También cerramos el flyer si se hace clic fuera de él (en el fondo)
-    flyerOverlay.addEventListener('click', function(e) {
-      if (e.target === flyerOverlay) {
-        flyerOverlay.style.display = 'none';
-      }
-    });
+// Añadir evento al botón de cierre
+document.getElementById('flyer-close').addEventListener('click', function() {
+  document.getElementById('flyer-overlay').style.display = 'none';
+});
+
+// Añadir evento al fondo para cerrar cuando se haga clic fuera del flyer
+document.getElementById('flyer-overlay').addEventListener('click', function(e) {
+  if (e.target === this) {  // Verificar que el clic fue en el fondo y no en el contenido
+    document.getElementById('flyer-overlay').style.display = 'none';
   }
 });
     
