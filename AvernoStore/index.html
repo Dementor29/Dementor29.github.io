@@ -1681,54 +1681,14 @@ function renderAsync(items, container) {
   renderNext();
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  const flyer = document.getElementById("flyer-modal");
-  const humo = document.getElementById("humo-fondo");
-  const closeButton = document.querySelector('.flyer-close-btn');
-  const viewCollectionButton = document.querySelector('.ver-coleccion-btn');
-  const cruzImg = document.querySelector('.cruz-invertida-img');
-  const catalogo = document.getElementById('catalogo-ropa');
+  document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('flyer-overlay');
+  const closeBtn = document.getElementById('flyer-close');
 
-  // 1) Estado inicial: mostrar modal y mantener catálogo oculto
-  flyer.style.display = "block";
-  humo.style.display = "block";
-  document.body.classList.add("modal-abierto");
-  document.body.style.visibility = "visible";
-
-  // Ocultamos el catálogo al inicio (no se verá hasta que alguien filtre)
-  if (catalogo) {
-    catalogo.style.display = 'none';
-    catalogo.style.opacity = 0;
+  if (!overlay) {
+    console.warn('No se encontró #flyer-overlay — revisar HTML.');
+    return;
   }
-
-  // 2) Función de cierre del flyer
-  window.cerrarFlyer = () => {
-    flyer.style.display = "none";
-    humo.style.display  = "none";
-    document.body.classList.remove("modal-abierto");
-  };
-
-  // 3) Evento "Ver colección"
-  if (viewCollectionButton) {
-    viewCollectionButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      // si quieres que "Ver" abra AvernoStore directamente
-      window.location.href = 'AvernoStore';
-    });
-  }
-
-  // 4) Listener de cerrar
-  if (closeButton) closeButton.addEventListener('click', cerrarFlyer);
-
-  // 5) Animar botones y cruz *después* de la animación de caída (2.5s)
-  setTimeout(() => {
-    // añadimos la clase visible para activar la transición CSS
-    if (viewCollectionButton) viewCollectionButton.classList.add('visible');
-    if (closeButton) closeButton.classList.add('visible');
-    if (cruzImg) cruzImg.classList.add('visible');
-  }, 2600); // 2600 ms para garantizar que la animación CSS haya terminado
-
-});
 
   function closeOverlay() {
     overlay.style.display = 'none';
@@ -1736,6 +1696,33 @@ window.addEventListener('DOMContentLoaded', () => {
     window.__flyerClosedByUser = true;
     document.removeEventListener('keydown', escHandler);
   }
+
+  function escHandler(e) {
+    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) closeOverlay();
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeOverlay();
+    });
+  }
+
+  // Cierra si el usuario hace click en el fondo (no en la imagen)
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeOverlay();
+  });
+
+  document.addEventListener('keydown', escHandler);
+
+  // Mostrar overlay solo si no lo cerró el usuario antes
+  if (!window.__flyerClosedByUser) overlay.style.display = 'flex';
+
+  // Método seguro para mostrarlo desde otros scripts
+  overlay.showIfAllowed = function() {
+    if (!window.__flyerClosedByUser) overlay.style.display = 'flex';
+  };
+});
 
   function escHandler(e) {
     if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
