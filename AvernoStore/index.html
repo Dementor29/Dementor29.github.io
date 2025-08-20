@@ -1792,6 +1792,17 @@ document.getElementById("flyer-close").addEventListener("click", function() {
     document.getElementById("flyer-overlay").style.display = "none";
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const flyerCloseButton = document.getElementById('flyer-close');
+  const flyerOverlay = document.getElementById('flyer-overlay');
+
+  if (flyerCloseButton && flyerOverlay) {
+    flyerCloseButton.addEventListener('click', function() {
+      flyerOverlay.style.display = 'none';
+    });
+  }
+});
+
 </script>
 <!-- Lightbox -->
 <div id="lightbox" onclick="closeLightbox()">
