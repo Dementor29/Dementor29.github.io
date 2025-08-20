@@ -63,11 +63,11 @@
   color: var(--dorado-oscuro);
 }
 
-    @font-face {
-      font-family: 'BurzumGothic';
-      src: url('ruta/a/tu/BurzumGothic.woff') format('woff');
-    }
-
+ @font-face {
+  font-family: 'BurzumGothic';
+  src: url('fonts/BurzumGothic.woff') format('woff');
+  }
+    
     * {
     box-sizing: border-box;
   }
@@ -1678,30 +1678,7 @@ function closeLightbox() {
     };
   })));
   }
-
-// --- FILTRO POR CATEGORÍA ---
-let filtroActual = 'infernal'; // por defecto
-// Usamos el contenedor real que tienes en el HTML:
-const catalogoCont = document.getElementById('catalogo-ropa');
-
-// Asegurarnos que existe el contenedor antes de operar
-if (!catalogoCont) {
-  console.error('No se encontró el contenedor #catalogo-ropa. Revisa el id en el HTML.');
-}
-// Se asegura de usar la función crearItem + renderCatalogo existente,
-// para mantener toda la lógica de tallas, botones, etc.
-// Aquí definimos una pequeña función de utilidad que usa la renderCatalogo previa
-function renderCatalogoFiltrado(productosVisibles) {
-  // usa la función renderCatalogo ya definida arriba que acepta:
-  // renderCatalogo(productos, contenedorId, esRopa)
-  if (!productosVisibles || productosVisibles.length === 0) {
-    document.getElementById('catalogo-ropa').innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
-    return;
-  }
-  // reutiliza tu función existente (la primera que creó elementos con crearItem)
-  renderCatalogo(productosVisibles, 'catalogo-ropa', true);
-}
-
+    
 let filtroActual = null;
 const cont = document.getElementById('catalogo-ropa');
 if (cont) {
