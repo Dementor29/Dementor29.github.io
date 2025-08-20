@@ -1680,15 +1680,42 @@ function renderAsync(items, container) {
   
   renderNext();
 }
-
-  document.addEventListener('DOMContentLoaded', () => {
+    
+document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('flyer-overlay');
   const closeBtn = document.getElementById('flyer-close');
 
-  if (!overlay) {
-    console.warn('No se encontró #flyer-overlay — revisar HTML.');
-    return;
+  if (!overlay) return;
+
+  // Mostrar el flyer al cargar si no fue cerrado antes
+  if (!window.__flyerClosedByUser) {
+    overlay.style.display = 'flex';
   }
+
+  // Función de cierre
+  function closeOverlay() {
+    overlay.style.display = 'none';
+    window.__flyerClosedByUser = true;
+  }
+
+  // Cerrar con la X
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeOverlay();
+    });
+  }
+
+  // Cerrar clicando en el fondo
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeOverlay();
+  });
+
+  // Cerrar con tecla Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' || e.keyCode === 27) closeOverlay();
+  });
+});
     
 function cambiarPrecio(boton, nuevoPrecio, tipo) {
   const tarjeta = boton.closest(".item");
