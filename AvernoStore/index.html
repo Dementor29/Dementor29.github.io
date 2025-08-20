@@ -1672,29 +1672,6 @@ function closeLightbox() {
     };
   })));
   }
-    
-  // Renderizar catálogo según categoría
-function applyFilter() {
-  const cont = document.getElementById('catalogo-ropa');
-  if (!cont) return;
-
-  const visibles = productosRopa.filter(p => p.category === filtroActual);
-  cont.innerHTML = "";
-  visibles.forEach(p => cont.appendChild(crearItem(p, true)));
-}
-
-// Eventos para los botones de filtro
-document.querySelectorAll('.filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filtroActual = btn.dataset.cat;
-    applyFilter();
-  });
-});
-
-// 🚫 NOTA: eliminamos el "applyFilter();" del inicio
-// Así al cargar la página no se muestra nada
 
 // --- FILTRO POR CATEGORÍA ---
 let filtroActual = 'infernal'; // por defecto
@@ -1719,38 +1696,40 @@ function renderCatalogoFiltrado(productosVisibles) {
   renderCatalogo(productosVisibles, 'catalogo-ropa', true);
 }
 
+// --- FILTRO POR CATEGORÍA ---
+let filtroActual = null; // 👈 al inicio no hay filtro seleccionado
+
 function applyFilter() {
   const cont = document.getElementById('catalogo-ropa');
   if (!cont) return;
 
-  // Efecto de desvanecimiento
-  cont.style.opacity = 0;
+  if (!filtroActual) {
+    // si no hay filtro, dejamos el contenedor vacío o con mensaje
+    cont.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
+    return;
+  }
 
-  setTimeout(() => {
-    // FILTRO UNIFICADO: usa category (o 'infernal' por defecto)
-    const visibles = productosRopa.filter(p => (p.category || 'infernal') === filtroActual);
+  const visibles = productosRopa.filter(p => p.category === filtroActual);
 
-    if (visibles.length === 0) {
-      cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
-    } else {
-      // Renderizamos los productos filtrados usando la función única
-      renderCatalogoFiltrado(visibles);
-    }
-
-    // Mostrar de nuevo con transición
-    cont.style.opacity = 1;
-  }, 450); // 450–500ms = tiempo de transición (ajusta si quieres)
+  if (visibles.length === 0) {
+    cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría.</p>';
+  } else {
+    renderCatalogo(visibles, 'catalogo-ropa', true);
+  }
 }
-    
-// listeners para los botones de filtro
+
+// Eventos para los botones de filtro
 document.querySelectorAll('.filter').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    filtroActual = btn.getAttribute('data-cat');
+    filtroActual = btn.dataset.cat;
     applyFilter();
-  })
+  });
 });
+
+// 🚫 ya NO llamamos a applyFilter() aquí.
+// Así no carga nada hasta que el usuario haga click en un botón.
 
 // activar botón por defecto y render inicial
 document.querySelector(`.filter[data-cat="${filtroActual}"]`)?.classList.add('active');
