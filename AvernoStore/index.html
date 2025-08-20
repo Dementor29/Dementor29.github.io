@@ -1678,93 +1678,57 @@ function closeLightbox() {
     };
   })));
   }
-/* ----- FILTRADO CENTRAL (Pegar UNA vez, después de productosRopa + crearItem + renderCatalogo) ----- */
-
-/* estado del filtro: iniciamos en null para que no muestre nada al cargar */
-let filtroActual = null;
-
-/* referencias DOM */
-const catalogoEl = document.getElementById('catalogo-ropa');
-const botonesFiltro = Array.from(document.querySelectorAll('.filter'));
-
-/* utilidad que reutiliza tu renderCatalogo/crearItem existente */
-function renderCatalogoFiltrado(productos) {
-  if (!catalogoEl) return;
-  catalogoEl.innerHTML = '';
-  if (!productos || productos.length === 0) {
-    catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría.</p>';
-    return;
-  }
-  // Reutiliza la función que ya tienes en el archivo que crea cada tarjeta
-  productos.forEach(p => catalogoEl.appendChild(crearItem(p, true)));
-}
-
-/* aplica el filtro actual (llamado por los clicks) */
-function applyFilter() {
-  if (!catalogoEl) return;
-
-  // Si no hay filtro seleccionado, mostramos mensaje por defecto y salimos
-  if (!filtroActual) {
-    catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
-    return;
-  }
-
-  // efecto opcional de "fade" (si quieres mantener transición, asegúrate de tener CSS transition en #catalogo-ropa)
-  catalogoEl.style.opacity = 0;
-  setTimeout(() => {
-    // Filtramos por `category` (asegúrate de que tus objetos en productosRopa usan `category`)
-    const visibles = productosRopa.filter(p => p.category === filtroActual);
-
-    renderCatalogoFiltrado(visibles);
-
-    // mostrar suave
-    catalogoEl.style.opacity = 1;
-  }, 200);
-}
-
-/* attach listeners a botones (seguro aunque haya varios bloques; sólo lo hacemos aquí) */
-botonesFiltro.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // limpiar active
-    botonesFiltro.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    // dataset.cat es el atributo data-cat en el HTML
-    filtroActual = btn.dataset.cat || btn.getAttribute('data-cat');
-
-    // aplicar
-    applyFilter();
-  });
-});
-
-/* Al cargar la página no llamamos applyFilter() para que NO muestre catálogo hasta que el usuario haga click.
-   Si quieres que al cargar se seleccione una categoría por defecto, asigna filtroActual = 'infernal' y llama applyFilter(); */
-
-/* Cierre seguro del flyer (si existe) */
+    
 document.addEventListener('DOMContentLoaded', () => {
+  // Referencias DOM
+  const catalogoEl = document.getElementById('catalogo-ropa');
+  const botones = Array.from(document.querySelectorAll('.filter')); // tus botones deben tener class="filter" y data-cat="..."
+  let filtroActual = null; // NO mostrar catálogo hasta que el usuario haga click
+
+  // Render que reutiliza crearItem() que ya tienes definido en tu script
+  function renderCatalogoFiltrado(productos) {
+    if (!catalogoEl) return;
+    catalogoEl.innerHTML = '';
+    if (!productos || productos.length === 0) {
+      catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
+      return;
+    }
+    productos.forEach(p => catalogoEl.appendChild(crearItem(p, true)));
+  }
+
+  function applyFilter() {
+    if (!catalogoEl) return;
+    // Si no hay filtro — mensaje por defecto
+    if (!filtroActual) {
+      catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
+      return;
+    }
+    // Filtrar por propiedad `category`
+    const visibles = productosRopa.filter(p => p.category === filtroActual);
+    renderCatalogoFiltrado(visibles);
+  }
+
+  // Listeners seguros para los botones
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => {
+      botones.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filtroActual = btn.dataset.cat || btn.getAttribute('data-cat');
+      applyFilter();
+    });
+  });
+
+  // Mensaje inicial (vacío) — no mostramos nada hasta click
+  if (catalogoEl && !filtroActual) {
+    catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
+  }
+
+  // Cierre seguro del flyer (si existe)
   const flyerClose = document.getElementById('flyer-close');
   const flyerOverlay = document.getElementById('flyer-overlay');
   if (flyerClose && flyerOverlay) {
     flyerClose.addEventListener('click', () => { flyerOverlay.style.display = 'none'; });
-    // cerrar también si hacen click fuera del contenido
     flyerOverlay.addEventListener('click', (e) => { if (e.target === flyerOverlay) flyerOverlay.style.display = 'none'; });
-  }
-});
-
-/* Mensaje inicial (vacío) */
-if (catalogoEl && !filtroActual) {
-  catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
-}
-
-// Añadir evento al botón de cierre
-document.getElementById('flyer-close').addEventListener('click', function() {
-  document.getElementById('flyer-overlay').style.display = 'none';
-});
-
-// Añadir evento al fondo para cerrar cuando se haga clic fuera del flyer
-document.getElementById('flyer-overlay').addEventListener('click', function(e) {
-  if (e.target === this) {  // Verificar que el clic fue en el fondo y no en el contenido
-    document.getElementById('flyer-overlay').style.display = 'none';
   }
 });
     
