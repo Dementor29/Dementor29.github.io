@@ -1283,61 +1283,59 @@ const productosRopa = [
   }
 
   function crearItem(producto, esRopa = true) {
-  const item = document.createElement("div");
-  item.className = "item";
-  item.setAttribute("data-precio-inicial", producto.precio);
+    // 1) Crear el contenedor y guardar el precio base
+    const item = document.createElement("div");
+    item.className = "item";
+    item.setAttribute("data-precio-inicial", producto.precio);
 
-  const id = (producto.nombre + "_" + producto.imagen).replace(/\s+/g, "_");
+    // 2) Identificador único para IDs
+    const id = producto.nombre.replace(/\s+/g, "_");
 
-  // Selector de talla
-  let tallaSelect = "";
-  if (esRopa) {
+    // 3) Selector de talla si es prenda
+    let tallaSelect = "";
+    if (esRopa) {
     tallaSelect = `
       <label class="cantidad-label">Talla:
         <select class="cantidad-input" id="talla-${id}">
           <option value="">Elige talla</option>
-          <option value="S">S</option><option value="M">M</option>
-          <option value="L">L</option><option value="XL">XL</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
         </select>
       </label>
       <span id="error-${id}" class="error-msg"></span>
     `;
-  }
-  // Etiqueta por categoría
-  const cat = producto.category || 'infernal';
-  const infoEtiqueta = etiquetas[cat];
-  const badge = infoEtiqueta ? `
-    <span class="etiqueta-cat" style="
-      position:absolute;top:6px;left:6px;z-index:5;
-      background:${infoEtiqueta.color};
-      color:${infoEtiqueta.textoColor||'#fff'};
-      padding:3px 6px;border-radius:3px;
-      font-size:12px;font-weight:bold;font-family:'BurzumGothic',serif;">
-      ${infoEtiqueta.texto}
-    </span>
-  ` : "";
-
-   item.innerHTML = `
+    }
+    // 4) HTML interno del item
+    item.innerHTML = `
     <div class="item-marco">
-      ${badge}
-      <img src="${urlSafe(producto.imagen)}" alt="${escapeQuotes(producto.nombre)}" class="producto-imagen" loading="eager" decoding="async">
-      <!-- toggleFavorite(el, nombre, precio, esRopa) -->
-      <span class="heart-icon" onclick="toggleFavorite(this, '${escapeQuotes(producto.nombre)}', ${producto.precio}, ${esRopa})">⛧</span>
+    <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen" loading="eager" decoding="async">
+      <span
+        class="heart-icon"
+        onclick="toggleFavorite(this,'${producto.nombre}',${producto.precio},${esRopa})"
+      >⛧</span>
       <img src="marco.svg" alt="Marco" class="marco-overlay">
     </div>
-
-    <div class="zoom-icon" onclick="openLightbox('${urlSafe(producto.imagen)}')">
+    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
       <i class="fas fa-search"></i>
     </div>
-
     <h3>${producto.nombre}</h3>
-    <div class="precio" data-precio="${producto.precio}" data-tipo="Normal">${money(producto.precio)}</div>
-
+    <div
+      class="precio"
+      data-precio="${producto.precio}"
+      data-tipo="Normal"
+    >$${producto.precio.toLocaleString()}</div>
     <div class="talla-switch flex gap-2 mb-4">
-      <button class="cart-button boton-talla" onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')">Normal</button>
-      <button class="cart-button boton-talla" onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')">Oversize</button>
+      <button
+        class="cart-button boton-talla"
+        onclick="cambiarPrecio(this, ${producto.precio}, 'Normal')"
+      >Normal</button>
+      <button
+        class="cart-button boton-talla"
+        onclick="cambiarPrecio(this, ${producto.precio + 10000}, 'Oversize')"
+      >Oversize</button>
     </div>
-
     <div class="cantidad-talla-wrapper">
       <label class="cantidad-label">Cant:
         <input type="number" class="cantidad-input" id="cantidad-${id}" value="1" min="1">
@@ -1345,21 +1343,25 @@ const productosRopa = [
       <div class="separator"></div>
       ${tallaSelect}
     </div>
+    <button
+      class="cart-button"
+      onclick="addToCart('${producto.nombre}', ${producto.precio}, ${esRopa})"
+    >Agregar al carrito</button>
+    `;
 
-    <!-- addToCart(nombre, precio, esRopa) -->
-    <button class="cart-button" onclick="addToCart('${escapeQuotes(producto.nombre)}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
-  `;
-
-  if (esRopa) {
+    // 5) Limpiar mensajes de error al cambiar talla
+    if (esRopa) {
     const select = item.querySelector(`#talla-${id}`);
     const errorSpan = item.querySelector(`#error-${id}`);
-    select.addEventListener("change", () => { if (select.value) errorSpan.textContent = ""; });
-  }
+    select.addEventListener("change", () => {
+      if (select.value) errorSpan.textContent = "";
+    });
+    }
 
-  return item;
-  }
+    return item;
+    }
     
-    function renderCatalogo(productos, contenedorId, esRopa) {
+  function renderCatalogo(productos, contenedorId, esRopa) {
       const cont = document.getElementById(contenedorId);
       cont.innerHTML = "";
       productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
