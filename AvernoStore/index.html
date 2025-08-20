@@ -1161,6 +1161,12 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close-btn">×</span>
+  <img id="lightbox-img" src="" alt="Ampliación">
+</div>
+  
   <script>
   // productosRopa con propiedad `category` (infernal / exclusivo)
 // Si en el futuro quieres asignar varias categorías a un producto,
@@ -1791,7 +1797,7 @@ document.addEventListener('keydown', (e) => {
 document.getElementById("flyer-close").addEventListener("click", function() {
     document.getElementById("flyer-overlay").style.display = "none";
 });
-
+    
 document.addEventListener('DOMContentLoaded', function() {
   const flyerCloseButton = document.getElementById('flyer-close');
   const flyerOverlay = document.getElementById('flyer-overlay');
@@ -1804,11 +1810,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-<!-- Lightbox -->
-<div id="lightbox" onclick="closeLightbox()">
-  <span class="close-btn">×</span>
-  <img id="lightbox-img" src="" alt="Ampliación">
-</div>
-  
 </body>
 </html>
