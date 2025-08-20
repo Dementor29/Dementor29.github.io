@@ -1558,6 +1558,19 @@ const productosRopa = [
   document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
   }  
 
+// renderiza una lista ya filtrada usando tu crearItem (si crearItem espera esRopa, ajusta segundo parámetro según tus objetos)
+function renderCatalogoFiltrado(productosVisibles) {
+  const cont = document.getElementById('catalogo-ropa');
+  if (!cont) return;
+  cont.innerHTML = ''; // limpia antes de renderizar
+  productosVisibles.forEach(p => {
+    // Si tus objetos tienen una propiedad que indica si es ropa (p.esRopa), úsala.
+    // Si no, asume true (ropa). Ajusta según tu estructura.
+    const esRopa = (typeof p.esRopa !== 'undefined') ? p.esRopa : true;
+    cont.appendChild(crearItem(p, esRopa));
+  });
+}
+    
 function irYZoom(seccionId) {
   const el = document.getElementById(seccionId);
   if (!el) return;
@@ -1633,27 +1646,33 @@ function renderCatalogoFiltrado(productosVisibles) {
   renderCatalogo(productosVisibles, 'catalogo-ropa', true);
 }
 
-function applyFilter() {
+function applyFilter(filtroActual) {
+  // calcula los visibles según la línea que mencionaste
+  const visibles = productos.filter(p => (p.category || 'infernal') === filtroActual);
+
+  // contenedor del catálogo
   const cont = document.getElementById('catalogo-ropa');
   if (!cont) return;
 
-  // Efecto de desvanecimiento
-  cont.style.opacity = 0;
-
-  setTimeout(() => {
-    // FILTRO UNIFICADO: usa category (o 'infernal' por defecto)
-    const visibles = productosRopa.filter(p => (p.category || 'infernal') === filtroActual);
-
-    if (visibles.length === 0) {
-      cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
-    } else {
-      // Renderizamos los productos filtrados usando la función única
-      renderCatalogoFiltrado(visibles);
-    }
-
-    // Mostrar de nuevo con transición
-    cont.style.opacity = 1;
-  }, 450); // 450–500ms = tiempo de transición (ajusta si quieres)
+  // si no hay productos, ocultamos el catálogo y mostramos mensaje
+  if (visibles.length === 0) {
+    cont.style.opacity = 0;
+    setTimeout(() => {
+      cont.style.display = 'none';
+      cont.innerHTML = '<p style="color:#777; text-align:center; padding:30px 0;">No hay productos en esta categoría configurados.</p>';
+    }, 300);
+  } else {
+    // mostramos y preparamos el contenedor
+    cont.style.display = 'flex';
+    cont.style.flexWrap = 'wrap';
+    cont.style.justifyContent = 'center';
+    cont.style.gap = '20px';
+    // renderizamos usando la función auxiliar que te pasé
+    renderCatalogoFiltrado(visibles);
+    // pequeña transición para que aparezca suave
+    cont.style.opacity = 0;
+    setTimeout(() => { cont.style.opacity = 1; }, 50);
+  }
 }
     
 // listeners para los botones de filtro
@@ -1703,6 +1722,56 @@ function renderAsync(items, container) {
   
   renderNext();
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  const flyer = document.getElementById("flyer-modal");
+  const humo = document.getElementById("humo-fondo");
+  const closeButton = document.querySelector('.flyer-close-btn');
+  const viewCollectionButton = document.querySelector('.ver-coleccion-btn');
+  const cruzImg = document.querySelector('.cruz-invertida-img');
+  const catalogo = document.getElementById('catalogo-ropa');
+
+  // 1) Estado inicial: mostrar modal y mantener catálogo oculto
+  flyer.style.display = "block";
+  humo.style.display = "block";
+  document.body.classList.add("modal-abierto");
+  document.body.style.visibility = "visible";
+
+  // Ocultamos el catálogo al inicio (no se verá hasta que alguien filtre)
+  if (catalogo) {
+    catalogo.style.display = 'none';
+    catalogo.style.opacity = 0;
+  }
+
+  // 2) Función de cierre del flyer
+  window.cerrarFlyer = () => {
+    flyer.style.display = "none";
+    humo.style.display  = "none";
+    document.body.classList.remove("modal-abierto");
+  };
+
+  // 3) Evento "Ver colección"
+  if (viewCollectionButton) {
+    viewCollectionButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      // si quieres que "Ver" abra AvernoStore directamente
+      window.location.href = 'AvernoStore';
+    });
+  }
+
+  // 4) Listener de cerrar
+  if (closeButton) closeButton.addEventListener('click', cerrarFlyer);
+
+  // 5) Animar botones y cruz *después* de la animación de caída (2.5s)
+  setTimeout(() => {
+    // añadimos la clase visible para activar la transición CSS
+    if (viewCollectionButton) viewCollectionButton.classList.add('visible');
+    if (closeButton) closeButton.classList.add('visible');
+    if (cruzImg) cruzImg.classList.add('visible');
+  }, 2600); // 2600 ms para garantizar que la animación CSS haya terminado
+
+});
+
 
 </script>
 <!-- Lightbox -->
