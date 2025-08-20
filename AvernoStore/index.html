@@ -716,6 +716,16 @@ object-fit: cover !important;
   opacity: 0.8;
   color: var(--dorado-claro); /* o cualquier color que quieras */
 }
+
+#flyer {
+  opacity: 1;
+  transition: opacity 0.5s ease; /* transición suave */
+}
+
+#flyer.oculto {
+  opacity: 0;
+  pointer-events: none; /* evita clics mientras se desvanece */
+}
     
 /* Lightbox para la imagen ampliada */
 #lightbox {
@@ -1768,6 +1778,22 @@ window.onload = () => {
   if (flyer) flyer.style.display = "block";
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  const flyer = document.getElementById("flyer");
+  const closeBtn = document.getElementById("closeFlyer");
+
+  if (flyer) flyer.style.display = "block";
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      flyer.classList.add("oculto");
+      setTimeout(() => {
+        flyer.style.display = "none";
+      }, 500); // mismo tiempo que la transición CSS
+    });
+  }
+});
+    
 </script>
 <!-- Lightbox -->
 <div id="lightbox" onclick="closeLightbox()">
