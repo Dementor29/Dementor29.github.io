@@ -226,7 +226,7 @@
 
   .cantidad-input:focus {
   border-color: var(--dorado-claro);
-  box-shadow: 0 0 5px color: var(--dorado-claro);
+  box-shadow: 0 0 5px var(--dorado-claro);
   outline: none;
   }
     
@@ -241,7 +241,7 @@
 
   select.cantidad-input:hover {
   border-color: var(--dorado-claro);
-  box-shadow: 0 0 6px color: var(--dorado-claro);
+  box-shadow: 0 0 6px var(--dorado-claro);
   }
 
   select.cantidad-input option {
@@ -1230,7 +1230,7 @@ const productosRopa = [
     <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
       <i class="fas fa-search"></i>
     </div>
-    ${ producto.exclusivo
+    ${ producto.category === 'exclusivo'
     ? '<div class="etiqueta-exclusivo">💀 EXCLUSIVO</div>'
     : '<div class="etiqueta-infernal">🔥 INFERNAL</div>'
     }
@@ -1558,19 +1558,6 @@ const productosRopa = [
   document.getElementById('contador-wishlist').textContent = Object.keys(wishlistData).length;
   document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
   }  
-
-// renderiza una lista ya filtrada usando tu crearItem (si crearItem espera esRopa, ajusta segundo parámetro según tus objetos)
-function renderCatalogoFiltrado(productosVisibles) {
-  const cont = document.getElementById('catalogo-ropa');
-  if (!cont) return;
-  cont.innerHTML = ''; // limpia antes de renderizar
-  productosVisibles.forEach(p => {
-    // Si tus objetos tienen una propiedad que indica si es ropa (p.esRopa), úsala.
-    // Si no, asume true (ropa). Ajusta según tu estructura.
-    const esRopa = (typeof p.esRopa !== 'undefined') ? p.esRopa : true;
-    cont.appendChild(crearItem(p, esRopa));
-  });
-}
     
 function irYZoom(seccionId) {
   const el = document.getElementById(seccionId);
@@ -1647,15 +1634,13 @@ function renderCatalogoFiltrado(productosVisibles) {
   renderCatalogo(productosVisibles, 'catalogo-ropa', true);
 }
 
-function applyFilter(filtroActual) {
-  // calcula los visibles según la línea que mencionaste
-  const visibles = productos.filter(p => (p.category || 'infernal') === filtroActual);
+// Reemplaza la función existente por esta versión que usa la variable global `filtroActual`
+function applyFilter() {
+  const visibles = (productosRopa || []).filter(p => (p.category || 'infernal') === filtroActual);
 
-  // contenedor del catálogo
   const cont = document.getElementById('catalogo-ropa');
   if (!cont) return;
 
-  // si no hay productos, ocultamos el catálogo y mostramos mensaje
   if (visibles.length === 0) {
     cont.style.opacity = 0;
     setTimeout(() => {
@@ -1663,44 +1648,16 @@ function applyFilter(filtroActual) {
       cont.innerHTML = '<p style="color:#777; text-align:center; padding:30px 0;">No hay productos en esta categoría configurados.</p>';
     }, 300);
   } else {
-    // mostramos y preparamos el contenedor
     cont.style.display = 'flex';
     cont.style.flexWrap = 'wrap';
     cont.style.justifyContent = 'center';
     cont.style.gap = '20px';
-    // renderizamos usando la función auxiliar que te pasé
     renderCatalogoFiltrado(visibles);
-    // pequeña transición para que aparezca suave
     cont.style.opacity = 0;
     setTimeout(() => { cont.style.opacity = 1; }, 50);
   }
 }
     
-// listeners para los botones de filtro
-document.querySelectorAll('.filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    filtroActual = btn.getAttribute('data-cat');
-    applyFilter();
-  })
-});
-
-// activar botón por defecto y render inicial
-document.querySelector(`.filter[data-cat="${filtroActual}"]`)?.classList.add('active');
-applyFilter();
-    
-  // Render wishlist (seguro, después del DOM)
-  if (typeof renderWishlist === 'function') renderWishlist();
-
-const flyerClose = document.getElementById('flyer-close');
-if (flyerClose) {
-    flyerClose.addEventListener('click', function () {
-      const overlay = document.getElementById('flyer-overlay');
-      if (overlay) overlay.style.display = 'none';
-    });
-}
-
 function preloadImages(productos) {
   productos.forEach(producto => {
     const img = new Image();
@@ -1773,20 +1730,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 });
 
-window.onload = () => {
-  const flyer = document.getElementById("flyer");
-  if (flyer) flyer.style.display = "block";
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  const overlay = document.getElementById('flyer-overlay');
-  const closeBtn = document.getElementById('flyer-close');
-
-  if (!overlay) {
-    console.warn('No se encontró #flyer-overlay — revisar HTML.');
-    return;
-  }
-
   function closeOverlay() {
     overlay.style.display = 'none';
     overlay.classList.remove('visible');
@@ -1821,6 +1764,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!window.__flyerClosedByUser) overlay.style.display = 'flex';
   };
 });
+
+function cambiarPrecio(boton, nuevoPrecio, tipo) {
+  const tarjeta = boton.closest(".item");
+  const precioEl = tarjeta.querySelector(".precio");
+  precioEl.textContent = `$${nuevoPrecio.toLocaleString("es-CO")}`;
+  precioEl.setAttribute("data-precio", nuevoPrecio);
+  precioEl.setAttribute("data-tipo", tipo);
+
+  // quitar clase activa de botones y añadir a este
+  tarjeta.querySelectorAll(".boton-talla").forEach(b => b.classList.remove("bg-gray-700","text-white"));
+  boton.classList.add("bg-gray-700","text-white");
+}
 
 </script>
 <!-- Lightbox -->
