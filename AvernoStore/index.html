@@ -1661,9 +1661,26 @@ function renderCatalogo(productosAmostrar){
   });
 }
 
-function applyFilter(){
-  const visibles = productos.filter(p => (p.category || 'infernal') === filtroActual);
-  renderCatalogo(visibles);
+function applyFilter() {
+  const contenedor = 'catalogo-ropa';
+  const cont = document.getElementById(contenedor);
+
+  // Desvanecimiento
+  cont.style.opacity = 0;
+
+  setTimeout(() => {
+    // FILTRO UNIFICADO: usa category (o 'infernal' por defecto)
+    const visibles = productosRopa.filter(p => (p.category || 'infernal') === filtroActual);
+
+    if (visibles.length === 0) {
+      cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
+    } else {
+      renderCatalogo(visibles, contenedor, true);
+    }
+
+    // Mostrar de nuevo con transición
+    cont.style.opacity = 1;
+  }, 450); // 450–500ms = tiempo de transición (ajusta si quieres)
 }
 
 // listeners para los botones de filtro
