@@ -1080,13 +1080,21 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
        data-descripcion="Revisa Tus Compras Del Averno">🛒<strong>Carrito de Compras</strong>
     <span id="contador-cart">0</span>
   </div>
-</header>
+   
+  </header>
   
-    <h2>¡ELIGE TU<img src="skull.gif" class="gif-fuego" alt="fuego"> CAMISETA!</h2>
+  <h2>¡ELIGE TU<img src="skull.gif" class="gif-fuego" alt="fuego"> CAMISETA!</h2>
 
   <div class="filtros-wrapper">
-  <button id="btn-infernal" class="filter infernal">INFERNAL</button>
-  <button id="btn-exclusivo" class="filter exclusivo">EXCLUSIVO</button>
+  <!-- botones existentes... -->
+  <button class="filter" data-cat="infernal">INFERNAL</button>
+  <button class="filter" data-cat="exclusivo">EXCLUSIVO</button>
+
+  <!-- AÑADE ESTOS 3 -->
+  <button class="filter" data-cat="black-metal">BLACK METAL</button>
+  <button class="filter" data-cat="thrash-metal">THRASH METAL</button>
+  <button class="filter" data-cat="death-metal">DEATH METAL</button>
+
   </div>
 
   <p class="instruccion">> HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA <</p>
@@ -1146,34 +1154,39 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   </a>
 
   <script>
-    const productosRopa = [
-      { nombre: "VOX INFERNI", precio: 64990, imagen: "1.png", exclusivo: false },
-      { nombre: "LUPUS NOCTIS", precio: 64990, imagen: "2.png", exclusivo: false },
-      { nombre: "PALMIRA OBSCURA", precio: 64990, imagen: "3.png", exclusivo: false },
-      { nombre: "ANGELUS OCCISUS", precio: 64990, imagen: "4.png", exclusivo: false },
-      { nombre: "CULTUS LUXURIAE", precio: 64990, imagen: "5.png", exclusivo: false },
-      { nombre: "CORNUA TENEBRIS", precio: 64990, imagen: "6.png", exclusivo: false },
-      { nombre: "AVERNO STORE", precio: 64990, imagen: "7.png", exclusivo: false },
-      { nombre: "OBSCURA FIDES", precio: 64990, imagen: "8.png", exclusivo: false },
-      { nombre: "CRUCIFIXUS SANGUINIS", precio: 64990, imagen: "9.png", exclusivo: false },
-      { nombre: "CORPUS MORTIS", precio: 64990, imagen: "10.png", exclusivo: false },
-      { nombre: "REDEMPTOR TENEBRIS", precio: 64990, imagen: "11.png", exclusivo: false },
-      { nombre: "THRONUS MORTIS", precio: 64990, imagen: "12.png", exclusivo: false },
-      { nombre: "ALTARE SANGUINIS", precio: 64990, imagen: "13.png", exclusivo: false },
-      { nombre: "HELVETE", precio: 64990, imagen: "14.png", exclusivo: false },
-      { nombre: "LUCIFERUS", precio: 64990, imagen: "15.png", exclusivo: false },
-      { nombre: "ODIN KRIGENS GUD", precio: 64990, imagen: "16.png", exclusivo: false },
-      { nombre: "MALEDICTUS XII", precio: 64990, imagen: "17.png", exclusivo: false },
-      { nombre: "DOMINUS MORTIS", precio: 64990, imagen: "18.png", exclusivo: false },
-      { nombre: "DOMINUS BAPHOMET", precio: 64990, imagen: "19.png", exclusivo: false },
-      { nombre: "PONTIFEX MALEFICUS", precio: 64990, imagen: "20.png", exclusivo: false },
-      { nombre: "MASK HANNYA", precio: 79990, imagen: "21.png", exclusivo: true },
-      { nombre: "SKULL IN ACID", precio: 79990, imagen: "22.png", exclusivo: true },
-      { nombre: "ALIEN PLAGUE", precio: 79990, imagen: "23.png", exclusivo: true },
-      { nombre: "ALIEN SACRIFICE", precio: 79990, imagen: "24.png", exclusivo: true },
-      { nombre: "FUNICULUS CRANII", precio: 64990, imagen: "25.png", exclusivo: false }
-    ];
+  // productosRopa con propiedad `category` (infernal / exclusivo)
+// Si en el futuro quieres asignar varias categorías a un producto,
+// cambia `category: "..."` por `categories: ["black-metal","exclusivo"]`
+// y adapta la lógica de filtrado a `categories.includes(filtroActual)`.
 
+const productosRopa = [
+    { nombre: "VOX INFERNI", precio: 64990, imagen: "1.png", category: "infernal" },
+    { nombre: "LUPUS NOCTIS", precio: 64990, imagen: "2.png", category: "infernal" },
+    { nombre: "PALMIRA OBSCURA", precio: 64990, imagen: "3.png", category: "infernal" },
+    { nombre: "ANGELUS OCCISUS", precio: 64990, imagen: "4.png", category: "infernal" },
+    { nombre: "CULTUS LUXURIAE", precio: 64990, imagen: "5.png", category: "infernal" },
+    { nombre: "CORNUA TENEBRIS", precio: 64990, imagen: "6.png", category: "infernal" },
+    { nombre: "AVERNO STORE", precio: 64990, imagen: "7.png", category: "infernal" },
+    { nombre: "OBSCURA FIDES", precio: 64990, imagen: "8.png", category: "infernal" },
+    { nombre: "CRUCIFIXUS SANGUINIS", precio: 64990, imagen: "9.png", category: "infernal" },
+    { nombre: "CORPUS MORTIS", precio: 64990, imagen: "10.png", category: "infernal" },
+    { nombre: "REDEMPTOR TENEBRIS", precio: 64990, imagen: "11.png", category: "infernal" },
+    { nombre: "THRONUS MORTIS", precio: 64990, imagen: "12.png", category: "infernal" },
+    { nombre: "ALTARE SANGUINIS", precio: 64990, imagen: "13.png", category: "infernal" },
+    { nombre: "HELVETE", precio: 64990, imagen: "14.png", category: "infernal" },
+    { nombre: "LUCIFERUS", precio: 64990, imagen: "15.png", category: "infernal" },
+    { nombre: "ODIN KRIGENS GUD", precio: 64990, imagen: "16.png", category: "infernal" },
+    { nombre: "MALEDICTUS XII", precio: 64990, imagen: "17.png", category: "infernal" },
+    { nombre: "DOMINUS MORTIS", precio: 64990, imagen: "18.png", category: "infernal" },
+    { nombre: "DOMINUS BAPHOMET", precio: 64990, imagen: "19.png", category: "infernal" },
+    { nombre: "PONTIFEX MALEFICUS", precio: 64990, imagen: "20.png", category: "infernal" },
+    { nombre: "MASK HANNYA", precio: 79990, imagen: "21.png", category: "exclusivo" },
+    { nombre: "SKULL IN ACID", precio: 79990, imagen: "22.png", category: "exclusivo" },
+    { nombre: "ALIEN PLAGUE", precio: 79990, imagen: "23.png", category: "exclusivo" },
+    { nombre: "ALIEN SACRIFICE", precio: 79990, imagen: "24.png", category: "exclusivo" },
+    { nombre: "FUNICULUS CRANII", precio: 64990, imagen: "25.png", category: "infernal" }
+    ];
+    
     let wishlistData = {};
     let cartData = {};
 
@@ -1627,18 +1640,46 @@ function closeLightbox() {
   }, 500);  // Tiempo de transición de 0.5s (el mismo que el tiempo de la transición CSS)
   }
 
-  let filtroActual = 'infernal'; // valor inicial del filtro
+ // --- FILTRO POR CATEGORÍA ---
+let filtroActual = 'infernal'; // por defecto
+const catalogoCont = document.getElementById('catalogo-container'); // ajusta si tu id es distinto
 
-  document.getElementById('btn-infernal').addEventListener('click', function() {
-  filtroActual = 'infernal';  // Actualiza el filtro a 'infernal'
-  applyFilter();  // Aplica el filtro
+function renderCatalogo(productosAmostrar){
+  catalogoCont.innerHTML = '';
+  productosAmostrar.forEach(p => {
+    // si ya tienes tu función crearItem, úsala; aquí pongo un ejemplo simple:
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.innerHTML = `
+      ${ p.exclusivo ? '<span class="etiqueta-exclusivo">EXCLUSIVO</span>' : `<span class="etiqueta-infernal">${(p.category||'INFERNAL').toUpperCase()}</span>` }
+      <img src="${p.imagen}" alt="${p.nombre}">
+      <h3>${p.nombre}</h3>
+      <div class="precio">$${p.precio.toLocaleString()}</div>
+      <button class="cart-button" onclick="addToCart('${p.nombre}', ${p.precio})">Agregar</button>
+    `;
+    catalogoCont.appendChild(div);
   });
+}
 
-  document.getElementById('btn-exclusivo').addEventListener('click', function() {
-  filtroActual = 'exclusivo';  // Actualiza el filtro a 'exclusivo'
-  applyFilter();  // Aplica el filtro
-  });
+function applyFilter(){
+  const visibles = productos.filter(p => (p.category || 'infernal') === filtroActual);
+  renderCatalogo(visibles);
+}
 
+// listeners para los botones de filtro
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    filtroActual = btn.getAttribute('data-cat');
+    applyFilter();
+  })
+});
+
+// activar botón por defecto y render inicial
+document.querySelector(`.filter[data-cat="${filtroActual}"]`)?.classList.add('active');
+applyFilter();
+    
   // Render wishlist (seguro, después del DOM)
   if (typeof renderWishlist === 'function') renderWishlist();
 
