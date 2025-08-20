@@ -1356,9 +1356,19 @@ const productosRopa = [
     `;
   }
 
-   // Etiqueta por categoría (usa category o 'infernal' por defecto)
+  // Etiqueta por categoría (usa category o 'infernal' por defecto)
   const cat = producto.category || 'infernal';
-  const badge = `<div class="etiqueta ${cat}">${cat.toUpperCase()}</div>`;
+  const infoEtiqueta = (typeof etiquetas !== 'undefined') ? etiquetas[cat] : null;
+  const badge = infoEtiqueta ? `
+  <span class="etiqueta-cat" style="
+    position:absolute;top:6px;left:6px;z-index:5;
+    background:${infoEtiqueta.color};
+    color:${infoEtiqueta.textoColor||'#fff'};
+    padding:3px 6px;border-radius:3px;
+    font-size:12px;font-weight:bold;font-family:'BurzumGothic',serif;">
+    ${infoEtiqueta.texto}
+  </span>
+  ` : "";
 
   item.innerHTML = `
     <div class="item-marco">
