@@ -1710,10 +1710,10 @@ function applyFilter() {
   if (visibles.length === 0) {
     cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría.</p>';
   } else {
-    renderCatalogo(visibles, 'catalogo-ropa', true); // Llamar a la función para renderizar los productos
+    renderCatalogo(visibles, 'catalogo-ropa', true); // Llamar a la función para renderizar los productos filtrados
   }
 }
-    
+
 // Inicializar la página con el filtro activo, si ya hay uno seleccionado
 document.addEventListener('DOMContentLoaded', () => {
   if (filtroActual) {
