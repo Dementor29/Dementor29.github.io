@@ -1681,6 +1681,8 @@ function closeLightbox() {
     
 let filtroActual = null;
 const cont = document.getElementById('catalogo-ropa');
+
+// Inicializar el catálogo con un mensaje informativo
 if (cont) {
   cont.innerHTML = '<p class="instruccion">Elige una categoría para ver los productos.</p>';
 }
@@ -1705,16 +1707,18 @@ function applyFilter() {
   if (!cont) return;
 
   if (!filtroActual) {
+    // Si no hay filtro, mostrar el mensaje por defecto
     cont.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
     return;
   }
 
+  // Filtrar productos según la categoría seleccionada
   const visibles = productosRopa.filter(p => p.category === filtroActual);
 
   if (visibles.length === 0) {
     cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría.</p>';
   } else {
-    renderCatalogo(visibles, 'catalogo-ropa', true);
+    renderCatalogo(visibles, 'catalogo-ropa', true); // Llamar a la función para renderizar los productos
   }
 }
 
@@ -1728,15 +1732,14 @@ function renderCatalogo(productos, contenedorId, esRopa) {
   });
 }
 
-// Render inicial al cargar la página
+// Inicializar la página con el filtro activo, si ya hay uno seleccionado
 document.addEventListener('DOMContentLoaded', () => {
-  // Asegúrate de que se aplique el filtro inicial si hay uno
   if (filtroActual) {
     document.querySelector(`.filter[data-cat="${filtroActual}"]`)?.classList.add('active');
     applyFilter();
   }
 });
-
+    
     // También cerramos el flyer si se hace clic fuera de él (en el fondo)
     flyerOverlay.addEventListener('click', function(e) {
       if (e.target === flyerOverlay) {
