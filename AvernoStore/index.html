@@ -1788,6 +1788,10 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') flyer?.style.display = 'none';
 });
 
+document.getElementById("flyer-close").addEventListener("click", function() {
+    document.getElementById("flyer-overlay").style.display = "none";
+});
+
 </script>
 <!-- Lightbox -->
 <div id="lightbox" onclick="closeLightbox()">
