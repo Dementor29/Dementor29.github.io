@@ -1684,21 +1684,27 @@ const cont = document.getElementById('catalogo-ropa');
 if (cont) {
   cont.innerHTML = '<p class="instruccion">Elige una categoría para ver los productos.</p>';
 }
+
+// Añadir evento de clic a los botones de filtro
 document.querySelectorAll('.filter').forEach(btn => {
   btn.addEventListener('click', () => {
+    // Eliminar clase 'active' de todos los botones
     document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    // Añadir la clase 'active' al botón clicado
     btn.classList.add('active');
+    // Asignar el valor del filtro actual basado en el botón clicado
     filtroActual = btn.getAttribute('data-cat');
-    applyFilter(); // ahora sí, sólo tras clic
+    // Aplicar el filtro
+    applyFilter();
   });
 });
 
+// Función para aplicar el filtro de categoría
 function applyFilter() {
   const cont = document.getElementById('catalogo-ropa');
   if (!cont) return;
 
   if (!filtroActual) {
-    // si no hay filtro, dejamos el contenedor vacío o con mensaje
     cont.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
     return;
   }
@@ -1712,73 +1718,24 @@ function applyFilter() {
   }
 }
 
-// Eventos para los botones de filtro
-document.querySelectorAll('.filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filtroActual = btn.dataset.cat;
-    applyFilter();
-  });
-});
-
-// 🚫 ya NO llamamos a applyFilter() aquí.
-// Así no carga nada hasta que el usuario haga click en un botón.
-
-// activar botón por defecto y render inicial
-document.querySelector(`.filter[data-cat="${filtroActual}"]`)?.classList.add('active');
-applyFilter();
-    
-  // Render wishlist (seguro, después del DOM)
-  if (typeof renderWishlist === 'function') renderWishlist();
-
-const flyerClose = document.getElementById('flyer-close');
-if (flyerClose) {
-    flyerClose.addEventListener('click', function () {
-      const overlay = document.getElementById('flyer-overlay');
-      if (overlay) overlay.style.display = 'none';
-    });
-}
-
-function preloadImages(productos) {
+// Función para renderizar el catálogo de productos
+function renderCatalogo(productos, contenedorId, esRopa) {
+  const cont = document.getElementById(contenedorId);
+  cont.innerHTML = ''; // Limpiar contenido anterior
   productos.forEach(producto => {
-    const img = new Image();
-    img.src = producto.imagen; // Cambia esto a la ruta de tu imagen
+    const item = crearItem(producto, esRopa);
+    cont.appendChild(item);
   });
 }
 
-preloadImages(productosRopa);
-
-function renderAsync(items, container) {
-  let index = 0;
-  
-  function renderNext() {
-    if (index < items.length) {
-      container.appendChild(items[index]);
-      index++;
-      requestAnimationFrame(renderNext);  // Llámalo en el siguiente frame
-    }
+// Render inicial al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  // Asegúrate de que se aplique el filtro inicial si hay uno
+  if (filtroActual) {
+    document.querySelector(`.filter[data-cat="${filtroActual}"]`)?.classList.add('active');
+    applyFilter();
   }
-  
-  renderNext();
-}
-
-const flyer = document.getElementById('flyer-overlay');
-flyer?.addEventListener('click', (e) => {
-  if (e.target.id === 'flyer-overlay') flyer.style.display = 'none';
 });
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') flyer?.style.display = 'none';
-});
-    
-document.addEventListener('DOMContentLoaded', function() {
-  const flyerCloseButton = document.getElementById('flyer-close');
-  const flyerOverlay = document.getElementById('flyer-overlay');
-
-  if (flyerCloseButton && flyerOverlay) {
-    flyerCloseButton.addEventListener('click', function() {
-      flyerOverlay.style.display = 'none';
-    });
 
     // También cerramos el flyer si se hace clic fuera de él (en el fondo)
     flyerOverlay.addEventListener('click', function(e) {
