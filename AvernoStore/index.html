@@ -607,30 +607,21 @@ strong {
   font-family: 'BurzumGothic', serif;
   z-index: 1;
 }
-
-.filter.infernal,
-.filter.exclusivo {
-  background-color: #0f0f0f;  /* Fondo oscuro similar al de los botones generales */
-  color: #cccccc;              /* Texto claro */
-  font-size: 14px;
-  font-weight: bold;
-  padding: 10px 18px;
-  font-family: 'BurzumGothic', serif;
-  min-width: 130px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid #0f0f0f;   /* Asegúrate de que tenga borde como los otros botones */
+    
+.filter-btn {
+  background: none;
+  border: 2px solid #C10202;
+  color: white;
+  font-size: 16px;
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.filter.infernal:hover,
-.filter.exclusivo:hover {
-  background-color: rgba(25, 25, 25, 0.8); /* Efecto hover similar a los botones */
-  color: var(--dorado-claro); /* Rojo para los botones de filtro */
-}
-
-.filter.infernal,
-.filter.exclusivo {
-  border: 1px solid #0f0f0f;  /* Esto es clave */
+.filter-btn:hover {
+  background: #C10202;
+  color: black;
 }
 /* Para los botones generales */
 .cart-button {
@@ -1772,6 +1763,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 });
 
+window.onload = () => {
+  const flyer = document.getElementById("flyer");
+  if (flyer) flyer.style.display = "block";
+};
 
 </script>
 <!-- Lightbox -->
