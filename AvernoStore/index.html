@@ -1696,8 +1696,19 @@ function renderCatalogoFiltrado(productosVisibles) {
   renderCatalogo(productosVisibles, 'catalogo-ropa', true);
 }
 
-// --- FILTRO POR CATEGORÍA ---
-let filtroActual = null; // 👈 al inicio no hay filtro seleccionado
+let filtroActual = null;
+const cont = document.getElementById('catalogo-ropa');
+if (cont) {
+  cont.innerHTML = '<p class="instruccion">Elige una categoría para ver los productos.</p>';
+}
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filtroActual = btn.getAttribute('data-cat');
+    applyFilter(); // ahora sí, sólo tras clic
+  });
+});
 
 function applyFilter() {
   const cont = document.getElementById('catalogo-ropa');
@@ -1768,6 +1779,14 @@ function renderAsync(items, container) {
   
   renderNext();
 }
+
+const flyer = document.getElementById('flyer-overlay');
+flyer?.addEventListener('click', (e) => {
+  if (e.target.id === 'flyer-overlay') flyer.style.display = 'none';
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') flyer?.style.display = 'none';
+});
 
 </script>
 <!-- Lightbox -->
