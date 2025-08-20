@@ -1680,16 +1680,9 @@ function closeLightbox() {
   }
     
 let filtroActual = null;
-const cont = document.getElementById('catalogo-ropa');
 
-// Inicializar el catálogo con un mensaje informativo
-if (cont) {
-  cont.innerHTML = '<p class="instruccion">Elige una categoría para ver los productos.</p>';
-}
-
-// Añadir evento de clic a los botones de filtro
 document.querySelectorAll('.filter').forEach(btn => {
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', function() {
     // Eliminar clase 'active' de todos los botones
     document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
     // Añadir la clase 'active' al botón clicado
@@ -1701,7 +1694,6 @@ document.querySelectorAll('.filter').forEach(btn => {
   });
 });
 
-// Función para aplicar el filtro de categoría
 function applyFilter() {
   const cont = document.getElementById('catalogo-ropa');
   if (!cont) return;
@@ -1721,17 +1713,7 @@ function applyFilter() {
     renderCatalogo(visibles, 'catalogo-ropa', true); // Llamar a la función para renderizar los productos
   }
 }
-
-// Función para renderizar el catálogo de productos
-function renderCatalogo(productos, contenedorId, esRopa) {
-  const cont = document.getElementById(contenedorId);
-  cont.innerHTML = ''; // Limpiar contenido anterior
-  productos.forEach(producto => {
-    const item = crearItem(producto, esRopa);
-    cont.appendChild(item);
-  });
-}
-
+    
 // Inicializar la página con el filtro activo, si ya hay uno seleccionado
 document.addEventListener('DOMContentLoaded', () => {
   if (filtroActual) {
