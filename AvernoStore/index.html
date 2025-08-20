@@ -1679,40 +1679,45 @@ function closeLightbox() {
   })));
   }
     
-let filtroActual = null;
-
-document.querySelectorAll('.filter').forEach(btn => {
-  btn.addEventListener('click', function() {
-    // Eliminar clase 'active' de todos los botones
-    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
-    // Añadir la clase 'active' al botón clicado
-    btn.classList.add('active');
-    // Asignar el valor del filtro actual basado en el botón clicado
-    filtroActual = btn.getAttribute('data-cat');
-    // Aplicar el filtro
-    applyFilter();
-  });
-});
+// ---- FILTRO UNIFICADO (pegalo al final del <script>, elimina otras versiones previas) ----
+let filtroActual = null; // nada seleccionado hasta clic
 
 function applyFilter() {
   const cont = document.getElementById('catalogo-ropa');
   if (!cont) return;
 
+  // Si no hay filtro: mensaje instructivo
   if (!filtroActual) {
-    // Si no hay filtro, mostrar el mensaje por defecto
     cont.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
     return;
   }
 
-  // Filtrar productos según la categoría seleccionada
+  // Filtramos por category (asegúrate que tus objetos productosRopa tienen `category`)
   const visibles = productosRopa.filter(p => p.category === filtroActual);
 
   if (visibles.length === 0) {
-    cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría.</p>';
-  } else {
-    renderCatalogo(visibles, 'catalogo-ropa', true); // Llamar a la función para renderizar los productos filtrados
+    cont.innerHTML = `<p style="color:#777; text-align:center;">No hay productos en “${filtroActual}”.</p>`;
+    return;
   }
+
+  // Renderiza usando tu función existente que crea tarjetas
+  renderCatalogo(visibles, 'catalogo-ropa', true);
 }
+
+// Listeners genéricos para todos los botones .filter (usa data-cat)
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filtroActual = btn.getAttribute('data-cat') || null;
+    applyFilter();
+  });
+});
+
+// NO LLAMAR applyFilter() aquí si quieres que no muestre nada hasta el click.
+document.getElementById('catalogo-ropa').innerHTML =
+  '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
+
 
 // Inicializar la página con el filtro activo, si ya hay uno seleccionado
 document.addEventListener('DOMContentLoaded', () => {
