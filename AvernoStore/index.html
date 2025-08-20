@@ -1778,22 +1778,50 @@ window.onload = () => {
   if (flyer) flyer.style.display = "block";
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const flyer = document.getElementById("flyer");
-  const closeBtn = document.getElementById("closeFlyer");
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('flyer-overlay');
+  const closeBtn = document.getElementById('flyer-close');
 
-  if (flyer) flyer.style.display = "block";
+  if (!overlay) {
+    console.warn('No se encontró #flyer-overlay — revisar HTML.');
+    return;
+  }
+
+  function closeOverlay() {
+    overlay.style.display = 'none';
+    overlay.classList.remove('visible');
+    window.__flyerClosedByUser = true;
+    document.removeEventListener('keydown', escHandler);
+  }
+
+  function escHandler(e) {
+    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+      closeOverlay();
+    }
+  }
 
   if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      flyer.classList.add("oculto");
-      setTimeout(() => {
-        flyer.style.display = "none";
-      }, 500); // mismo tiempo que la transición CSS
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeOverlay();
     });
   }
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeOverlay();
+  });
+
+  document.addEventListener('keydown', escHandler);
+
+  // Mostrarlo solo si no lo cerró el usuario antes
+  if (!window.__flyerClosedByUser) overlay.style.display = 'flex';
+
+  // Exponer método seguro por si otro script intenta mostrar el overlay
+  overlay.showIfAllowed = function() {
+    if (!window.__flyerClosedByUser) overlay.style.display = 'flex';
+  };
 });
-    
+
 </script>
 <!-- Lightbox -->
 <div id="lightbox" onclick="closeLightbox()">
