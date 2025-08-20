@@ -1689,13 +1689,6 @@ function renderAsync(items, container) {
     console.warn('No se encontró #flyer-overlay — revisar HTML.');
     return;
   }
-
-  function closeOverlay() {
-    overlay.style.display = 'none';
-    overlay.classList.remove('visible');
-    window.__flyerClosedByUser = true;
-    document.removeEventListener('keydown', escHandler);
-  }
     
 function cambiarPrecio(boton, nuevoPrecio, tipo) {
   const tarjeta = boton.closest(".item");
