@@ -1269,6 +1269,19 @@ const productosRopa = [
     let wishlistData = {};
     let cartData = {};
 
+  // Helpers necesarios (pegar justo después de productosRopa)
+  function money(n){
+  const num = Number(n) || 0;
+  return '$' + num.toLocaleString('es-CO');  
+  }
+  function escapeQuotes(s){
+  return String(s).replace(/'/g, "\\'");
+  }
+  function urlSafe(s){
+  // convierte espacios/paréntesis en %20 etc.
+  return encodeURI(String(s));
+  }
+
   function crearItem(producto, esRopa = true) {
   const item = document.createElement("div");
   item.className = "item";
@@ -1304,15 +1317,16 @@ const productosRopa = [
     </span>
   ` : "";
 
-  item.innerHTML = `
+   item.innerHTML = `
     <div class="item-marco">
       ${badge}
-      <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen" loading="eager" decoding="async">
-      <span class="heart-icon" onclick="toggleFavorite(this,'${producto.nombre}','${producto.imagen}',${producto.precio},${esRopa})">⛧</span>
+      <img src="${urlSafe(producto.imagen)}" alt="${escapeQuotes(producto.nombre)}" class="producto-imagen" loading="eager" decoding="async">
+      <!-- toggleFavorite(el, nombre, precio, esRopa) -->
+      <span class="heart-icon" onclick="toggleFavorite(this, '${escapeQuotes(producto.nombre)}', ${producto.precio}, ${esRopa})">⛧</span>
       <img src="marco.svg" alt="Marco" class="marco-overlay">
     </div>
 
-    <div class="zoom-icon" onclick="openLightbox('${producto.imagen}')">
+    <div class="zoom-icon" onclick="openLightbox('${urlSafe(producto.imagen)}')">
       <i class="fas fa-search"></i>
     </div>
 
@@ -1332,7 +1346,8 @@ const productosRopa = [
       ${tallaSelect}
     </div>
 
-    <button class="cart-button" onclick="addToCart('${producto.nombre}','${producto.imagen}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
+    <!-- addToCart(nombre, precio, esRopa) -->
+    <button class="cart-button" onclick="addToCart('${escapeQuotes(producto.nombre)}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
   `;
 
   if (esRopa) {
