@@ -1678,55 +1678,84 @@ function closeLightbox() {
     };
   })));
   }
-    
-// ---- FILTRO UNIFICADO (pegalo al final del <script>, elimina otras versiones previas) ----
-let filtroActual = null; // nada seleccionado hasta clic
+/* ----- FILTRADO CENTRAL (Pegar UNA vez, después de productosRopa + crearItem + renderCatalogo) ----- */
 
-function applyFilter() {
-  const cont = document.getElementById('catalogo-ropa');
-  if (!cont) return;
+/* estado del filtro: iniciamos en null para que no muestre nada al cargar */
+let filtroActual = null;
 
-  // Si no hay filtro: mensaje instructivo
-  if (!filtroActual) {
-    cont.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
+/* referencias DOM */
+const catalogoEl = document.getElementById('catalogo-ropa');
+const botonesFiltro = Array.from(document.querySelectorAll('.filter'));
+
+/* utilidad que reutiliza tu renderCatalogo/crearItem existente */
+function renderCatalogoFiltrado(productos) {
+  if (!catalogoEl) return;
+  catalogoEl.innerHTML = '';
+  if (!productos || productos.length === 0) {
+    catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría.</p>';
     return;
   }
-
-  // Filtramos por category (asegúrate que tus objetos productosRopa tienen `category`)
-  const visibles = productosRopa.filter(p => p.category === filtroActual);
-
-  if (visibles.length === 0) {
-    cont.innerHTML = `<p style="color:#777; text-align:center;">No hay productos en “${filtroActual}”.</p>`;
-    return;
-  }
-
-  // Renderiza usando tu función existente que crea tarjetas
-  renderCatalogo(visibles, 'catalogo-ropa', true);
+  // Reutiliza la función que ya tienes en el archivo que crea cada tarjeta
+  productos.forEach(p => catalogoEl.appendChild(crearItem(p, true)));
 }
 
-// Listeners genéricos para todos los botones .filter (usa data-cat)
-document.querySelectorAll('.filter').forEach(btn => {
+/* aplica el filtro actual (llamado por los clicks) */
+function applyFilter() {
+  if (!catalogoEl) return;
+
+  // Si no hay filtro seleccionado, mostramos mensaje por defecto y salimos
+  if (!filtroActual) {
+    catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
+    return;
+  }
+
+  // efecto opcional de "fade" (si quieres mantener transición, asegúrate de tener CSS transition en #catalogo-ropa)
+  catalogoEl.style.opacity = 0;
+  setTimeout(() => {
+    // Filtramos por `category` (asegúrate de que tus objetos en productosRopa usan `category`)
+    const visibles = productosRopa.filter(p => p.category === filtroActual);
+
+    renderCatalogoFiltrado(visibles);
+
+    // mostrar suave
+    catalogoEl.style.opacity = 1;
+  }, 200);
+}
+
+/* attach listeners a botones (seguro aunque haya varios bloques; sólo lo hacemos aquí) */
+botonesFiltro.forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    // limpiar active
+    botonesFiltro.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    filtroActual = btn.getAttribute('data-cat') || null;
+
+    // dataset.cat es el atributo data-cat en el HTML
+    filtroActual = btn.dataset.cat || btn.getAttribute('data-cat');
+
+    // aplicar
     applyFilter();
   });
 });
 
-// NO LLAMAR applyFilter() aquí si quieres que no muestre nada hasta el click.
-document.getElementById('catalogo-ropa').innerHTML =
-  '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
+/* Al cargar la página no llamamos applyFilter() para que NO muestre catálogo hasta que el usuario haga click.
+   Si quieres que al cargar se seleccione una categoría por defecto, asigna filtroActual = 'infernal' y llama applyFilter(); */
 
-
-// Inicializar la página con el filtro activo, si ya hay uno seleccionado
+/* Cierre seguro del flyer (si existe) */
 document.addEventListener('DOMContentLoaded', () => {
-  if (filtroActual) {
-    document.querySelector(`.filter[data-cat="${filtroActual}"]`)?.classList.add('active');
-    applyFilter();
+  const flyerClose = document.getElementById('flyer-close');
+  const flyerOverlay = document.getElementById('flyer-overlay');
+  if (flyerClose && flyerOverlay) {
+    flyerClose.addEventListener('click', () => { flyerOverlay.style.display = 'none'; });
+    // cerrar también si hacen click fuera del contenido
+    flyerOverlay.addEventListener('click', (e) => { if (e.target === flyerOverlay) flyerOverlay.style.display = 'none'; });
   }
 });
-    
+
+/* Mensaje inicial (vacío) */
+if (catalogoEl && !filtroActual) {
+  catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
+}
+
 // Añadir evento al botón de cierre
 document.getElementById('flyer-close').addEventListener('click', function() {
   document.getElementById('flyer-overlay').style.display = 'none';
