@@ -1695,54 +1695,61 @@ function closeLightbox() {
   }
     
 document.addEventListener('DOMContentLoaded', () => {
-  // Referencias DOM
   const catalogoEl = document.getElementById('catalogo-ropa');
-  const botones = Array.from(document.querySelectorAll('.filter')); // tus botones deben tener class="filter" y data-cat="..."
-  let filtroActual = null; // NO mostrar catálogo hasta que el usuario haga click
+  const botones = Array.from(document.querySelectorAll('.filter'));
+  let filtroActual = null; // no mostramos catálogo hasta click
 
-  // Render que reutiliza crearItem() que ya tienes definido en tu script
-  function renderCatalogoFiltrado(productos) {
+  function renderCatalogoFiltrado(productos = []) {
     if (!catalogoEl) return;
     catalogoEl.innerHTML = '';
     if (!productos || productos.length === 0) {
-      catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
+      catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
       return;
     }
-    productos.forEach(p => catalogoEl.appendChild(crearItem(p, true)));
+    const frag = document.createDocumentFragment();
+    productos.forEach(p => frag.appendChild(crearItem(p, true)));
+    catalogoEl.appendChild(frag);
   }
 
   function applyFilter() {
     if (!catalogoEl) return;
-    // Si no hay filtro — mensaje por defecto
+    // Si no hay filtro -> mensaje (no mostrar nada por defecto)
     if (!filtroActual) {
       catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
       return;
     }
-    // Filtrar por propiedad `category`
-    const visibles = productosRopa.filter(p => p.category === filtroActual);
+    // filtrar por property 'category' (aseguro conversión a string)
+    const visibles = productosRopa.filter(p => String(p.category || '').trim() === String(filtroActual).trim());
+    if (visibles.length === 0) {
+      catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
+      return;
+    }
     renderCatalogoFiltrado(visibles);
   }
 
-  // Listeners seguros para los botones
+  // listeners de botones
   botones.forEach(btn => {
     btn.addEventListener('click', () => {
+      // quitar active de todos y marcar este
       botones.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      filtroActual = btn.dataset.cat || btn.getAttribute('data-cat');
+
+      // tomar valor seguro del atributo (getAttribute evita sorpresas)
+      filtroActual = btn.getAttribute('data-cat');
+
+      console.log('[DEBUG] Botón click -> filtroActual =', filtroActual);
       applyFilter();
     });
   });
 
-  // Mensaje inicial (vacío) — no mostramos nada hasta click
-  if (catalogoEl && !filtroActual) {
-    catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
-  }
+  // Estado inicial: mensaje vacío hasta click
+  if (catalogoEl) catalogoEl.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver productos.</p>';
 
-  // Cierre seguro del flyer (si existe)
+  // Cierre del flyer (mantener si ya lo tienes)
   const flyerClose = document.getElementById('flyer-close');
   const flyerOverlay = document.getElementById('flyer-overlay');
   if (flyerClose && flyerOverlay) {
-    flyerClose.addEventListener('click', () => { flyerOverlay.style.display = 'none'; });
+    flyerClose.addEventListener('click', () => flyerOverlay.style.display = 'none');
     flyerOverlay.addEventListener('click', (e) => { if (e.target === flyerOverlay) flyerOverlay.style.display = 'none'; });
   }
 });
