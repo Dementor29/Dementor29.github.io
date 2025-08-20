@@ -1696,62 +1696,7 @@ function renderAsync(items, container) {
     window.__flyerClosedByUser = true;
     document.removeEventListener('keydown', escHandler);
   }
-
-  function escHandler(e) {
-    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) closeOverlay();
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeOverlay();
-    });
-  }
-
-  // Cierra si el usuario hace click en el fondo (no en la imagen)
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeOverlay();
-  });
-
-  document.addEventListener('keydown', escHandler);
-
-  // Mostrar overlay solo si no lo cerró el usuario antes
-  if (!window.__flyerClosedByUser) overlay.style.display = 'flex';
-
-  // Método seguro para mostrarlo desde otros scripts
-  overlay.showIfAllowed = function() {
-    if (!window.__flyerClosedByUser) overlay.style.display = 'flex';
-  };
-});
-
-  function escHandler(e) {
-    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
-      closeOverlay();
-    }
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeOverlay();
-    });
-  }
-
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeOverlay();
-  });
-
-  document.addEventListener('keydown', escHandler);
-
-  // Mostrarlo solo si no lo cerró el usuario antes
-  if (!window.__flyerClosedByUser) overlay.style.display = 'flex';
-
-  // Exponer método seguro por si otro script intenta mostrar el overlay
-  overlay.showIfAllowed = function() {
-    if (!window.__flyerClosedByUser) overlay.style.display = 'flex';
-  };
-});
-
+    
 function cambiarPrecio(boton, nuevoPrecio, tipo) {
   const tarjeta = boton.closest(".item");
   const precioEl = tarjeta.querySelector(".precio");
