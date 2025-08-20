@@ -580,27 +580,48 @@ footer#contacto {
 strong {
   color: var(--dorado-claro); /* o reemplaza por otro color como #C10202 */
 }
-
-/* Estilos de etiquetas tipo ribbon */
-.etiqueta {
+    
+.etiqueta-black-metal {
   position: absolute;
-  top: 10px;
-  left: -30px; /* crea el efecto diagonal */
-  transform: rotate(-45deg);
-  width: 120px;
-  text-align: center;
+  top: 0px;
+  left: 6px;
+  background: var(--dorado-oscuro);
+  color: white;
   font-size: 12px;
   font-weight: bold;
-  color: #fff;
-  padding: 5px 0;
-  z-index: 10;
+  padding: 2px 6px;
+  border-radius: 1px;
   font-family: 'BurzumGothic', serif;
-}
-.etiqueta["black-metal"],
-.etiqueta.black-metal {
-  background: #444; /* gris oscuro metálico */
+  z-index: 1;
 }
 
+.etiqueta-thrash-metal {
+  position: absolute;
+  top: 0px;
+  left: 6px;
+  background: var(--dorado-oscuro);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 1px;
+  font-family: 'BurzumGothic', serif;
+  z-index: 1;
+}
+
+.etiqueta-death-metal {
+  position: absolute;
+  top: 0px;
+  left: 6px;
+  background: var(--dorado-oscuro);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 1px;
+  font-family: 'BurzumGothic', serif;
+  z-index: 1;
+}
 
 .etiqueta-exclusivo {
   position: absolute;
@@ -615,7 +636,7 @@ strong {
   font-family: 'BurzumGothic', serif;
   z-index: 1;
 }
-
+    
 .etiqueta-infernal {
   position: absolute;
   top: 0px;                 /* misma altura que exclusiva */
@@ -629,9 +650,12 @@ strong {
   font-family: 'BurzumGothic', serif;
   z-index: 1;
 }
-
+    
 .filter.infernal,
-.filter.exclusivo {
+.filter.exclusivo,
+.filter.blac-metal,
+.filter.thrash-metal,
+.filter.death-metal {
   background-color: #0f0f0f;  /* Fondo oscuro similar al de los botones generales */
   color: #cccccc;              /* Texto claro */
   font-size: 14px;
@@ -645,13 +669,19 @@ strong {
 }
 
 .filter.infernal:hover,
-.filter.exclusivo:hover {
+.filter.exclusivo:hover,
+.filter.black-metal:hover,
+.filter.thrash-metal:hover,
+.filter.death-metal:hover {
   background-color: rgba(25, 25, 25, 0.8); /* Efecto hover similar a los botones */
   color: var(--dorado-claro); /* Rojo para los botones de filtro */
 }
 
 .filter.infernal,
-.filter.exclusivo {
+.filter.exclusivo,
+.filter.blac-metal,
+.filter.thrash-metal,
+.filter.death-metal {
   border: 1px solid #0f0f0f;  /* Esto es clave */
 }
 /* Para los botones generales */
