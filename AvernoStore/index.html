@@ -1673,36 +1673,28 @@ function closeLightbox() {
   })));
   }
     
-  function applyFilter() {
-  const contenedor = 'catalogo-ropa';
-  const cont = document.getElementById(contenedor);
-  
-  // Primero aplicamos un desvanecimiento
-  cont.style.opacity = 0;
-  
-  // Esperamos que termine la animación de desvanecimiento
-  setTimeout(() => {
-    // Ahora cambiamos los productos visibles según el filtro
-    if (filtroActual === 'infernal') {
-      const infernales = productosRopa.filter(p => !p.exclusivo);
-      if (infernales.length === 0) {
-        document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>';
-        return;
-      }
-      renderCatalogo(infernales, contenedor, true);
-    } else if (filtroActual === 'exclusivo') {
-      const exclusivos = productosRopa.filter(p => p.exclusivo);
-      if (exclusivos.length === 0) {
-        document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>';
-        return;
-      }
-      renderCatalogo(exclusivos, contenedor, true);
-    }
-    
-    // Después de que los productos se han renderizado, los hacemos visibles
-    cont.style.opacity = 1;  // Desvanecemos para hacer visible
-  }, 500);  // Tiempo de transición de 0.5s (el mismo que el tiempo de la transición CSS)
-  }
+  // Renderizar catálogo según categoría
+function applyFilter() {
+  const cont = document.getElementById('catalogo-ropa');
+  if (!cont) return;
+
+  const visibles = productosRopa.filter(p => p.category === filtroActual);
+  cont.innerHTML = "";
+  visibles.forEach(p => cont.appendChild(crearItem(p, true)));
+}
+
+// Eventos para los botones de filtro
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filtroActual = btn.dataset.cat;
+    applyFilter();
+  });
+});
+
+// 🚫 NOTA: eliminamos el "applyFilter();" del inicio
+// Así al cargar la página no se muestra nada
 
 // --- FILTRO POR CATEGORÍA ---
 let filtroActual = 'infernal'; // por defecto
