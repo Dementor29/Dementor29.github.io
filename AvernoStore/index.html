@@ -1096,6 +1096,8 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   <button class="filter" data-cat="thrash-metal">THRASH METAL</button>
   <button class="filter" data-cat="death-metal">DEATH METAL</button>
 
+  <div id="productos-container"></div>
+    
   </div>
 
   <p class="instruccion">> HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA <</p>
@@ -1716,7 +1718,46 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' || e.keyCode === 27) closeOverlay();
   });
 });
-    
+
+document.addEventListener('DOMContentLoaded', () => {
+  const contenedor = document.getElementById('productos-container');
+  const botones = document.querySelectorAll('.filter');
+
+  // Función para renderizar productos
+  function mostrarProductos(categoria) {
+    contenedor.innerHTML = ''; // limpiar
+
+    const filtrados = productosRopa.filter(p => p.category === categoria);
+
+    if (filtrados.length === 0) {
+      contenedor.innerHTML = '<p>No hay productos en esta categoría</p>';
+      return;
+    }
+
+    filtrados.forEach(p => {
+      const card = document.createElement('div');
+      card.classList.add('producto-card');
+      card.innerHTML = `
+        <img src="${p.imagen}" alt="${p.nombre}">
+        <h3>${p.nombre}</h3>
+        <p>$${p.precio.toLocaleString('es-CO')}</p>
+      `;
+      contenedor.appendChild(card);
+    });
+  }
+
+  // Asignar evento a cada botón
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.getAttribute('data-cat');
+      mostrarProductos(cat);
+    });
+  });
+
+  // Mostrar una categoría por defecto al cargar
+  mostrarProductos('infernal');
+});
+
 function cambiarPrecio(boton, nuevoPrecio, tipo) {
   const tarjeta = boton.closest(".item");
   const precioEl = tarjeta.querySelector(".precio");
