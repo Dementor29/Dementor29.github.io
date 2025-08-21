@@ -580,110 +580,6 @@ footer#contacto {
 strong {
   color: var(--dorado-claro); /* o reemplaza por otro color como #C10202 */
 }
-    
-.etiqueta-black-metal {
-  position: absolute;
-  top: 0px;
-  left: 6px;
-  background: var(--dorado-oscuro);
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 1px;
-  font-family: 'BurzumGothic', serif;
-  z-index: 1;
-}
-
-.etiqueta-thrash-metal {
-  position: absolute;
-  top: 0px;
-  left: 6px;
-  background: var(--dorado-oscuro);
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 1px;
-  font-family: 'BurzumGothic', serif;
-  z-index: 1;
-}
-
-.etiqueta-death-metal {
-  position: absolute;
-  top: 0px;
-  left: 6px;
-  background: var(--dorado-oscuro);
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 1px;
-  font-family: 'BurzumGothic', serif;
-  z-index: 1;
-}
-
-.etiqueta-exclusivo {
-  position: absolute;
-  top: 0px;
-  left: 6px;
-  background: var(--dorado-oscuro);
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 1px;
-  font-family: 'BurzumGothic', serif;
-  z-index: 1;
-}
-    
-.etiqueta-infernal {
-  position: absolute;
-  top: 0px;                 /* misma altura que exclusiva */
-  left: 6px;             /* al otro lado */
-  background: #e0e0e0;        /* gris metálico sólido */
-  color: #333333;           /* texto oscuro para contraste */
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 1px;
-  font-family: 'BurzumGothic', serif;
-  z-index: 1;
-}
-    
-.filter.infernal,
-.filter.exclusivo,
-.filter.blac-metal,
-.filter.thrash-metal,
-.filter.death-metal {
-  background-color: #0f0f0f;  /* Fondo oscuro similar al de los botones generales */
-  color: #cccccc;              /* Texto claro */
-  font-size: 14px;
-  font-weight: bold;
-  padding: 10px 18px;
-  font-family: 'BurzumGothic', serif;
-  min-width: 130px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid #0f0f0f;   /* Asegúrate de que tenga borde como los otros botones */
-}
-
-.filter.infernal:hover,
-.filter.exclusivo:hover,
-.filter.black-metal:hover,
-.filter.thrash-metal:hover,
-.filter.death-metal:hover {
-  background-color: rgba(25, 25, 25, 0.8); /* Efecto hover similar a los botones */
-  color: var(--dorado-claro); /* Rojo para los botones de filtro */
-}
-
-.filter.infernal,
-.filter.exclusivo,
-.filter.blac-metal,
-.filter.thrash-metal,
-.filter.death-metal {
-  border: 1px solid #0f0f0f;  /* Esto es clave */
-}
 /* Para los botones generales */
 .cart-button {
   background-color: #0f0f0f; 
@@ -701,7 +597,36 @@ strong {
   background-color: rgba(25, 25, 25, 0.8);
   color: var(--dorado-claro); 
 }
-    
+
+.etiqueta-black-metal,
+.etiqueta-thrash-metal,
+.etiqueta-death-metal,
+.etiqueta-exclusivo,
+.etiqueta-infernal {
+  position: absolute;
+  top: -10px;   /* las sube más arriba */
+  left: 6px;
+}
+
+.etiqueta-cat {
+  position: absolute;
+  top: -14px;
+  left: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: 'BurzumGothic', serif;
+  z-index: 5;
+}
+
+/* Colores individuales */
+.etiqueta-exclusivo { background: #8B0000; color: white; }
+.etiqueta-black-metal { background: #6b21a8; color: white; }
+.etiqueta-thrash-metal { background: #facc15; color: #111; }
+.etiqueta-death-metal { background: #22c55e; color: #111; }
+.etiqueta-infernal { background: #e0e0e0 color: #333333;  }
+
 /* Contenedor cuadrado y centrado */
 .item-marco {
   position: relative;
@@ -1308,14 +1233,13 @@ const productosRopa = [
     { nombre: "FUNICULUS CRANII", precio: 64990, imagen: "26 (56).png", category: "black-metal" }
     ];
 
-    // ---------- ETIQUETAS POR CATEGORÍA ----------
-    const etiquetas = {
-    "exclusivo":   { texto: "EXCLUSIVO 🩸",    color: "#ff0000" },
-    "black-metal": { texto: "BLACK METAL 🌑",  color: "#6b21a8" },
-    "thrash-metal":{ texto: "THRASH METAL ⚡", color: "#facc15", textoColor: "#111" },
-    "death-metal": { texto: "DEATH METAL 💀",  color: "#22c55e", textoColor: "#111" },
-    "infernal":    { texto: "INFERNAL 🔥",     color: "#ef4444" }
-    };
+  const etiquetas = {
+  "exclusivo":   { texto: "EXCLUSIVO 🩸",    clase: "etiqueta-exclusivo" },
+  "black-metal": { texto: "BLACK METAL 🌑",  clase: "etiqueta-black-metal" },
+  "thrash-metal":{ texto: "THRASH METAL ⚡", clase: "etiqueta-thrash-metal" },
+  "death-metal": { texto: "DEATH METAL 💀",  clase: "etiqueta-death-metal" },
+  "infernal":    { texto: "INFERNAL 🔥",     clase: "etiqueta-infernal" }
+  };
     
     let wishlistData = {};
     let cartData = {};
@@ -1360,16 +1284,11 @@ const productosRopa = [
   const cat = producto.category || 'infernal';
   const infoEtiqueta = (typeof etiquetas !== 'undefined') ? etiquetas[cat] : null;
   const badge = infoEtiqueta ? `
-  <span class="etiqueta-cat" style="
-    position:absolute;top:6px;left:6px;z-index:5;
-    background:${infoEtiqueta.color};
-    color:${infoEtiqueta.textoColor||'#fff'};
-    padding:3px 6px;border-radius:3px;
-    font-size:12px;font-weight:bold;font-family:'BurzumGothic',serif;">
+  <span class="etiqueta-cat ${infoEtiqueta.clase}">
     ${infoEtiqueta.texto}
   </span>
   ` : "";
-
+    
   item.innerHTML = `
     <div class="item-marco">
       ${badge}
