@@ -601,23 +601,15 @@ strong {
 .etiqueta-cat {
   position: absolute;
   top: -14px;
-  left: 10px;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-family: 'BurzumGothic', serif;
-  font-size: 13px;
+  left: 20px;
+  font-size: 12px;
   font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 1px solid #444;
+  padding: 2px 6px;
+  border-radius: 1px;
+  font-family: 'BurzumGothic', serif;
   z-index: 9999;
 }
 
-/* Efecto hover como los botones */
-.etiqueta-cat:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-}
 /* Colores individuales */
 .etiqueta-exclusivo { background: var(--dorado-oscuro); color: white; }
 .etiqueta-black-metal { background: #333333; color: white; }
@@ -1072,11 +1064,10 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
   <h2>¡ELIGE TU<img src="skull.gif" class="gif-fuego" alt="fuego"> CAMISETA!</h2>
 
   <div class="filtros-wrapper">
-  <button class="btn filter" data-cat="infernal">INFERNAL</button>
-  <button class="btn filter" data-cat="exclusivo">EXCLUSIVO</button>
-  <button class="btn filter" data-cat="black-metal">BLACK METAL</button>
-  <button class="btn filter" data-cat="thrash-metal">THRASH METAL</button>
-  <button class="btn filter" data-cat="death-metal">DEATH METAL</button>
+  <button class=".filter" data-cat="infernal">INFERNAL</button>
+  <button class=".filter" data-cat="black-metal">BLACK METAL</button>
+  <button class=".filter" data-cat="thrash-metal">THRASH METAL</button>
+  <button class=".filter" data-cat="death-metal">DEATH METAL</button>
   </div>
   
   <p class="instruccion">> HAZ CLICK EN EL PENTAGRAMA <strong style="color:white;"> ⛧ </strong> PARA AGREGAR A TU LISTA <</p>
