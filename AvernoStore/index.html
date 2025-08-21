@@ -1655,38 +1655,39 @@ function closeLightbox() {
   const contenedor = 'catalogo-ropa';
   const cont = document.getElementById(contenedor);
 
-  const visibles = productosRopa.filter(p =>
-  String(p.category || '').trim().toLowerCase() === String(filtroActual || '').trim().toLowerCase()
-  );
-  // Primero aplicamos un desvanecimiento
-  cont.style.opacity = 0;
-  
-  // Esperamos que termine la animación de desvanecimiento
-  setTimeout(() => {
-    // Ahora cambiamos los productos visibles según el filtro
-    if (filtroActual === 'infernal') {
-      const infernales = productosRopa.filter(p => !p.exclusivo);
-      if (infernales.length === 0) {
-        document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos infernales configurados.</p>';
-        return;
-      }
-      renderCatalogo(infernales, contenedor, true);
-    } else if (filtroActual === 'exclusivo') {
-      const exclusivos = productosRopa.filter(p => p.exclusivo);
-      if (exclusivos.length === 0) {
-        document.getElementById(contenedor).innerHTML = '<p style="color:#777; text-align:center;">No hay productos exclusivos configurados.</p>';
-        return;
-      }
-      renderCatalogo(exclusivos, contenedor, true);
-    }
-    
-    // Después de que los productos se han renderizado, los hacemos visibles
-    cont.style.opacity = 1;  // Desvanecemos para hacer visible
-  }, 500);  // Tiempo de transición de 0.5s (el mismo que el tiempo de la transición CSS)
+  // Si no hay filtro seleccionado, limpiamos el catálogo y salimos
+  if (!filtroActual) {
+    // transición suave (opcional)
+    cont.style.opacity = 0;
+    setTimeout(() => { cont.innerHTML = ''; }, 250);
+    return;
   }
 
+  // Animación de desvanecimiento
+  cont.style.opacity = 0;
+
+  setTimeout(() => {
+    // Filtramos por la propiedad category (más consistente)
+    const visibles = productosRopa.filter(p => String(p.category || '').trim().toLowerCase() === String(filtroActual).trim().toLowerCase());
+
+    if (!visibles || visibles.length === 0) {
+      cont.innerHTML = `<p style="color:#777; text-align:center;">No hay productos en la categoría "${filtroActual}".</p>`;
+      cont.style.opacity = 1;
+      return;
+    }
+
+    // Renderizamos los productos filtrados usando tu función existente
+    renderCatalogo(visibles, contenedor, true);
+
+    // Hacemos visible con transición
+    requestAnimationFrame(() => {
+      cont.style.opacity = 1;
+    });
+  }, 250); // tiempo para que la opacidad haga efecto
+}
+    
 // --- FILTRO POR CATEGORÍA ---
-let filtroActual = 'infernal'; // por defecto
+let filtroActual = null; // por defecto
 // Usamos el contenedor real que tienes en el HTML:
 const catalogoCont = document.getElementById('catalogo-ropa');
 
@@ -1778,7 +1779,34 @@ function renderAsync(items, container) {
   
   renderNext();
 }
-    
+
+// Conectar botones de filtro para que controlen la visualización
+document.querySelectorAll('.filter').forEach(boton => {
+  boton.addEventListener('click', () => {
+    const cat = boton.getAttribute('data-cat');
+
+    // Si hacemos click sobre la misma categoría activa, desactivamos todo
+    if (filtroActual === cat) {
+      filtroActual = null;
+      boton.classList.remove('active');
+      applyFilter(); // limpiará el catálogo
+      return;
+    }
+
+    // Activar nueva categoría: quitar active a los demás, marcar el actual
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    boton.classList.add('active');
+
+    // Setear filtro y mostrar
+    filtroActual = cat;
+    applyFilter();
+  });
+});
+
+// Asegúrate de empezar con catálogo vacío (por si algo lo llenó antes)
+const inicioCont = document.getElementById('catalogo-ropa');
+if (inicioCont) inicioCont.innerHTML = '';
+
 </script>
 </body>
 </html>
