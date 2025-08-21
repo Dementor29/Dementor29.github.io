@@ -600,7 +600,7 @@ strong {
 .etiqueta-cat {
   position: absolute;
   top: -13px;
-  left: 55px;
+  left: 56px;
   font-size: 12px;
   font-weight: bold;
   padding: 2px 6px;
@@ -1695,7 +1695,7 @@ function applyFilter() {
     const visibles = productosRopa.filter(p => String(p.category || '').trim().toLowerCase() === categoriaLower);
 
     if (!visibles || visibles.length === 0) {
-      cont.innerHTML = `<p style="color:#777; text-align:center;">"PROXIMAMENTE"${filtroActual}".</p>`;
+      cont.innerHTML = `<p style="color:#777; text-align:center;"> "PROXIMAMENTE" ${filtroActual}".</p>`;
       cont.style.opacity = 1;
       return;
     }
