@@ -1840,15 +1840,41 @@ let filtroActual = null; // por defecto NO mostrar nada hasta que el usuario eli
       });
     });
   });
-})();
+  })();
     
-const flyerClose = document.getElementById('flyer-close');
-if (flyerClose) {
-    flyerClose.addEventListener('click', function () {
-      const overlay = document.getElementById('flyer-overlay');
-      if (overlay) overlay.style.display = 'none';
+  document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('flyer-overlay');
+  const closeBtn = document.getElementById('flyer-close');
+  const img = overlay?.querySelector('img');
+
+  // seguridad: si no existen, salir
+  if (!overlay) return;
+
+  // 1) cierre botón (inline fallback)
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
     });
-}
+  }
+
+  // 2) cerrar al hacer click en el fondo (pero NO en la imagen)
+  overlay.addEventListener('click', (e) => {
+    // si clickeó directamente el overlay (no un hijo)
+    if (e.target === overlay) overlay.style.display = 'none';
+  });
+
+  // 3) evita que la imagen capture clicks (que a veces bloquea el botón en ciertos navegadores)
+  if (img) {
+    img.style.pointerEvents = 'none';
+  }
+
+  // 4) opcional: cerrar con ESC
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' || ev.key === 'Esc' || ev.keyCode === 27) {
+      overlay.style.display = 'none';
+    }
+  }, { passive: true });
+});
 
 function preloadImages(productos) {
   productos.forEach(producto => {
