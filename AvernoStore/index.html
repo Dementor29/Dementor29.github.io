@@ -1650,48 +1650,36 @@ function closeLightbox() {
     };
   })));
   }
-    
-// --- FILTRO POR CATEGORÍA ---
-let filtroActual = null; // por defecto
-// Usamos el contenedor real que tienes en el HTML:
-const catalogoCont = document.getElementById('catalogo-ropa');
+/* -----------------------------
+   Inicialización: sin categoría
+   ----------------------------- */
+let filtroActual = null; // por defecto NO mostrar nada hasta que el usuario elija
 
-// Asegurarnos que existe el contenedor antes de operar
-if (!catalogoCont) {
-  console.error('No se encontró el contenedor #catalogo-ropa. Revisa el id en el HTML.');
-}
-// Se asegura de usar la función crearItem + renderCatalogo existente,
-// para mantener toda la lógica de tallas, botones, etc.
-// Aquí definimos una pequeña función de utilidad que usa la renderCatalogo previa
-function renderCatalogoFiltrado(productosVisibles) {
-  // usa la función renderCatalogo ya definida arriba que acepta:
-  // renderCatalogo(productos, contenedorId, esRopa)
-  if (!productosVisibles || productosVisibles.length === 0) {
-    document.getElementById('catalogo-ropa').innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
-    return;
-  }
-  // reutiliza tu función existente (la primera que creó elementos con crearItem)
-  renderCatalogo(productosVisibles, 'catalogo-ropa', true);
-}
-
+/* -----------------------------
+   Función applyFilter (corregida)
+   ----------------------------- */
 function applyFilter() {
-  const contenedor = 'catalogo-ropa';
-  const cont = document.getElementById(contenedor);
+  const cont = document.getElementById('catalogo-ropa');
+  if (!cont) return;
 
-  // Si no hay filtro seleccionado, limpiamos el catálogo y salimos
+  // Si no hay filtro seleccionado: limpiamos y mostramos mensaje amigable
   if (!filtroActual) {
-    // transición suave (opcional)
+    // transición suave
     cont.style.opacity = 0;
-    setTimeout(() => { cont.innerHTML = ''; }, 250);
+    setTimeout(() => {
+      cont.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver los productos.</p>';
+      cont.style.opacity = 1;
+    }, 150);
     return;
   }
 
-  // Animación de desvanecimiento
+  // Efecto de desvanecimiento al cambiar categoría
   cont.style.opacity = 0;
 
   setTimeout(() => {
-    // Filtramos por la propiedad category (más consistente)
-    const visibles = productosRopa.filter(p => String(p.category || '').trim().toLowerCase() === String(filtroActual).trim().toLowerCase());
+    // Filtramos por category (case-insensitive)
+    const categoriaLower = String(filtroActual).trim().toLowerCase();
+    const visibles = productosRopa.filter(p => String(p.category || '').trim().toLowerCase() === categoriaLower);
 
     if (!visibles || visibles.length === 0) {
       cont.innerHTML = `<p style="color:#777; text-align:center;">No hay productos en la categoría "${filtroActual}".</p>`;
@@ -1699,32 +1687,67 @@ function applyFilter() {
       return;
     }
 
-    // Renderizamos los productos filtrados usando tu función existente
-    renderCatalogo(visibles, contenedor, true);
+    // Usa tu renderCatalogo existente para crear las tarjetas (mantiene tallas, badges, botones, etc.)
+    renderCatalogo(visibles, 'catalogo-ropa', true);
 
-    // Hacemos visible con transición
-    requestAnimationFrame(() => {
-      cont.style.opacity = 1;
-    });
-  }, 250); // tiempo para que la opacidad haga efecto
+    // Hacer visible con transición
+    requestAnimationFrame(() => { cont.style.opacity = 1; });
+  }, 150);
 }
-// listeners para los botones de filtro
-document.querySelectorAll('.filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    filtroActual = btn.getAttribute('data-cat');
-    applyFilter();
-  })
-});
 
-// activar botón por defecto y render inicial
-document.querySelector(`.filter[data-cat="${filtroActual}"]`)?.classList.add('active');
-applyFilter();
+/* ---------------------------------------------------
+   Inicializador de filtros: conecta .filter (toggle)
+   - Elimina listeners duplicados
+   - Muestra mensaje inicial (sin productos)
+   --------------------------------------------------- */
+(function initFiltros() {
+  // Ejecutar en DOMContentLoaded para asegurar que los botones existen
+  document.addEventListener('DOMContentLoaded', () => {
+    const cont = document.getElementById('catalogo-ropa');
+
+    // Mensaje inicial (usuario sabe qué hacer)
+    if (cont) {
+      cont.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver los productos.</p>';
+      cont.style.opacity = 1;
+    }
+
+    // Obtener botones de filtro y clonar para quitar listeners heredados (defensivo)
+    const filtros = Array.from(document.querySelectorAll('.filter'));
+    filtros.forEach(btn => {
+      const clone = btn.cloneNode(true);
+      btn.parentNode.replaceChild(clone, btn);
+    });
+
+    // Reobtener botones limpios
+    const botones = Array.from(document.querySelectorAll('.filter'));
+
+    // Conectar listeners con comportamiento toggle
+    botones.forEach(boton => {
+      boton.addEventListener('click', () => {
+        const cat = boton.getAttribute('data-cat');
+
+        // Si clic sobre la misma categoría: desactivar todo
+        if (filtroActual === cat) {
+          filtroActual = null;
+          boton.classList.remove('active');
+          applyFilter(); // limpiará el catálogo y mostrará mensaje inicial
+          return;
+        }
+
+        // Activar nueva categoría: quitar active a los demás, marcar este
+        botones.forEach(b => b.classList.remove('active'));
+        boton.classList.add('active');
+
+        filtroActual = cat;
+        applyFilter();
+
+        // Opcional: hacer scroll al catálogo para UX (descomentar si lo quieres)
+        // if (typeof irYZoom === 'function') irYZoom('catalogo-ropa');
+      });
+    });
+  });
+})();
     
-  // Render wishlist (seguro, después del DOM)
-  if (typeof renderWishlist === 'function') renderWishlist();
-
 const flyerClose = document.getElementById('flyer-close');
 if (flyerClose) {
     flyerClose.addEventListener('click', function () {
