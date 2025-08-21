@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -910,7 +909,7 @@ object-fit: cover !important;
 .instruccion {
   text-align: center;
   color: #777;
-  font-size: 18px;
+  font-size: 17px;
   margin: 8px 0 36px; /* margin: top right/left bottom */
   line-height: 1.25;
 }
@@ -1651,7 +1650,30 @@ function closeLightbox() {
   })));
   }
     
-  function applyFilter() {
+// --- FILTRO POR CATEGORÍA ---
+let filtroActual = null; // por defecto
+// Usamos el contenedor real que tienes en el HTML:
+const catalogoCont = document.getElementById('catalogo-ropa');
+
+// Asegurarnos que existe el contenedor antes de operar
+if (!catalogoCont) {
+  console.error('No se encontró el contenedor #catalogo-ropa. Revisa el id en el HTML.');
+}
+// Se asegura de usar la función crearItem + renderCatalogo existente,
+// para mantener toda la lógica de tallas, botones, etc.
+// Aquí definimos una pequeña función de utilidad que usa la renderCatalogo previa
+function renderCatalogoFiltrado(productosVisibles) {
+  // usa la función renderCatalogo ya definida arriba que acepta:
+  // renderCatalogo(productos, contenedorId, esRopa)
+  if (!productosVisibles || productosVisibles.length === 0) {
+    document.getElementById('catalogo-ropa').innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
+    return;
+  }
+  // reutiliza tu función existente (la primera que creó elementos con crearItem)
+  renderCatalogo(productosVisibles, 'catalogo-ropa', true);
+}
+
+function applyFilter() {
   const contenedor = 'catalogo-ropa';
   const cont = document.getElementById(contenedor);
 
@@ -1685,53 +1707,6 @@ function closeLightbox() {
     });
   }, 250); // tiempo para que la opacidad haga efecto
 }
-    
-// --- FILTRO POR CATEGORÍA ---
-let filtroActual = null; // por defecto
-// Usamos el contenedor real que tienes en el HTML:
-const catalogoCont = document.getElementById('catalogo-ropa');
-
-// Asegurarnos que existe el contenedor antes de operar
-if (!catalogoCont) {
-  console.error('No se encontró el contenedor #catalogo-ropa. Revisa el id en el HTML.');
-}
-// Se asegura de usar la función crearItem + renderCatalogo existente,
-// para mantener toda la lógica de tallas, botones, etc.
-// Aquí definimos una pequeña función de utilidad que usa la renderCatalogo previa
-function renderCatalogoFiltrado(productosVisibles) {
-  // usa la función renderCatalogo ya definida arriba que acepta:
-  // renderCatalogo(productos, contenedorId, esRopa)
-  if (!productosVisibles || productosVisibles.length === 0) {
-    document.getElementById('catalogo-ropa').innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
-    return;
-  }
-  // reutiliza tu función existente (la primera que creó elementos con crearItem)
-  renderCatalogo(productosVisibles, 'catalogo-ropa', true);
-}
-
-function applyFilter() {
-  const cont = document.getElementById('catalogo-ropa');
-  if (!cont) return;
-
-  // Efecto de desvanecimiento
-  cont.style.opacity = 0;
-
-  setTimeout(() => {
-    // FILTRO UNIFICADO: usa category (o 'infernal' por defecto)
-    const visibles = productosRopa.filter(p => (p.category || 'infernal') === filtroActual);
-
-    if (visibles.length === 0) {
-      cont.innerHTML = '<p style="color:#777; text-align:center;">No hay productos en esta categoría configurados.</p>';
-    } else {
-      // Renderizamos los productos filtrados usando la función única
-      renderCatalogoFiltrado(visibles);
-    }
-
-    // Mostrar de nuevo con transición
-    cont.style.opacity = 1;
-  }, 450); // 450–500ms = tiempo de transición (ajusta si quieres)
-}
-    
 // listeners para los botones de filtro
 document.querySelectorAll('.filter').forEach(btn => {
   btn.addEventListener('click', () => {
