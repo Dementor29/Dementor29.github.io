@@ -600,7 +600,7 @@ strong {
 .etiqueta-cat {
   position: absolute;
   top: -13px;
-  left: 50px;
+  left: 55px;
   font-size: 12px;
   font-weight: bold;
   padding: 2px 6px;
@@ -904,16 +904,17 @@ object-fit: cover !important;
   justify-content: center;
   gap: 10px; /* separación horizontal entre botones */
 }
-
+    
 /* párrafo de instrucciones (usa márgenes positivos, no negativos) */
 .instruccion {
   text-align: center;
   color: #777;
   font-size: 17px;
-  margin: 8px 0 36px; /* margin: top right/left bottom */
+  margin: 28px 0 56px; /* ↑ más separación: top 28px, bottom 56px */
   line-height: 1.25;
+  transition: margin 0.2s ease; /* suave si cambias dinámicamente */
 }
-
+    
 /* opcional: añadir separación arriba del catálogo si aún falta */
 .catalogo {
   margin-top: 8px;
@@ -1020,6 +1021,18 @@ object-fit: cover !important;
     display: block !important;
     margin: auto !important;
     object-fit: contain !important;
+  }
+}
+
+/* Ajuste para móviles: menos espacio para no romper el layout */
+@media (max-width: 480px) {
+  .instruccion {
+    font-size: 15px;
+    margin: 16px 0 28px; /* menos espacio en pantallas pequeñas */
+  }
+  .filtros-wrapper {
+    margin-top: 8px;
+    gap: 8px;
   }
 }
   
@@ -1682,7 +1695,7 @@ function applyFilter() {
     const visibles = productosRopa.filter(p => String(p.category || '').trim().toLowerCase() === categoriaLower);
 
     if (!visibles || visibles.length === 0) {
-      cont.innerHTML = `<p style="color:#777; text-align:center;">No hay productos en la categoría "${filtroActual}".</p>`;
+      cont.innerHTML = `<p style="color:#777; text-align:center;">"PROXIMAMENTE"${filtroActual}".</p>`;
       cont.style.opacity = 1;
       return;
     }
@@ -1692,7 +1705,7 @@ function applyFilter() {
 
     // Hacer visible con transición
     requestAnimationFrame(() => { cont.style.opacity = 1; });
-  }, 150);
+  }, 450);
 }
 
 /* ---------------------------------------------------
