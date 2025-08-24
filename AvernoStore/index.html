@@ -1682,15 +1682,12 @@ const productosRopa = {
   document.getElementById('contador-cart').textContent = Object.keys(cartData).length;
   }  
 
+// reemplaza la función irYZoom por esta (sin añadir la clase .zoom-focus)
 function irYZoom(seccionId) {
   const el = document.getElementById(seccionId);
   if (!el) return;
-  // 1) Desplaza y centra
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  // 2) Aplica zoom-focus
-  el.classList.add('zoom-focus');
-  // 3) Quita el zoom al cabo de 600 ms
-  setTimeout(() => el.classList.remove('zoom-focus'), 1500);
+  // Desplaza al elemento sin animación añadida por JS
+  el.scrollIntoView({ behavior: 'auto', block: 'center' });
 }
     
 function smoothScrollTo(element, distance, duration = 120) {
