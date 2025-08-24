@@ -1147,8 +1147,8 @@ La muerte eterna te consume y en su averno resuenan los lamentos de los caídos�
 // Si en el futuro quieres asignar varias categorías a un producto,
 // cambia `category: "..."` por `categories: ["black-metal","exclusivo"]`
 // y adapta la lógica de filtrado a `categories.includes(filtroActual)`.
-
-const productosRopa = [
+const productosRopa = {
+  "infernal": [
     { nombre: "VOX INFERNI", precio: 64990, imagen: "1.png", category: "infernal" },
     { nombre: "LUPUS NOCTIS", precio: 64990, imagen: "2.png", category: "infernal" },
     { nombre: "PALMIRA OBSCURA", precio: 64990, imagen: "3.png", category: "infernal" },
@@ -1169,12 +1169,18 @@ const productosRopa = [
     { nombre: "DOMINUS MORTIS", precio: 64990, imagen: "18.png", category: "infernal" },
     { nombre: "DOMINUS BAPHOMET", precio: 64990, imagen: "19.png", category: "infernal" },
     { nombre: "PONTIFEX MALEFICUS", precio: 64990, imagen: "20.png", category: "infernal" },
+    { nombre: "FUNICULUS CRANII", precio: 64990, imagen: "25.png", category: "infernal" }
+  ],
+
+  "exclusivo": [
     { nombre: "MASK HANNYA", precio: 79990, imagen: "21.png", category: "exclusivo" },
     { nombre: "SKULL IN ACID", precio: 79990, imagen: "22.png", category: "exclusivo" },
     { nombre: "ALIEN PLAGUE", precio: 79990, imagen: "23.png", category: "exclusivo" },
-    { nombre: "ALIEN SACRIFICE", precio: 79990, imagen: "24.png", category: "exclusivo" },
-    { nombre: "FUNICULUS CRANII", precio: 64990, imagen: "25.png", category: "infernal" },
-    { nombre: "MAYHEM I", precio: 64990, imagen: "26 (1).png", category: "black-metal" }, 
+    { nombre: "ALIEN SACRIFICE", precio: 79990, imagen: "24.png", category: "exclusivo" }
+  ],
+
+  "black-metal": [
+    { nombre: "MAYHEM I", precio: 64990, imagen: "26 (1).png", category: "black-metal" },
     { nombre: "MAYHEM II", precio: 64990, imagen: "26 (2).png", category: "black-metal" },
     { nombre: "MAYHEM III", precio: 64990, imagen: "26 (3).png", category: "black-metal" },
     { nombre: "MAYHEM IV", precio: 64990, imagen: "26 (4).png", category: "black-metal" },
@@ -1237,10 +1243,17 @@ const productosRopa = [
     { nombre: "BEHEMOTH I", precio: 64990, imagen: "26 (61).png", category: "black-metal" },
     { nombre: "BEHEMOTH II", precio: 64990, imagen: "26 (62).png", category: "black-metal" },
     { nombre: "BEHEMOTH III", precio: 64990, imagen: "26 (63).png", category: "black-metal" },
-    { nombre: "BEHEMOTH IV", precio: 64990, imagen: "26 (64).png", category: "black-metal" },
-    { nombre: "METALLICA I", precio: 64990, imagen: "26 (65).png", category: "thrash-metal" },
-    { nombre: "POSSESSED I", precio: 64990, imagen: "26 (66).png", category: "death-metal" },
-    ];
+    { nombre: "BEHEMOTH IV", precio: 64990, imagen: "26 (64).png", category: "black-metal" }
+  ],
+
+  "thrash-metal": [
+    { nombre: "METALLICA I", precio: 64990, imagen: "26 (65).png", category: "thrash-metal" }
+  ],
+
+  "death-metal": [
+    { nombre: "POSSESSED I", precio: 64990, imagen: "26 (66).png", category: "death-metal" }
+  ]
+  };
 
   const etiquetas = {
   "exclusivo":   { texto: "EXCLUSIVO ⚔️",    clase: "etiqueta-exclusivo" },
