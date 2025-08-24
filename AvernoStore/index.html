@@ -1690,7 +1690,7 @@ function irYZoom(seccionId) {
   el.scrollIntoView({ behavior: 'auto', block: 'center' });
 }
     
-function smoothScrollTo(element, distance, duration = 1000) {
+function smoothScrollTo(element, distance, duration = 3000) {
   const start = element.scrollLeft;
   const end = start + distance;
   const startTime = performance.now();
@@ -1706,8 +1706,14 @@ function smoothScrollTo(element, distance, duration = 1000) {
 
 function scrollCarrusel(direccion) {
   const carrusel = document.querySelector('.carrusel');
-  const scrollAmount = 50;
-  smoothScrollTo(carrusel, direccion * scrollAmount, 120);
+  const item = carrusel.querySelector('.item');
+  if (!item) return;
+
+  // ancho de una tarjeta * 4 (con margen incluido)
+  const itemWidth = (item.offsetWidth + 16) * 4;
+
+  // mueve 4 productos por clic
+  carrusel.scrollBy({ left: direccion * itemWidth, behavior: 'smooth' });
 }
     
 function openLightbox(src) {
