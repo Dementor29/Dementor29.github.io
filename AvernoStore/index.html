@@ -1693,10 +1693,24 @@ function irYZoom(seccionId) {
   setTimeout(() => el.classList.remove('zoom-focus'), 1500);
 }
     
+function smoothScrollTo(element, distance, duration = 120) {
+  const start = element.scrollLeft;
+  const end = start + distance;
+  const startTime = performance.now();
+
+  function step(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    const eased = 0.5 - Math.cos(t * Math.PI) / 2;
+    element.scrollLeft = Math.round(start + (end - start) * eased);
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
 function scrollCarrusel(direccion) {
   const carrusel = document.querySelector('.carrusel');
   const scrollAmount = 50;
-  carrusel.scrollLeft += direccion * scrollAmount; // cambio inmediato
+  smoothScrollTo(carrusel, direccion * scrollAmount, 120);
 }
     
 function openLightbox(src) {
