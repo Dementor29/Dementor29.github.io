@@ -1297,13 +1297,33 @@ const productosRopa = {
     .replace(/[^a-zA-Z0-9_\-\.]/g, ""); // limpiar caracteres raros
   }
 
+  function markHearts() {
+  document.querySelectorAll('.item').forEach(item => {
+    const nombre = item.querySelector('h3')?.textContent;
+    if (!nombre) return;
+    const heart = item.querySelector('.heart-icon');
+    if (!heart) return;
+    if (wishlistData[nombre]) heart.classList.add('active');
+    else heart.classList.remove('active');
+  });
+  }
+
   function crearItem(producto, esRopa = true) {
   const item = document.createElement("div");
   item.className = "item";
   item.setAttribute("data-precio-inicial", producto.precio);
 
-  // id único para inputs/ids (evita paréntesis/espacios)
-  const id = (producto.nombre + "_" + (producto.imagen||"")).replace(/\s+/g, "_").replace(/[()]/g, "");
+  // id único para inputs/ids (usa makeId si existe, sino fallback)
+  const id = (typeof makeId === 'function')
+    ? makeId(producto.nombre, producto.imagen)
+    : (String(producto.nombre) + "_" + String(producto.imagen || ""))
+        .replace(/\s+/g, "_")
+        .replace(/[()]/g, "")
+        .replace(/[^a-zA-Z0-9_\-\.]/g, "");
+
+  // determina si debe marcarse el corazón (soporta wishlistData por nombre o por id)
+  const heartActiveClass = (typeof wishlistData !== 'undefined' &&
+    (wishlistData[producto.nombre] || wishlistData[id])) ? ' active' : '';
 
   // Selector de talla si aplica
   let tallaSelect = "";
@@ -1328,12 +1348,12 @@ const productosRopa = {
     ${infoEtiqueta.texto}
   </span>
   ` : "";
-    
+
   item.innerHTML = `
     <div class="item-marco">
       ${badge}
       <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen" loading="eager" decoding="async">
-      <span class="heart-icon" onclick="toggleFavorite(this,'${escapeQuotes(producto.nombre)}','${escapeQuotes(producto.imagen)}',${producto.precio},${esRopa})">⛧</span>
+      <span class="heart-icon${heartActiveClass}" onclick="toggleFavorite(this,'${escapeQuotes(producto.nombre)}','${escapeQuotes(producto.imagen)}',${producto.precio},${esRopa})">⛧</span>
       <img src="marco.svg" alt="Marco" class="marco-overlay">
     </div>
 
@@ -1360,21 +1380,23 @@ const productosRopa = {
     <button class="cart-button" onclick="addToCart('${escapeQuotes(producto.nombre)}','${escapeQuotes(producto.imagen)}', ${producto.precio}, ${esRopa})">Agregar al carrito</button>
   `;
 
-  // limpiar mensajes de error al cambiar talla
+  // limpiar mensajes de error al cambiar talla (si aplica)
   if (esRopa) {
     const select = item.querySelector(`#talla-${id}`);
     const errorSpan = item.querySelector(`#error-${id}`);
-    if (select) select.addEventListener("change", () => { if (select.value) errorSpan.textContent = ""; });
+    if (select) select.addEventListener("change", () => { if (select.value && errorSpan) errorSpan.textContent = ""; });
   }
 
   return item;
   }
     
   function renderCatalogo(productos, contenedorId, esRopa) {
-      const cont = document.getElementById(contenedorId);
-      cont.innerHTML = "";
-      productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
-    }
+  const cont = document.getElementById(contenedorId);
+  cont.innerHTML = "";
+  productos.forEach(p => cont.appendChild(crearItem(p, esRopa)));
+  // aplica la clase visual a los corazones si están en wishlistData
+  markHearts();
+  }
 
   function toggleFavorite(el, nombre, precio, esRopa) {
   el.classList.toggle("active");
