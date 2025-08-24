@@ -1673,7 +1673,7 @@ function irYZoom(seccionId) {
 
 function scrollCarrusel(direccion) {
   const carrusel = document.querySelector('.carrusel');
-  const scrollAmount = 300; // ajusta el desplazamiento según tu gusto
+  const scrollAmount = 150; // ajusta el desplazamiento según tu gusto
   carrusel.scrollBy({ left: direccion * scrollAmount, behavior: 'smooth' });
 }
 
@@ -1725,7 +1725,7 @@ function applyFilter() {
   if (!filtroActual) {
     cont.style.opacity = 0;
     setTimeout(() => {
-      cont.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver los productos.</p>';
+      cont.innerHTML = '<p style="color:white; text-align:center;">Selecciona una categoría para ver los productos.</p>';
       cont.style.opacity = 1;
     }, 150);
     return;
