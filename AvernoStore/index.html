@@ -1692,13 +1692,13 @@ function irYZoom(seccionId) {
   // 3) Quita el zoom al cabo de 600 ms
   setTimeout(() => el.classList.remove('zoom-focus'), 1500);
 }
-
+    
 function scrollCarrusel(direccion) {
   const carrusel = document.querySelector('.carrusel');
-  const scrollAmount = 50; // ajusta el desplazamiento según tu gusto
-  carrusel.scrollBy({ left: direccion * scrollAmount, behavior: 'smooth' });
+  const scrollAmount = 50;
+  carrusel.scrollLeft += direccion * scrollAmount; // cambio inmediato
 }
-
+    
 function openLightbox(src) {
   const lb = document.getElementById('lightbox');
   const img = document.getElementById('lightbox-img');
