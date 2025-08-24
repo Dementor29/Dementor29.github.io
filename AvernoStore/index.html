@@ -1289,6 +1289,14 @@ const productosRopa = {
   return encodeURI(String(s));
   }
 
+  // Helper para generar el mismo id que usa crearItem()
+  function makeId(nombre, imagen = "") {
+  return (String(nombre) + "_" + String(imagen || ""))
+    .replace(/\s+/g, "_")   // espacios -> guiones bajos
+    .replace(/[()]/g, "")   // quitar paréntesis
+    .replace(/[^a-zA-Z0-9_\-\.]/g, ""); // limpiar caracteres raros
+  }
+
   function crearItem(producto, esRopa = true) {
   const item = document.createElement("div");
   item.className = "item";
@@ -1432,21 +1440,27 @@ const productosRopa = {
       renderWishlist();
     }
 
-  function addToCart(nombre, precio, esRopa) {
-  const id = nombre.replace(/\s+/g, "_");
-  const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value || "1", 10);
-  let talla = "";
+  function addToCart(nombre, imagen, precioArg, esRopa) {
+  // id construido igual que en crearItem()
+  const id = makeId(nombre, imagen);
 
-  // Validación de talla si es prenda de ropa
+  // cantidad
+  const cantidadVal = document.getElementById(`cantidad-${id}`)?.value;
+  const cantidad = parseInt(cantidadVal || "1", 10);
+
+  // Validación de talla si aplica
+  let talla = "";
   if (esRopa) {
-    talla = document.getElementById(`talla-${id}`).value;
+    const tallaEl = document.getElementById(`talla-${id}`);
     const errorEl = document.getElementById(`error-${id}`);
+
+    talla = tallaEl ? tallaEl.value : "";
     if (!talla) {
       if (errorEl) {
         errorEl.textContent = "POR FAVOR SELECCIONA ⛧ UNA TALLA.";
         errorEl.style.color = 'var(--dorado-oscuro)';
       }
-      return;
+      return; // corta ejecución hasta seleccionar talla
     } else {
       if (errorEl) errorEl.textContent = "";
     }
@@ -1465,10 +1479,10 @@ const productosRopa = {
   const precioEl = itemEl.querySelector('.precio');
 
   // Leemos el precio y el tipo desde los atributos data-* que puso cambiarPrecio()
-  const precioActual = parseInt(precioEl.getAttribute("data-precio"), 10);
-  const tipoSeleccionado = precioEl.getAttribute("data-tipo") || "Normal";
+  const precioActual = parseInt(precioEl?.getAttribute("data-precio") || precioArg, 10);
+  const tipoSeleccionado = precioEl?.getAttribute("data-tipo") || "Normal";
 
-  // Guardamos en el carrito
+  // Guardamos en el carrito usando el nombre como key (igual que antes)
   cartData[nombre] = {
     precio: precioActual,
     cantidad: cantidad,
@@ -1476,7 +1490,7 @@ const productosRopa = {
     tipo: tipoSeleccionado
   };
 
-  // Renderizamos de nuevo carrito y actualizamos contador
+  // Render y contadores
   renderCarrito();
   actualizarContadores();
   }
