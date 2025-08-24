@@ -1254,7 +1254,7 @@ const productosRopa = {
     { nombre: "POSSESSED I", precio: 64990, imagen: "26 (66).png", category: "death-metal" }
   ]
   };
-
+    
   const etiquetas = {
   "exclusivo":   { texto: "EXCLUSIVO ⚔️",    clase: "etiqueta-exclusivo" },
   "black-metal": { texto: "BLACK METAL 🌑",  clase: "etiqueta-black-metal" },
@@ -1265,6 +1265,16 @@ const productosRopa = {
     
     let wishlistData = {};
     let cartData = {};
+
+  // helper — devuelve array plano o los productos de una categoría
+  function getProductosArray(categoria) {
+  if (categoria) {
+    // acepta categoria tal como viene (ej: "infernal" o "black-metal")
+    return productosRopa[categoria] ? productosRopa[categoria].slice() : [];
+  }
+  // sin categoría -> todos los productos planos
+  return Object.values(productosRopa).flat();
+  }
 
   // Helpers necesarios (pegar justo después de productosRopa)
   function money(n){
@@ -1698,9 +1708,7 @@ function applyFilter() {
   const cont = document.getElementById('catalogo-ropa');
   if (!cont) return;
 
-  // Si no hay filtro seleccionado: limpiamos y mostramos mensaje amigable
   if (!filtroActual) {
-    // transición suave
     cont.style.opacity = 0;
     setTimeout(() => {
       cont.innerHTML = '<p style="color:#777; text-align:center;">Selecciona una categoría para ver los productos.</p>';
@@ -1709,24 +1717,22 @@ function applyFilter() {
     return;
   }
 
-  // Efecto de desvanecimiento al cambiar categoría
   cont.style.opacity = 0;
 
   setTimeout(() => {
-    // Filtramos por category (case-insensitive)
-    const categoriaLower = String(filtroActual).trim().toLowerCase();
-    const visibles = productosRopa.filter(p => String(p.category || '').trim().toLowerCase() === categoriaLower);
+    const categoriaKey = String(filtroActual).trim(); // debe coincidir con las claves de productosRopa
+    // obtenemos la lista adecuada usando el helper
+    const visibles = getProductosArray(categoriaKey);
 
     if (!visibles || visibles.length === 0) {
-      cont.innerHTML = `<p style="color:#777; text-align:center;"> "PROXIMAMENTE" ${filtroActual}".</p>`;
+      cont.innerHTML = `<p style="color:#777; text-align:center;">PROXIMAMENTE: ${filtroActual}.</p>`;
       cont.style.opacity = 1;
       return;
     }
 
-    // Usa tu renderCatalogo existente para crear las tarjetas (mantiene tallas, badges, botones, etc.)
+    // renderiza usando tu función existente (espera un array)
     renderCatalogo(visibles, 'catalogo-ropa', true);
 
-    // Hacer visible con transición
     requestAnimationFrame(() => { cont.style.opacity = 1; });
   }, 450);
 }
@@ -1798,7 +1804,7 @@ function preloadImages(productos) {
   });
 }
 
-preloadImages(productosRopa);
+preloadImages(getProductosArray());
 
 function renderAsync(items, container) {
   let index = 0;
