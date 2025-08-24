@@ -1690,7 +1690,7 @@ function irYZoom(seccionId) {
   el.scrollIntoView({ behavior: 'auto', block: 'center' });
 }
     
-function smoothScrollTo(element, distance, duration = 150) {
+function smoothScrollTo(element, distance, duration = 1000) {
   const start = element.scrollLeft;
   const end = start + distance;
   const startTime = performance.now();
@@ -1706,7 +1706,7 @@ function smoothScrollTo(element, distance, duration = 150) {
 
 function scrollCarrusel(direccion) {
   const carrusel = document.querySelector('.carrusel');
-  const scrollAmount = 200;
+  const scrollAmount = 50;
   smoothScrollTo(carrusel, direccion * scrollAmount, 120);
 }
     
